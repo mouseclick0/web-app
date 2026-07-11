@@ -453,6 +453,91 @@
       text-align: center;
       line-height: 1.5;
     }
+
+    .contact-section {
+      grid-column: 1 / -1;
+      width: min(100%, 640px);
+      justify-self: center;
+      margin-top: 0.25rem;
+      text-align: left;
+    }
+
+    .contact-section h2 {
+      margin: 0 0 0.35rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .contact-desc {
+      margin: 0 0 1.25rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .form-field label {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--toggle-border);
+      background: var(--toggle-bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .form-field textarea {
+      min-height: 6.5rem;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+      border-color: var(--accent);
+    }
+
+    .form-status {
+      margin: 0;
+      min-height: 1.25rem;
+      font-size: 0.88rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .form-status.success {
+      color: #81c784;
+    }
+
+    .form-status.error {
+      color: #ef9a9a;
+    }
+
+    .contact-submit:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
@@ -514,6 +599,28 @@
       </div>
       <p class="home-subtitle">단색 배경 이미지를 업로드해 배경을 투명하게 제거합니다.</p>
       <button type="button" class="entry-btn" id="openCutoutBtn">이미지 누끼 제거</button>
+    </section>
+
+    <section class="card contact-section">
+      <h2>제휴 문의</h2>
+      <p class="contact-desc">광고, 콘텐츠, 서비스 제휴 문의를 남겨 주세요.</p>
+      <form class="contact-form" id="partnershipForm" action="https://formspree.io/f/xwvgelvl" method="POST">
+        <input type="hidden" name="_subject" value="제휴 문의" />
+        <div class="form-field">
+          <label for="contactName">이름</label>
+          <input id="contactName" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="form-field">
+          <label for="contactEmail">이메일</label>
+          <input id="contactEmail" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="form-field">
+          <label for="contactMessage">문의 내용</label>
+          <textarea id="contactMessage" name="message" required placeholder="제휴 제안 내용을 간단히 적어 주세요."></textarea>
+        </div>
+        <button type="submit" class="entry-btn contact-submit" id="contactSubmitBtn">문의 보내기</button>
+        <p class="form-status" id="contactStatus" aria-live="polite"></p>
+      </form>
     </section>
   </main>
 
@@ -654,6 +761,49 @@
       homeView.hidden = view !== homeView;
       lottoView.hidden = view !== lottoView;
       cutoutView.hidden = view !== cutoutView;
+    }
+
+    const partnershipForm = document.getElementById("partnershipForm");
+    const contactStatus = document.getElementById("contactStatus");
+    const contactSubmitBtn = document.getElementById("contactSubmitBtn");
+
+    if (partnershipForm) {
+      partnershipForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const endpoint = partnershipForm.getAttribute("action") || "";
+        if (endpoint.includes("YOUR_FORM_ID")) {
+          contactStatus.textContent = "Formspree 폼 ID를 설정해 주세요.";
+          contactStatus.className = "form-status error";
+          return;
+        }
+
+        contactSubmitBtn.disabled = true;
+        contactStatus.textContent = "전송 중입니다...";
+        contactStatus.className = "form-status";
+
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            body: new FormData(partnershipForm),
+            headers: { Accept: "application/json" },
+          });
+
+          if (response.ok) {
+            partnershipForm.reset();
+            contactStatus.textContent = "문의가 접수되었습니다. 빠르게 답변드리겠습니다.";
+            contactStatus.className = "form-status success";
+          } else {
+            contactStatus.textContent = "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.";
+            contactStatus.className = "form-status error";
+          }
+        } catch (error) {
+          contactStatus.textContent = "네트워크 오류가 발생했습니다. 다시 시도해 주세요.";
+          contactStatus.className = "form-status error";
+        } finally {
+          contactSubmitBtn.disabled = false;
+        }
+      });
     }
 
     function setCutoutStatus(message) {

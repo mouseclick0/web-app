@@ -26,7 +26,7 @@ const app = express();
 app.use(
   cors({
     origin: true,
-    exposedHeaders: ["Content-Disposition", "Content-Type"]
+    exposedHeaders: ["Content-Disposition", "Content-Type", "Content-Length"]
   })
 );
 app.use(express.json({ limit: "32kb" }));
@@ -337,6 +337,7 @@ app.get("/api/download", async function (req, res) {
     }
 
     res.setHeader("Content-Type", preferAudio ? "application/octet-stream" : "video/mp4");
+    res.setHeader("Content-Length", String(fs.statSync(filePath).size));
     res.setHeader(
       "Content-Disposition",
       "attachment; filename=\"" + downloadName.replace(/"/g, "") + "\"; filename*=UTF-8''" + encodeURIComponent(downloadName)

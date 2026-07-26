@@ -2333,6 +2333,12 @@
         if (!response.ok || !data || !data.ok) {
           throw new Error((data && data.error) || "health failed");
         }
+        if (!data.cutout) {
+          cutoutServerOk = false;
+          setCutoutHealth(t("cutout.health.outdated"), "bad");
+          removeBgBtn.disabled = true;
+          return false;
+        }
         cutoutServerOk = true;
         setCutoutHealth(t("cutout.health.ok"), "ok");
       } catch (error) {
@@ -2401,19 +2407,28 @@
 
         if (!response.ok) {
           let message = t("cutout.status.fail");
-          try {
-            const data = await response.json();
-            if (data && data.error) message = data.error;
-          } catch (e) {}
+          if (response.status === 404) {
+            message = t("cutout.health.outdated");
+          } else {
+            try {
+              const data = await response.json();
+              if (data && data.error) message = data.error;
+            } catch (e) {}
+          }
           throw new Error(message);
         }
 
         const blob = await response.blob();
+        if (!blob || !blob.size || (blob.type && blob.type.indexOf("image/") !== 0 && blob.type.indexOf("octet-stream") === -1)) {
+          // Some servers may omit type; still try to decode as image.
+        }
         const objectUrl = URL.createObjectURL(blob);
         const resultImg = new Image();
         await new Promise(function (resolve, reject) {
           resultImg.onload = resolve;
-          resultImg.onerror = reject;
+          resultImg.onerror = function () {
+            reject(new Error(t("cutout.status.fail")));
+          };
           resultImg.src = objectUrl;
         });
 

@@ -6,7 +6,10 @@ const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 25 * 1024 * 1024 },
   fileFilter: function (_req, file, cb) {
-    if (!file.mimetype || file.mimetype.indexOf("image/") !== 0) {
+    const name = String(file.originalname || "").toLowerCase();
+    const okMime = !!(file.mimetype && file.mimetype.indexOf("image/") === 0);
+    const okExt = /\.(png|jpe?g|webp|gif|bmp)$/i.test(name);
+    if (!okMime && !okExt) {
       cb(new Error("Only image uploads are allowed"));
       return;
     }
@@ -31,6 +34,19 @@ function resolveModel(raw) {
   return model === "small" ? "small" : "medium";
 }
 
+function guessMime(file) {
+  if (file.mimetype && file.mimetype.indexOf("image/") === 0) {
+    return file.mimetype;
+  }
+  const name = String(file.originalname || "").toLowerCase();
+  if (name.endsWith(".png")) return "image/png";
+  if (name.endsWith(".webp")) return "image/webp";
+  if (name.endsWith(".gif")) return "image/gif";
+  if (name.endsWith(".bmp")) return "image/bmp";
+  if (name.endsWith(".jpg") || name.endsWith(".jpeg")) return "image/jpeg";
+  return "image/png";
+}
+
 function registerCutoutRoutes(app) {
   app.post("/api/cutout", function (req, res) {
     upload.single("image")(req, res, async function (err) {
@@ -46,15 +62,15 @@ function registerCutoutRoutes(app) {
 
         const model = resolveModel(req.body && req.body.model);
         const removeBackground = await getRemoveBackground();
+        const mime = guessMime(req.file);
 
         // Pass a Blob — Windows file paths like C:\... break imgly ("Unsupported protocol: c:").
-        const inputBlob = new Blob([req.file.buffer], {
-          type: req.file.mimetype || "image/png"
-        });
+        const inputBlob = new Blob([req.file.buffer], { type: mime });
 
         const blob = await removeBackground(inputBlob, {
           model: model,
           debug: false,
+          proxyToWorker: false,
           output: {
             format: "image/png",
             quality: 1,

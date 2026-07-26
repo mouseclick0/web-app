@@ -774,7 +774,7 @@
 
     .tetris-actions {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 0.5rem;
       margin-bottom: 0.85rem;
     }
@@ -833,6 +833,10 @@
 
       .tetris-side {
         grid-template-columns: repeat(3, 1fr);
+      }
+
+      .tetris-actions {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .tetris-board {
@@ -1304,6 +1308,7 @@
       <button type="button" id="tetrisPauseBtn">일시정지</button>
       <button type="button" id="tetrisResumeBtn">계속</button>
       <button type="button" id="tetrisRestartBtn">다시 시작</button>
+      <button type="button" id="tetrisMuteBtn" aria-pressed="false">BGM 끄기</button>
     </div>
 
     <p class="tetris-status" id="tetrisStatus">시작 레벨을 고른 뒤 시작을 눌러 주세요.</p>
@@ -1449,6 +1454,7 @@
     const tetrisPauseBtn = document.getElementById("tetrisPauseBtn");
     const tetrisResumeBtn = document.getElementById("tetrisResumeBtn");
     const tetrisRestartBtn = document.getElementById("tetrisRestartBtn");
+    const tetrisMuteBtn = document.getElementById("tetrisMuteBtn");
 
     const GAME_COUNT = 5;
     const COBALT_API_KEY = "web-pages-cobalt-api";
@@ -1512,6 +1518,17 @@
     let tetrisOver = false;
     let tetrisDropTimer = null;
     let tetrisBagCount = 0;
+    const TETRIS_BGM_KEY = "web-pages-tetris-bgm-muted";
+    let tetrisAudioCtx = null;
+    let tetrisBgmMuted = false;
+    let tetrisBgmPlaying = false;
+    let tetrisBgmTimer = null;
+    let tetrisBgmStep = 0;
+    let tetrisMasterGain = null;
+
+    try {
+      tetrisBgmMuted = localStorage.getItem(TETRIS_BGM_KEY) === "1";
+    } catch (e) {}
 
     function showView(view) {
       homeView.hidden = view !== homeView;
@@ -1522,6 +1539,7 @@
       tetrisView.hidden = view !== tetrisView;
       if (view !== tetrisView) {
         pauseTetris(true);
+        stopTetrisBgm();
       }
     }
 
@@ -2444,13 +2462,108 @@
       }, tetrisDropInterval(tetrisLevel));
     }
 
+    function updateTetrisMuteBtn() {
+      if (!tetrisMuteBtn) return;
+      tetrisMuteBtn.textContent = tetrisBgmMuted ? "BGM 켜기" : "BGM 끄기";
+      tetrisMuteBtn.setAttribute("aria-pressed", tetrisBgmMuted ? "true" : "false");
+      tetrisMuteBtn.classList.toggle("active", tetrisBgmMuted);
+    }
+
+    function ensureTetrisAudio() {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return null;
+      if (!tetrisAudioCtx) {
+        tetrisAudioCtx = new AudioCtx();
+        tetrisMasterGain = tetrisAudioCtx.createGain();
+        tetrisMasterGain.gain.value = 0.08;
+        tetrisMasterGain.connect(tetrisAudioCtx.destination);
+      }
+      if (tetrisAudioCtx.state === "suspended") {
+        tetrisAudioCtx.resume();
+      }
+      return tetrisAudioCtx;
+    }
+
+    function playTetrisTone(freq, startTime, duration, type, gainValue) {
+      if (!tetrisAudioCtx || !tetrisMasterGain || !freq) return;
+      const osc = tetrisAudioCtx.createOscillator();
+      const gain = tetrisAudioCtx.createGain();
+      osc.type = type || "square";
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.0001, startTime);
+      gain.gain.exponentialRampToValueAtTime(gainValue || 0.22, startTime + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + Math.max(0.05, duration - 0.02));
+      osc.connect(gain);
+      gain.connect(tetrisMasterGain);
+      osc.start(startTime);
+      osc.stop(startTime + duration + 0.02);
+    }
+
+    // Simple original chiptune loop (not based on copyrighted Tetris themes)
+    const TETRIS_BGM_MELODY = [
+      392.00, 493.88, 587.33, 493.88,
+      440.00, 523.25, 659.25, 523.25,
+      349.23, 440.00, 523.25, 440.00,
+      392.00, 493.88, 587.33, 0,
+      523.25, 587.33, 659.25, 783.99,
+      659.25, 587.33, 523.25, 493.88,
+      440.00, 523.25, 587.33, 523.25,
+      392.00, 349.23, 329.63, 0
+    ];
+    const TETRIS_BGM_BASS = [
+      130.81, 0, 130.81, 0,
+      146.83, 0, 146.83, 0,
+      174.61, 0, 174.61, 0,
+      130.81, 0, 196.00, 0,
+      174.61, 0, 174.61, 0,
+      146.83, 0, 146.83, 0,
+      130.81, 0, 146.83, 0,
+      130.81, 0, 98.00, 0
+    ];
+
+    function stopTetrisBgm() {
+      tetrisBgmPlaying = false;
+      if (tetrisBgmTimer) {
+        clearTimeout(tetrisBgmTimer);
+        tetrisBgmTimer = null;
+      }
+      tetrisBgmStep = 0;
+    }
+
+    function scheduleTetrisBgmStep() {
+      if (!tetrisBgmPlaying || tetrisBgmMuted || !tetrisAudioCtx) return;
+      const stepMs = 180;
+      const now = tetrisAudioCtx.currentTime;
+      const beat = 0.16;
+      const melody = TETRIS_BGM_MELODY[tetrisBgmStep % TETRIS_BGM_MELODY.length];
+      const bass = TETRIS_BGM_BASS[tetrisBgmStep % TETRIS_BGM_BASS.length];
+      if (melody) playTetrisTone(melody, now, beat, "square", 0.18);
+      if (bass) playTetrisTone(bass, now, beat * 1.1, "triangle", 0.28);
+      tetrisBgmStep += 1;
+      tetrisBgmTimer = setTimeout(scheduleTetrisBgmStep, stepMs);
+    }
+
+    function startTetrisBgm() {
+      if (tetrisBgmMuted) {
+        stopTetrisBgm();
+        return;
+      }
+      if (!ensureTetrisAudio()) return;
+      if (tetrisBgmPlaying) return;
+      tetrisBgmPlaying = true;
+      tetrisBgmStep = 0;
+      scheduleTetrisBgmStep();
+    }
+
     function pauseTetris(silent) {
       if (!tetrisRunning || tetrisOver) {
         stopTetrisLoop();
+        stopTetrisBgm();
         return;
       }
       tetrisPaused = true;
       stopTetrisLoop();
+      stopTetrisBgm();
       if (!silent) setTetrisStatus("일시정지 중 · 계속을 누르면 재개합니다.");
     }
 
@@ -2458,6 +2571,7 @@
       if (!tetrisRunning || tetrisOver || !tetrisPaused) return;
       tetrisPaused = false;
       startTetrisLoop();
+      startTetrisBgm();
       setTetrisStatus("레벨 " + tetrisLevel + " · 줄을 지우면 레벨이 오릅니다. (최대 99)");
     }
 
@@ -2494,6 +2608,7 @@
       tetrisRunning = false;
       tetrisPaused = false;
       stopTetrisLoop();
+      stopTetrisBgm();
       setTetrisStatus("게임 오버 · 점수 " + tetrisScore + " · 다시 시작으로 재도전하세요.", "over");
       drawTetris();
     }
@@ -2598,6 +2713,7 @@
       tetrisPaused = false;
       tetrisRunning = false;
       stopTetrisLoop();
+      stopTetrisBgm();
       drawTetris();
     }
 
@@ -2612,12 +2728,14 @@
       spawnTetrisPiece();
       if (tetrisOver) return;
       startTetrisLoop();
+      startTetrisBgm();
       setTetrisStatus("레벨 " + tetrisLevel + " 시작 · 줄을 지우면 레벨이 오릅니다. (최대 99)");
     }
 
     function prepareTetrisView() {
       if (!tetrisCells.length) createTetrisBoardDom();
       if (!tetrisField.length) emptyTetrisField();
+      updateTetrisMuteBtn();
       if (!tetrisRunning && !tetrisOver) {
         tetrisLevel = clampTetrisLevel(tetrisStartLevel.value);
         updateTetrisHud();
@@ -2634,6 +2752,7 @@
 
     backHomeFromTetrisBtn.addEventListener("click", () => {
       pauseTetris(true);
+      stopTetrisBgm();
       showView(homeView);
       openTetrisBtn.focus();
     });
@@ -2642,6 +2761,19 @@
     tetrisRestartBtn.addEventListener("click", startTetrisGame);
     tetrisPauseBtn.addEventListener("click", function () { pauseTetris(false); });
     tetrisResumeBtn.addEventListener("click", resumeTetris);
+    tetrisMuteBtn.addEventListener("click", function () {
+      tetrisBgmMuted = !tetrisBgmMuted;
+      try {
+        localStorage.setItem(TETRIS_BGM_KEY, tetrisBgmMuted ? "1" : "0");
+      } catch (e) {}
+      updateTetrisMuteBtn();
+      if (tetrisBgmMuted) {
+        stopTetrisBgm();
+      } else if (tetrisRunning && !tetrisPaused && !tetrisOver) {
+        startTetrisBgm();
+      }
+    });
+    updateTetrisMuteBtn();
 
     document.querySelectorAll("[data-tetris-action]").forEach(function (btn) {
       btn.addEventListener("click", function () {

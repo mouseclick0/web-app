@@ -527,6 +527,66 @@
       line-height: 1.45;
     }
 
+    .video-health {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .video-health.ok {
+      color: #1f8a4c;
+    }
+
+    .video-health.bad {
+      color: #c0392b;
+    }
+
+    .video-meta {
+      display: none;
+      gap: 0.65rem;
+      margin-bottom: 1rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      background: var(--toggle-bg);
+    }
+
+    .video-meta.show {
+      display: grid;
+    }
+
+    .video-meta-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+      word-break: break-word;
+    }
+
+    .video-meta-sub {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .video-format-row {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .video-format-row select {
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      border-radius: 10px;
+      border: 1px solid var(--toggle-border);
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
     @media (max-width: 520px) {
       .video-url-row {
         grid-template-columns: 1fr;
@@ -1418,7 +1478,7 @@
           <rect x="132" y="146" width="116" height="8" rx="4" fill="#ffffff" opacity="0.28" />
         </svg>
       </div>
-      <p class="home-subtitle" data-i18n="home.video.subtitle">파일·플랫폼 URL을 붙여넣어 미리보고 다운로드합니다.</p>
+      <p class="home-subtitle" data-i18n="home.video.subtitle">로컬 yt-dlp 서버로 유튜브 영상을 미리보고 다운로드합니다.</p>
       <button type="button" class="entry-btn" id="openVideoBtn" data-i18n="home.video.cta">유튜브 동영상 다운로드</button>
     </section>
 
@@ -1614,21 +1674,23 @@
     <div class="card-head">
       <h1 data-i18n="video.title">유튜브 동영상 다운로드</h1>
     </div>
-    <p class="subtitle" data-i18n="video.subtitle">직접 파일 URL과 유튜브·인스타 등 플랫폼 URL을 붙여넣어 미리보고 다운로드하세요. 플랫폼 다운로드에는 Cobalt 호환 API 주소가 필요합니다.</p>
+    <p class="subtitle" data-i18n="video.subtitle">유튜브 등 URL을 붙여넣으면 로컬 yt-dlp 서버로 정보를 읽고 다운로드합니다. 먼저 PC에서 server 폴더의 npm start를 실행하세요.</p>
 
     <form class="video-url-form" id="videoUrlForm">
-      <label class="form-field" for="cobaltApiInput">
-        <span data-i18n="video.cobaltApi">Cobalt API 주소</span>
+      <label class="form-field" for="ytdlpApiInput">
+        <span data-i18n="video.apiLabel">yt-dlp API 주소</span>
         <input
           class="video-url-input"
-          id="cobaltApiInput"
+          id="ytdlpApiInput"
           type="url"
           inputmode="url"
           autocomplete="off"
-          placeholder="https://your-cobalt-api.example"
+          value="http://127.0.0.1:8787"
+          placeholder="http://127.0.0.1:8787"
         />
       </label>
-      <p class="video-api-hint" data-i18n="video.apiHint">자체 호스팅하거나 허용된 Cobalt API URL을 입력하면 이 기기에 저장됩니다. 없으면 유튜브는 미리보기만 가능합니다.</p>
+      <p class="video-api-hint" data-i18n="video.apiHint">기본값은 http://127.0.0.1:8787 입니다. 서버를 켠 뒤 이 기기에 주소가 저장됩니다.</p>
+      <p class="video-health" id="videoHealth" aria-live="polite"></p>
       <label class="form-field" for="videoUrlInput">
         <span data-i18n="video.url">영상 URL</span>
         <div class="video-url-row">
@@ -1638,7 +1700,7 @@
             type="url"
             inputmode="url"
             autocomplete="off"
-            data-i18n-placeholder="video.urlPlaceholder" placeholder="https://example.com/video.mp4 또는 유튜브 URL"
+            data-i18n-placeholder="video.urlPlaceholder" placeholder="https://www.youtube.com/watch?v=..."
             required
           />
           <button type="submit" class="entry-btn video-load-btn" id="loadVideoBtn" data-i18n="video.load">불러오기</button>
@@ -1647,6 +1709,15 @@
     </form>
 
     <p class="cutout-status" id="videoStatus" aria-live="polite">영상 URL을 입력한 뒤 불러오기를 눌러 주세요.</p>
+
+    <div class="video-meta" id="videoMeta">
+      <p class="video-meta-title" id="videoMetaTitle"></p>
+      <p class="video-meta-sub" id="videoMetaSub"></p>
+      <label class="video-format-row" for="videoFormatSelect">
+        <span data-i18n="video.format">화질</span>
+        <select id="videoFormatSelect"></select>
+      </label>
+    </div>
 
     <div class="video-preview-box" id="videoPreviewBox">
       <p class="video-preview-placeholder" id="videoPreviewPlaceholder" data-i18n="video.previewPlaceholder">미리보기가 여기에 표시됩니다.</p>
@@ -1926,12 +1997,18 @@
     const resultCanvas = document.getElementById("resultCanvas");
     const videoUrlForm = document.getElementById("videoUrlForm");
     const videoUrlInput = document.getElementById("videoUrlInput");
-    const cobaltApiInput = document.getElementById("cobaltApiInput");
+    const ytdlpApiInput = document.getElementById("ytdlpApiInput");
+    const videoHealth = document.getElementById("videoHealth");
     const videoStatus = document.getElementById("videoStatus");
     const videoPreviewPlaceholder = document.getElementById("videoPreviewPlaceholder");
     const videoPreview = document.getElementById("videoPreview");
     const videoEmbed = document.getElementById("videoEmbed");
+    const videoMeta = document.getElementById("videoMeta");
+    const videoMetaTitle = document.getElementById("videoMetaTitle");
+    const videoMetaSub = document.getElementById("videoMetaSub");
+    const videoFormatSelect = document.getElementById("videoFormatSelect");
     const downloadVideoBtn = document.getElementById("downloadVideoBtn");
+    const loadVideoBtn = document.getElementById("loadVideoBtn");
     const mineBoard = document.getElementById("mineBoard");
     const mineRemaining = document.getElementById("mineRemaining");
     const mineTimer = document.getElementById("mineTimer");
@@ -1976,21 +2053,8 @@
     const memoryShareBtn = document.getElementById("memoryShareBtn");
 
     const GAME_COUNT = 5;
-    const COBALT_API_KEY = "web-pages-cobalt-api";
-    const PLATFORM_HOST_MARKERS = [
-      "youtube.com",
-      "youtu.be",
-      "instagram.com",
-      "tiktok.com",
-      "facebook.com",
-      "fb.watch",
-      "vimeo.com",
-      "twitter.com",
-      "x.com",
-      "twitch.tv",
-      "naver.com",
-      "tv.kakao.com"
-    ];
+    const YTDLP_API_KEY = "web-pages-ytdlp-api";
+    const YTDLP_DEFAULT_API = "http://127.0.0.1:8787";
     const MINE_DIFFICULTIES = {
       beginner: { rows: 9, cols: 9, mines: 10 },
       intermediate: { rows: 12, cols: 12, mines: 25 },
@@ -1998,8 +2062,10 @@
     };
     let sourceImage = null;
     let sourceFileName = "cutout";
-    let currentVideoUrl = "";
+    let currentVideoPageUrl = "";
     let currentVideoFileName = "video.mp4";
+    let currentVideoInfo = null;
+    let ytdlpServerOk = false;
     let mineDiff = "beginner";
     let mineFlagMode = false;
     let mineStarted = false;
@@ -2217,26 +2283,54 @@
       videoStatus.textContent = message;
     }
 
-    function getCobaltApiUrl() {
-      return (cobaltApiInput.value || "").trim().replace(/\/+$/, "");
+    function getYtdlpApiUrl() {
+      return (ytdlpApiInput.value || "").trim().replace(/\/+$/, "") || YTDLP_DEFAULT_API;
     }
 
-    function loadSavedCobaltApi() {
+    function loadSavedYtdlpApi() {
       try {
-        const saved = localStorage.getItem(COBALT_API_KEY);
-        if (saved) cobaltApiInput.value = saved;
+        const saved = localStorage.getItem(YTDLP_API_KEY);
+        ytdlpApiInput.value = saved || YTDLP_DEFAULT_API;
+      } catch (e) {
+        ytdlpApiInput.value = YTDLP_DEFAULT_API;
+      }
+    }
+
+    function saveYtdlpApi() {
+      const value = getYtdlpApiUrl();
+      try {
+        localStorage.setItem(YTDLP_API_KEY, value);
       } catch (e) {}
     }
 
-    function saveCobaltApi() {
-      const value = getCobaltApiUrl();
+    function setVideoHealth(message, kind) {
+      videoHealth.textContent = message || "";
+      videoHealth.className = "video-health" + (kind ? " " + kind : "");
+    }
+
+    async function checkYtdlpHealth() {
+      const apiBase = getYtdlpApiUrl();
+      saveYtdlpApi();
+      setVideoHealth(t("video.health.checking"));
+      ytdlpServerOk = false;
       try {
-        if (value) {
-          localStorage.setItem(COBALT_API_KEY, value);
-        } else {
-          localStorage.removeItem(COBALT_API_KEY);
+        const response = await fetch(apiBase + "/api/health", { method: "GET" });
+        const data = await response.json();
+        if (!response.ok || !data || !data.ok) {
+          throw new Error((data && data.error) || "health failed");
         }
-      } catch (e) {}
+        ytdlpServerOk = true;
+        setVideoHealth(t("video.health.ok", { version: data.version || "yt-dlp" }), "ok");
+      } catch (error) {
+        ytdlpServerOk = false;
+        setVideoHealth(t("video.health.bad"), "bad");
+      }
+      updateDownloadEnabled();
+      return ytdlpServerOk;
+    }
+
+    function updateDownloadEnabled() {
+      downloadVideoBtn.disabled = !(currentVideoPageUrl && ytdlpServerOk && currentVideoInfo);
     }
 
     function clearVideoMedia() {
@@ -2247,12 +2341,21 @@
       videoEmbed.hidden = true;
     }
 
+    function hideVideoMeta() {
+      videoMeta.classList.remove("show");
+      videoMetaTitle.textContent = "";
+      videoMetaSub.textContent = "";
+      videoFormatSelect.innerHTML = "";
+    }
+
     function resetVideoPreview() {
-      currentVideoUrl = "";
+      currentVideoPageUrl = "";
       currentVideoFileName = "video.mp4";
+      currentVideoInfo = null;
       clearVideoMedia();
+      hideVideoMeta();
       videoPreviewPlaceholder.hidden = false;
-      downloadVideoBtn.disabled = true;
+      updateDownloadEnabled();
     }
 
     function showDirectVideoPreview(url) {
@@ -2267,15 +2370,6 @@
       videoPreviewPlaceholder.hidden = true;
       videoEmbed.hidden = false;
       videoEmbed.src = "https://www.youtube.com/embed/" + encodeURIComponent(videoId);
-      currentVideoUrl = "";
-      downloadVideoBtn.disabled = true;
-    }
-
-    function isPlatformVideoUrl(parsedUrl) {
-      const host = (parsedUrl.hostname || "").toLowerCase();
-      return PLATFORM_HOST_MARKERS.some(function (marker) {
-        return host === marker || host.endsWith("." + marker);
-      });
     }
 
     function isYoutubeUrl(parsedUrl) {
@@ -2299,110 +2393,44 @@
       return "";
     }
 
-    function fileNameFromUrl(parsedUrl) {
-      const path = decodeURIComponent(parsedUrl.pathname || "");
-      const segment = path.split("/").filter(Boolean).pop() || "";
-      if (segment && /\.[a-z0-9]{2,5}$/i.test(segment)) {
-        return segment;
-      }
-      return "video.mp4";
+    function formatLabel(id) {
+      const key = "video.format." + id;
+      const label = t(key);
+      return label === key ? id : label;
     }
 
-    function cobaltErrorMessage(data) {
-      const code = data && data.error && data.error.code ? data.error.code : "";
-      if (code.indexOf("auth") !== -1) {
-        return t("video.error.auth");
-      }
-      if (code.indexOf("link.unsupported") !== -1 || code.indexOf("service") !== -1) {
-        return t("video.error.unsupported");
-      }
-      if (code) {
-        return t("video.error.parseWithCode", { code: code });
-      }
-      return t("video.error.parse");
-    }
-
-    function applyResolvedMedia(url, fileName) {
-      currentVideoUrl = url;
-      currentVideoFileName = fileName || "video.mp4";
-      showDirectVideoPreview(url);
-      downloadVideoBtn.disabled = false;
-      setVideoStatus(t("video.status.platformReady"));
-    }
-
-    async function resolvePlatformWithCobalt(sourceUrl, apiBase) {
-      const response = await fetch(apiBase + "/", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          url: sourceUrl,
-          videoQuality: "1080"
-        })
+    function applyVideoInfo(info, pageUrl) {
+      currentVideoInfo = info;
+      currentVideoPageUrl = pageUrl;
+      currentVideoFileName = info.filename || "video.mp4";
+      videoMetaTitle.textContent = info.title || "";
+      videoMetaSub.textContent = t("video.metaLine", {
+        duration: info.durationText || "-",
+        uploader: info.uploader || "-"
       });
-
-      let data = null;
-      try {
-        data = await response.json();
-      } catch (error) {
-        throw new Error("invalid-json");
+      videoFormatSelect.innerHTML = "";
+      (info.formats || []).forEach(function (item) {
+        const opt = document.createElement("option");
+        opt.value = item.id;
+        opt.textContent = formatLabel(item.id);
+        videoFormatSelect.appendChild(opt);
+      });
+      if (!videoFormatSelect.options.length) {
+        const opt = document.createElement("option");
+        opt.value = "best";
+        opt.textContent = formatLabel("best");
+        videoFormatSelect.appendChild(opt);
       }
-
-      if (!response.ok || !data || data.status === "error") {
-        throw new Error(cobaltErrorMessage(data));
-      }
-
-      if (data.status === "tunnel" || data.status === "redirect") {
-        if (!data.url) throw new Error(t("video.error.noMediaUrl"));
-        return {
-          url: data.url,
-          filename: data.filename || "video.mp4"
-        };
-      }
-
-      if (data.status === "picker" && Array.isArray(data.picker)) {
-        const videoItem = data.picker.find(function (item) {
-          return item && item.type === "video" && item.url;
-        }) || data.picker.find(function (item) {
-          return item && item.url;
-        });
-        if (!videoItem) {
-          throw new Error(t("video.error.noPicker"));
-        }
-        return {
-          url: videoItem.url,
-          filename: "video.mp4"
-        };
-      }
-
-      if (data.status === "local-processing") {
-        const tunnelUrl = Array.isArray(data.tunnel) ? data.tunnel[0] : "";
-        if (!tunnelUrl) {
-          throw new Error(t("video.error.localProcessing"));
-        }
-        return {
-          url: tunnelUrl,
-          filename: (data.output && data.output.filename) || "video.mp4"
-        };
-      }
-
-      throw new Error(t("video.error.badResponse"));
+      videoMeta.classList.add("show");
+      updateDownloadEnabled();
     }
 
-    function handlePlatformWithoutApi(parsedUrl) {
-      if (isYoutubeUrl(parsedUrl)) {
-        const videoId = extractYoutubeId(parsedUrl);
-        if (videoId) {
-          showYoutubeEmbed(videoId);
-          setVideoStatus(t("video.status.youtubePreview"));
-          return;
-        }
-      }
-
-      resetVideoPreview();
-      setVideoStatus(t("video.status.needApi"));
+    function maybeShowYoutubePreview(parsedUrl) {
+      if (!isYoutubeUrl(parsedUrl)) return false;
+      const videoId = extractYoutubeId(parsedUrl);
+      if (!videoId) return false;
+      showYoutubeEmbed(videoId);
+      return true;
     }
 
     async function loadVideoFromUrl(rawUrl) {
@@ -2428,40 +2456,59 @@
         return;
       }
 
-      saveCobaltApi();
+      saveYtdlpApi();
+      resetVideoPreview();
+      maybeShowYoutubePreview(parsedUrl);
 
-      if (isPlatformVideoUrl(parsedUrl)) {
-        const apiBase = getCobaltApiUrl();
-        if (!apiBase) {
-          handlePlatformWithoutApi(parsedUrl);
-          return;
-        }
-
-        resetVideoPreview();
-        setVideoStatus(t("video.status.resolving"));
-        downloadVideoBtn.disabled = true;
-
-        try {
-          const resolved = await resolvePlatformWithCobalt(parsedUrl.href, apiBase);
-          applyResolvedMedia(resolved.url, resolved.filename);
-        } catch (error) {
-          resetVideoPreview();
-          if (error && error.message === "invalid-json") {
-            setVideoStatus(t("video.status.badApiJson"));
-          } else if (error && typeof error.message === "string" && error.message && error.message.indexOf("fetch") === -1) {
-            setVideoStatus(error.message);
-          } else {
-            setVideoStatus(t("video.status.apiConnectFail"));
-          }
-        }
+      const healthy = await checkYtdlpHealth();
+      if (!healthy) {
+        setVideoStatus(t("video.status.needServer"));
         return;
       }
 
-      currentVideoUrl = parsedUrl.href;
-      currentVideoFileName = fileNameFromUrl(parsedUrl);
-      showDirectVideoPreview(currentVideoUrl);
-      downloadVideoBtn.disabled = false;
-      setVideoStatus(t("video.status.directReady"));
+      setVideoStatus(t("video.status.resolving"));
+      downloadVideoBtn.disabled = true;
+      loadVideoBtn.disabled = true;
+
+      try {
+        const response = await fetch(getYtdlpApiUrl() + "/api/info", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ url: parsedUrl.href })
+        });
+        let data = null;
+        try {
+          data = await response.json();
+        } catch (e) {
+          throw new Error("invalid-json");
+        }
+        if (!response.ok || !data || !data.ok) {
+          throw new Error((data && data.error) || t("video.error.infoFail"));
+        }
+        if (!maybeShowYoutubePreview(parsedUrl)) {
+          clearVideoMedia();
+          videoPreviewPlaceholder.hidden = false;
+          videoPreviewPlaceholder.textContent = t("video.previewPlaceholder");
+        }
+        applyVideoInfo(data, parsedUrl.href);
+        setVideoStatus(t("video.status.ready"));
+      } catch (error) {
+        resetVideoPreview();
+        maybeShowYoutubePreview(parsedUrl);
+        if (error && error.message === "invalid-json") {
+          setVideoStatus(t("video.status.badApiJson"));
+        } else if (error && typeof error.message === "string" && error.message) {
+          setVideoStatus(error.message);
+        } else {
+          setVideoStatus(t("video.status.apiConnectFail"));
+        }
+      } finally {
+        loadVideoBtn.disabled = false;
+        updateDownloadEnabled();
+      }
     }
 
     function triggerBlobDownload(blob, fileName) {
@@ -2477,43 +2524,52 @@
       }, 1000);
     }
 
-    function fallbackOpenVideo(url) {
-      const link = document.createElement("a");
-      link.href = url;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.download = currentVideoFileName;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    }
-
     async function downloadCurrentVideo() {
-      if (!currentVideoUrl) {
+      if (!currentVideoPageUrl || !ytdlpServerOk) {
         setVideoStatus(t("video.status.needLoad"));
         return;
       }
+
+      const format = videoFormatSelect.value || "best";
+      const apiBase = getYtdlpApiUrl();
+      const downloadUrl = apiBase + "/api/download?url=" + encodeURIComponent(currentVideoPageUrl) + "&format=" + encodeURIComponent(format);
 
       downloadVideoBtn.disabled = true;
       setVideoStatus(t("video.status.downloadPreparing"));
 
       try {
-        const response = await fetch(currentVideoUrl);
+        const response = await fetch(downloadUrl);
         if (!response.ok) {
-          throw new Error("fetch failed with status " + response.status);
+          let message = t("video.error.downloadFail");
+          try {
+            const data = await response.json();
+            if (data && data.error) message = data.error;
+          } catch (e) {}
+          throw new Error(message);
         }
         const blob = await response.blob();
-        triggerBlobDownload(blob, currentVideoFileName);
+        const header = response.headers.get("Content-Disposition") || "";
+        let fileName = currentVideoFileName;
+        const utfMatch = header.match(/filename\*=UTF-8''([^;]+)/i);
+        const plainMatch = header.match(/filename="?([^";]+)"?/i);
+        if (utfMatch) {
+          try {
+            fileName = decodeURIComponent(utfMatch[1]);
+          } catch (e) {}
+        } else if (plainMatch) {
+          fileName = plainMatch[1];
+        }
+        triggerBlobDownload(blob, fileName);
         setVideoStatus(t("video.status.downloadStarted"));
       } catch (error) {
-        fallbackOpenVideo(currentVideoUrl);
-        setVideoStatus(t("video.status.downloadFallback"));
+        setVideoStatus((error && error.message) || t("video.error.downloadFail"));
       } finally {
-        downloadVideoBtn.disabled = !currentVideoUrl;
+        updateDownloadEnabled();
       }
     }
 
-    loadSavedCobaltApi();
+    loadSavedYtdlpApi();
+    checkYtdlpHealth();
 
     function setMineStatus(message, kind) {
       mineStatus.textContent = message;
@@ -2783,6 +2839,7 @@
 
     openVideoBtn.addEventListener("click", () => {
       showView(videoView);
+      checkYtdlpHealth();
       videoUrlInput.focus();
     });
 
@@ -3947,8 +4004,14 @@
       toggleFlag(Number(btn.dataset.row), Number(btn.dataset.col));
     });
 
-    cobaltApiInput.addEventListener("change", saveCobaltApi);
-    cobaltApiInput.addEventListener("blur", saveCobaltApi);
+    ytdlpApiInput.addEventListener("change", function () {
+      saveYtdlpApi();
+      checkYtdlpHealth();
+    });
+    ytdlpApiInput.addEventListener("blur", function () {
+      saveYtdlpApi();
+      checkYtdlpHealth();
+    });
 
     videoUrlForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -3960,9 +4023,8 @@
     });
 
     videoPreview.addEventListener("error", () => {
-      if (!currentVideoUrl) return;
+      if (!currentVideoPageUrl) return;
       setVideoStatus(t("video.status.playFail"));
-      downloadVideoBtn.disabled = !currentVideoUrl;
     });
 
     imageInput.addEventListener("change", () => {
@@ -4028,10 +4090,20 @@
       setTheme(getTheme());
       updateTetrisMuteBtn();
       if (!sourceImage) setCutoutStatus(t("cutout.status.idle"));
-      if (!currentVideoUrl) {
+      if (!currentVideoPageUrl) {
         var ph = document.getElementById("videoPreviewPlaceholder");
         if (ph && !ph.hidden) setVideoStatus(t("video.status.idle"));
+      } else if (currentVideoInfo) {
+        setVideoStatus(t("video.status.ready"));
+        videoMetaSub.textContent = t("video.metaLine", {
+          duration: currentVideoInfo.durationText || "-",
+          uploader: currentVideoInfo.uploader || "-"
+        });
+        Array.from(videoFormatSelect.options).forEach(function (opt) {
+          opt.textContent = formatLabel(opt.value);
+        });
       }
+      if (videoHealth) checkYtdlpHealth();
       if (!mineStarted && !mineEnded) setMineStatus(t("mine.status.idle"));
       else if (mineEnded && mineStatus.classList.contains("win")) {
         setMineStatus(t("mine.status.win", { seconds: mineSeconds }), "win");

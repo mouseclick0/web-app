@@ -1,0 +1,19 @@
+{
+  "name": "web-app-ytdlp-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local yt-dlp API for the YouTube download page",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "postinstall": "node ensure-ytdlp.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

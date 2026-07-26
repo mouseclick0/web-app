@@ -877,7 +877,7 @@
 
     .gomoku-options-row {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1fr;
       gap: 0.65rem;
     }
 
@@ -974,8 +974,8 @@
     }
 
     .gomoku-cell {
-      width: 1.7rem;
-      height: 1.7rem;
+      width: 1.35rem;
+      height: 1.35rem;
       border: none;
       padding: 0;
       margin: 0;
@@ -1014,8 +1014,7 @@
     }
 
     @media (max-width: 560px) {
-      .gomoku-options-row { grid-template-columns: 1fr; }
-      .gomoku-cell { width: 1.45rem; height: 1.45rem; }
+      .gomoku-cell { width: 1.1rem; height: 1.1rem; }
     }
 
     @media (max-width: 560px) {
@@ -1354,7 +1353,7 @@
           <circle cx="158" cy="48" r="14" fill="#f5f5f5" stroke="#999" />
         </svg>
       </div>
-      <p class="home-subtitle" data-i18n="home.gomoku.subtitle">흑·백을 고르고 AI와 오목을 둡니다. 3×3부터 15×15, 레벨 1~99.</p>
+      <p class="home-subtitle" data-i18n="home.gomoku.subtitle">흑·백을 고르고 AI와 19×19 오목을 둡니다. 레벨 1~99.</p>
       <button type="button" class="entry-btn" id="openGomokuBtn" data-i18n="home.gomoku.cta">오목 게임</button>
     </section>
 
@@ -1579,7 +1578,7 @@
     <div class="card-head">
       <h1 data-i18n="gomoku.title">오목 게임</h1>
     </div>
-    <p class="subtitle" data-i18n="gomoku.subtitle">돌 색과 판 크기(3×3 포함)를 고른 뒤 레벨 1~99 AI와 대국하세요. 3×3은 3목, 그 외는 5목입니다.</p>
+    <p class="subtitle" data-i18n="gomoku.subtitle">돌 색을 고른 뒤 레벨 1~99 AI와 19×19 오목(5목)을 두세요.</p>
 
     <div class="gomoku-options">
       <div class="gomoku-options-row">
@@ -1588,15 +1587,6 @@
           <select class="gomoku-select" id="gomokuColorSelect">
             <option value="black" data-i18n="gomoku.color.black">흑 (선공)</option>
             <option value="white" data-i18n="gomoku.color.white">백 (후공)</option>
-          </select>
-        </label>
-        <label class="form-field" for="gomokuBoardSelect">
-          <span data-i18n="gomoku.board">판 크기</span>
-          <select class="gomoku-select" id="gomokuBoardSelect">
-            <option value="3" data-i18n="gomoku.board.3">3×3 (3목)</option>
-            <option value="9" data-i18n="gomoku.board.9">9×9 (5목)</option>
-            <option value="13" selected data-i18n="gomoku.board.13">13×13 (5목)</option>
-            <option value="15" data-i18n="gomoku.board.15">15×15 (5목)</option>
           </select>
         </label>
       </div>
@@ -1750,7 +1740,6 @@
     const tetrisRestartBtn = document.getElementById("tetrisRestartBtn");
     const tetrisMuteBtn = document.getElementById("tetrisMuteBtn");
     const gomokuColorSelect = document.getElementById("gomokuColorSelect");
-    const gomokuBoardSelect = document.getElementById("gomokuBoardSelect");
     const gomokuLevelInput = document.getElementById("gomokuLevelInput");
     const gomokuStartBtn = document.getElementById("gomokuStartBtn");
     const gomokuRestartBtn = document.getElementById("gomokuRestartBtn");
@@ -3064,7 +3053,8 @@
     });
 
     const GOMOKU_MAX_LEVEL = 99;
-    let gomokuSize = 13;
+    const GOMOKU_BOARD_SIZE = 19;
+    let gomokuSize = GOMOKU_BOARD_SIZE;
     let gomokuWinLen = 5;
     let gomokuLevel = 1;
     let gomokuPlayer = "black";
@@ -3086,10 +3076,6 @@
       const n = Number(value);
       if (!Number.isFinite(n)) return 1;
       return Math.min(GOMOKU_MAX_LEVEL, Math.max(1, Math.round(n)));
-    }
-
-    function gomokuWinLengthForSize(size) {
-      return size <= 3 ? 3 : 5;
     }
 
     function updateGomokuHud() {
@@ -3337,8 +3323,8 @@
     function startGomokuGame() {
       gomokuLevel = clampGomokuLevel(gomokuLevelInput.value);
       gomokuLevelInput.value = String(gomokuLevel);
-      gomokuSize = Number(gomokuBoardSelect.value) || 13;
-      gomokuWinLen = gomokuWinLengthForSize(gomokuSize);
+      gomokuSize = GOMOKU_BOARD_SIZE;
+      gomokuWinLen = 5;
       gomokuPlayer = gomokuColorSelect.value === "white" ? "white" : "black";
       gomokuAi = gomokuPlayer === "black" ? "white" : "black";
       gomokuGrid = Array.from({ length: gomokuSize }, function () {
@@ -3368,7 +3354,7 @@
 
     function prepareGomokuView() {
       if (!gomokuCells.length) {
-        gomokuSize = Number(gomokuBoardSelect.value) || 13;
+        gomokuSize = GOMOKU_BOARD_SIZE;
         createGomokuBoardDom();
       }
       updateGomokuHud();

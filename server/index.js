@@ -7,15 +7,20 @@ const { spawn } = require("child_process");
 const express = require("express");
 const cors = require("cors");
 const { ensureYtDlp, getYtDlpPath } = require("./ensure-ytdlp");
+const { ensureFfmpeg, getFfmpegPath } = require("./ensure-ffmpeg");
 
 const PORT = Number(process.env.PORT) || 8787;
 const FORMAT_PRESETS = {
-  best: "bv*+ba/b",
-  "1080": "bv*[height<=1080]+ba/b[height<=1080]/bv*+ba/b",
-  "720": "bv*[height<=720]+ba/b[height<=720]/bv*+ba/b",
-  "480": "bv*[height<=480]+ba/b[height<=480]/bv*+ba/b",
+  // Prefer merged video+audio; fall back to progressive single-file streams.
+  best: "bv*+ba/b[ext=mp4]/b",
+  "1080": "bv*[height<=1080]+ba/b[height<=1080][ext=mp4]/b[height<=1080]/bv*+ba/b",
+  "720": "bv*[height<=720]+ba/b[height<=720][ext=mp4]/b[height<=720]/bv*+ba/b",
+  "480": "bv*[height<=480]+ba/b[height<=480][ext=mp4]/b[height<=480]/bv*+ba/b",
   audio: "ba/b"
 };
+
+const VIDEO_EXTS = new Set([".mp4", ".mkv", ".webm", ".mov", ".avi"]);
+const AUDIO_ONLY_EXTS = new Set([".m4a", ".mp3", ".opus", ".ogg", ".wav", ".aac", ".flac"]);
 
 const app = express();
 app.use(cors({ origin: true }));
@@ -100,6 +105,43 @@ function runYtDlp(args) {
   });
 }
 
+function pickDownloadedFile(tempDir, preferAudio) {
+  const files = fs.readdirSync(tempDir).filter(function (name) {
+    return fs.statSync(path.join(tempDir, name)).isFile();
+  });
+  if (!files.length) return "";
+
+  const ranked = files
+    .map(function (name) {
+      const full = path.join(tempDir, name);
+      const ext = path.extname(name).toLowerCase();
+      const size = fs.statSync(full).size;
+      let score = size;
+      if (preferAudio) {
+        if (AUDIO_ONLY_EXTS.has(ext)) score += 1e15;
+        if (VIDEO_EXTS.has(ext)) score -= 1e14;
+      } else {
+        if (VIDEO_EXTS.has(ext)) score += 1e15;
+        if (AUDIO_ONLY_EXTS.has(ext)) score -= 1e14;
+      }
+      return { name: name, score: score };
+    })
+    .sort(function (a, b) {
+      return b.score - a.score;
+    });
+
+  return ranked[0].name;
+}
+
+function ytDlpBaseArgs() {
+  const ffmpegPath = getFfmpegPath();
+  const args = [];
+  if (ffmpegPath && fs.existsSync(ffmpegPath)) {
+    args.push("--ffmpeg-location", path.dirname(ffmpegPath));
+  }
+  return args;
+}
+
 function cleanupDir(dir) {
   try {
     fs.rmSync(dir, { recursive: true, force: true });
@@ -109,10 +151,13 @@ function cleanupDir(dir) {
 app.get("/api/health", async function (_req, res) {
   try {
     const version = (await runYtDlp(["--version"])).trim();
+    const ffmpegPath = getFfmpegPath();
+    const ffmpegOk = !!(ffmpegPath && fs.existsSync(ffmpegPath));
     res.json({
       ok: true,
       engine: "yt-dlp",
       version: version,
+      ffmpeg: ffmpegOk,
       port: PORT
     });
   } catch (error) {
@@ -165,11 +210,13 @@ app.get("/api/download", async function (req, res) {
   let tempDir = "";
   try {
     const url = assertHttpUrl(req.query.url);
-    const format = resolveFormat(req.query.format);
+    const formatKey = String(req.query.format || "best");
+    const format = resolveFormat(formatKey);
+    const preferAudio = formatKey === "audio";
     tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "ytdlp-"));
     const outTemplate = path.join(tempDir, "%(title).80B.%(ext)s");
 
-    await runYtDlp([
+    const downloadArgs = ytDlpBaseArgs().concat([
       "-f",
       format,
       "--no-warnings",
@@ -182,15 +229,35 @@ app.get("/api/download", async function (req, res) {
       url
     ]);
 
-    const files = fs.readdirSync(tempDir).filter(function (name) {
-      return fs.statSync(path.join(tempDir, name)).isFile();
-    });
-    if (!files.length) {
+    try {
+      await runYtDlp(downloadArgs);
+    } catch (mergeError) {
+      // Without a successful merge, retry a progressive (single-file) format.
+      if (preferAudio) throw mergeError;
+      cleanupDir(tempDir);
+      tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "ytdlp-"));
+      const fallbackOut = path.join(tempDir, "%(title).80B.%(ext)s");
+      await runYtDlp(
+        ytDlpBaseArgs().concat([
+          "-f",
+          "b[ext=mp4]/best[ext=mp4]/b/best",
+          "--no-warnings",
+          "--no-playlist",
+          "--restrict-filenames",
+          "-o",
+          fallbackOut,
+          url
+        ])
+      );
+    }
+
+    const chosen = pickDownloadedFile(tempDir, preferAudio);
+    if (!chosen) {
       throw new Error("Download produced no file");
     }
 
-    const filePath = path.join(tempDir, files[0]);
-    const downloadName = safeFileName(files[0], "video.mp4");
+    const filePath = path.join(tempDir, chosen);
+    const downloadName = safeFileName(chosen, preferAudio ? "audio.m4a" : "video.mp4");
 
     res.setHeader("Content-Type", "application/octet-stream");
     res.setHeader(
@@ -225,6 +292,12 @@ app.get("/api/download", async function (req, res) {
 });
 
 ensureYtDlp()
+  .then(function () {
+    return ensureFfmpeg().catch(function (err) {
+      console.warn("ffmpeg setup warning:", err.message || err);
+      console.warn("Video+audio merge may fail until ffmpeg is available.");
+    });
+  })
   .then(function () {
     app.listen(PORT, "127.0.0.1", function () {
       console.log("yt-dlp local API listening on http://127.0.0.1:" + PORT);

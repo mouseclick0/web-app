@@ -498,6 +498,161 @@
       }
     }
 
+    .minesweeper-card {
+      width: min(100%, 640px);
+    }
+
+    .mine-hud {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .mine-stats {
+      display: flex;
+      gap: 0.85rem;
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .mine-stats span {
+      color: var(--muted);
+      font-weight: 600;
+      margin-right: 0.25rem;
+    }
+
+    .mine-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .mine-diff,
+    .mine-action {
+      border: 1px solid var(--toggle-border);
+      border-radius: 10px;
+      padding: 0.45rem 0.75rem;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      background: var(--toggle-bg);
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .mine-diff:hover,
+    .mine-action:hover {
+      background: var(--toggle-hover);
+    }
+
+    .mine-diff.active,
+    .mine-action.active {
+      border-color: var(--accent);
+      color: #fff;
+      background: linear-gradient(160deg, #4da3f7, #2563c7);
+    }
+
+    .mine-board-wrap {
+      overflow: auto;
+      margin-bottom: 1rem;
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+      background: var(--toggle-bg);
+      padding: 0.75rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .mine-board {
+      display: grid;
+      gap: 2px;
+      margin: 0 auto;
+      width: max-content;
+      user-select: none;
+      touch-action: manipulation;
+    }
+
+    .mine-cell {
+      width: 1.85rem;
+      height: 1.85rem;
+      border: none;
+      border-radius: 4px;
+      padding: 0;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .mine-cell:hover:not(:disabled) {
+      filter: brightness(1.08);
+    }
+
+    .mine-cell.revealed {
+      cursor: default;
+      background: rgba(0, 0, 0, 0.22);
+      box-shadow: none;
+    }
+
+    :root[data-theme="light"] .mine-cell.revealed {
+      background: rgba(20, 40, 70, 0.08);
+    }
+
+    .mine-cell.flagged {
+      color: #ef9a9a;
+    }
+
+    .mine-cell.mine {
+      background: #c62828;
+      color: #fff;
+    }
+
+    .mine-cell.n1 { color: #4da3f7; }
+    .mine-cell.n2 { color: #81c784; }
+    .mine-cell.n3 { color: #ef9a9a; }
+    .mine-cell.n4 { color: #9575cd; }
+    .mine-cell.n5 { color: #ffb74d; }
+    .mine-cell.n6 { color: #4dd0e1; }
+    .mine-cell.n7 { color: #e8eef5; }
+    .mine-cell.n8 { color: #8b9cb0; }
+
+    .mine-status {
+      min-height: 1.3rem;
+      margin: 0 0 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .mine-status.win {
+      color: #81c784;
+      font-weight: 600;
+    }
+
+    .mine-status.lose {
+      color: #ef9a9a;
+      font-weight: 600;
+    }
+
+    @media (max-width: 520px) {
+      .mine-cell {
+        width: 1.65rem;
+        height: 1.65rem;
+        font-size: 0.78rem;
+      }
+    }
+
     .back-btn {
       width: 100%;
       margin-top: 0.75rem;
@@ -716,6 +871,48 @@
       <button type="button" class="entry-btn" id="openVideoBtn">웹페이지 동영상</button>
     </section>
 
+    <section class="card home-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" aria-label="지뢰찾기 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mineBoardGrad" x1="48" y1="28" x2="272" y2="152" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#6bb0ef" />
+              <stop offset="1" stop-color="#1f4f8f" />
+            </linearGradient>
+            <radialGradient id="mineBody" cx="50%" cy="40%" r="60%">
+              <stop stop-color="#ff8a80" />
+              <stop offset="1" stop-color="#c62828" />
+            </radialGradient>
+          </defs>
+          <rect x="46" y="32" width="228" height="116" rx="18" fill="url(#mineBoardGrad)" />
+          <g fill="#0b1524" opacity="0.35">
+            <rect x="66" y="50" width="28" height="28" rx="4" />
+            <rect x="102" y="50" width="28" height="28" rx="4" />
+            <rect x="138" y="50" width="28" height="28" rx="4" />
+            <rect x="174" y="50" width="28" height="28" rx="4" />
+            <rect x="210" y="50" width="28" height="28" rx="4" />
+            <rect x="66" y="86" width="28" height="28" rx="4" />
+            <rect x="102" y="86" width="28" height="28" rx="4" />
+            <rect x="138" y="86" width="28" height="28" rx="4" />
+            <rect x="174" y="86" width="28" height="28" rx="4" />
+            <rect x="210" y="86" width="28" height="28" rx="4" />
+          </g>
+          <circle cx="188" cy="100" r="22" fill="url(#mineBody)" />
+          <g stroke="#1a1010" stroke-width="4" stroke-linecap="round">
+            <line x1="188" y1="72" x2="188" y2="128" />
+            <line x1="162" y1="100" x2="214" y2="100" />
+            <line x1="170" y1="82" x2="206" y2="118" />
+            <line x1="206" y1="82" x2="170" y2="118" />
+          </g>
+          <circle cx="181" cy="93" r="4" fill="#ffffff" opacity="0.85" />
+          <text x="80" y="110" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#4da3f7">1</text>
+          <text x="116" y="110" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#81c784">2</text>
+        </svg>
+      </div>
+      <p class="home-subtitle">지뢰를 피해 모든 빈칸을 여는 클래식 퍼즐 게임입니다.</p>
+      <button type="button" class="entry-btn" id="openMinesweeperBtn">지뢰찾기 게임</button>
+    </section>
+
     <section class="card contact-section">
       <h2>제휴 문의</h2>
       <p class="contact-desc">광고, 콘텐츠, 서비스 제휴 문의를 남겨 주세요.</p>
@@ -845,6 +1042,35 @@
     <button type="button" class="back-btn" id="backHomeFromVideoBtn">메인페이지로 돌아가기</button>
   </main>
 
+  <main class="card minesweeper-card" id="minesweeperView" hidden>
+    <div class="card-head">
+      <h1>지뢰찾기 게임</h1>
+    </div>
+    <p class="subtitle">왼쪽 클릭으로 칸을 열고, 오른쪽 클릭(또는 깃발 모드)으로 깃발을 꽂으세요. 첫 클릭은 항상 안전합니다.</p>
+
+    <div class="mine-hud">
+      <div class="mine-stats" aria-live="polite">
+        <div><span>지뢰</span><strong id="mineRemaining">10</strong></div>
+        <div><span>시간</span><strong id="mineTimer">0</strong></div>
+      </div>
+      <div class="mine-controls">
+        <button type="button" class="mine-diff active" data-diff="beginner" id="mineDiffBeginner">초급</button>
+        <button type="button" class="mine-diff" data-diff="intermediate" id="mineDiffIntermediate">중급</button>
+        <button type="button" class="mine-diff" data-diff="expert" id="mineDiffExpert">고급</button>
+        <button type="button" class="mine-action" id="mineFlagModeBtn" aria-pressed="false">깃발 모드</button>
+        <button type="button" class="mine-action" id="mineResetBtn">다시 시작</button>
+      </div>
+    </div>
+
+    <p class="mine-status" id="mineStatus">칸을 클릭해 게임을 시작하세요.</p>
+
+    <div class="mine-board-wrap">
+      <div class="mine-board" id="mineBoard" role="grid" aria-label="지뢰찾기 보드"></div>
+    </div>
+
+    <button type="button" class="back-btn" id="backHomeFromMinesweeperBtn">메인페이지로 돌아가기</button>
+  </main>
+
   <script>
     function pickLottoNumbers() {
       const pool = Array.from({ length: 45 }, (_, i) => i + 1);
@@ -900,12 +1126,15 @@
     const lottoView = document.getElementById("lottoView");
     const cutoutView = document.getElementById("cutoutView");
     const videoView = document.getElementById("videoView");
+    const minesweeperView = document.getElementById("minesweeperView");
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
     const openVideoBtn = document.getElementById("openVideoBtn");
+    const openMinesweeperBtn = document.getElementById("openMinesweeperBtn");
     const backHomeBtn = document.getElementById("backHomeBtn");
     const backHomeFromCutoutBtn = document.getElementById("backHomeFromCutoutBtn");
     const backHomeFromVideoBtn = document.getElementById("backHomeFromVideoBtn");
+    const backHomeFromMinesweeperBtn = document.getElementById("backHomeFromMinesweeperBtn");
     const resultsEl = document.getElementById("results");
     const drawBtn = document.getElementById("drawBtn");
     const uploadZone = document.getElementById("uploadZone");
@@ -926,6 +1155,13 @@
     const videoPreview = document.getElementById("videoPreview");
     const videoEmbed = document.getElementById("videoEmbed");
     const downloadVideoBtn = document.getElementById("downloadVideoBtn");
+    const mineBoard = document.getElementById("mineBoard");
+    const mineRemaining = document.getElementById("mineRemaining");
+    const mineTimer = document.getElementById("mineTimer");
+    const mineStatus = document.getElementById("mineStatus");
+    const mineFlagModeBtn = document.getElementById("mineFlagModeBtn");
+    const mineResetBtn = document.getElementById("mineResetBtn");
+    const mineDiffButtons = Array.from(document.querySelectorAll(".mine-diff"));
 
     const GAME_COUNT = 5;
     const COBALT_API_KEY = "web-pages-cobalt-api";
@@ -943,16 +1179,30 @@
       "naver.com",
       "tv.kakao.com"
     ];
+    const MINE_DIFFICULTIES = {
+      beginner: { rows: 9, cols: 9, mines: 10, label: "초급" },
+      intermediate: { rows: 12, cols: 12, mines: 25, label: "중급" },
+      expert: { rows: 16, cols: 16, mines: 40, label: "고급" }
+    };
     let sourceImage = null;
     let sourceFileName = "cutout";
     let currentVideoUrl = "";
     let currentVideoFileName = "video.mp4";
+    let mineDiff = "beginner";
+    let mineFlagMode = false;
+    let mineStarted = false;
+    let mineEnded = false;
+    let mineGrid = [];
+    let mineTimerId = null;
+    let mineSeconds = 0;
+    let mineFlagCount = 0;
 
     function showView(view) {
       homeView.hidden = view !== homeView;
       lottoView.hidden = view !== lottoView;
       cutoutView.hidden = view !== cutoutView;
       videoView.hidden = view !== videoView;
+      minesweeperView.hidden = view !== minesweeperView;
     }
 
     const partnershipForm = document.getElementById("partnershipForm");
@@ -1403,6 +1653,252 @@
 
     loadSavedCobaltApi();
 
+    function setMineStatus(message, kind) {
+      mineStatus.textContent = message;
+      mineStatus.className = "mine-status" + (kind ? " " + kind : "");
+    }
+
+    function stopMineTimer() {
+      if (mineTimerId) {
+        clearInterval(mineTimerId);
+        mineTimerId = null;
+      }
+    }
+
+    function startMineTimer() {
+      stopMineTimer();
+      mineSeconds = 0;
+      mineTimer.textContent = "0";
+      mineTimerId = setInterval(function () {
+        mineSeconds += 1;
+        mineTimer.textContent = String(mineSeconds);
+      }, 1000);
+    }
+
+    function updateMineRemaining() {
+      const config = MINE_DIFFICULTIES[mineDiff];
+      mineRemaining.textContent = String(Math.max(0, config.mines - mineFlagCount));
+    }
+
+    function neighbors(row, col, rows, cols) {
+      const list = [];
+      for (let dr = -1; dr <= 1; dr++) {
+        for (let dc = -1; dc <= 1; dc++) {
+          if (dr === 0 && dc === 0) continue;
+          const nr = row + dr;
+          const nc = col + dc;
+          if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
+            list.push([nr, nc]);
+          }
+        }
+      }
+      return list;
+    }
+
+    function placeMines(safeRow, safeCol) {
+      const config = MINE_DIFFICULTIES[mineDiff];
+      const positions = [];
+      for (let r = 0; r < config.rows; r++) {
+        for (let c = 0; c < config.cols; c++) {
+          if (Math.abs(r - safeRow) <= 1 && Math.abs(c - safeCol) <= 1) continue;
+          positions.push([r, c]);
+        }
+      }
+
+      for (let i = positions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = positions[i];
+        positions[i] = positions[j];
+        positions[j] = tmp;
+      }
+
+      const mineCount = Math.min(config.mines, positions.length);
+      for (let i = 0; i < mineCount; i++) {
+        const pos = positions[i];
+        mineGrid[pos[0]][pos[1]].mine = true;
+      }
+
+      for (let r = 0; r < config.rows; r++) {
+        for (let c = 0; c < config.cols; c++) {
+          if (mineGrid[r][c].mine) {
+            mineGrid[r][c].count = 0;
+            continue;
+          }
+          let count = 0;
+          neighbors(r, c, config.rows, config.cols).forEach(function (pair) {
+            if (mineGrid[pair[0]][pair[1]].mine) count += 1;
+          });
+          mineGrid[r][c].count = count;
+        }
+      }
+    }
+
+    function renderMineBoard() {
+      const config = MINE_DIFFICULTIES[mineDiff];
+      mineBoard.style.gridTemplateColumns = "repeat(" + config.cols + ", 1.85rem)";
+      mineBoard.innerHTML = "";
+
+      for (let r = 0; r < config.rows; r++) {
+        for (let c = 0; c < config.cols; c++) {
+          const cell = mineGrid[r][c];
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "mine-cell";
+          btn.setAttribute("role", "gridcell");
+          btn.dataset.row = String(r);
+          btn.dataset.col = String(c);
+
+          if (cell.flagged && !cell.revealed) {
+            btn.classList.add("flagged");
+            btn.textContent = "🚩";
+            btn.setAttribute("aria-label", "깃발");
+          } else if (cell.revealed) {
+            btn.classList.add("revealed");
+            btn.disabled = true;
+            if (cell.mine) {
+              btn.classList.add("mine");
+              btn.textContent = "💣";
+            } else if (cell.count > 0) {
+              btn.classList.add("n" + cell.count);
+              btn.textContent = String(cell.count);
+            } else {
+              btn.textContent = "";
+            }
+          } else {
+            btn.setAttribute("aria-label", "닫힌 칸");
+            btn.textContent = "";
+          }
+
+          mineBoard.appendChild(btn);
+        }
+      }
+
+      if (window.matchMedia("(max-width: 520px)").matches) {
+        mineBoard.style.gridTemplateColumns = "repeat(" + config.cols + ", 1.65rem)";
+      }
+    }
+
+    function checkMineWin() {
+      const config = MINE_DIFFICULTIES[mineDiff];
+      for (let r = 0; r < config.rows; r++) {
+        for (let c = 0; c < config.cols; c++) {
+          const cell = mineGrid[r][c];
+          if (!cell.mine && !cell.revealed) return false;
+        }
+      }
+      return true;
+    }
+
+    function revealAllMines() {
+      const config = MINE_DIFFICULTIES[mineDiff];
+      for (let r = 0; r < config.rows; r++) {
+        for (let c = 0; c < config.cols; c++) {
+          if (mineGrid[r][c].mine) mineGrid[r][c].revealed = true;
+        }
+      }
+    }
+
+    function revealFlood(row, col) {
+      const config = MINE_DIFFICULTIES[mineDiff];
+      const stack = [[row, col]];
+
+      while (stack.length) {
+        const current = stack.pop();
+        const r = current[0];
+        const c = current[1];
+        const cell = mineGrid[r][c];
+        if (cell.revealed || cell.flagged) continue;
+        cell.revealed = true;
+        if (cell.mine || cell.count > 0) continue;
+        neighbors(r, c, config.rows, config.cols).forEach(function (pair) {
+          const next = mineGrid[pair[0]][pair[1]];
+          if (!next.revealed && !next.flagged) stack.push(pair);
+        });
+      }
+    }
+
+    function endMineGame(won) {
+      mineEnded = true;
+      stopMineTimer();
+      if (won) {
+        setMineStatus("클리어! " + mineSeconds + "초 만에 성공했습니다.", "win");
+      } else {
+        revealAllMines();
+        setMineStatus("지뢰를 밟았습니다. 다시 시작해 보세요.", "lose");
+      }
+      renderMineBoard();
+    }
+
+    function revealCell(row, col) {
+      if (mineEnded) return;
+      const cell = mineGrid[row][col];
+      if (cell.revealed || cell.flagged) return;
+
+      if (!mineStarted) {
+        mineStarted = true;
+        placeMines(row, col);
+        startMineTimer();
+        setMineStatus("지뢰를 피해 모든 빈칸을 여세요.");
+      }
+
+      if (cell.mine) {
+        cell.revealed = true;
+        endMineGame(false);
+        return;
+      }
+
+      revealFlood(row, col);
+      renderMineBoard();
+      updateMineRemaining();
+
+      if (checkMineWin()) {
+        endMineGame(true);
+      }
+    }
+
+    function toggleFlag(row, col) {
+      if (mineEnded) return;
+      const cell = mineGrid[row][col];
+      if (cell.revealed) return;
+
+      cell.flagged = !cell.flagged;
+      mineFlagCount += cell.flagged ? 1 : -1;
+      updateMineRemaining();
+      renderMineBoard();
+    }
+
+    function resetMinesweeper() {
+      const config = MINE_DIFFICULTIES[mineDiff];
+      stopMineTimer();
+      mineStarted = false;
+      mineEnded = false;
+      mineSeconds = 0;
+      mineFlagCount = 0;
+      mineTimer.textContent = "0";
+      mineGrid = [];
+
+      for (let r = 0; r < config.rows; r++) {
+        const row = [];
+        for (let c = 0; c < config.cols; c++) {
+          row.push({ mine: false, revealed: false, flagged: false, count: 0 });
+        }
+        mineGrid.push(row);
+      }
+
+      updateMineRemaining();
+      renderMineBoard();
+      setMineStatus("칸을 클릭해 게임을 시작하세요.");
+    }
+
+    function setMineDifficulty(diff) {
+      if (!MINE_DIFFICULTIES[diff]) return;
+      mineDiff = diff;
+      mineDiffButtons.forEach(function (btn) {
+        btn.classList.toggle("active", btn.getAttribute("data-diff") === diff);
+      });
+      resetMinesweeper();
+    }
+
     openLottoBtn.addEventListener("click", () => {
       showView(lottoView);
       drawBtn.focus();
@@ -1431,6 +1927,51 @@
     backHomeFromVideoBtn.addEventListener("click", () => {
       showView(homeView);
       openVideoBtn.focus();
+    });
+
+    openMinesweeperBtn.addEventListener("click", () => {
+      showView(minesweeperView);
+      resetMinesweeper();
+      mineResetBtn.focus();
+    });
+
+    backHomeFromMinesweeperBtn.addEventListener("click", () => {
+      stopMineTimer();
+      showView(homeView);
+      openMinesweeperBtn.focus();
+    });
+
+    mineDiffButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        setMineDifficulty(btn.getAttribute("data-diff"));
+      });
+    });
+
+    mineResetBtn.addEventListener("click", resetMinesweeper);
+
+    mineFlagModeBtn.addEventListener("click", function () {
+      mineFlagMode = !mineFlagMode;
+      mineFlagModeBtn.classList.toggle("active", mineFlagMode);
+      mineFlagModeBtn.setAttribute("aria-pressed", mineFlagMode ? "true" : "false");
+    });
+
+    mineBoard.addEventListener("click", function (event) {
+      const btn = event.target.closest(".mine-cell");
+      if (!btn || mineEnded) return;
+      const row = Number(btn.dataset.row);
+      const col = Number(btn.dataset.col);
+      if (mineFlagMode) {
+        toggleFlag(row, col);
+      } else {
+        revealCell(row, col);
+      }
+    });
+
+    mineBoard.addEventListener("contextmenu", function (event) {
+      const btn = event.target.closest(".mine-cell");
+      if (!btn) return;
+      event.preventDefault();
+      toggleFlag(Number(btn.dataset.row), Number(btn.dataset.col));
     });
 
     cobaltApiInput.addEventListener("change", saveCobaltApi);

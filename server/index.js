@@ -11,12 +11,12 @@ const { ensureFfmpeg, getFfmpegPath } = require("./ensure-ffmpeg");
 
 const PORT = Number(process.env.PORT) || 8787;
 const FORMAT_PRESETS = {
-  // Prefer merged video+audio; fall back to progressive single-file streams.
-  best: "bv*+ba/b[ext=mp4]/b",
-  "1080": "bv*[height<=1080]+ba/b[height<=1080][ext=mp4]/b[height<=1080]/bv*+ba/b",
-  "720": "bv*[height<=720]+ba/b[height<=720][ext=mp4]/b[height<=720]/bv*+ba/b",
-  "480": "bv*[height<=480]+ba/b[height<=480][ext=mp4]/b[height<=480]/bv*+ba/b",
-  audio: "ba/b"
+  // Prefer MP4-friendly streams, then merge/remux to mp4.
+  best: "bv*[vcodec^=avc1]+ba[acodec^=mp4a]/bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]/bv*+ba/b",
+  "1080": "bv*[height<=1080][vcodec^=avc1]+ba[acodec^=mp4a]/bv*[height<=1080][ext=mp4]+ba[ext=m4a]/b[height<=1080][ext=mp4]/bv*[height<=1080]+ba/b",
+  "720": "bv*[height<=720][vcodec^=avc1]+ba[acodec^=mp4a]/bv*[height<=720][ext=mp4]+ba[ext=m4a]/b[height<=720][ext=mp4]/bv*[height<=720]+ba/b",
+  "480": "bv*[height<=480][vcodec^=avc1]+ba[acodec^=mp4a]/bv*[height<=480][ext=mp4]+ba[ext=m4a]/b[height<=480][ext=mp4]/bv*[height<=480]+ba/b",
+  audio: "ba[ext=m4a]/ba/b"
 };
 
 const VIDEO_EXTS = new Set([".mp4", ".mkv", ".webm", ".mov", ".avi"]);
@@ -148,6 +148,58 @@ function cleanupDir(dir) {
   } catch (error) {}
 }
 
+function forceMp4FileName(name) {
+  const base = String(name || "video").replace(/\.[^.]+$/, "");
+  return safeFileName(base, "video") + ".mp4";
+}
+
+function runFfmpeg(args) {
+  return new Promise(function (resolve, reject) {
+    const bin = getFfmpegPath();
+    if (!bin || !fs.existsSync(bin)) {
+      reject(new Error("ffmpeg is required to save as MP4"));
+      return;
+    }
+    const child = spawn(bin, args, { windowsHide: true });
+    let stderr = "";
+    child.stderr.on("data", function (chunk) {
+      stderr += chunk.toString();
+    });
+    child.on("error", reject);
+    child.on("close", function (code) {
+      if (code === 0) resolve();
+      else reject(new Error((stderr || "ffmpeg failed").trim().slice(0, 400)));
+    });
+  });
+}
+
+async function ensureMp4Output(filePath, tempDir) {
+  const ext = path.extname(filePath).toLowerCase();
+  if (ext === ".mp4") return filePath;
+
+  const outPath = path.join(tempDir, forceMp4FileName(path.basename(filePath)));
+  try {
+    await runFfmpeg(["-y", "-i", filePath, "-c", "copy", "-movflags", "+faststart", outPath]);
+  } catch (copyErr) {
+    await runFfmpeg([
+      "-y",
+      "-i",
+      filePath,
+      "-c:v",
+      "libx264",
+      "-c:a",
+      "aac",
+      "-movflags",
+      "+faststart",
+      outPath
+    ]);
+  }
+  if (!fs.existsSync(outPath) || fs.statSync(outPath).size < 1) {
+    throw new Error("Failed to convert download to MP4");
+  }
+  return outPath;
+}
+
 app.get("/api/health", async function (_req, res) {
   try {
     const version = (await runYtDlp(["--version"])).trim();
@@ -194,7 +246,7 @@ app.post("/api/info", async function (req, res) {
       uploader: data.uploader || data.channel || "",
       webpageUrl: data.webpage_url || url,
       ext: extHint,
-      filename: safeFileName(title, "video") + "." + (extHint === "webm" ? "webm" : "mp4"),
+      filename: safeFileName(title, "video") + ".mp4",
       formats: listPresets()
     });
   } catch (error) {
@@ -223,6 +275,8 @@ app.get("/api/download", async function (req, res) {
       "--no-playlist",
       "--merge-output-format",
       "mp4",
+      "--remux-video",
+      "mp4",
       "--restrict-filenames",
       "-o",
       outTemplate,
@@ -232,7 +286,7 @@ app.get("/api/download", async function (req, res) {
     try {
       await runYtDlp(downloadArgs);
     } catch (mergeError) {
-      // Without a successful merge, retry a progressive (single-file) format.
+      // Without a successful merge, retry a progressive MP4 format.
       if (preferAudio) throw mergeError;
       cleanupDir(tempDir);
       tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "ytdlp-"));
@@ -243,6 +297,8 @@ app.get("/api/download", async function (req, res) {
           "b[ext=mp4]/best[ext=mp4]/b/best",
           "--no-warnings",
           "--no-playlist",
+          "--remux-video",
+          "mp4",
           "--restrict-filenames",
           "-o",
           fallbackOut,
@@ -256,8 +312,13 @@ app.get("/api/download", async function (req, res) {
       throw new Error("Download produced no file");
     }
 
-    const filePath = path.join(tempDir, chosen);
-    const downloadName = safeFileName(chosen, preferAudio ? "audio.m4a" : "video.mp4");
+    let filePath = path.join(tempDir, chosen);
+    let downloadName = safeFileName(chosen, preferAudio ? "audio.m4a" : "video.mp4");
+
+    if (!preferAudio) {
+      filePath = await ensureMp4Output(filePath, tempDir);
+      downloadName = forceMp4FileName(path.basename(filePath));
+    }
 
     res.setHeader("Content-Type", "application/octet-stream");
     res.setHeader(

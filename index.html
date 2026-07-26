@@ -408,6 +408,96 @@
       line-height: 1.5;
     }
 
+    .video-url-form {
+      display: grid;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .video-url-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.65rem;
+    }
+
+    .video-url-input {
+      width: 100%;
+      min-width: 0;
+      padding: 0.75rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--toggle-border);
+      background: var(--toggle-bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .video-url-input:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+      border-color: var(--accent);
+    }
+
+    .video-load-btn {
+      white-space: nowrap;
+      width: auto;
+      min-width: 6.5rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .video-preview-box {
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      background: var(--toggle-bg);
+      min-height: 10rem;
+      display: grid;
+      place-items: center;
+    }
+
+    .video-preview-box video,
+    .video-preview-box iframe {
+      display: block;
+      width: 100%;
+      max-height: 20rem;
+      background: #000;
+      border: 0;
+    }
+
+    .video-preview-box iframe {
+      aspect-ratio: 16 / 9;
+      max-height: none;
+      min-height: 12rem;
+    }
+
+    .video-preview-placeholder {
+      margin: 0;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .video-api-hint {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    @media (max-width: 520px) {
+      .video-url-row {
+        grid-template-columns: 1fr;
+      }
+
+      .video-load-btn {
+        width: 100%;
+      }
+    }
+
     .back-btn {
       width: 100%;
       margin-top: 0.75rem;
@@ -601,6 +691,31 @@
       <button type="button" class="entry-btn" id="openCutoutBtn">이미지 누끼 제거</button>
     </section>
 
+    <section class="card home-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" aria-label="동영상 플레이어 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="videoScreen" x1="48" y1="28" x2="272" y2="152" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#5eb0f7" />
+              <stop offset="1" stop-color="#1e4f9c" />
+            </linearGradient>
+            <linearGradient id="videoPlay" x1="140" y1="70" x2="190" y2="120" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#ffffff" />
+              <stop offset="1" stop-color="#d9ecff" />
+            </linearGradient>
+          </defs>
+          <rect x="42" y="34" width="236" height="122" rx="22" fill="url(#videoScreen)" />
+          <rect x="58" y="48" width="204" height="86" rx="12" fill="#0b1524" opacity="0.45" />
+          <circle cx="160" cy="91" r="28" fill="#ffffff" opacity="0.18" />
+          <path d="M150 76l32 15-32 15V76z" fill="url(#videoPlay)" />
+          <rect x="72" y="146" width="48" height="8" rx="4" fill="#ffffff" opacity="0.55" />
+          <rect x="132" y="146" width="116" height="8" rx="4" fill="#ffffff" opacity="0.28" />
+        </svg>
+      </div>
+      <p class="home-subtitle">파일·플랫폼 URL을 붙여넣어 미리보고 다운로드합니다.</p>
+      <button type="button" class="entry-btn" id="openVideoBtn">웹페이지 동영상</button>
+    </section>
+
     <section class="card contact-section">
       <h2>제휴 문의</h2>
       <p class="contact-desc">광고, 콘텐츠, 서비스 제휴 문의를 남겨 주세요.</p>
@@ -682,6 +797,54 @@
     <button type="button" class="back-btn" id="backHomeFromCutoutBtn">메인페이지로 돌아가기</button>
   </main>
 
+  <main class="card" id="videoView" hidden>
+    <div class="card-head">
+      <h1>웹페이지 동영상</h1>
+    </div>
+    <p class="subtitle">직접 파일 URL과 유튜브·인스타 등 플랫폼 URL을 붙여넣어 미리보고 다운로드하세요. 플랫폼 다운로드에는 Cobalt 호환 API 주소가 필요합니다.</p>
+
+    <form class="video-url-form" id="videoUrlForm">
+      <label class="form-field" for="cobaltApiInput">
+        Cobalt API 주소
+        <input
+          class="video-url-input"
+          id="cobaltApiInput"
+          type="url"
+          inputmode="url"
+          autocomplete="off"
+          placeholder="https://your-cobalt-api.example"
+        />
+      </label>
+      <p class="video-api-hint">자체 호스팅하거나 허용된 Cobalt API URL을 입력하면 이 기기에 저장됩니다. 없으면 유튜브는 미리보기만 가능합니다.</p>
+      <label class="form-field" for="videoUrlInput">
+        영상 URL
+        <div class="video-url-row">
+          <input
+            class="video-url-input"
+            id="videoUrlInput"
+            type="url"
+            inputmode="url"
+            autocomplete="off"
+            placeholder="https://example.com/video.mp4 또는 유튜브 URL"
+            required
+          />
+          <button type="submit" class="entry-btn video-load-btn" id="loadVideoBtn">불러오기</button>
+        </div>
+      </label>
+    </form>
+
+    <p class="cutout-status" id="videoStatus" aria-live="polite">영상 URL을 입력한 뒤 불러오기를 눌러 주세요.</p>
+
+    <div class="video-preview-box" id="videoPreviewBox">
+      <p class="video-preview-placeholder" id="videoPreviewPlaceholder">미리보기가 여기에 표시됩니다.</p>
+      <video id="videoPreview" controls playsinline hidden></video>
+      <iframe id="videoEmbed" title="유튜브 미리보기" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen hidden></iframe>
+    </div>
+
+    <button type="button" class="download-btn" id="downloadVideoBtn" disabled>다운로드</button>
+    <button type="button" class="back-btn" id="backHomeFromVideoBtn">메인페이지로 돌아가기</button>
+  </main>
+
   <script>
     function pickLottoNumbers() {
       const pool = Array.from({ length: 45 }, (_, i) => i + 1);
@@ -736,10 +899,13 @@
     const homeView = document.getElementById("homeView");
     const lottoView = document.getElementById("lottoView");
     const cutoutView = document.getElementById("cutoutView");
+    const videoView = document.getElementById("videoView");
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
+    const openVideoBtn = document.getElementById("openVideoBtn");
     const backHomeBtn = document.getElementById("backHomeBtn");
     const backHomeFromCutoutBtn = document.getElementById("backHomeFromCutoutBtn");
+    const backHomeFromVideoBtn = document.getElementById("backHomeFromVideoBtn");
     const resultsEl = document.getElementById("results");
     const drawBtn = document.getElementById("drawBtn");
     const uploadZone = document.getElementById("uploadZone");
@@ -752,15 +918,41 @@
     const previewGrid = document.getElementById("previewGrid");
     const originalPreview = document.getElementById("originalPreview");
     const resultCanvas = document.getElementById("resultCanvas");
+    const videoUrlForm = document.getElementById("videoUrlForm");
+    const videoUrlInput = document.getElementById("videoUrlInput");
+    const cobaltApiInput = document.getElementById("cobaltApiInput");
+    const videoStatus = document.getElementById("videoStatus");
+    const videoPreviewPlaceholder = document.getElementById("videoPreviewPlaceholder");
+    const videoPreview = document.getElementById("videoPreview");
+    const videoEmbed = document.getElementById("videoEmbed");
+    const downloadVideoBtn = document.getElementById("downloadVideoBtn");
 
     const GAME_COUNT = 5;
+    const COBALT_API_KEY = "web-pages-cobalt-api";
+    const PLATFORM_HOST_MARKERS = [
+      "youtube.com",
+      "youtu.be",
+      "instagram.com",
+      "tiktok.com",
+      "facebook.com",
+      "fb.watch",
+      "vimeo.com",
+      "twitter.com",
+      "x.com",
+      "twitch.tv",
+      "naver.com",
+      "tv.kakao.com"
+    ];
     let sourceImage = null;
     let sourceFileName = "cutout";
+    let currentVideoUrl = "";
+    let currentVideoFileName = "video.mp4";
 
     function showView(view) {
       homeView.hidden = view !== homeView;
       lottoView.hidden = view !== lottoView;
       cutoutView.hidden = view !== cutoutView;
+      videoView.hidden = view !== videoView;
     }
 
     const partnershipForm = document.getElementById("partnershipForm");
@@ -909,6 +1101,308 @@
       link.click();
     }
 
+    function setVideoStatus(message) {
+      videoStatus.textContent = message;
+    }
+
+    function getCobaltApiUrl() {
+      return (cobaltApiInput.value || "").trim().replace(/\/+$/, "");
+    }
+
+    function loadSavedCobaltApi() {
+      try {
+        const saved = localStorage.getItem(COBALT_API_KEY);
+        if (saved) cobaltApiInput.value = saved;
+      } catch (e) {}
+    }
+
+    function saveCobaltApi() {
+      const value = getCobaltApiUrl();
+      try {
+        if (value) {
+          localStorage.setItem(COBALT_API_KEY, value);
+        } else {
+          localStorage.removeItem(COBALT_API_KEY);
+        }
+      } catch (e) {}
+    }
+
+    function clearVideoMedia() {
+      videoPreview.removeAttribute("src");
+      videoPreview.load();
+      videoPreview.hidden = true;
+      videoEmbed.removeAttribute("src");
+      videoEmbed.hidden = true;
+    }
+
+    function resetVideoPreview() {
+      currentVideoUrl = "";
+      currentVideoFileName = "video.mp4";
+      clearVideoMedia();
+      videoPreviewPlaceholder.hidden = false;
+      downloadVideoBtn.disabled = true;
+    }
+
+    function showDirectVideoPreview(url) {
+      clearVideoMedia();
+      videoPreviewPlaceholder.hidden = true;
+      videoPreview.hidden = false;
+      videoPreview.src = url;
+    }
+
+    function showYoutubeEmbed(videoId) {
+      clearVideoMedia();
+      videoPreviewPlaceholder.hidden = true;
+      videoEmbed.hidden = false;
+      videoEmbed.src = "https://www.youtube.com/embed/" + encodeURIComponent(videoId);
+      currentVideoUrl = "";
+      downloadVideoBtn.disabled = true;
+    }
+
+    function isPlatformVideoUrl(parsedUrl) {
+      const host = (parsedUrl.hostname || "").toLowerCase();
+      return PLATFORM_HOST_MARKERS.some(function (marker) {
+        return host === marker || host.endsWith("." + marker);
+      });
+    }
+
+    function isYoutubeUrl(parsedUrl) {
+      const host = (parsedUrl.hostname || "").toLowerCase();
+      return host === "youtu.be" || host === "youtube.com" || host.endsWith(".youtube.com");
+    }
+
+    function extractYoutubeId(parsedUrl) {
+      const host = (parsedUrl.hostname || "").toLowerCase();
+      if (host === "youtu.be") {
+        const id = parsedUrl.pathname.split("/").filter(Boolean)[0] || "";
+        return /^[\w-]{6,}$/.test(id) ? id : "";
+      }
+
+      const shortMatch = parsedUrl.pathname.match(/^\/(?:shorts|embed|live)\/([\w-]{6,})/);
+      if (shortMatch) return shortMatch[1];
+
+      const fromQuery = parsedUrl.searchParams.get("v");
+      if (fromQuery && /^[\w-]{6,}$/.test(fromQuery)) return fromQuery;
+
+      return "";
+    }
+
+    function fileNameFromUrl(parsedUrl) {
+      const path = decodeURIComponent(parsedUrl.pathname || "");
+      const segment = path.split("/").filter(Boolean).pop() || "";
+      if (segment && /\.[a-z0-9]{2,5}$/i.test(segment)) {
+        return segment;
+      }
+      return "video.mp4";
+    }
+
+    function cobaltErrorMessage(data) {
+      const code = data && data.error && data.error.code ? data.error.code : "";
+      if (code.indexOf("auth") !== -1) {
+        return "API 인증이 필요합니다. 허용된 Cobalt API 주소인지 확인해 주세요.";
+      }
+      if (code.indexOf("link.unsupported") !== -1 || code.indexOf("service") !== -1) {
+        return "이 플랫폼 URL은 현재 API에서 지원되지 않습니다.";
+      }
+      if (code) {
+        return "미디어를 해석하지 못했습니다. (" + code + ")";
+      }
+      return "미디어를 해석하지 못했습니다. API 주소와 URL을 확인해 주세요.";
+    }
+
+    function applyResolvedMedia(url, fileName) {
+      currentVideoUrl = url;
+      currentVideoFileName = fileName || "video.mp4";
+      showDirectVideoPreview(url);
+      downloadVideoBtn.disabled = false;
+      setVideoStatus("플랫폼 영상을 불러왔습니다. 미리보기 후 다운로드할 수 있습니다.");
+    }
+
+    async function resolvePlatformWithCobalt(sourceUrl, apiBase) {
+      const response = await fetch(apiBase + "/", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          url: sourceUrl,
+          videoQuality: "1080"
+        })
+      });
+
+      let data = null;
+      try {
+        data = await response.json();
+      } catch (error) {
+        throw new Error("invalid-json");
+      }
+
+      if (!response.ok || !data || data.status === "error") {
+        throw new Error(cobaltErrorMessage(data));
+      }
+
+      if (data.status === "tunnel" || data.status === "redirect") {
+        if (!data.url) throw new Error("미디어 URL을 받지 못했습니다.");
+        return {
+          url: data.url,
+          filename: data.filename || "video.mp4"
+        };
+      }
+
+      if (data.status === "picker" && Array.isArray(data.picker)) {
+        const videoItem = data.picker.find(function (item) {
+          return item && item.type === "video" && item.url;
+        }) || data.picker.find(function (item) {
+          return item && item.url;
+        });
+        if (!videoItem) {
+          throw new Error("선택할 수 있는 영상이 없습니다.");
+        }
+        return {
+          url: videoItem.url,
+          filename: "video.mp4"
+        };
+      }
+
+      if (data.status === "local-processing") {
+        const tunnelUrl = Array.isArray(data.tunnel) ? data.tunnel[0] : "";
+        if (!tunnelUrl) {
+          throw new Error("로컬 처리 응답에서 미디어 URL을 찾지 못했습니다. API에서 localProcessing을 disabled로 설정해 보세요.");
+        }
+        return {
+          url: tunnelUrl,
+          filename: (data.output && data.output.filename) || "video.mp4"
+        };
+      }
+
+      throw new Error("지원하지 않는 API 응답입니다.");
+    }
+
+    function handlePlatformWithoutApi(parsedUrl) {
+      if (isYoutubeUrl(parsedUrl)) {
+        const videoId = extractYoutubeId(parsedUrl);
+        if (videoId) {
+          showYoutubeEmbed(videoId);
+          setVideoStatus("유튜브 미리보기입니다. 다운로드하려면 위에 Cobalt 호환 API 주소를 설정해 주세요.");
+          return;
+        }
+      }
+
+      resetVideoPreview();
+      setVideoStatus("플랫폼 URL 다운로드에는 Cobalt 호환 API 주소가 필요합니다. 위에 API를 입력한 뒤 다시 불러와 주세요.");
+    }
+
+    async function loadVideoFromUrl(rawUrl) {
+      const trimmed = (rawUrl || "").trim();
+      if (!trimmed) {
+        setVideoStatus("URL을 입력해 주세요.");
+        resetVideoPreview();
+        return;
+      }
+
+      let parsedUrl;
+      try {
+        parsedUrl = new URL(trimmed);
+      } catch (error) {
+        setVideoStatus("올바른 URL 형식이 아닙니다. https:// 로 시작하는 주소를 입력해 주세요.");
+        resetVideoPreview();
+        return;
+      }
+
+      if (parsedUrl.protocol !== "http:" && parsedUrl.protocol !== "https:") {
+        setVideoStatus("http 또는 https URL만 지원합니다.");
+        resetVideoPreview();
+        return;
+      }
+
+      saveCobaltApi();
+
+      if (isPlatformVideoUrl(parsedUrl)) {
+        const apiBase = getCobaltApiUrl();
+        if (!apiBase) {
+          handlePlatformWithoutApi(parsedUrl);
+          return;
+        }
+
+        resetVideoPreview();
+        setVideoStatus("플랫폼 영상을 해석하는 중...");
+        downloadVideoBtn.disabled = true;
+
+        try {
+          const resolved = await resolvePlatformWithCobalt(parsedUrl.href, apiBase);
+          applyResolvedMedia(resolved.url, resolved.filename);
+        } catch (error) {
+          resetVideoPreview();
+          if (error && error.message === "invalid-json") {
+            setVideoStatus("API 응답을 읽지 못했습니다. Cobalt 호환 API 주소인지 확인해 주세요.");
+          } else if (error && typeof error.message === "string" && error.message && error.message.indexOf("fetch") === -1) {
+            setVideoStatus(error.message);
+          } else {
+            setVideoStatus("API에 연결하지 못했습니다. 주소·CORS·네트워크를 확인해 주세요.");
+          }
+        }
+        return;
+      }
+
+      currentVideoUrl = parsedUrl.href;
+      currentVideoFileName = fileNameFromUrl(parsedUrl);
+      showDirectVideoPreview(currentVideoUrl);
+      downloadVideoBtn.disabled = false;
+      setVideoStatus("미리보기를 불러왔습니다. 재생되지 않으면 URL이 직접 영상 파일이 아닐 수 있습니다.");
+    }
+
+    function triggerBlobDownload(blob, fileName) {
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(function () {
+        URL.revokeObjectURL(objectUrl);
+      }, 1000);
+    }
+
+    function fallbackOpenVideo(url) {
+      const link = document.createElement("a");
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.download = currentVideoFileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
+
+    async function downloadCurrentVideo() {
+      if (!currentVideoUrl) {
+        setVideoStatus("먼저 영상 URL을 불러와 주세요.");
+        return;
+      }
+
+      downloadVideoBtn.disabled = true;
+      setVideoStatus("다운로드를 준비하는 중...");
+
+      try {
+        const response = await fetch(currentVideoUrl);
+        if (!response.ok) {
+          throw new Error("fetch failed with status " + response.status);
+        }
+        const blob = await response.blob();
+        triggerBlobDownload(blob, currentVideoFileName);
+        setVideoStatus("다운로드를 시작했습니다.");
+      } catch (error) {
+        fallbackOpenVideo(currentVideoUrl);
+        setVideoStatus("브라우저·서버 정책(CORS 등)으로 직접 저장이 안 될 수 있습니다. 새 탭에서 열리거나 수동 저장이 필요할 수 있습니다.");
+      } finally {
+        downloadVideoBtn.disabled = !currentVideoUrl;
+      }
+    }
+
+    loadSavedCobaltApi();
+
     openLottoBtn.addEventListener("click", () => {
       showView(lottoView);
       drawBtn.focus();
@@ -927,6 +1421,34 @@
     backHomeFromCutoutBtn.addEventListener("click", () => {
       showView(homeView);
       openCutoutBtn.focus();
+    });
+
+    openVideoBtn.addEventListener("click", () => {
+      showView(videoView);
+      videoUrlInput.focus();
+    });
+
+    backHomeFromVideoBtn.addEventListener("click", () => {
+      showView(homeView);
+      openVideoBtn.focus();
+    });
+
+    cobaltApiInput.addEventListener("change", saveCobaltApi);
+    cobaltApiInput.addEventListener("blur", saveCobaltApi);
+
+    videoUrlForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      loadVideoFromUrl(videoUrlInput.value);
+    });
+
+    downloadVideoBtn.addEventListener("click", () => {
+      downloadCurrentVideo();
+    });
+
+    videoPreview.addEventListener("error", () => {
+      if (!currentVideoUrl) return;
+      setVideoStatus("영상을 재생할 수 없습니다. URL이 유효한 미디어인지 확인해 주세요.");
+      downloadVideoBtn.disabled = !currentVideoUrl;
     });
 
     imageInput.addEventListener("change", () => {

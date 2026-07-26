@@ -865,6 +865,159 @@
       line-height: 1.45;
     }
 
+    .gomoku-card {
+      width: min(100%, 720px);
+    }
+
+    .gomoku-options {
+      display: grid;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .gomoku-options-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
+    }
+
+    .gomoku-select,
+    .gomoku-level-input {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      border-radius: 10px;
+      border: 1px solid var(--toggle-border);
+      background: var(--toggle-bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .gomoku-select:focus,
+    .gomoku-level-input:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+      border-color: var(--accent);
+    }
+
+    .gomoku-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .gomoku-actions button {
+      border: 1px solid var(--toggle-border);
+      border-radius: 10px;
+      padding: 0.7rem 0.5rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      background: var(--toggle-bg);
+    }
+
+    .gomoku-actions .gomoku-start-btn {
+      border: none;
+      color: #fff;
+      background: linear-gradient(160deg, #4da3f7, #2563c7);
+    }
+
+    .gomoku-hud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .gomoku-hud span {
+      color: var(--muted);
+      font-weight: 500;
+      margin-right: 0.25rem;
+    }
+
+    .gomoku-status {
+      min-height: 1.3rem;
+      margin: 0 0 0.85rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .gomoku-status.win { color: #81c784; font-weight: 600; }
+    .gomoku-status.lose { color: #ef9a9a; font-weight: 600; }
+
+    .gomoku-board-wrap {
+      overflow: auto;
+      margin: 0 auto 1rem;
+      width: max-content;
+      max-width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+      background: #d7b56d;
+      padding: 0.55rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .gomoku-board {
+      display: grid;
+      gap: 0;
+      background: #c9a45a;
+      border: 1px solid rgba(80, 50, 10, 0.35);
+    }
+
+    .gomoku-cell {
+      width: 1.7rem;
+      height: 1.7rem;
+      border: none;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      position: relative;
+      background:
+        linear-gradient(#6b4a1e, #6b4a1e) center/100% 1px no-repeat,
+        linear-gradient(#6b4a1e, #6b4a1e) center/1px 100% no-repeat,
+        transparent;
+    }
+
+    .gomoku-cell:disabled { cursor: default; }
+
+    .gomoku-cell::after {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      border-radius: 50%;
+      transform: scale(0);
+    }
+
+    .gomoku-cell.black::after {
+      transform: scale(1);
+      background: radial-gradient(circle at 35% 30%, #555, #111 70%);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    }
+
+    .gomoku-cell.white::after {
+      transform: scale(1);
+      background: radial-gradient(circle at 35% 30%, #fff, #d8d8d8 70%);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    .gomoku-cell.last::after {
+      box-shadow: 0 0 0 2px #e53935, 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 560px) {
+      .gomoku-options-row { grid-template-columns: 1fr; }
+      .gomoku-cell { width: 1.45rem; height: 1.45rem; }
+    }
+
     @media (max-width: 560px) {
       .tetris-layout {
         grid-template-columns: 1fr;
@@ -1180,6 +1333,31 @@
       <button type="button" class="entry-btn" id="openTetrisBtn" data-i18n="home.tetris.cta">테트리스 게임</button>
     </section>
 
+    <section class="card home-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.gomoku.aria" aria-label="오목 바둑판 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="48" y="28" width="224" height="124" rx="16" fill="#d7b56d" />
+          <g stroke="#6b4a1e" stroke-width="2">
+            <line x1="78" y1="48" x2="242" y2="48" />
+            <line x1="78" y1="78" x2="242" y2="78" />
+            <line x1="78" y1="108" x2="242" y2="108" />
+            <line x1="78" y1="138" x2="242" y2="138" />
+            <line x1="98" y1="40" x2="98" y2="146" />
+            <line x1="128" y1="40" x2="128" y2="146" />
+            <line x1="158" y1="40" x2="158" y2="146" />
+            <line x1="188" y1="40" x2="188" y2="146" />
+            <line x1="218" y1="40" x2="218" y2="146" />
+          </g>
+          <circle cx="128" cy="78" r="14" fill="#1a1a1a" />
+          <circle cx="158" cy="108" r="14" fill="#f5f5f5" stroke="#999" />
+          <circle cx="188" cy="78" r="14" fill="#1a1a1a" />
+          <circle cx="158" cy="48" r="14" fill="#f5f5f5" stroke="#999" />
+        </svg>
+      </div>
+      <p class="home-subtitle" data-i18n="home.gomoku.subtitle">흑·백을 고르고 AI와 오목을 둡니다. 3×3부터 15×15, 레벨 1~99.</p>
+      <button type="button" class="entry-btn" id="openGomokuBtn" data-i18n="home.gomoku.cta">오목 게임</button>
+    </section>
+
     <section class="card contact-section">
       <h2 data-i18n="contact.title">제휴 문의</h2>
       <p class="contact-desc" data-i18n="contact.desc">광고, 콘텐츠, 서비스 제휴 문의를 남겨 주세요.</p>
@@ -1397,6 +1575,58 @@
     <button type="button" class="back-btn" id="backHomeFromTetrisBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
+  <main class="card gomoku-card" id="gomokuView" hidden>
+    <div class="card-head">
+      <h1 data-i18n="gomoku.title">오목 게임</h1>
+    </div>
+    <p class="subtitle" data-i18n="gomoku.subtitle">돌 색과 판 크기(3×3 포함)를 고른 뒤 레벨 1~99 AI와 대국하세요. 3×3은 3목, 그 외는 5목입니다.</p>
+
+    <div class="gomoku-options">
+      <div class="gomoku-options-row">
+        <label class="form-field" for="gomokuColorSelect">
+          <span data-i18n="gomoku.color">내 돌 색</span>
+          <select class="gomoku-select" id="gomokuColorSelect">
+            <option value="black" data-i18n="gomoku.color.black">흑 (선공)</option>
+            <option value="white" data-i18n="gomoku.color.white">백 (후공)</option>
+          </select>
+        </label>
+        <label class="form-field" for="gomokuBoardSelect">
+          <span data-i18n="gomoku.board">판 크기</span>
+          <select class="gomoku-select" id="gomokuBoardSelect">
+            <option value="3" data-i18n="gomoku.board.3">3×3 (3목)</option>
+            <option value="9" data-i18n="gomoku.board.9">9×9 (5목)</option>
+            <option value="13" selected data-i18n="gomoku.board.13">13×13 (5목)</option>
+            <option value="15" data-i18n="gomoku.board.15">15×15 (5목)</option>
+          </select>
+        </label>
+      </div>
+      <label class="form-field" for="gomokuLevelInput">
+        <span data-i18n="gomoku.level">AI 레벨 (1–99)</span>
+        <input class="gomoku-level-input" id="gomokuLevelInput" type="number" min="1" max="99" value="1" />
+      </label>
+    </div>
+
+    <div class="gomoku-actions">
+      <button type="button" class="gomoku-start-btn" id="gomokuStartBtn" data-i18n="gomoku.start">대국 시작</button>
+      <button type="button" id="gomokuRestartBtn" data-i18n="gomoku.restart">다시 시작</button>
+    </div>
+
+    <div class="gomoku-hud" aria-live="polite">
+      <div><span data-i18n="gomoku.hud.level">레벨</span><strong id="gomokuLevelHud">1</strong></div>
+      <div><span data-i18n="gomoku.hud.turn">차례</span><strong id="gomokuTurnHud">-</strong></div>
+      <div><span data-i18n="gomoku.hud.you">나</span><strong id="gomokuYouHud">흑</strong></div>
+      <div><span data-i18n="gomoku.hud.ai">AI</span><strong id="gomokuAiHud">백</strong></div>
+    </div>
+
+    <p class="gomoku-status" id="gomokuStatus">옵션을 고른 뒤 대국 시작을 눌러 주세요.</p>
+
+    <div class="gomoku-board-wrap">
+      <div class="gomoku-board" id="gomokuBoard" role="grid" data-i18n-aria="gomoku.boardAria" aria-label="오목 판"></div>
+    </div>
+
+    <button type="button" class="back-btn" id="backHomeFromGomokuBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
   <script src="i18n.js"></script>
   <script>
     function pickLottoNumbers() {
@@ -1467,16 +1697,19 @@
     const videoView = document.getElementById("videoView");
     const minesweeperView = document.getElementById("minesweeperView");
     const tetrisView = document.getElementById("tetrisView");
+    const gomokuView = document.getElementById("gomokuView");
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
     const openVideoBtn = document.getElementById("openVideoBtn");
     const openMinesweeperBtn = document.getElementById("openMinesweeperBtn");
     const openTetrisBtn = document.getElementById("openTetrisBtn");
+    const openGomokuBtn = document.getElementById("openGomokuBtn");
     const backHomeBtn = document.getElementById("backHomeBtn");
     const backHomeFromCutoutBtn = document.getElementById("backHomeFromCutoutBtn");
     const backHomeFromVideoBtn = document.getElementById("backHomeFromVideoBtn");
     const backHomeFromMinesweeperBtn = document.getElementById("backHomeFromMinesweeperBtn");
     const backHomeFromTetrisBtn = document.getElementById("backHomeFromTetrisBtn");
+    const backHomeFromGomokuBtn = document.getElementById("backHomeFromGomokuBtn");
     const resultsEl = document.getElementById("results");
     const drawBtn = document.getElementById("drawBtn");
     const uploadZone = document.getElementById("uploadZone");
@@ -1516,6 +1749,17 @@
     const tetrisResumeBtn = document.getElementById("tetrisResumeBtn");
     const tetrisRestartBtn = document.getElementById("tetrisRestartBtn");
     const tetrisMuteBtn = document.getElementById("tetrisMuteBtn");
+    const gomokuColorSelect = document.getElementById("gomokuColorSelect");
+    const gomokuBoardSelect = document.getElementById("gomokuBoardSelect");
+    const gomokuLevelInput = document.getElementById("gomokuLevelInput");
+    const gomokuStartBtn = document.getElementById("gomokuStartBtn");
+    const gomokuRestartBtn = document.getElementById("gomokuRestartBtn");
+    const gomokuBoard = document.getElementById("gomokuBoard");
+    const gomokuStatus = document.getElementById("gomokuStatus");
+    const gomokuLevelHud = document.getElementById("gomokuLevelHud");
+    const gomokuTurnHud = document.getElementById("gomokuTurnHud");
+    const gomokuYouHud = document.getElementById("gomokuYouHud");
+    const gomokuAiHud = document.getElementById("gomokuAiHud");
 
     const GAME_COUNT = 5;
     const COBALT_API_KEY = "web-pages-cobalt-api";
@@ -1598,6 +1842,7 @@
       videoView.hidden = view !== videoView;
       minesweeperView.hidden = view !== minesweeperView;
       tetrisView.hidden = view !== tetrisView;
+      gomokuView.hidden = view !== gomokuView;
       if (view !== tetrisView) {
         pauseTetris(true);
         stopTetrisBgm();
@@ -2818,6 +3063,345 @@
       openTetrisBtn.focus();
     });
 
+    const GOMOKU_MAX_LEVEL = 99;
+    let gomokuSize = 13;
+    let gomokuWinLen = 5;
+    let gomokuLevel = 1;
+    let gomokuPlayer = "black";
+    let gomokuAi = "white";
+    let gomokuGrid = [];
+    let gomokuCells = [];
+    let gomokuRunning = false;
+    let gomokuEnded = false;
+    let gomokuTurn = "black";
+    let gomokuLastMove = null;
+    let gomokuAiTimer = null;
+
+    function setGomokuStatus(message, kind) {
+      gomokuStatus.textContent = message;
+      gomokuStatus.className = "gomoku-status" + (kind ? " " + kind : "");
+    }
+
+    function clampGomokuLevel(value) {
+      const n = Number(value);
+      if (!Number.isFinite(n)) return 1;
+      return Math.min(GOMOKU_MAX_LEVEL, Math.max(1, Math.round(n)));
+    }
+
+    function gomokuWinLengthForSize(size) {
+      return size <= 3 ? 3 : 5;
+    }
+
+    function updateGomokuHud() {
+      gomokuLevelHud.textContent = String(gomokuLevel);
+      gomokuYouHud.textContent = t(gomokuPlayer === "black" ? "gomoku.hud.black" : "gomoku.hud.white");
+      gomokuAiHud.textContent = t(gomokuAi === "black" ? "gomoku.hud.black" : "gomoku.hud.white");
+      if (!gomokuRunning) {
+        gomokuTurnHud.textContent = "-";
+      } else if (gomokuEnded) {
+        gomokuTurnHud.textContent = "-";
+      } else {
+        gomokuTurnHud.textContent = t(gomokuTurn === gomokuPlayer ? "gomoku.hud.you" : "gomoku.hud.ai");
+      }
+    }
+
+    function createGomokuBoardDom() {
+      gomokuBoard.innerHTML = "";
+      gomokuBoard.style.gridTemplateColumns = "repeat(" + gomokuSize + ", 1fr)";
+      gomokuCells = [];
+      for (let r = 0; r < gomokuSize; r++) {
+        for (let c = 0; c < gomokuSize; c++) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "gomoku-cell";
+          btn.dataset.row = String(r);
+          btn.dataset.col = String(c);
+          btn.setAttribute("aria-label", (r + 1) + "," + (c + 1));
+          gomokuBoard.appendChild(btn);
+          gomokuCells.push(btn);
+        }
+      }
+    }
+
+    function renderGomokuBoard() {
+      for (let r = 0; r < gomokuSize; r++) {
+        for (let c = 0; c < gomokuSize; c++) {
+          const idx = r * gomokuSize + c;
+          const cell = gomokuCells[idx];
+          const stone = gomokuGrid[r][c];
+          cell.className = "gomoku-cell" + (stone ? " " + stone : "");
+          if (gomokuLastMove && gomokuLastMove[0] === r && gomokuLastMove[1] === c) {
+            cell.classList.add("last");
+          }
+          cell.disabled = !gomokuRunning || gomokuEnded || !!stone || gomokuTurn !== gomokuPlayer;
+        }
+      }
+      updateGomokuHud();
+    }
+
+    function countDirection(row, col, color, dr, dc) {
+      let count = 0;
+      let r = row + dr;
+      let c = col + dc;
+      while (r >= 0 && r < gomokuSize && c >= 0 && c < gomokuSize && gomokuGrid[r][c] === color) {
+        count += 1;
+        r += dr;
+        c += dc;
+      }
+      return count;
+    }
+
+    function isGomokuWinAt(row, col, color) {
+      const dirs = [[1, 0], [0, 1], [1, 1], [1, -1]];
+      for (let i = 0; i < dirs.length; i++) {
+        const dr = dirs[i][0];
+        const dc = dirs[i][1];
+        const total = 1 + countDirection(row, col, color, dr, dc) + countDirection(row, col, color, -dr, -dc);
+        if (total >= gomokuWinLen) return true;
+      }
+      return false;
+    }
+
+    function gomokuBoardFull() {
+      for (let r = 0; r < gomokuSize; r++) {
+        for (let c = 0; c < gomokuSize; c++) {
+          if (!gomokuGrid[r][c]) return false;
+        }
+      }
+      return true;
+    }
+
+    function scoreLinePattern(count, openEnds) {
+      if (count >= gomokuWinLen) return 100000;
+      if (count === gomokuWinLen - 1 && openEnds === 2) return 10000;
+      if (count === gomokuWinLen - 1 && openEnds === 1) return 1000;
+      if (count === gomokuWinLen - 2 && openEnds === 2) return 500;
+      if (count === gomokuWinLen - 2 && openEnds === 1) return 100;
+      if (count === 2 && openEnds === 2) return 50;
+      return count * 10 + openEnds * 5;
+    }
+
+    function evaluatePoint(row, col, color) {
+      const dirs = [[1, 0], [0, 1], [1, 1], [1, -1]];
+      let score = 0;
+      for (let i = 0; i < dirs.length; i++) {
+        const dr = dirs[i][0];
+        const dc = dirs[i][1];
+        const forward = countDirection(row, col, color, dr, dc);
+        const backward = countDirection(row, col, color, -dr, -dc);
+        const count = 1 + forward + backward;
+        const fr = row + (forward + 1) * dr;
+        const fc = col + (forward + 1) * dc;
+        const br = row - (backward + 1) * dr;
+        const bc = col - (backward + 1) * dc;
+        let openEnds = 0;
+        if (fr >= 0 && fr < gomokuSize && fc >= 0 && fc < gomokuSize && !gomokuGrid[fr][fc]) openEnds += 1;
+        if (br >= 0 && br < gomokuSize && bc >= 0 && bc < gomokuSize && !gomokuGrid[br][bc]) openEnds += 1;
+        score += scoreLinePattern(count, openEnds);
+      }
+      const center = (gomokuSize - 1) / 2;
+      score += Math.max(0, 8 - (Math.abs(row - center) + Math.abs(col - center)));
+      return score;
+    }
+
+    function candidateMoves() {
+      const near = [];
+      const seen = {};
+      let hasStone = false;
+      for (let r = 0; r < gomokuSize; r++) {
+        for (let c = 0; c < gomokuSize; c++) {
+          if (!gomokuGrid[r][c]) continue;
+          hasStone = true;
+          for (let dr = -2; dr <= 2; dr++) {
+            for (let dc = -2; dc <= 2; dc++) {
+              const nr = r + dr;
+              const nc = c + dc;
+              if (nr < 0 || nr >= gomokuSize || nc < 0 || nc >= gomokuSize) continue;
+              if (gomokuGrid[nr][nc]) continue;
+              const key = nr + "," + nc;
+              if (seen[key]) continue;
+              seen[key] = true;
+              near.push([nr, nc]);
+            }
+          }
+        }
+      }
+      if (!hasStone) {
+        const mid = Math.floor(gomokuSize / 2);
+        return [[mid, mid]];
+      }
+      return near;
+    }
+
+    function pickGomokuAiMove() {
+      const moves = candidateMoves();
+      let bestScore = -Infinity;
+      let bestMoves = [];
+
+      for (let i = 0; i < moves.length; i++) {
+        const r = moves[i][0];
+        const c = moves[i][1];
+        gomokuGrid[r][c] = gomokuAi;
+        if (isGomokuWinAt(r, c, gomokuAi)) {
+          gomokuGrid[r][c] = null;
+          return [r, c];
+        }
+        gomokuGrid[r][c] = null;
+      }
+
+      for (let i = 0; i < moves.length; i++) {
+        const r = moves[i][0];
+        const c = moves[i][1];
+        gomokuGrid[r][c] = gomokuPlayer;
+        if (isGomokuWinAt(r, c, gomokuPlayer)) {
+          gomokuGrid[r][c] = null;
+          return [r, c];
+        }
+        gomokuGrid[r][c] = null;
+      }
+
+      for (let i = 0; i < moves.length; i++) {
+        const r = moves[i][0];
+        const c = moves[i][1];
+        const offense = evaluatePoint(r, c, gomokuAi);
+        const defense = evaluatePoint(r, c, gomokuPlayer);
+        let score = offense * 1.1 + defense;
+        const noise = (100 - gomokuLevel) * (Math.random() - 0.5) * 8;
+        score += noise;
+        if (score > bestScore + 0.01) {
+          bestScore = score;
+          bestMoves = [[r, c]];
+        } else if (Math.abs(score - bestScore) <= 0.01) {
+          bestMoves.push([r, c]);
+        }
+      }
+
+      if (!bestMoves.length) {
+        const empties = [];
+        for (let r = 0; r < gomokuSize; r++) {
+          for (let c = 0; c < gomokuSize; c++) {
+            if (!gomokuGrid[r][c]) empties.push([r, c]);
+          }
+        }
+        return empties[Math.floor(Math.random() * empties.length)] || null;
+      }
+
+      if (gomokuLevel < 30 && Math.random() < (30 - gomokuLevel) / 60) {
+        return moves[Math.floor(Math.random() * moves.length)];
+      }
+      return bestMoves[Math.floor(Math.random() * bestMoves.length)];
+    }
+
+    function endGomoku(kind) {
+      gomokuEnded = true;
+      gomokuRunning = false;
+      if (gomokuAiTimer) {
+        clearTimeout(gomokuAiTimer);
+        gomokuAiTimer = null;
+      }
+      if (kind === "win") setGomokuStatus(t("gomoku.status.win", { level: gomokuLevel }), "win");
+      else if (kind === "lose") setGomokuStatus(t("gomoku.status.lose", { level: gomokuLevel }), "lose");
+      else setGomokuStatus(t("gomoku.status.draw"));
+      renderGomokuBoard();
+    }
+
+    function placeGomokuStone(row, col, color) {
+      gomokuGrid[row][col] = color;
+      gomokuLastMove = [row, col];
+      if (isGomokuWinAt(row, col, color)) {
+        endGomoku(color === gomokuPlayer ? "win" : "lose");
+        return;
+      }
+      if (gomokuBoardFull()) {
+        endGomoku("draw");
+        return;
+      }
+      gomokuTurn = color === "black" ? "white" : "black";
+      renderGomokuBoard();
+      if (gomokuTurn === gomokuAi && !gomokuEnded) {
+        setGomokuStatus(t("gomoku.status.aiTurn"));
+        gomokuAiTimer = setTimeout(function () {
+          const move = pickGomokuAiMove();
+          if (!move) {
+            endGomoku("draw");
+            return;
+          }
+          placeGomokuStone(move[0], move[1], gomokuAi);
+          if (!gomokuEnded) setGomokuStatus(t("gomoku.status.yourTurn"));
+        }, Math.max(120, 420 - gomokuLevel * 3));
+      } else if (!gomokuEnded) {
+        setGomokuStatus(t("gomoku.status.yourTurn"));
+      }
+    }
+
+    function startGomokuGame() {
+      gomokuLevel = clampGomokuLevel(gomokuLevelInput.value);
+      gomokuLevelInput.value = String(gomokuLevel);
+      gomokuSize = Number(gomokuBoardSelect.value) || 13;
+      gomokuWinLen = gomokuWinLengthForSize(gomokuSize);
+      gomokuPlayer = gomokuColorSelect.value === "white" ? "white" : "black";
+      gomokuAi = gomokuPlayer === "black" ? "white" : "black";
+      gomokuGrid = Array.from({ length: gomokuSize }, function () {
+        return Array.from({ length: gomokuSize }, function () { return null; });
+      });
+      gomokuLastMove = null;
+      gomokuEnded = false;
+      gomokuRunning = true;
+      gomokuTurn = "black";
+      if (gomokuAiTimer) {
+        clearTimeout(gomokuAiTimer);
+        gomokuAiTimer = null;
+      }
+      createGomokuBoardDom();
+      renderGomokuBoard();
+      if (gomokuPlayer === "white") {
+        setGomokuStatus(t("gomoku.status.aiTurn"));
+        gomokuAiTimer = setTimeout(function () {
+          const move = pickGomokuAiMove();
+          if (move) placeGomokuStone(move[0], move[1], gomokuAi);
+          if (!gomokuEnded) setGomokuStatus(t("gomoku.status.yourTurn"));
+        }, 280);
+      } else {
+        setGomokuStatus(t("gomoku.status.yourTurn"));
+      }
+    }
+
+    function prepareGomokuView() {
+      if (!gomokuCells.length) {
+        gomokuSize = Number(gomokuBoardSelect.value) || 13;
+        createGomokuBoardDom();
+      }
+      updateGomokuHud();
+      if (!gomokuRunning) setGomokuStatus(t("gomoku.status.idle"));
+    }
+
+    openGomokuBtn.addEventListener("click", () => {
+      showView(gomokuView);
+      prepareGomokuView();
+      gomokuStartBtn.focus();
+    });
+
+    backHomeFromGomokuBtn.addEventListener("click", () => {
+      if (gomokuAiTimer) {
+        clearTimeout(gomokuAiTimer);
+        gomokuAiTimer = null;
+      }
+      showView(homeView);
+      openGomokuBtn.focus();
+    });
+
+    gomokuStartBtn.addEventListener("click", startGomokuGame);
+    gomokuRestartBtn.addEventListener("click", startGomokuGame);
+
+    gomokuBoard.addEventListener("click", function (event) {
+      const btn = event.target.closest(".gomoku-cell");
+      if (!btn || !gomokuRunning || gomokuEnded || gomokuTurn !== gomokuPlayer) return;
+      const row = Number(btn.dataset.row);
+      const col = Number(btn.dataset.col);
+      if (gomokuGrid[row][col]) return;
+      placeGomokuStone(row, col, gomokuPlayer);
+    });
+
     tetrisStartBtn.addEventListener("click", startTetrisGame);
     tetrisRestartBtn.addEventListener("click", startTetrisGame);
     tetrisPauseBtn.addEventListener("click", function () { pauseTetris(false); });
@@ -3006,6 +3590,12 @@
       else if (tetrisPaused) setTetrisStatus(t("tetris.status.paused"));
       else setTetrisStatus(t("tetris.status.playing", { level: tetrisLevel }));
       if (mineBoard && mineGrid.length) renderMineBoard();
+      updateGomokuHud();
+      if (!gomokuRunning && !gomokuEnded) setGomokuStatus(t("gomoku.status.idle"));
+      else if (gomokuEnded && gomokuStatus.classList.contains("win")) setGomokuStatus(t("gomoku.status.win", { level: gomokuLevel }), "win");
+      else if (gomokuEnded && gomokuStatus.classList.contains("lose")) setGomokuStatus(t("gomoku.status.lose", { level: gomokuLevel }), "lose");
+      else if (gomokuRunning && gomokuTurn === gomokuAi) setGomokuStatus(t("gomoku.status.aiTurn"));
+      else if (gomokuRunning) setGomokuStatus(t("gomoku.status.yourTurn"));
     };
 
     window.onI18nApplied();

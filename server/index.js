@@ -23,7 +23,12 @@ const VIDEO_EXTS = new Set([".mp4", ".mkv", ".webm", ".mov", ".avi"]);
 const AUDIO_ONLY_EXTS = new Set([".m4a", ".mp3", ".opus", ".ogg", ".wav", ".aac", ".flac"]);
 
 const app = express();
-app.use(cors({ origin: true }));
+app.use(
+  cors({
+    origin: true,
+    exposedHeaders: ["Content-Disposition", "Content-Type"]
+  })
+);
 app.use(express.json({ limit: "32kb" }));
 
 const STATIC_ROOT = path.join(__dirname, "..");
@@ -121,8 +126,9 @@ function pickDownloadedFile(tempDir, preferAudio) {
         if (AUDIO_ONLY_EXTS.has(ext)) score += 1e15;
         if (VIDEO_EXTS.has(ext)) score -= 1e14;
       } else {
-        if (VIDEO_EXTS.has(ext)) score += 1e15;
-        if (AUDIO_ONLY_EXTS.has(ext)) score -= 1e14;
+        if (ext === ".mp4") score += 2e15;
+        else if (VIDEO_EXTS.has(ext)) score += 1e15;
+        if (AUDIO_ONLY_EXTS.has(ext) || ext === ".webm") score -= 1e13;
       }
       return { name: name, score: score };
     })
@@ -174,25 +180,39 @@ function runFfmpeg(args) {
 }
 
 async function ensureMp4Output(filePath, tempDir) {
+  const outPath = path.join(tempDir, "final-download.mp4");
   const ext = path.extname(filePath).toLowerCase();
+
+  if (ext === ".mp4" && path.resolve(filePath) !== path.resolve(outPath)) {
+    fs.copyFileSync(filePath, outPath);
+    return outPath;
+  }
   if (ext === ".mp4") return filePath;
 
-  const outPath = path.join(tempDir, forceMp4FileName(path.basename(filePath)));
+  // Re-encode webm/mkv/etc into a real MP4 so the saved file is never .webm.
   try {
-    await runFfmpeg(["-y", "-i", filePath, "-c", "copy", "-movflags", "+faststart", outPath]);
-  } catch (copyErr) {
     await runFfmpeg([
       "-y",
       "-i",
       filePath,
       "-c:v",
       "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "23",
       "-c:a",
       "aac",
+      "-b:a",
+      "192k",
       "-movflags",
       "+faststart",
+      "-f",
+      "mp4",
       outPath
     ]);
+  } catch (encodeErr) {
+    await runFfmpeg(["-y", "-i", filePath, "-c", "copy", "-movflags", "+faststart", "-f", "mp4", outPath]);
   }
   if (!fs.existsSync(outPath) || fs.statSync(outPath).size < 1) {
     throw new Error("Failed to convert download to MP4");
@@ -275,8 +295,6 @@ app.get("/api/download", async function (req, res) {
       "--no-playlist",
       "--merge-output-format",
       "mp4",
-      "--remux-video",
-      "mp4",
       "--restrict-filenames",
       "-o",
       outTemplate,
@@ -286,7 +304,7 @@ app.get("/api/download", async function (req, res) {
     try {
       await runYtDlp(downloadArgs);
     } catch (mergeError) {
-      // Without a successful merge, retry a progressive MP4 format.
+      // Merge may fail without compatible streams; download best A/V then convert to MP4.
       if (preferAudio) throw mergeError;
       cleanupDir(tempDir);
       tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "ytdlp-"));
@@ -294,11 +312,9 @@ app.get("/api/download", async function (req, res) {
       await runYtDlp(
         ytDlpBaseArgs().concat([
           "-f",
-          "b[ext=mp4]/best[ext=mp4]/b/best",
+          "bv*+ba/b",
           "--no-warnings",
           "--no-playlist",
-          "--remux-video",
-          "mp4",
           "--restrict-filenames",
           "-o",
           fallbackOut,
@@ -317,13 +333,13 @@ app.get("/api/download", async function (req, res) {
 
     if (!preferAudio) {
       filePath = await ensureMp4Output(filePath, tempDir);
-      downloadName = forceMp4FileName(path.basename(filePath));
+      downloadName = forceMp4FileName(path.basename(chosen));
     }
 
-    res.setHeader("Content-Type", "application/octet-stream");
+    res.setHeader("Content-Type", preferAudio ? "application/octet-stream" : "video/mp4");
     res.setHeader(
       "Content-Disposition",
-      "attachment; filename*=UTF-8''" + encodeURIComponent(downloadName)
+      "attachment; filename=\"" + downloadName.replace(/"/g, "") + "\"; filename*=UTF-8''" + encodeURIComponent(downloadName)
     );
 
     const stream = fs.createReadStream(filePath);

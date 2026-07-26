@@ -2549,7 +2549,7 @@
         }
         const blob = await response.blob();
         const header = response.headers.get("Content-Disposition") || "";
-        let fileName = currentVideoFileName;
+        let fileName = currentVideoFileName || "video.mp4";
         const utfMatch = header.match(/filename\*=UTF-8''([^;]+)/i);
         const plainMatch = header.match(/filename="?([^";]+)"?/i);
         if (utfMatch) {
@@ -2559,7 +2559,14 @@
         } else if (plainMatch) {
           fileName = plainMatch[1];
         }
-        triggerBlobDownload(blob, fileName);
+        if (format !== "audio") {
+          fileName = String(fileName || "video").replace(/\.[^.]+$/, "") + ".mp4";
+        }
+        const saveBlob =
+          format === "audio"
+            ? blob
+            : new Blob([blob], { type: "video/mp4" });
+        triggerBlobDownload(saveBlob, fileName);
         setVideoStatus(t("video.status.downloadStarted"));
       } catch (error) {
         setVideoStatus((error && error.message) || t("video.error.downloadFail"));

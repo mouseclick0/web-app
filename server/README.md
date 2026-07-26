@@ -1,10 +1,13 @@
-# Local yt-dlp API
+# Local media API (yt-dlp + AI cutout)
 
-Downloads YouTube (and other) videos for the **유튜브 동영상 다운로드** page using [yt-dlp](https://github.com/yt-dlp/yt-dlp).
+Local Node server for:
 
-GitHub Pages only hosts the static UI. This Node server must run on your PC for real downloads.
+1. **YouTube / video download** via [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+2. **Image background removal (누끼)** via [`@imgly/background-removal-node`](https://www.npmjs.com/package/@imgly/background-removal-node) (ONNX AI)
 
-> **Important:** Browsers block `http://127.0.0.1` calls from an HTTPS GitHub Pages site (mixed content). For downloads, open the UI served by this local server instead.
+GitHub Pages only hosts the static UI. Run this server on your PC for downloads and cutout.
+
+> **Important:** Browsers block `http://127.0.0.1` from HTTPS GitHub Pages (mixed content). Open **http://127.0.0.1:8787/** served by this server.
 
 ## Setup
 
@@ -14,35 +17,32 @@ npm install
 npm start
 ```
 
-- First run downloads the yt-dlp binary into `server/bin/` (ignored by git).
+- First run downloads yt-dlp (and ffmpeg on Windows) into `server/bin/`.
+- First cutout run downloads the ONNX model (cached afterward).
 - API + site: `http://127.0.0.1:8787/`
 
 ## Endpoints
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/api/health` | Server + yt-dlp version |
-| POST | `/api/info` | Body `{ "url": "..." }` → title, duration, format presets |
-| GET | `/api/download?url=...&format=best\|1080\|720\|480\|audio` | File download |
+| GET | `/api/health` | Server health, yt-dlp, cutout flags |
+| POST | `/api/info` | Video metadata |
+| GET | `/api/download?url=&format=` | Video file (MP4) |
+| POST | `/api/cutout` | multipart `image` + optional `model=medium\|small` → PNG |
+
+## Cutout model
+
+Uses **IMG.LY background-removal ONNX** (`medium` by default for best quality; `small` for speed).  
+Much better than simple color-keying for people, hair, products, and busy backgrounds.
 
 ## Front-end
 
-1. Run `npm start` in this folder.
-2. Open **http://127.0.0.1:8787/** in the browser.
-3. Go to **유튜브 동영상 다운로드**.
-4. Keep API URL as `http://127.0.0.1:8787`.
-5. Paste a video URL → **불러오기** → choose quality → **다운로드**.
+1. `npm start`
+2. Open **http://127.0.0.1:8787/**
+3. Use **유튜브 동영상 다운로드** or **이미지 누끼 제거**
 
-Optional: `PORT=9000 npm start` then set the same port in the page API field.
+Optional: `PORT=9000 npm start`
 
 ## Video has sound but no picture?
 
-YouTube separates video and audio streams. Merging them needs **ffmpeg**.
-
-This server downloads ffmpeg into `server/bin/` on first start (Windows). Restart with:
-
-```bash
-npm start
-```
-
-Then download again (choose 720p/1080p/Best — not Audio only).
+ffmpeg is required to merge YouTube video+audio. The server auto-downloads it on Windows into `server/bin/`. Restart `npm start` and download again (not Audio only).

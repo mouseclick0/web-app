@@ -8,6 +8,7 @@ const express = require("express");
 const cors = require("cors");
 const { ensureYtDlp, getYtDlpPath } = require("./ensure-ytdlp");
 const { ensureFfmpeg, getFfmpegPath } = require("./ensure-ffmpeg");
+const { registerCutoutRoutes } = require("./cutout");
 
 const PORT = Number(process.env.PORT) || 8787;
 const FORMAT_PRESETS = {
@@ -230,6 +231,8 @@ app.get("/api/health", async function (_req, res) {
       engine: "yt-dlp",
       version: version,
       ffmpeg: ffmpegOk,
+      cutout: true,
+      cutoutEngine: "@imgly/background-removal-node",
       port: PORT
     });
   } catch (error) {
@@ -239,6 +242,8 @@ app.get("/api/health", async function (_req, res) {
     });
   }
 });
+
+registerCutoutRoutes(app);
 
 app.post("/api/info", async function (req, res) {
   try {

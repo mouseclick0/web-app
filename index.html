@@ -1537,7 +1537,7 @@
           <path d="M206 151h22v-22" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
         </svg>
       </div>
-      <p class="home-subtitle" data-i18n="home.cutout.subtitle">단색 배경 이미지를 업로드해 배경을 투명하게 제거합니다.</p>
+      <p class="home-subtitle" data-i18n="home.cutout.subtitle">로컬 AI 서버로 사람·제품 등 배경을 깨끗하게 제거합니다.</p>
       <button type="button" class="entry-btn" id="openCutoutBtn" data-i18n="home.cutout.cta">이미지 누끼 제거</button>
     </section>
 
@@ -1716,7 +1716,22 @@
     <div class="card-head">
       <h1 data-i18n="cutout.title">이미지 누끼 제거</h1>
     </div>
-    <p class="subtitle" data-i18n="cutout.subtitle">흰색 또는 단색 배경 이미지에 적합합니다. 이미지를 드롭하거나 업로드한 뒤 강도를 조절하세요.</p>
+    <p class="subtitle" data-i18n="cutout.subtitle">로컬 서버의 AI(ONNX)로 배경을 제거합니다. 사람·제품·복잡한 배경에 적합합니다. server에서 npm start 후 사용하세요.</p>
+
+    <label class="form-field" for="cutoutApiInput">
+      <span data-i18n="cutout.apiLabel">로컬 API 주소</span>
+      <input
+        class="video-url-input"
+        id="cutoutApiInput"
+        type="url"
+        inputmode="url"
+        autocomplete="off"
+        value="http://127.0.0.1:8787"
+        placeholder="http://127.0.0.1:8787"
+      />
+    </label>
+    <p class="video-api-hint" data-i18n="cutout.apiHint">동영상 다운로드와 같은 로컬 서버(http://127.0.0.1:8787)를 사용합니다.</p>
+    <p class="video-health" id="cutoutHealth" aria-live="polite"></p>
 
     <label class="upload-zone" id="uploadZone" for="imageInput">
       <strong data-i18n="cutout.uploadStrong">이미지를 드롭하거나 클릭해서 업로드</strong>
@@ -1725,10 +1740,12 @@
     </label>
 
     <div class="cutout-controls">
-      <label class="range-label" for="toleranceInput">
-        <span data-i18n="cutout.tolerance">제거 강도</span>
-        <span><span data-i18n="cutout.toleranceLow">낮음</span><span id="toleranceValue">38</span><span data-i18n="cutout.toleranceHigh">높음</span></span>
-        <input class="range-input" id="toleranceInput" type="range" min="5" max="120" value="38" />
+      <label class="form-field" for="cutoutModelSelect">
+        <span data-i18n="cutout.model">AI 모델</span>
+        <select id="cutoutModelSelect" class="video-url-input">
+          <option value="medium" data-i18n="cutout.model.medium" selected>정확도 우선 (medium)</option>
+          <option value="small" data-i18n="cutout.model.small">속도 우선 (small)</option>
+        </select>
       </label>
       <button type="button" class="cutout-btn" id="removeBgBtn" data-i18n="cutout.remove" disabled>배경 제거하기</button>
     </div>
@@ -2079,8 +2096,9 @@
     const drawBtn = document.getElementById("drawBtn");
     const uploadZone = document.getElementById("uploadZone");
     const imageInput = document.getElementById("imageInput");
-    const toleranceInput = document.getElementById("toleranceInput");
-    const toleranceValue = document.getElementById("toleranceValue");
+    const cutoutApiInput = document.getElementById("cutoutApiInput");
+    const cutoutHealth = document.getElementById("cutoutHealth");
+    const cutoutModelSelect = document.getElementById("cutoutModelSelect");
     const removeBgBtn = document.getElementById("removeBgBtn");
     const downloadCutoutBtn = document.getElementById("downloadCutoutBtn");
     const cutoutStatus = document.getElementById("cutoutStatus");
@@ -2157,7 +2175,9 @@
       expert: { rows: 16, cols: 16, mines: 40 }
     };
     let sourceImage = null;
+    let sourceFile = null;
     let sourceFileName = "cutout";
+    let cutoutServerOk = false;
     let currentVideoPageUrl = "";
     let currentVideoFileName = "video.mp4";
     let currentVideoInfo = null;
@@ -2276,6 +2296,53 @@
       cutoutStatus.textContent = message;
     }
 
+    function setCutoutHealth(message, kind) {
+      cutoutHealth.textContent = message || "";
+      cutoutHealth.className = "video-health" + (kind ? " " + kind : "");
+    }
+
+    function getCutoutApiUrl() {
+      return (cutoutApiInput.value || "").trim().replace(/\/+$/, "") || YTDLP_DEFAULT_API;
+    }
+
+    function loadSavedCutoutApi() {
+      try {
+        const saved = localStorage.getItem(YTDLP_API_KEY);
+        cutoutApiInput.value = saved || YTDLP_DEFAULT_API;
+      } catch (e) {
+        cutoutApiInput.value = YTDLP_DEFAULT_API;
+      }
+    }
+
+    function saveCutoutApi() {
+      const value = getCutoutApiUrl();
+      try {
+        localStorage.setItem(YTDLP_API_KEY, value);
+      } catch (e) {}
+      if (ytdlpApiInput) ytdlpApiInput.value = value;
+    }
+
+    async function checkCutoutHealth() {
+      const apiBase = getCutoutApiUrl();
+      saveCutoutApi();
+      setCutoutHealth(t("cutout.health.checking"));
+      cutoutServerOk = false;
+      try {
+        const response = await fetch(apiBase + "/api/health", { method: "GET" });
+        const data = await response.json();
+        if (!response.ok || !data || !data.ok) {
+          throw new Error((data && data.error) || "health failed");
+        }
+        cutoutServerOk = true;
+        setCutoutHealth(t("cutout.health.ok"), "ok");
+      } catch (error) {
+        cutoutServerOk = false;
+        setCutoutHealth(t("cutout.health.bad"), "bad");
+      }
+      removeBgBtn.disabled = !(sourceFile && cutoutServerOk);
+      return cutoutServerOk;
+    }
+
     function loadImageFile(file) {
       if (!file || !file.type.startsWith("image/")) {
         setCutoutStatus(t("cutout.status.badFile"));
@@ -2287,10 +2354,11 @@
         const img = new Image();
         img.onload = function () {
           sourceImage = img;
+          sourceFile = file;
           sourceFileName = file.name.replace(/\.[^.]+$/, "") || "cutout";
           originalPreview.src = img.src;
           previewGrid.hidden = false;
-          removeBgBtn.disabled = false;
+          removeBgBtn.disabled = !cutoutServerOk;
           downloadCutoutBtn.disabled = true;
           setCutoutStatus(t("cutout.status.loaded"));
 
@@ -2308,64 +2376,61 @@
       reader.readAsDataURL(file);
     }
 
-    function colorDistance(a, b) {
-      const dr = a[0] - b[0];
-      const dg = a[1] - b[1];
-      const db = a[2] - b[2];
-      return Math.sqrt(dr * dr + dg * dg + db * db);
-    }
+    async function removeBackground() {
+      if (!sourceFile) return;
 
-    function sampleBackgroundColor(data, width, height) {
-      const points = [
-        [0, 0],
-        [width - 1, 0],
-        [0, height - 1],
-        [width - 1, height - 1]
-      ];
-      const sum = [0, 0, 0];
-
-      points.forEach(([x, y]) => {
-        const i = (y * width + x) * 4;
-        sum[0] += data[i];
-        sum[1] += data[i + 1];
-        sum[2] += data[i + 2];
-      });
-
-      return sum.map((value) => value / points.length);
-    }
-
-    function removeBackground() {
-      if (!sourceImage) return;
-
-      const ctx = resultCanvas.getContext("2d", { willReadFrequently: true });
-      const width = sourceImage.naturalWidth;
-      const height = sourceImage.naturalHeight;
-      const tolerance = Number(toleranceInput.value);
-      const softEdge = 24;
-
-      resultCanvas.width = width;
-      resultCanvas.height = height;
-      ctx.drawImage(sourceImage, 0, 0);
-
-      const imageData = ctx.getImageData(0, 0, width, height);
-      const data = imageData.data;
-      const bg = sampleBackgroundColor(data, width, height);
-
-      for (let i = 0; i < data.length; i += 4) {
-        const pixel = [data[i], data[i + 1], data[i + 2]];
-        const distance = colorDistance(pixel, bg);
-
-        if (distance <= tolerance) {
-          data[i + 3] = 0;
-        } else if (distance <= tolerance + softEdge) {
-          const alphaRatio = (distance - tolerance) / softEdge;
-          data[i + 3] = Math.round(data[i + 3] * alphaRatio);
-        }
+      const healthy = await checkCutoutHealth();
+      if (!healthy) {
+        setCutoutStatus(t("cutout.status.needServer"));
+        return;
       }
 
-      ctx.putImageData(imageData, 0, 0);
-      downloadCutoutBtn.disabled = false;
-      setCutoutStatus(t("cutout.status.done"));
+      removeBgBtn.disabled = true;
+      downloadCutoutBtn.disabled = true;
+      setCutoutStatus(t("cutout.status.processing"));
+
+      try {
+        const form = new FormData();
+        form.append("image", sourceFile, sourceFile.name || "image.png");
+        form.append("model", cutoutModelSelect.value || "medium");
+
+        const response = await fetch(getCutoutApiUrl() + "/api/cutout", {
+          method: "POST",
+          body: form
+        });
+
+        if (!response.ok) {
+          let message = t("cutout.status.fail");
+          try {
+            const data = await response.json();
+            if (data && data.error) message = data.error;
+          } catch (e) {}
+          throw new Error(message);
+        }
+
+        const blob = await response.blob();
+        const objectUrl = URL.createObjectURL(blob);
+        const resultImg = new Image();
+        await new Promise(function (resolve, reject) {
+          resultImg.onload = resolve;
+          resultImg.onerror = reject;
+          resultImg.src = objectUrl;
+        });
+
+        const ctx = resultCanvas.getContext("2d");
+        resultCanvas.width = resultImg.naturalWidth;
+        resultCanvas.height = resultImg.naturalHeight;
+        ctx.clearRect(0, 0, resultCanvas.width, resultCanvas.height);
+        ctx.drawImage(resultImg, 0, 0);
+        URL.revokeObjectURL(objectUrl);
+
+        downloadCutoutBtn.disabled = false;
+        setCutoutStatus(t("cutout.status.done"));
+      } catch (error) {
+        setCutoutStatus((error && error.message) || t("cutout.status.fail"));
+      } finally {
+        removeBgBtn.disabled = !(sourceFile && cutoutServerOk);
+      }
     }
 
     function downloadCutout() {
@@ -2374,6 +2439,8 @@
       link.href = resultCanvas.toDataURL("image/png");
       link.click();
     }
+
+    loadSavedCutoutApi();
 
     function setVideoProgress(percent, options) {
       const opts = options || {};
@@ -2434,6 +2501,7 @@
       try {
         localStorage.setItem(YTDLP_API_KEY, value);
       } catch (e) {}
+      if (cutoutApiInput) cutoutApiInput.value = value;
     }
 
     function setVideoHealth(message, kind) {
@@ -3003,6 +3071,8 @@
 
     openCutoutBtn.addEventListener("click", () => {
       showView(cutoutView);
+      loadSavedCutoutApi();
+      checkCutoutHealth();
       imageInput.focus();
     });
 
@@ -4223,8 +4293,13 @@
       loadImageFile(event.dataTransfer.files[0]);
     });
 
-    toleranceInput.addEventListener("input", () => {
-      toleranceValue.textContent = toleranceInput.value;
+    cutoutApiInput.addEventListener("change", function () {
+      saveCutoutApi();
+      checkCutoutHealth();
+    });
+    cutoutApiInput.addEventListener("blur", function () {
+      saveCutoutApi();
+      checkCutoutHealth();
     });
 
     removeBgBtn.addEventListener("click", removeBackground);

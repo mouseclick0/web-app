@@ -2,7 +2,7 @@
   "name": "web-app-ytdlp-server",
   "version": "1.0.0",
   "private": true,
-  "description": "Local yt-dlp API for the YouTube download page",
+  "description": "Local API for yt-dlp downloads and AI image background removal",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -13,7 +13,9 @@
     "node": ">=18"
   },
   "dependencies": {
+    "@imgly/background-removal-node": "^1.4.5",
     "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "multer": "^2.2.0"
   }
 }

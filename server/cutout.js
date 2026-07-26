@@ -1,8 +1,5 @@
 "use strict";
 
-const fs = require("fs");
-const os = require("os");
-const path = require("path");
 const multer = require("multer");
 
 const upload = multer({
@@ -37,7 +34,6 @@ function resolveModel(raw) {
 function registerCutoutRoutes(app) {
   app.post("/api/cutout", function (req, res) {
     upload.single("image")(req, res, async function (err) {
-      let tempPath = "";
       try {
         if (err) {
           res.status(400).json({ ok: false, error: err.message || "Upload failed" });
@@ -51,13 +47,12 @@ function registerCutoutRoutes(app) {
         const model = resolveModel(req.body && req.body.model);
         const removeBackground = await getRemoveBackground();
 
-        tempPath = path.join(
-          os.tmpdir(),
-          "cutout-" + Date.now() + "-" + Math.random().toString(36).slice(2) + path.extname(req.file.originalname || ".png")
-        );
-        fs.writeFileSync(tempPath, req.file.buffer);
+        // Pass a Blob — Windows file paths like C:\... break imgly ("Unsupported protocol: c:").
+        const inputBlob = new Blob([req.file.buffer], {
+          type: req.file.mimetype || "image/png"
+        });
 
-        const blob = await removeBackground(tempPath, {
+        const blob = await removeBackground(inputBlob, {
           model: model,
           debug: false,
           output: {
@@ -88,12 +83,6 @@ function registerCutoutRoutes(app) {
             ok: false,
             error: error && error.message ? error.message : "Background removal failed"
           });
-        }
-      } finally {
-        if (tempPath) {
-          try {
-            fs.unlinkSync(tempPath);
-          } catch (e) {}
         }
       }
     });

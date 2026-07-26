@@ -3291,9 +3291,42 @@
       renderGomokuBoard();
     }
 
+    function playGomokuPlaceSound(color) {
+      const ctx = ensureTetrisAudio();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      const base = color === "black" ? 180 : 240;
+
+      const thump = ctx.createOscillator();
+      const thumpGain = ctx.createGain();
+      thump.type = "sine";
+      thump.frequency.setValueAtTime(base, now);
+      thump.frequency.exponentialRampToValueAtTime(base * 0.55, now + 0.09);
+      thumpGain.gain.setValueAtTime(0.0001, now);
+      thumpGain.gain.exponentialRampToValueAtTime(0.28, now + 0.012);
+      thumpGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+      thump.connect(thumpGain);
+      thumpGain.connect(ctx.destination);
+      thump.start(now);
+      thump.stop(now + 0.14);
+
+      const click = ctx.createOscillator();
+      const clickGain = ctx.createGain();
+      click.type = "triangle";
+      click.frequency.setValueAtTime(base * 3.2, now);
+      clickGain.gain.setValueAtTime(0.0001, now);
+      clickGain.gain.exponentialRampToValueAtTime(0.12, now + 0.005);
+      clickGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.045);
+      click.connect(clickGain);
+      clickGain.connect(ctx.destination);
+      click.start(now);
+      click.stop(now + 0.05);
+    }
+
     function placeGomokuStone(row, col, color) {
       gomokuGrid[row][col] = color;
       gomokuLastMove = [row, col];
+      playGomokuPlaceSound(color);
       if (isGomokuWinAt(row, col, color)) {
         endGomoku(color === gomokuPlayer ? "win" : "lose");
         return;
@@ -3321,6 +3354,7 @@
     }
 
     function startGomokuGame() {
+      ensureTetrisAudio();
       gomokuLevel = clampGomokuLevel(gomokuLevelInput.value);
       gomokuLevelInput.value = String(gomokuLevel);
       gomokuSize = GOMOKU_BOARD_SIZE;

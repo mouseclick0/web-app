@@ -181,7 +181,7 @@
       daily:
         "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum",
       timezone: "auto",
-      forecast_days: "2"
+      forecast_days: "7"
     });
     var res = await fetch("https://api.open-meteo.com/v1/forecast?" + params.toString());
     if (!res.ok) throw new Error("forecast failed");
@@ -243,6 +243,72 @@
     refreshIcons(box);
   }
 
+  function localeTag() {
+    var lang = (window.getLang && getLang()) || "ko";
+    if (lang === "zh") return "zh-CN";
+    if (lang === "ja") return "ja-JP";
+    if (lang === "en") return "en-US";
+    return "ko-KR";
+  }
+
+  function dayLabel(isoDate, index) {
+    if (index === 0) return t("weather.today");
+    if (index === 1) return t("weather.tomorrow");
+    var d = new Date(isoDate + "T12:00:00");
+    return d.toLocaleDateString(localeTag(), { weekday: "short", month: "numeric", day: "numeric" });
+  }
+
+  function renderDaily(forecast) {
+    var box = $("weatherDaily");
+    if (!box || !forecast || !forecast.daily) return;
+    var times = forecast.daily.time || [];
+    var highs = forecast.daily.temperature_2m_max || [];
+    var lows = forecast.daily.temperature_2m_min || [];
+    var pops = forecast.daily.precipitation_probability_max || [];
+    var precs = forecast.daily.precipitation_sum || [];
+    var codes = forecast.daily.weather_code || [];
+    var html = "";
+    var count = Math.min(7, times.length);
+    for (var i = 0; i < count; i++) {
+      var pop = pops[i] == null ? "--" : pops[i];
+      var precip = precs[i] == null ? "--" : Number(precs[i]).toFixed(1);
+      var rainBit =
+        Number(precs[i]) > 0.2
+          ? t("weather.rainYes")
+          : Number(pops[i]) >= 40
+            ? t("weather.rainMaybe")
+            : t("weather.rainNo");
+      html +=
+        '<article class="wx-day">' +
+        '<div class="wx-day-head">' +
+        "<strong>" +
+        dayLabel(times[i], i) +
+        "</strong>" +
+        '<i data-lucide="' +
+        weatherIconName(codes[i]) +
+        '"></i>' +
+        "</div>" +
+        '<p class="wx-day-cond">' +
+        weatherLabel(codes[i]) +
+        "</p>" +
+        '<p class="wx-day-temps"><span class="hi">' +
+        formatTemp(highs[i]) +
+        '</span><span class="lo">' +
+        formatTemp(lows[i]) +
+        "</span></p>" +
+        '<p class="wx-day-pop">' +
+        pop +
+        "% · " +
+        precip +
+        " mm · " +
+        rainBit +
+        "</p>" +
+        "</article>";
+    }
+    box.innerHTML = html;
+    refreshIcons(box);
+  }
+
   function renderForecast() {
     var forecast = state.forecast;
     var place = state.place;
@@ -275,6 +341,7 @@
     );
 
     renderHourly(forecast);
+    renderDaily(forecast);
     updateUnitButtons();
   }
 

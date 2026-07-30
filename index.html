@@ -1717,7 +1717,8 @@
       font-weight: 700;
     }
 
-    .weather-hourly-wrap {
+    .weather-hourly-wrap,
+    .weather-daily-wrap {
       border: 1px solid var(--toggle-border);
       border-radius: var(--wx-radius);
       background: var(--wx-card);
@@ -1729,6 +1730,70 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
       gap: 0.55rem;
+    }
+
+    .weather-daily {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .wx-day {
+      border: 1px solid var(--toggle-border);
+      border-radius: calc(var(--wx-radius) - 4px);
+      background: color-mix(in srgb, var(--surface) 65%, transparent);
+      padding: 0.75rem 0.55rem;
+      text-align: center;
+      min-width: 0;
+    }
+
+    .wx-day-head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .wx-day-head strong {
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .wx-day-head svg {
+      width: 1.35rem;
+      height: 1.35rem;
+      color: var(--accent);
+    }
+
+    .wx-day-cond {
+      margin: 0 0 0.4rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.25;
+      min-height: 1.8em;
+    }
+
+    .wx-day-temps {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      gap: 0.4rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .wx-day-temps .lo {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .wx-day-pop {
+      margin: 0.4rem 0 0;
+      font-size: 0.68rem;
+      color: #5b9fd8;
+      line-height: 1.3;
     }
 
     .wx-hour {
@@ -1792,7 +1857,8 @@
         grid-template-columns: 1fr;
       }
 
-      .weather-hourly {
+      .weather-hourly,
+      .weather-daily {
         display: flex;
         overflow-x: auto;
         padding-bottom: 0.25rem;
@@ -1801,6 +1867,10 @@
 
       .wx-hour {
         flex: 0 0 4.75rem;
+      }
+
+      .wx-day {
+        flex: 0 0 6.5rem;
       }
     }
   </style>
@@ -2408,6 +2478,11 @@
     <section class="weather-hourly-wrap">
       <h2 class="wx-card-title"><i data-lucide="clock-3"></i><span data-i18n="weather.hourly">앞으로 24시간</span></h2>
       <div class="weather-hourly" id="weatherHourly"></div>
+    </section>
+
+    <section class="weather-daily-wrap">
+      <h2 class="wx-card-title"><i data-lucide="calendar-range"></i><span data-i18n="weather.daily">7일간 날씨</span></h2>
+      <div class="weather-daily" id="weatherDaily"></div>
     </section>
 
     <p class="weather-credit">

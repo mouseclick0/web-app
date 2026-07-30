@@ -760,10 +760,14 @@
       padding: 3px;
       border: 3px solid var(--accent);
       border-radius: 8px;
-      background: color-mix(in srgb, var(--accent) 18%, var(--toggle-bg));
+      background: #6b7280;
       box-shadow:
         0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent),
         inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    }
+
+    :root[data-theme="light"] .mine-board {
+      background: #f3f4f6;
     }
 
     .mine-cell {

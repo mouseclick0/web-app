@@ -112,6 +112,14 @@
       text-align: center;
     }
 
+    .local-only-card {
+      display: none;
+    }
+
+    html.owner-tools .local-only-card {
+      display: block;
+    }
+
     .card-head {
       display: flex;
       align-items: flex-start;
@@ -1875,6 +1883,33 @@
     }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script>
+    (function () {
+      var OWNER_KEY = "web-pages-owner-tools";
+      var host = location.hostname;
+      var allow =
+        host === "localhost" ||
+        host === "127.0.0.1" ||
+        host === "[::1]";
+      try {
+        var q = new URLSearchParams(location.search);
+        if (q.get("owner") === "1") {
+          localStorage.setItem(OWNER_KEY, "1");
+          q.delete("owner");
+          var clean = location.pathname + (q.toString() ? "?" + q.toString() : "") + location.hash;
+          history.replaceState(null, "", clean);
+        } else if (q.get("owner") === "0") {
+          localStorage.removeItem(OWNER_KEY);
+          q.delete("owner");
+          var cleaned = location.pathname + (q.toString() ? "?" + q.toString() : "") + location.hash;
+          history.replaceState(null, "", cleaned);
+        }
+        if (localStorage.getItem(OWNER_KEY) === "1") allow = true;
+      } catch (e) {}
+      window.__OWNER_TOOLS__ = allow;
+      document.documentElement.classList.toggle("owner-tools", allow);
+    })();
+  </script>
 </head>
 <body>
   <div class="top-controls">
@@ -1890,7 +1925,7 @@
 
   <main class="home-grid" id="homeView">
     <h1 class="home-title" data-i18n="home.title">웹 애플리케이션</h1>
-    <section class="card home-card">
+    <section class="card home-card local-only-card">
       <div class="card-head">
         <svg class="feature-hero" role="img" data-i18n-aria="home.video.aria" aria-label="동영상 플레이어 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -1915,7 +1950,7 @@
       <button type="button" class="entry-btn" id="openVideoBtn" data-i18n="home.video.cta">유튜브 동영상 다운로드</button>
     </section>
 
-    <section class="card home-card">
+    <section class="card home-card local-only-card">
       <div class="card-head">
         <svg class="feature-hero cutout-hero" role="img" data-i18n-aria="home.cutout.aria" aria-label="이미지 배경 제거 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
           <rect x="54" y="36" width="212" height="132" rx="24" fill="currentColor" opacity="0.16" />

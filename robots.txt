@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mouseclick0.github.io/web-app/sitemap.xml

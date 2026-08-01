@@ -1,0 +1,203 @@
+/* Shared layout for content / policy pages */
+:root {
+  color-scheme: light dark;
+  --bg: #0f1419;
+  --surface: #1a2332;
+  --text: #e8eef5;
+  --muted: #8b9cb0;
+  --accent: #3d9cf5;
+  --border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #e8eef3;
+    --surface: #ffffff;
+    --text: #14212e;
+    --muted: #5a6b7d;
+    --accent: #1d7ed6;
+    --border: rgba(15, 30, 50, 0.1);
+    --card-shadow: 0 8px 32px rgba(20, 40, 70, 0.08);
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Noto Sans KR", "DM Sans", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header-inner,
+.site-footer-inner,
+.site-main {
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.site-header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 3.5rem;
+}
+
+.site-brand {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.site-brand:hover { text-decoration: none; color: var(--accent); }
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  font-size: 0.9rem;
+}
+
+.site-nav a { color: var(--muted); font-weight: 600; }
+.site-nav a:hover { color: var(--accent); text-decoration: none; }
+
+.site-main {
+  padding-top: 1.75rem;
+  padding-bottom: 3rem;
+}
+
+.breadcrumb {
+  margin: 0 0 1rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.article-card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+}
+
+.article-card h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+}
+
+.article-card .lead {
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+
+.article-card h2 {
+  margin: 2rem 0 0.75rem;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.article-card h3 {
+  margin: 1.4rem 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.article-card p { margin: 0 0 1rem; }
+.article-card ul, .article-card ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+.article-card li { margin-bottom: 0.4rem; }
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--accent) 16%, var(--surface));
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.btn:hover { text-decoration: none; filter: brightness(1.05); }
+.btn-primary { background: var(--accent); color: #fff; border-color: transparent; }
+
+.guide-list {
+  display: grid;
+  gap: 0.85rem;
+  margin: 1rem 0 0;
+}
+
+.guide-list a {
+  display: block;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 55%, var(--surface));
+  color: var(--text);
+  text-decoration: none;
+}
+
+.guide-list a:hover { border-color: var(--accent); }
+.guide-list strong { display: block; margin-bottom: 0.25rem; }
+.guide-list span { color: var(--muted); font-size: 0.9rem; }
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0 2rem;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+}
+
+.site-footer-inner {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  font-size: 0.88rem;
+}
+
+.site-footer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 640px) {
+  .site-nav { width: 100%; }
+}

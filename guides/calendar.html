@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>양력·음력 변환 가이드 | 클릭웹도구</title>
+  <meta name="description" content="양력과 음력 상호 변환, 윤달, 60갑자(세차·월건·일진), 12띠를 이해하는 방법과 변환기 사용 팁." />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/guides/calendar.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">클릭웹도구</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="../index.html">홈</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../about.html">소개</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">홈</a> · <a href="index.html">가이드</a> · 양력/음력</p>
+    <article class="article-card">
+      <h1>양력·음력 변환 가이드</h1>
+      <p class="lead">기념일, 제례, 생일처럼 음력 날짜를 양력으로 바꾸거나 그 반대를 해야 할 때가 있습니다. 클릭웹도구 변환기는 연·월·일을 입력하면 상대 달력과 60갑자, 띠를 함께 보여 줍니다.</p>
+
+      <h2>양력과 음력의 차이</h2>
+      <p>양력(그레고리력)은 태양 주기를 기준으로 한 국제 표준 달력입니다. 음력은 달의 위상 변화를 기준으로 하며, 한 달이 대략 29~30일입니다. 그래서 음력 한 해의 길이가 양력과 어긋나고, 이를 맞추기 위해 가끔 <strong>윤달</strong>이 들어갑니다.</p>
+
+      <h2>윤달이란?</h2>
+      <p>윤달은 같은 달 이름이 한 해에 두 번 나타나는 추가 달입니다. 변환기에서 ‘윤달’ 체크박스는 음력 입력이 윤달인지 지정할 때 사용합니다. 존재하지 않는 윤달을 선택하면 변환이 실패할 수 있으니, 결과가 오류로 나오면 체크를 해제하고 다시 시도해 보세요.</p>
+
+      <h2>60갑자와 12띠</h2>
+      <p>60갑자는 10천간과 12지지가 조합되어 60년을 한 주기로 반복하는 전통 기년법입니다. 화면의 세차(년)·월건(월)·일진(일)은 각각 해·달·날에 해당하는 간지입니다. 12띠는 12지지에 대응하는 동물로, 보통 해당 해의 지지로 표현합니다. 이모지와 함께 표시해 한눈에 구분하기 쉽게 했습니다.</p>
+      <p>띠를 “양력 1월 1일” 기준으로 나누는 경우와 “입춘·설” 기준으로 나누는 경우가 달라 혼동이 생길 수 있습니다. 본 도구는 변환 라이브러리의 간지 계산을 따르므로, 사주·역술의 세밀한 기준이 필요하면 전문가·전문 소프트웨어와 교차 확인하세요.</p>
+
+      <h2>사용 팁</h2>
+      <ul>
+        <li>처음 들어오면 오늘 날짜가 기본값으로 채워집니다.</li>
+        <li>‘오늘 날짜 조회’로 언제든 오늘 기준으로 되돌릴 수 있습니다.</li>
+        <li>양력 쪽을 바꾸면 음력이, 음력 쪽을 바꾸면 양력이 갱신됩니다.</li>
+      </ul>
+
+      <h2>한계</h2>
+      <p>변환 가능 연도에는 상·하한이 있습니다. 너무 먼 과거·미래 날짜는 지원되지 않을 수 있습니다. 법적·행정적 날짜 확정에는 공식 자료를 우선하세요.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../index.html">변환기 열기</a>
+        <a class="btn" href="index.html">다른 가이드</a>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="../about.html">소개</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+        <a href="../terms.html">이용약관</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+      <p>© <span id="y"></span> 클릭웹도구</p>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

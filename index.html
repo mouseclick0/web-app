@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>웹 애플리케이션</title>
+  <title>클릭웹도구 — 날씨·음력·IP·무료 웹 유틸리티</title>
+  <meta name="description" content="클릭웹도구에서 날씨, 양력·음력 변환, 내 아이피 찾기, 로또 번호 생성, 브라우저 게임을 무료로 이용하세요. 사용 가이드와 개인정보처리방침을 제공합니다." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="클릭웹도구 — 날씨·음력·IP·무료 웹 유틸리티" />
+  <meta property="og:description" content="설치 없이 바로 쓰는 생활 웹 도구와 사용 가이드." />
+  <meta property="og:url" content="https://mouseclick0.github.io/web-app/" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="클릭웹도구" />
+  <meta name="twitter:description" content="날씨·음력·IP·게임 등 무료 웹 유틸리티 모음" />
+  <link rel="stylesheet" href="site.css" />
   <script>
     (function () {
       try {
@@ -70,13 +82,86 @@
       background: var(--bg);
       color: var(--text);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
+      padding: 0;
       background-image:
         radial-gradient(ellipse 120% 80% at 50% -20%, var(--grad-a), transparent),
         radial-gradient(ellipse 80% 50% at 100% 50%, var(--grad-b), transparent);
       transition: background-color 0.25s ease, color 0.2s ease;
+    }
+
+    body > .site-header,
+    body > .site-footer {
+      width: 100%;
+      align-self: stretch;
+      flex-shrink: 0;
+    }
+
+    body > main {
+      margin: 1.25rem auto;
+      flex: 0 1 auto;
+    }
+
+    .home-intro,
+    .home-guides {
+      grid-column: 1 / -1;
+      text-align: left;
+    }
+
+    .home-intro h2,
+    .home-guides h2 {
+      margin: 0 0 0.65rem;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .home-intro p,
+    .home-guides p {
+      margin: 0 0 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    .home-intro ul {
+      margin: 0 0 0.85rem;
+      padding-left: 1.2rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .home-guide-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.65rem;
+      margin-top: 0.75rem;
+    }
+
+    .home-guide-links a {
+      display: block;
+      padding: 0.85rem 0.95rem;
+      border-radius: 12px;
+      border: 1px solid var(--toggle-border);
+      background: var(--toggle-bg);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .home-guide-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .home-guide-links span {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 0.82rem;
+      line-height: 1.4;
     }
 
     [hidden] {
@@ -156,9 +241,9 @@
 
     .top-controls {
       position: fixed;
-      top: 1rem;
+      top: 4.25rem;
       right: 1rem;
-      z-index: 10;
+      z-index: 50;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -2195,6 +2280,19 @@
   </script>
 </head>
 <body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="index.html">클릭웹도구</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="index.html">홈</a>
+        <a href="guides/index.html">가이드</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">소개</a>
+        <a href="contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
   <div class="top-controls">
     <label class="visually-hidden" for="langSelect" data-i18n="lang.aria">언어 선택</label>
     <select class="lang-select" id="langSelect" aria-label="언어 선택">
@@ -2207,7 +2305,20 @@
   </div>
 
   <main class="home-grid" id="homeView">
-    <h1 class="home-title" data-i18n="home.title">웹 애플리케이션</h1>
+    <h1 class="home-title" data-i18n="home.title">클릭웹도구</h1>
+
+    <section class="card home-intro">
+      <h2 data-i18n="home.introTitle">설치 없이 바로 쓰는 생활 웹 도구</h2>
+      <p data-i18n="home.introP1">클릭웹도구는 날씨 확인, 양력·음력 변환, 공인 IP 조회, 참고용 로또 번호 생성, 가벼운 브라우저 게임을 한곳에서 제공합니다. 회원 가입 없이 필요한 기능만 빠르게 실행하고, 사용법과 주의점은 가이드 문서로 확인할 수 있습니다.</p>
+      <p data-i18n="home.introP2">방문자가 목적을 이루도록 도구와 설명을 함께 두었으며, 개인정보처리방침·이용약관·문의 채널을 공개해 신뢰할 수 있는 사이트 구조를 유지합니다.</p>
+      <ul>
+        <li data-i18n="home.introLi1">위치 기반 날씨(현재·24시간·7일)와 도시 검색</li>
+        <li data-i18n="home.introLi2">양력/음력 상호 변환, 60갑자·12띠 확인</li>
+        <li data-i18n="home.introLi3">IPv4/IPv6·ISP·국가·도시 조회 및 복사</li>
+        <li data-i18n="home.introLi4">지뢰찾기·테트리스·오목·기억력 테스트</li>
+      </ul>
+    </section>
+
     <section class="card home-card local-only-card">
       <div class="card-head">
         <svg class="feature-hero" role="img" data-i18n-aria="home.video.aria" aria-label="동영상 플레이어 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
@@ -2443,6 +2554,21 @@
       </div>
       <p class="home-subtitle" data-i18n="home.ip.subtitle">현재 공인 IP와 ISP, 국가·도시 정보를 확인합니다.</p>
       <button type="button" class="entry-btn" id="openIpBtn" data-i18n="home.ip.cta">내 아이피 찾기</button>
+    </section>
+
+    <section class="card home-guides">
+      <h2 data-i18n="home.guidesTitle">사용 가이드</h2>
+      <p data-i18n="home.guidesDesc">도구를 쓰기 전에 읽어 보면 좋은 설명 글입니다. 검색·공유에도 유리하도록 독립 페이지로 구성했습니다.</p>
+      <div class="home-guide-links">
+        <a href="guides/overview.html">사이트 한눈에 보기<span>구성과 추천 이용 순서</span></a>
+        <a href="guides/weather.html">날씨 활용법<span>예보 읽는 법과 한계</span></a>
+        <a href="guides/calendar.html">양력·음력 변환<span>윤달·갑자·띠 개념</span></a>
+        <a href="guides/ip.html">내 아이피 찾기<span>IPv4/IPv6와 ISP 의미</span></a>
+        <a href="guides/lotto.html">로또 생성기<span>참고용 이용 안내</span></a>
+        <a href="guides/games.html">브라우저 게임<span>규칙과 초보 팁</span></a>
+        <a href="faq.html">FAQ<span>자주 묻는 질문</span></a>
+        <a href="about.html">소개<span>운영 목적과 원칙</span></a>
+      </div>
     </section>
 
     <section class="card contact-section">
@@ -2954,6 +3080,20 @@
 
     <button type="button" class="back-btn" id="backHomeFromIpBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="about.html">소개</a>
+        <a href="guides/index.html">가이드</a>
+        <a href="faq.html">FAQ</a>
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="terms.html">이용약관</a>
+        <a href="contact.html">문의</a>
+      </nav>
+      <p>© <span id="siteYear"></span> 클릭웹도구 · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></p>
+    </div>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/korean-lunar-calendar@0.4.0/dist/korean-lunar-calendar.min.js"></script>
   <script src="i18n.js"></script>
@@ -5362,5 +5502,9 @@
   <script src="weather.js"></script>
   <script src="calendar.js"></script>
   <script src="ip.js"></script>
+  <script>
+    var yearEl = document.getElementById("siteYear");
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+  </script>
 </body>
 </html>

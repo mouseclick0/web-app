@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>브라우저 게임 가이드 | 클릭웹도구</title>
+  <meta name="description" content="지뢰찾기, 테트리스, 오목, 기억력 테스트의 규칙과 초보 팁. 설치 없이 즐기는 가벼운 브라우저 게임 안내." />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/guides/games.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">클릭웹도구</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="../index.html">홈</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../about.html">소개</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">홈</a> · <a href="index.html">가이드</a> · 게임</p>
+    <article class="article-card">
+      <h1>브라우저 게임 가이드</h1>
+      <p class="lead">클릭웹도구에는 설치 없이 바로 할 수 있는 네 가지 가벼운 게임이 있습니다. 규칙이 단순하고, 짧은 시간에 집중력을 환기하기 좋은 구성입니다. 현금 베팅이나 아이템 결제와는 무관합니다.</p>
+
+      <h2>지뢰찾기</h2>
+      <p>칸을 열어 지뢰를 피하고 안전한 영역을 모두 열면 승리합니다. 숫자는 주변 8칸의 지뢰 개수를 뜻합니다. 초급·중급·고급으로 판 크기가 달라지며, 처음에는 초급으로 숫자 패턴을 익히는 것을 권합니다. 막히면 추측이 필요한 구간이 생길 수 있습니다.</p>
+
+      <h2>테트리스</h2>
+      <p>떨어지는 블록을 회전·이동해 가로줄을 완성하면 줄이 지워집니다. 레벨이 오르면 속도가 빨라집니다. 빈 공간을 만들지 않도록 평탄하게 쌓는 것이 기본 전략입니다. 키보드 조작이 편하므로 데스크톱 환경에서 더 쾌적합니다.</p>
+
+      <h2>오목</h2>
+      <p>가로·세로·대각선으로 같은 색 돌 5개를 먼저 만들면 이깁니다. AI와 대국할 수 있으며, 중앙 싸움과 열린 3·4를 동시에 만드는 수가 중요합니다. 초보자는 상대의 위협 수를 막는 것을 우선하세요.</p>
+
+      <h2>기억력 테스트</h2>
+      <p>뒤집힌 카드에서 같은 이모지 쌍을 찾는 게임입니다. 시도 횟수와 시간이 기록되므로, 위치 기억을 훈련하는 데 도움이 됩니다. 처음에는 가장자리부터 규칙적으로 열어 패턴을 만드는 방식이 효과적입니다.</p>
+
+      <h2>이용 안내</h2>
+      <p>게임 중 다른 메뉴로 이동하면 진행이 중단될 수 있습니다. 장시간 플레이 시 눈과 손목 휴식을 취하세요. 오류가 반복되면 브라우저를 최신 버전으로 업데이트한 뒤 다시 시도해 주세요.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../index.html">게임 모음으로</a>
+        <a class="btn" href="index.html">다른 가이드</a>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="../about.html">소개</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+        <a href="../terms.html">이용약관</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+      <p>© <span id="y"></span> 클릭웹도구</p>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

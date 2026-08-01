@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>소개 | 클릭웹도구</title>
+  <meta name="description" content="클릭웹도구는 날씨, 양력·음력 변환, IP 확인, 브라우저 게임 등 일상에서 바로 쓰는 무료 웹 도구를 제공합니다." />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/about.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="index.html">클릭웹도구</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="index.html">홈</a>
+        <a href="guides/index.html">가이드</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">소개</a>
+        <a href="contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <p class="breadcrumb"><a href="index.html">홈</a> · 소개</p>
+    <article class="article-card">
+      <h1>클릭웹도구 소개</h1>
+      <p class="lead">클릭웹도구는 설치 없이 브라우저에서 바로 사용할 수 있는 생활·정보·학습용 웹 유틸리티 모음입니다. 복잡한 회원 가입 없이, 필요한 기능을 빠르게 찾아 쓰는 것을 목표로 합니다.</p>
+
+      <h2>이 사이트를 만든 이유</h2>
+      <p>날씨 확인, 음력 날짜 변환, 공인 IP 조회처럼 자주 쓰는 기능은 검색할 때마다 광고가 많은 페이지나 앱 설치 유도 화면을 거치는 경우가 많습니다. 클릭웹도구는 그런 마찰을 줄이고, 한 화면에서 핵심 정보만 바로 확인하도록 구성했습니다.</p>
+      <p>또한 지뢰찾기·테트리스·오목·기억력 테스트 같은 가벼운 브라우저 게임을 함께 두어, 짧은 휴식을 취하거나 집중력을 가볍게 연습할 수 있게 했습니다. 도구와 게임 모두 상업적 도박이나 유료 유도가 아닌 참고·오락 목적입니다.</p>
+
+      <h2>제공하는 서비스</h2>
+      <ul>
+        <li>위치 기반 날씨 정보(현재·시간별·7일)</li>
+        <li>양력/음력 날짜 변환과 60갑자·12띠 안내</li>
+        <li>공인 IPv4/IPv6, ISP, 국가·도시 확인</li>
+        <li>로또 번호 생성기(오락·참고용)</li>
+        <li>지뢰찾기, 테트리스, 오목, 기억력 테스트</li>
+        <li>사용법·배경지식을 정리한 가이드 문서</li>
+      </ul>
+
+      <h2>콘텐츠 운영 원칙</h2>
+      <p>사이트는 방문자가 실제로 읽고 활용할 수 있는 설명을 우선합니다. 도구 화면만 두지 않고, 각 기능의 의미·주의점·활용 팁을 가이드로 정리합니다. 외부 API를 사용할 때는 출처를 밝히고, 개인정보 처리 방식은 개인정보처리방침에 공개합니다.</p>
+      <p>저작권이 있는 콘텐츠를 무단으로 복제하지 않으며, 유튜브 다운로드처럼 정책 리스크가 큰 기능은 일반 방문 화면에 노출하지 않습니다.</p>
+
+      <h2>운영자</h2>
+      <p>클릭웹도구는 개인이 운영하는 웹 프로젝트입니다. 기능 개선, 오류 제보, 제휴·광고 문의는 문의 페이지의 양식으로 남겨 주세요. 가능한 범위에서 빠르게 확인하겠습니다.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="index.html">도구 바로가기</a>
+        <a class="btn" href="guides/index.html">가이드 보기</a>
+        <a class="btn" href="contact.html">문의하기</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="about.html">소개</a>
+        <a href="guides/index.html">가이드</a>
+        <a href="faq.html">FAQ</a>
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="terms.html">이용약관</a>
+        <a href="contact.html">문의</a>
+      </nav>
+      <p>© <span id="y"></span> 클릭웹도구. 방문자를 위한 무료 웹 유틸리티.</p>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>내 아이피 찾기 가이드 | 클릭웹도구</title>
+  <meta name="description" content="공인 IPv4·IPv6, ISP, 국가·도시 정보의 의미와 복사·새로고침 사용법, 개인정보 관점의 주의사항을 안내합니다." />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/guides/ip.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">클릭웹도구</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="../index.html">홈</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../about.html">소개</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">홈</a> · <a href="index.html">가이드</a> · IP</p>
+    <article class="article-card">
+      <h1>내 아이피 찾기 가이드</h1>
+      <p class="lead">공인 IP는 인터넷에 연결될 때 외부에서 보이는 주소입니다. 원격 접속 설정, 서버 방화벽 허용, 네트워크 점검 때 자주 필요합니다. 클릭웹도구는 IPv4·IPv6·ISP와 대략적인 국가·도시를 한 페이지에서 보여 줍니다.</p>
+
+      <h2>IPv4와 IPv6</h2>
+      <p>IPv4는 `192.0.2.1`처럼 점(.)으로 구분된 주소 체계이고, IPv6는 콜론(:)이 포함된 더 긴 주소입니다. 집·사무실 회선이 IPv6를 아직 쓰지 않으면 IPv6 항목이 ‘확인 불가’로 나올 수 있습니다. 이 경우에도 IPv4는 정상인 경우가 많습니다.</p>
+
+      <h2>ISP와 위치 정보</h2>
+      <p>ISP는 인터넷 서비스 제공 사업자 또는 연결 조직 정보입니다. 국가·도시는 IP 대역 데이터베이스를 바탕으로 추정한 값이라, 실제 거주 동·건물 단위까지 정확하지 않을 수 있습니다. VPN·회사망·모바일 핫스팟을 쓰면 표시 위치가 달라집니다.</p>
+
+      <h2>복사와 새로고침</h2>
+      <p>‘아이피 복사’는 기본적으로 IPv4를 복사하고, IPv4가 없을 때만 IPv6를 복사합니다. 네트워크를 바꿨거나 VPN을 켰다면 ‘새로고침’으로 다시 조회하세요.</p>
+
+      <h2>보안·개인정보 관점</h2>
+      <p>공인 IP 자체는 비밀 비밀번호가 아니지만, 불특정 다수에게 장기간 노출할 필요는 없습니다. 사이트는 조회를 위해 외부 IP 정보 API를 호출하며, 처리 방침은 개인정보처리방침에 명시되어 있습니다. 민감한 원격 관리가 필요하면 방화벽·키 인증 등 추가 보안을 함께 사용하세요.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../index.html">IP 도구 열기</a>
+        <a class="btn" href="../privacy.html">개인정보처리방침</a>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="../about.html">소개</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+        <a href="../terms.html">이용약관</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+      <p>© <span id="y"></span> 클릭웹도구</p>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

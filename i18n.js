@@ -5,13 +5,23 @@
 
   var I18N = {
     ko: {
-      "meta.title": "웹 애플리케이션",
+      "meta.title": "클릭웹도구 — 날씨·음력·IP·무료 웹 유틸리티",
+      "meta.description": "클릭웹도구에서 날씨, 양력·음력 변환, 내 아이피 찾기, 로또 번호 생성, 브라우저 게임을 무료로 이용하세요.",
       "lang.aria": "언어 선택",
       "theme.toLight": "화이트 모드",
       "theme.toLightAria": "화이트 모드로 전환",
       "theme.toDark": "다크 모드",
       "theme.toDarkAria": "다크 모드로 전환",
-      "home.title": "웹 애플리케이션",
+      "home.title": "클릭웹도구",
+      "home.introTitle": "설치 없이 바로 쓰는 생활 웹 도구",
+      "home.introP1": "클릭웹도구는 날씨 확인, 양력·음력 변환, 공인 IP 조회, 참고용 로또 번호 생성, 가벼운 브라우저 게임을 한곳에서 제공합니다. 회원 가입 없이 필요한 기능만 빠르게 실행하고, 사용법과 주의점은 가이드 문서로 확인할 수 있습니다.",
+      "home.introP2": "방문자가 목적을 이루도록 도구와 설명을 함께 두었으며, 개인정보처리방침·이용약관·문의 채널을 공개해 신뢰할 수 있는 사이트 구조를 유지합니다.",
+      "home.introLi1": "위치 기반 날씨(현재·24시간·7일)와 도시 검색",
+      "home.introLi2": "양력/음력 상호 변환, 60갑자·12띠 확인",
+      "home.introLi3": "IPv4/IPv6·ISP·국가·도시 조회 및 복사",
+      "home.introLi4": "지뢰찾기·테트리스·오목·기억력 테스트",
+      "home.guidesTitle": "사용 가이드",
+      "home.guidesDesc": "도구를 쓰기 전에 읽어 보면 좋은 설명 글입니다. 검색·공유에도 유리하도록 독립 페이지로 구성했습니다.",
       "home.lotto.aria": "로또 번호 공 이미지",
       "home.lotto.subtitle": "6/45 로또 번호를 한 번에 5게임까지 추천합니다.",
       "home.lotto.cta": "로또 번호 생성기",
@@ -313,13 +323,23 @@
       "tetris.status.started": "레벨 {level} 시작 · 줄을 지우면 레벨이 오릅니다. (최대 99)"
     },
     en: {
-      "meta.title": "Web Apps",
+      "meta.title": "Click Web Tools — Weather, Lunar Calendar, IP & Free Utilities",
+      "meta.description": "Free browser tools: weather, solar/lunar conversion, IP lookup, lotto generator, and casual games — with guides and policies.",
       "lang.aria": "Language",
       "theme.toLight": "Light mode",
       "theme.toLightAria": "Switch to light mode",
       "theme.toDark": "Dark mode",
       "theme.toDarkAria": "Switch to dark mode",
-      "home.title": "Web Apps",
+      "home.title": "Click Web Tools",
+      "home.introTitle": "Everyday web tools in your browser",
+      "home.introP1": "Click Web Tools offers weather, solar/lunar conversion, public IP lookup, a reference lotto generator, and light browser games in one place. No sign-up — run what you need and read the guides for how-to tips.",
+      "home.introP2": "We pair tools with explanations and publish privacy, terms, and contact pages so the site stays clear and trustworthy.",
+      "home.introLi1": "Location-based weather (now, 24h, 7-day) with city search",
+      "home.introLi2": "Solar ↔ lunar conversion with gapja and zodiac",
+      "home.introLi3": "IPv4/IPv6, ISP, country/city lookup and copy",
+      "home.introLi4": "Minesweeper, Tetris, Gomoku, and memory match",
+      "home.guidesTitle": "Guides",
+      "home.guidesDesc": "Helpful articles before you use each tool. Published as separate pages for easy reading and sharing.",
       "home.lotto.aria": "Lottery balls illustration",
       "home.lotto.subtitle": "Get up to 5 suggested 6/45 lottery games at once.",
       "home.lotto.cta": "Lottery number generator",
@@ -621,13 +641,23 @@
       "tetris.status.started": "Level {level} started · clear lines to level up (max 99)."
     },
     ja: {
-      "meta.title": "ウェブアプリ",
+      "meta.title": "クリックウェブツール — 天気・暦・IP・無料ユーティリティ",
+      "meta.description": "天気、太陽暦・太陰暦変換、IP確認、ロト番号、ブラウザゲームを無料で提供します。",
       "lang.aria": "言語選択",
       "theme.toLight": "ライトモード",
       "theme.toLightAria": "ライトモードに切り替え",
       "theme.toDark": "ダークモード",
       "theme.toDarkAria": "ダークモードに切り替え",
-      "home.title": "ウェブアプリ",
+      "home.title": "クリックウェブツール",
+      "home.introTitle": "インストール不要の生活ウェブツール",
+      "home.introP1": "クリックウェブツールは、天気確認、太陽暦・太陰暦変換、グローバルIP照会、参考用ロト番号生成、軽いブラウザゲームをまとめて提供します。会員登録なしで必要な機能をすぐ使え、使い方はガイドで確認できます。",
+      "home.introP2": "ツールと説明をセットで用意し、プライバシーポリシー・利用規約・問い合わせ窓口を公開して信頼できるサイト構造を維持します。",
+      "home.introLi1": "位置ベースの天気（現在・24時間・7日）と都市検索",
+      "home.introLi2": "太陽暦↔太陰暦変換、六十干支・十二支の確認",
+      "home.introLi3": "IPv4/IPv6・ISP・国・都市の照会とコピー",
+      "home.introLi4": "マインスイーパー、テトリス、五目、記憶力テスト",
+      "home.guidesTitle": "ガイド",
+      "home.guidesDesc": "各ツールを使う前に役立つ説明記事です。読みやすさのため独立ページで公開しています。",
       "home.lotto.aria": "ロト番号ボールの画像",
       "home.lotto.subtitle": "6/45ロト番号を一度に最大5ゲーム提案します。",
       "home.lotto.cta": "ロト番号ジェネレーター",
@@ -929,13 +959,23 @@
       "tetris.status.started": "レベル {level} 開始 · ラインを消すとレベルアップします（最大99）。"
     },
     zh: {
-      "meta.title": "网页应用",
+      "meta.title": "点击网页工具 — 天气·农历·IP·免费实用工具",
+      "meta.description": "免费提供天气、公历农历转换、IP 查询、彩票参考号码与浏览器小游戏。",
       "lang.aria": "语言选择",
       "theme.toLight": "浅色模式",
       "theme.toLightAria": "切换到浅色模式",
       "theme.toDark": "深色模式",
       "theme.toDarkAria": "切换到深色模式",
-      "home.title": "网页应用",
+      "home.title": "点击网页工具",
+      "home.introTitle": "无需安装的生活网页工具",
+      "home.introP1": "点击网页工具集中提供天气查询、公历/农历转换、公网 IP 查询、参考用彩票号码生成与轻松小游戏。无需注册即可使用，并可通过指南了解用法与注意事项。",
+      "home.introP2": "我们把工具与说明放在一起，并公开隐私政策、服务条款与联系方式，保持清晰可信的网站结构。",
+      "home.introLi1": "基于位置的天气（当前·24小时·7天）与城市搜索",
+      "home.introLi2": "公历↔农历互转，查看六十甲子与生肖",
+      "home.introLi3": "IPv4/IPv6、ISP、国家与城市查询及复制",
+      "home.introLi4": "扫雷、俄罗斯方块、五子棋、记忆力测试",
+      "home.guidesTitle": "使用指南",
+      "home.guidesDesc": "使用各工具前值得阅读的说明文章，独立页面便于阅读与分享。",
       "home.lotto.aria": "彩票号码球图片",
       "home.lotto.subtitle": "一次推荐最多 5 注 6/45 彩票号码。",
       "home.lotto.cta": "彩票号码生成器",
@@ -1288,6 +1328,8 @@
     var htmlLang = currentLang === "zh" ? "zh-CN" : currentLang;
     document.documentElement.lang = htmlLang;
     document.title = t("meta.title");
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute("content", t("meta.description"));
 
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       el.textContent = t(el.getAttribute("data-i18n"));

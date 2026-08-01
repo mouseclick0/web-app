@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이용약관 | 클릭웹도구</title>
+  <meta name="description" content="클릭웹도구 이용약관. 서비스 목적, 면책, 금지 행위, 지적재산권 및 책임 한계를 안내합니다." />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/terms.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="index.html">클릭웹도구</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="index.html">홈</a>
+        <a href="guides/index.html">가이드</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">소개</a>
+        <a href="contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <p class="breadcrumb"><a href="index.html">홈</a> · 이용약관</p>
+    <article class="article-card">
+      <h1>이용약관</h1>
+      <p class="lead">클릭웹도구를 이용하기 전에 아래 약관을 확인해 주세요. 사이트를 이용하면 본 약관에 동의한 것으로 간주합니다.</p>
+      <p>최종 업데이트: 2026년 8월 2일</p>
+
+      <h2>1. 서비스 개요</h2>
+      <p>클릭웹도구는 브라우저에서 사용할 수 있는 정보 조회·변환·간단한 게임 기능을 무료로 제공합니다. 서비스 내용은 예고 없이 추가·변경·중단될 수 있습니다.</p>
+
+      <h2>2. 이용 목적의 제한</h2>
+      <ul>
+        <li>로또 번호 생성기는 오락·참고용이며 당첨을 보장하지 않습니다.</li>
+        <li>날씨·IP·음력 정보는 외부 데이터와 알고리즘에 의존하므로 절대적 정확성을 보장하지 않습니다.</li>
+        <li>게임은 비영리 오락 목적이며, 현금 베팅·도박과 무관합니다.</li>
+      </ul>
+
+      <h2>3. 금지 행위</h2>
+      <ul>
+        <li>서비스의 정상 운영을 방해하는 행위</li>
+        <li>타인의 권리를 침해하거나 불법 정보를 유포하는 행위</li>
+        <li>자동화된 대량 요청으로 서버·외부 API에 과도한 부하를 주는 행위</li>
+        <li>사이트 콘텐츠를 무단 복제하여 상업적으로 재배포하는 행위</li>
+      </ul>
+
+      <h2>4. 지적재산권</h2>
+      <p>사이트에 게시된 원문 가이드, 설명문, 독자적 UI 구성은 운영자에게 권리가 있습니다. 외부 라이브러리·아이콘·날씨 데이터 등은 각 제공자의 라이선스와 정책을 따릅니다.</p>
+
+      <h2>5. 면책</h2>
+      <p>사이트는 “있는 그대로” 제공됩니다. 정보 오류, 서비스 중단, 외부 API 장애, 이용자 기기·네트워크 문제로 인한 손해에 대해 법령이 허용하는 범위 내에서 책임을 제한합니다. 중요한 일정·계약·법적 판단은 공식 기관의 정보를 기준으로 확인해 주세요.</p>
+
+      <h2>6. 문의</h2>
+      <p>약관 관련 문의는 <a href="contact.html">문의 페이지</a>를 이용해 주세요.</p>
+
+      <h2>7. 준거법</h2>
+      <p>본 약관은 대한민국 법령을 기준으로 해석됩니다.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="about.html">소개</a>
+        <a href="guides/index.html">가이드</a>
+        <a href="faq.html">FAQ</a>
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="terms.html">이용약관</a>
+        <a href="contact.html">문의</a>
+      </nav>
+      <p>© <span id="y"></span> 클릭웹도구</p>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

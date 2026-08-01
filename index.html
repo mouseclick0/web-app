@@ -1881,6 +1881,198 @@
         flex: 0 0 6.5rem;
       }
     }
+
+    .calendar-shell {
+      width: min(100%, 980px);
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: var(--card-shadow), 0 0 0 1px var(--card-border);
+    }
+
+    .calendar-shell > h1 {
+      margin: 0 0 0.35rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .calendar-lead {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .calendar-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 1rem;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .cal-panel {
+      border: 1px solid var(--toggle-border);
+      border-radius: 0.75rem;
+      background: color-mix(in srgb, var(--toggle-bg) 80%, var(--surface));
+      padding: 1rem 1.05rem;
+    }
+
+    .cal-panel h2 {
+      margin: 0 0 0.85rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .cal-fields {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr 0.9fr;
+      gap: 0.55rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .cal-field label {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 0.28rem;
+      font-weight: 600;
+    }
+
+    .cal-field select {
+      width: 100%;
+      height: 2.4rem;
+      border-radius: 0.55rem;
+      border: 1px solid var(--toggle-border);
+      background: var(--toggle-bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.92rem;
+      padding: 0 0.55rem;
+    }
+
+    .cal-leap {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin: 0 0 0.75rem;
+      font-size: 0.88rem;
+    }
+
+    .cal-leap input {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .cal-panel .entry-btn {
+      width: 100%;
+    }
+
+    .calendar-summary {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .cal-result-card {
+      border: 1px solid var(--toggle-border);
+      border-radius: 0.75rem;
+      background: color-mix(in srgb, var(--toggle-bg) 80%, var(--surface));
+      padding: 1rem 1.05rem;
+    }
+
+    .cal-result-card h2 {
+      margin: 0 0 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .cal-result-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--toggle-border) 70%, transparent);
+      font-size: 0.9rem;
+    }
+
+    .cal-result-row:last-child {
+      border-bottom: 0;
+    }
+
+    .cal-result-row span {
+      color: var(--muted);
+    }
+
+    .cal-result-row strong {
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .cal-zodiac {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.85rem;
+      align-items: center;
+    }
+
+    .cal-zodiac-emoji {
+      width: 4.5rem;
+      height: 4.5rem;
+      display: grid;
+      place-items: center;
+      border-radius: 1rem;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      font-size: 2.4rem;
+      line-height: 1;
+    }
+
+    .cal-zodiac-name {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .cal-zodiac-hint {
+      margin: 0.3rem 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    .calendar-status {
+      min-height: 1.2rem;
+      margin: 0 0 0.85rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .calendar-status.error {
+      color: #c62828;
+    }
+
+    @media (max-width: 820px) {
+      .calendar-grid,
+      .calendar-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .cal-fields {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -2123,6 +2315,29 @@
       </div>
       <p class="home-subtitle" data-i18n="home.weather.subtitle">내 위치 기준 현재·24시간 날씨를 확인합니다.</p>
       <button type="button" class="entry-btn" id="openWeatherBtn" data-i18n="home.weather.cta">날씨 정보</button>
+    </section>
+
+    <section class="card home-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.calendar.aria" aria-label="양력 음력 변환 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="42" y="36" width="108" height="112" rx="16" fill="#5eb0f7" />
+          <rect x="54" y="52" width="84" height="14" rx="7" fill="#ffffff" opacity="0.9" />
+          <rect x="54" y="78" width="24" height="18" rx="4" fill="#ffffff" opacity="0.85" />
+          <rect x="84" y="78" width="24" height="18" rx="4" fill="#ffffff" opacity="0.55" />
+          <rect x="114" y="78" width="24" height="18" rx="4" fill="#ffffff" opacity="0.85" />
+          <rect x="54" y="106" width="24" height="18" rx="4" fill="#ffd54f" />
+          <rect x="84" y="106" width="24" height="18" rx="4" fill="#ffffff" opacity="0.55" />
+          <rect x="114" y="106" width="24" height="18" rx="4" fill="#ffffff" opacity="0.85" />
+          <path d="M168 90h28" stroke="#90caf9" stroke-width="8" stroke-linecap="round" />
+          <path d="M186 74l18 16-18 16" fill="none" stroke="#90caf9" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="214" y="36" width="108" height="112" rx="16" fill="#2563c7" />
+          <circle cx="268" cy="92" r="34" fill="#ffd54f" opacity="0.95" />
+          <circle cx="268" cy="92" r="24" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.85" />
+          <text x="268" y="100" text-anchor="middle" font-size="28">🌙</text>
+        </svg>
+      </div>
+      <p class="home-subtitle" data-i18n="home.calendar.subtitle">양력·음력 날짜를 서로 바꾸고 60갑자·띠를 확인합니다.</p>
+      <button type="button" class="entry-btn" id="openCalendarBtn" data-i18n="home.calendar.cta">양력/음력 변환기</button>
     </section>
 
     <section class="card contact-section">
@@ -2529,6 +2744,85 @@
     <button type="button" class="back-btn" id="backHomeFromWeatherBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
+  <main class="calendar-shell" id="calendarView" hidden>
+    <h1 data-i18n="calendar.title">양력/음력 변환기</h1>
+    <p class="calendar-lead" data-i18n="calendar.subtitle">양력과 음력 날짜를 서로 변환하고, 60갑자와 12띠를 한눈에 확인하세요.</p>
+
+    <div class="calendar-toolbar">
+      <button type="button" class="entry-btn" id="calendarTodayBtn" data-i18n="calendar.today">오늘 날짜 조회</button>
+    </div>
+
+    <div class="calendar-grid">
+      <section class="cal-panel">
+        <h2 data-i18n="calendar.solar">양력</h2>
+        <div class="cal-fields">
+          <div class="cal-field">
+            <label for="solarYear" data-i18n="calendar.year">연도</label>
+            <select id="solarYear"></select>
+          </div>
+          <div class="cal-field">
+            <label for="solarMonth" data-i18n="calendar.month">월</label>
+            <select id="solarMonth"></select>
+          </div>
+          <div class="cal-field">
+            <label for="solarDay" data-i18n="calendar.day">일</label>
+            <select id="solarDay"></select>
+          </div>
+        </div>
+        <button type="button" class="entry-btn" id="solarConvertBtn" data-i18n="calendar.toLunar">음력으로 변환</button>
+      </section>
+
+      <section class="cal-panel">
+        <h2 data-i18n="calendar.lunar">음력</h2>
+        <div class="cal-fields">
+          <div class="cal-field">
+            <label for="lunarYear" data-i18n="calendar.year">연도</label>
+            <select id="lunarYear"></select>
+          </div>
+          <div class="cal-field">
+            <label for="lunarMonth" data-i18n="calendar.month">월</label>
+            <select id="lunarMonth"></select>
+          </div>
+          <div class="cal-field">
+            <label for="lunarDay" data-i18n="calendar.day">일</label>
+            <select id="lunarDay"></select>
+          </div>
+        </div>
+        <label class="cal-leap">
+          <input type="checkbox" id="lunarLeap" />
+          <span data-i18n="calendar.leap">윤달</span>
+        </label>
+        <button type="button" class="entry-btn" id="lunarConvertBtn" data-i18n="calendar.toSolar">양력으로 변환</button>
+      </section>
+    </div>
+
+    <div class="calendar-summary">
+      <section class="cal-result-card">
+        <h2 data-i18n="calendar.result">변환 결과 · 60갑자</h2>
+        <div class="cal-result-row"><span data-i18n="calendar.solar">양력</span><strong id="calendarSolarOut">--</strong></div>
+        <div class="cal-result-row"><span data-i18n="calendar.lunar">음력</span><strong id="calendarLunarOut">--</strong></div>
+        <div class="cal-result-row"><span data-i18n="calendar.gapjaYear">세차(년)</span><strong id="calendarGapjaYear">--</strong></div>
+        <div class="cal-result-row"><span data-i18n="calendar.gapjaMonth">월건(월)</span><strong id="calendarGapjaMonth">--</strong></div>
+        <div class="cal-result-row"><span data-i18n="calendar.gapjaDay">일진(일)</span><strong id="calendarGapjaDay">--</strong></div>
+      </section>
+
+      <section class="cal-result-card">
+        <h2 data-i18n="calendar.zodiacTitle">12띠</h2>
+        <div class="cal-zodiac">
+          <div class="cal-zodiac-emoji" id="calendarZodiacEmoji" aria-hidden="true">🐭</div>
+          <div>
+            <p class="cal-zodiac-name" id="calendarZodiacName">--</p>
+            <p class="cal-zodiac-hint" id="calendarZodiacHint">--</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <p class="calendar-status" id="calendarStatus" aria-live="polite"></p>
+    <button type="button" class="back-btn" id="backHomeFromCalendarBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/korean-lunar-calendar@0.4.0/dist/korean-lunar-calendar.min.js"></script>
   <script src="i18n.js"></script>
   <script>
     function pickLottoNumbers() {
@@ -2602,6 +2896,7 @@
     const gomokuView = document.getElementById("gomokuView");
     const memoryView = document.getElementById("memoryView");
     const weatherView = document.getElementById("weatherView");
+    const calendarView = document.getElementById("calendarView");
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
     const openVideoBtn = document.getElementById("openVideoBtn");
@@ -2765,6 +3060,7 @@
       gomokuView.hidden = view !== gomokuView;
       memoryView.hidden = view !== memoryView;
       if (weatherView) weatherView.hidden = view !== weatherView;
+      if (calendarView) calendarView.hidden = view !== calendarView;
       if (view !== tetrisView) {
         pauseTetris(true);
         stopTetrisBgm();
@@ -4922,10 +5218,12 @@
         }), "done");
       } else if (memoryRunning) setMemoryStatus(t("memory.status.playing"));
       if (typeof window.refreshWeatherI18n === "function") window.refreshWeatherI18n();
+      if (typeof window.refreshCalendarI18n === "function") window.refreshCalendarI18n();
     };
 
     window.onI18nApplied();
   </script>
   <script src="weather.js"></script>
+  <script src="calendar.js"></script>
 </body>
 </html>

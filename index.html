@@ -2073,6 +2073,97 @@
         grid-template-columns: 1fr 1fr 1fr;
       }
     }
+
+    .ip-shell {
+      width: min(100%, 720px);
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: var(--card-shadow), 0 0 0 1px var(--card-border);
+    }
+
+    .ip-shell > h1 {
+      margin: 0 0 0.35rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .ip-lead {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .ip-card {
+      border: 1px solid var(--toggle-border);
+      border-radius: 0.75rem;
+      background: color-mix(in srgb, var(--toggle-bg) 80%, var(--surface));
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .ip-row {
+      display: grid;
+      grid-template-columns: 7rem 1fr;
+      gap: 0.75rem;
+      align-items: baseline;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--toggle-border) 70%, transparent);
+    }
+
+    .ip-row:last-child {
+      border-bottom: 0;
+    }
+
+    .ip-row span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .ip-row strong {
+      font-size: 1.05rem;
+      font-weight: 700;
+      word-break: break-all;
+      letter-spacing: -0.01em;
+    }
+
+    .ip-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .ip-actions .entry-btn,
+    .ip-refresh-wrap .entry-btn {
+      min-width: 8rem;
+    }
+
+    .ip-status {
+      min-height: 1.2rem;
+      margin: 0 0 0.85rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .ip-status.error {
+      color: #c62828;
+    }
+
+    .ip-refresh-wrap {
+      margin-top: 0.25rem;
+      margin-bottom: 0.85rem;
+    }
+
+    @media (max-width: 520px) {
+      .ip-row {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+      }
+    }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -2338,6 +2429,20 @@
       </div>
       <p class="home-subtitle" data-i18n="home.calendar.subtitle">양력·음력 날짜를 서로 바꾸고 60갑자·띠를 확인합니다.</p>
       <button type="button" class="entry-btn" id="openCalendarBtn" data-i18n="home.calendar.cta">양력/음력 변환기</button>
+    </section>
+
+    <section class="card home-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.ip.aria" aria-label="내 아이피 찾기 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="160" cy="92" r="58" fill="#5eb0f7" opacity="0.35" />
+          <circle cx="160" cy="92" r="38" fill="#2563c7" />
+          <circle cx="160" cy="92" r="14" fill="#ffd54f" />
+          <path d="M160 34v18M160 132v18M94 92H76M244 92h-18" stroke="#90caf9" stroke-width="8" stroke-linecap="round" />
+          <text x="160" y="158" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" opacity="0.9">IP</text>
+        </svg>
+      </div>
+      <p class="home-subtitle" data-i18n="home.ip.subtitle">현재 공인 IP와 ISP, 국가·도시 정보를 확인합니다.</p>
+      <button type="button" class="entry-btn" id="openIpBtn" data-i18n="home.ip.cta">내 아이피 찾기</button>
     </section>
 
     <section class="card contact-section">
@@ -2822,6 +2927,34 @@
     <button type="button" class="back-btn" id="backHomeFromCalendarBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
+  <main class="ip-shell" id="ipView" hidden>
+    <h1 data-i18n="ip.title">내 아이피 찾기</h1>
+    <p class="ip-lead" data-i18n="ip.subtitle">현재 공인 IPv4·IPv6와 ISP, 국가·도시 정보를 확인합니다.</p>
+
+    <section class="ip-card" aria-live="polite">
+      <div class="ip-row"><span data-i18n="ip.ipv4">IPv4</span><strong id="ipV4Value">--</strong></div>
+      <div class="ip-row"><span data-i18n="ip.ipv6">IPv6</span><strong id="ipV6Value">--</strong></div>
+      <div class="ip-row"><span data-i18n="ip.isp">ISP</span><strong id="ipIspValue">--</strong></div>
+    </section>
+
+    <section class="ip-card" aria-live="polite">
+      <div class="ip-row"><span data-i18n="ip.country">국가</span><strong id="ipCountryValue">--</strong></div>
+      <div class="ip-row"><span data-i18n="ip.city">도시</span><strong id="ipCityValue">--</strong></div>
+    </section>
+
+    <div class="ip-actions">
+      <button type="button" class="entry-btn" id="ipCopyBtn" data-i18n="ip.copy">아이피 복사</button>
+    </div>
+
+    <p class="ip-status" id="ipStatus" aria-live="polite"></p>
+
+    <div class="ip-refresh-wrap">
+      <button type="button" class="entry-btn" id="ipRefreshBtn" data-i18n="ip.refresh">새로고침</button>
+    </div>
+
+    <button type="button" class="back-btn" id="backHomeFromIpBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
   <script src="https://cdn.jsdelivr.net/npm/korean-lunar-calendar@0.4.0/dist/korean-lunar-calendar.min.js"></script>
   <script src="i18n.js"></script>
   <script>
@@ -2897,6 +3030,7 @@
     const memoryView = document.getElementById("memoryView");
     const weatherView = document.getElementById("weatherView");
     const calendarView = document.getElementById("calendarView");
+    const ipView = document.getElementById("ipView");
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
     const openVideoBtn = document.getElementById("openVideoBtn");
@@ -3061,6 +3195,7 @@
       memoryView.hidden = view !== memoryView;
       if (weatherView) weatherView.hidden = view !== weatherView;
       if (calendarView) calendarView.hidden = view !== calendarView;
+      if (ipView) ipView.hidden = view !== ipView;
       if (view !== tetrisView) {
         pauseTetris(true);
         stopTetrisBgm();
@@ -5219,11 +5354,13 @@
       } else if (memoryRunning) setMemoryStatus(t("memory.status.playing"));
       if (typeof window.refreshWeatherI18n === "function") window.refreshWeatherI18n();
       if (typeof window.refreshCalendarI18n === "function") window.refreshCalendarI18n();
+      if (typeof window.refreshIpI18n === "function") window.refreshIpI18n();
     };
 
     window.onI18nApplied();
   </script>
   <script src="weather.js"></script>
   <script src="calendar.js"></script>
+  <script src="ip.js"></script>
 </body>
 </html>

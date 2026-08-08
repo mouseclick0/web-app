@@ -1868,6 +1868,36 @@
       margin-right: 0.25rem;
     }
 
+    .memory-diffs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .memory-diff {
+      border: 1px solid var(--toggle-border);
+      border-radius: 10px;
+      padding: 0.55rem 0.4rem;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      background: var(--toggle-bg);
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .memory-diff:hover {
+      background: var(--toggle-hover);
+    }
+
+    .memory-diff.active {
+      border-color: var(--accent);
+      color: #fff;
+      background: linear-gradient(160deg, #4da3f7, #2563c7);
+    }
+
     .memory-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1913,6 +1943,17 @@
       gap: 0.55rem;
       margin: 0 auto 1rem;
       width: min(100%, 22rem);
+      container-type: inline-size;
+    }
+
+    .memory-board[data-cols="6"] {
+      width: min(100%, 26rem);
+      gap: 0.45rem;
+    }
+
+    .memory-board[data-cols="8"] {
+      width: min(100%, 29rem);
+      gap: 0.3rem;
     }
 
     .memory-tile {
@@ -1921,12 +1962,24 @@
       border-radius: 12px;
       padding: 0;
       cursor: pointer;
-      font-size: clamp(1.4rem, 5vw, 1.9rem);
       background: linear-gradient(160deg, #3d9cf5, #1e4f9c);
       color: transparent;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
       transition: transform 0.15s ease, filter 0.15s ease, background 0.2s ease;
       user-select: none;
+      line-height: 1;
+      /* Sized against the board width so emojis fill the tile on narrow phones too. */
+      font-size: clamp(1.4rem, 16cqw, 3.4rem);
+    }
+
+    .memory-board[data-cols="6"] .memory-tile {
+      border-radius: 10px;
+      font-size: clamp(1.1rem, 10.8cqw, 2.6rem);
+    }
+
+    .memory-board[data-cols="8"] .memory-tile {
+      border-radius: 8px;
+      font-size: clamp(0.95rem, 8cqw, 2.1rem);
     }
 
     .memory-tile:hover:not(:disabled) {
@@ -2022,6 +2075,22 @@
       .tetris-cell {
         width: 1.2rem;
         height: 1.2rem;
+      }
+
+      /* Trade panel padding for board width so tiles stay as large as possible. */
+      .memory-card-panel {
+        padding-left: 0.9rem;
+        padding-right: 0.9rem;
+      }
+
+      .memory-board,
+      .memory-board[data-cols="6"],
+      .memory-board[data-cols="8"] {
+        width: 100%;
+      }
+
+      .memory-board[data-cols="8"] {
+        gap: 0.25rem;
       }
     }
 
@@ -3086,7 +3155,7 @@
         </svg>
       </div>
       <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openMemoryBtn" data-i18n="home.memory.cta">기억력 테스트</button></h2>
-      <p class="home-subtitle" data-i18n="home.memory.subtitle">16장 카드 속 8쌍 이모지를 빠르게 맞춰 보세요.</p>
+      <p class="home-subtitle" data-i18n="home.memory.subtitle">4×4·6×6·8×8 보드에서 이모지 짝을 빠르게 맞춰 보세요.</p>
     </section>
 
     <section class="card home-card">
@@ -3540,13 +3609,19 @@
     <div class="card-head">
       <h1 data-i18n="memory.title">기억력 테스트</h1>
     </div>
-    <p class="subtitle" data-i18n="memory.subtitle">4×4 보드의 16장 카드 뒤 숨은 8쌍 이모지를 찾아 매칭하세요. 적은 시도·빠른 시간이 목표입니다.</p>
+    <p class="subtitle" data-i18n="memory.subtitle">보드 크기를 고르고 카드 뒤에 숨은 이모지 짝을 모두 찾아 매칭하세요. 적은 시도·빠른 시간이 목표입니다.</p>
 
     <div class="memory-hud" aria-live="polite">
       <div><span data-i18n="memory.pairs">쌍</span><strong id="memoryPairsHud">0 / 8</strong></div>
       <div><span data-i18n="memory.time">시간</span><strong id="memoryTimeHud">0.00s</strong></div>
       <div><span data-i18n="memory.moves">시도</span><strong id="memoryMovesHud">0</strong></div>
       <div><span data-i18n="memory.accuracy">정확도</span><strong id="memoryAccuracyHud">0%</strong></div>
+    </div>
+
+    <div class="memory-diffs">
+      <button type="button" class="memory-diff active" data-level="easy" id="memoryDiffEasy" data-i18n="memory.diff.easy">초급 · 4×4</button>
+      <button type="button" class="memory-diff" data-level="normal" id="memoryDiffNormal" data-i18n="memory.diff.normal">중급 · 6×6</button>
+      <button type="button" class="memory-diff" data-level="hard" id="memoryDiffHard" data-i18n="memory.diff.hard">고급 · 8×8</button>
     </div>
 
     <div class="memory-actions">
@@ -3569,7 +3644,7 @@
       <button type="button" class="entry-btn" id="memoryShareBtn" data-i18n="memory.share">결과 공유</button>
     </div>
 
-    <p class="memory-hint" data-i18n="memory.hint">한 쌍을 맞출 때마다 카드가 고정됩니다. 위치를 기억하며 빠르게 맞춰 보세요.</p>
+    <p class="memory-hint" data-i18n="memory.hint">한 쌍을 맞출 때마다 카드가 고정되고 효과음이 울립니다. 모두 맞추면 완료 팡파레가 나옵니다.</p>
     <button type="button" class="back-btn" id="backHomeFromMemoryBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
@@ -4228,6 +4303,7 @@
     const memoryFinalMoves = document.getElementById("memoryFinalMoves");
     const memoryFinalAccuracy = document.getElementById("memoryFinalAccuracy");
     const memoryShareBtn = document.getElementById("memoryShareBtn");
+    const memoryDiffButtons = Array.from(document.querySelectorAll(".memory-diff"));
 
     const GAME_COUNT = 5;
     const YTDLP_API_KEY = "web-pages-ytdlp-api";
@@ -4253,7 +4329,7 @@
     let mineTimerId = null;
     let mineSeconds = 0;
     let mineFlagCount = 0;
-    let mineAudioCtx = null;
+    let gameAudioCtx = null;
 
     const TETRIS_COLS = 10;
     const TETRIS_ROWS = 20;
@@ -5064,41 +5140,46 @@
       }
     }
 
-    // Synthesized so the fanfare needs no audio asset and no network request.
-    function playMineWinSound() {
+    // Synthesized so game sounds need no audio asset and no network request.
+    // Each step is { freq, dur, gain, step }, where step is the delay before the next note.
+    function playGameTones(sequence) {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       if (!AudioCtx) return;
       try {
-        if (!mineAudioCtx) mineAudioCtx = new AudioCtx();
-        if (mineAudioCtx.state === "suspended") mineAudioCtx.resume();
-        const ctx = mineAudioCtx;
-        const notes = [523.25, 659.25, 783.99, 1046.5];
-        const start = ctx.currentTime + 0.03;
-        notes.forEach(function (freq, index) {
-          const last = index === notes.length - 1;
-          const at = start + index * 0.12;
-          const duration = last ? 0.5 : 0.18;
+        if (!gameAudioCtx) gameAudioCtx = new AudioCtx();
+        if (gameAudioCtx.state === "suspended") gameAudioCtx.resume();
+        const ctx = gameAudioCtx;
+        let at = ctx.currentTime + 0.02;
+        sequence.forEach(function (note) {
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
           osc.type = "triangle";
-          osc.frequency.value = freq;
+          osc.frequency.value = note.freq;
           gain.gain.setValueAtTime(0.0001, at);
-          gain.gain.exponentialRampToValueAtTime(last ? 0.22 : 0.16, at + 0.015);
-          gain.gain.exponentialRampToValueAtTime(0.0001, at + duration);
+          gain.gain.exponentialRampToValueAtTime(note.gain || 0.18, at + 0.012);
+          gain.gain.exponentialRampToValueAtTime(0.0001, at + note.dur);
           osc.connect(gain);
           gain.connect(ctx.destination);
           osc.start(at);
-          osc.stop(at + duration + 0.02);
+          osc.stop(at + note.dur + 0.02);
+          at += note.step || note.dur;
         });
       } catch (e) {}
     }
+
+    const MINE_WIN_TONES = [
+      { freq: 523.25, dur: 0.18, step: 0.12 },
+      { freq: 659.25, dur: 0.18, step: 0.12 },
+      { freq: 783.99, dur: 0.18, step: 0.12 },
+      { freq: 1046.5, dur: 0.5, gain: 0.22 }
+    ];
 
     function endMineGame(won) {
       mineEnded = true;
       stopMineTimer();
       if (won) {
         setMineStatus(t("mine.status.win", { seconds: mineSeconds }), "win");
-        playMineWinSound();
+        playGameTones(MINE_WIN_TONES);
       } else {
         revealAllMines();
         setMineStatus(t("mine.status.lose"), "lose");
@@ -6069,7 +6150,29 @@
       placeGomokuStone(row, col, gomokuPlayer);
     });
 
-    const MEMORY_EMOJIS = ["🍎", "🐶", "🚗", "🌙", "🎵", "⚽", "🍀", "⭐"];
+    // Ordered so the smaller boards use the most distinguishable emojis first.
+    const MEMORY_EMOJIS = [
+      "🍎", "🐶", "🚗", "🌙", "🎵", "⚽", "🍀", "⭐",
+      "🍕", "🐱", "🚀", "☀️", "🎈", "🏀", "🌸", "🐧", "🍩", "🎁",
+      "🍇", "🐸", "✈️", "❤️", "🔔", "🍔", "🐼", "🚲",
+      "🌈", "🦋", "🍋", "🐷", "⚡", "🎧"
+    ];
+    const MEMORY_LEVELS = {
+      easy: { cols: 4, pairs: 8 },
+      normal: { cols: 6, pairs: 18 },
+      hard: { cols: 8, pairs: 32 }
+    };
+    const MEMORY_MATCH_TONES = [
+      { freq: 880.0, dur: 0.09, step: 0.06, gain: 0.12 },
+      { freq: 1318.51, dur: 0.14, gain: 0.12 }
+    ];
+    const MEMORY_CLEAR_TONES = [
+      { freq: 523.25, dur: 0.16, step: 0.11 },
+      { freq: 783.99, dur: 0.16, step: 0.11 },
+      { freq: 1046.5, dur: 0.16, step: 0.11 },
+      { freq: 1318.51, dur: 0.55 }
+    ];
+    let memoryLevel = "easy";
     let memoryDeck = [];
     let memoryFlipped = [];
     let memoryLock = false;
@@ -6095,8 +6198,20 @@
       return Math.min(100, Math.round((memoryPairs / memoryMoves) * 100));
     }
 
+    function memoryConfig() {
+      return MEMORY_LEVELS[memoryLevel];
+    }
+
+    function buildMemoryDeck(shuffled) {
+      const picks = MEMORY_EMOJIS.slice(0, memoryConfig().pairs);
+      const doubled = picks.concat(picks);
+      return (shuffled ? shuffleMemory(doubled) : doubled).map(function (emoji) {
+        return { emoji: emoji, flipped: false, matched: false };
+      });
+    }
+
     function updateMemoryHud() {
-      memoryPairsHud.textContent = memoryPairs + " / 8";
+      memoryPairsHud.textContent = memoryPairs + " / " + memoryConfig().pairs;
       memoryTimeHud.textContent = formatMemoryTime(memoryElapsed);
       memoryMovesHud.textContent = String(memoryMoves);
       memoryAccuracyHud.textContent = memoryAccuracyValue() + "%";
@@ -6131,7 +6246,11 @@
     }
 
     function renderMemoryBoard() {
+      const config = memoryConfig();
+      memoryBoard.dataset.cols = String(config.cols);
+      memoryBoard.style.gridTemplateColumns = "repeat(" + config.cols + ", minmax(0, 1fr))";
       memoryBoard.innerHTML = "";
+
       memoryDeck.forEach(function (card, index) {
         const btn = document.createElement("button");
         btn.type = "button";
@@ -6166,6 +6285,7 @@
         accuracy: accuracy
       }), "done");
       renderMemoryBoard();
+      playGameTones(MEMORY_CLEAR_TONES);
     }
 
     function flipMemoryCard(index) {
@@ -6192,7 +6312,9 @@
         memoryLock = false;
         updateMemoryHud();
         renderMemoryBoard();
-        if (memoryPairs >= 8) finishMemoryGame();
+        // The clearing fanfare replaces the match blip so the two never overlap.
+        if (memoryPairs >= memoryConfig().pairs) finishMemoryGame();
+        else playGameTones(MEMORY_MATCH_TONES);
       } else {
         setTimeout(function () {
           a.flipped = false;
@@ -6205,10 +6327,7 @@
     }
 
     function startMemoryGame() {
-      const doubled = MEMORY_EMOJIS.concat(MEMORY_EMOJIS);
-      memoryDeck = shuffleMemory(doubled).map(function (emoji) {
-        return { emoji: emoji, flipped: false, matched: false };
-      });
+      memoryDeck = buildMemoryDeck(true);
       memoryFlipped = [];
       memoryLock = false;
       memoryPairs = 0;
@@ -6224,13 +6343,32 @@
 
     function prepareMemoryView() {
       if (!memoryDeck.length) {
-        memoryDeck = MEMORY_EMOJIS.concat(MEMORY_EMOJIS).map(function (emoji) {
-          return { emoji: emoji, flipped: false, matched: false };
-        });
+        memoryDeck = buildMemoryDeck(false);
         renderMemoryBoard();
       }
       updateMemoryHud();
       if (!memoryRunning && !memoryDone) setMemoryStatus(t("memory.status.idle"));
+    }
+
+    function setMemoryLevel(level) {
+      if (!MEMORY_LEVELS[level] || level === memoryLevel) return;
+      memoryLevel = level;
+      memoryDiffButtons.forEach(function (btn) {
+        btn.classList.toggle("active", btn.dataset.level === level);
+      });
+      stopMemoryTimer();
+      memoryRunning = false;
+      memoryDone = false;
+      memoryLock = false;
+      memoryFlipped = [];
+      memoryPairs = 0;
+      memoryMoves = 0;
+      memoryElapsed = 0;
+      memoryDeck = buildMemoryDeck(false);
+      memoryResult.classList.remove("show");
+      updateMemoryHud();
+      renderMemoryBoard();
+      setMemoryStatus(t("memory.status.idle"));
     }
 
     openMemoryBtn.addEventListener("click", () => {
@@ -6248,6 +6386,12 @@
     memoryStartBtn.addEventListener("click", startMemoryGame);
     memoryRestartBtn.addEventListener("click", startMemoryGame);
 
+    memoryDiffButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        setMemoryLevel(btn.dataset.level);
+      });
+    });
+
     memoryBoard.addEventListener("click", function (event) {
       const btn = event.target.closest(".memory-tile");
       if (!btn) return;
@@ -6256,7 +6400,9 @@
 
     memoryShareBtn.addEventListener("click", async function () {
       const accuracy = memoryAccuracyValue();
+      const cols = memoryConfig().cols;
       const text = t("memory.shareText", {
+        size: cols + "×" + cols,
         time: memoryElapsed.toFixed(2),
         moves: memoryMoves,
         accuracy: accuracy

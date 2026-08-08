@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이미지 형식 변환 가이드 | 생활 웹 도구</title>
+  <meta name="description" content="PNG, JPG, WebP, BMP 차이와 변환 기준. 투명 배경 처리, 품질 설정, 용량이 오히려 커지는 경우와 브라우저별 제약을 정리했습니다." />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/guides/convert.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">생활 웹 도구</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="../index.html">홈</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../about.html">소개</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">홈</a> · <a href="index.html">가이드</a> · 이미지 형식 변환</p>
+    <article class="article-card">
+      <h1>이미지 형식 변환 가이드</h1>
+      <p class="lead">같은 사진이라도 어떤 형식으로 저장하느냐에 따라 용량과 화질, 투명 배경 유지 여부가 달라집니다. 이 글에서는 PNG·JPG·WebP·BMP의 차이와 상황별 선택 기준, 변환할 때 주의할 점을 정리했습니다.</p>
+
+      <h2>이미지는 어디로 전송되나요</h2>
+      <p>어디로도 전송되지 않습니다. 변환은 브라우저의 그리기 기능만으로 처리되므로 업로드한 파일은 기기를 벗어나지 않습니다. 덧붙여 변환 과정에서 촬영 위치나 카메라 정보 같은 EXIF 메타데이터가 자동으로 제거되므로, 사진을 공유하기 전에 한 번 거쳐 가면 개인정보를 줄이는 효과도 있습니다.</p>
+
+      <h2>네 가지 형식의 차이</h2>
+      <p>PNG는 화질 손실이 없고 투명 배경을 유지합니다. 로고, 아이콘, 도형이 많은 이미지나 글자가 또렷해야 하는 화면 캡처에 적합합니다. 대신 사진처럼 색이 복잡한 이미지는 용량이 크게 늘어납니다.</p>
+      <p>JPG는 사진에 가장 알맞습니다. 사람 눈이 잘 구분하지 못하는 정보를 버려서 용량을 크게 줄이지만, 투명 배경을 지원하지 않고 저장할 때마다 화질이 조금씩 나빠집니다.</p>
+      <p>WebP는 같은 화질에서 JPG나 PNG보다 용량이 작고 투명 배경도 지원합니다. 웹사이트에 올릴 이미지라면 대체로 가장 효율적인 선택입니다. 다만 일부 오래된 프로그램에서 열리지 않을 수 있습니다.</p>
+      <p>BMP는 압축하지 않고 픽셀을 그대로 저장합니다. 그래서 용량이 매우 크며, 특정 프로그램이 BMP만 요구하는 경우가 아니라면 일반적인 용도로는 권하지 않습니다.</p>
+
+      <h2>어떤 형식으로 바꿔야 할까</h2>
+      <p>웹에 올릴 사진이라면 WebP, 호환성이 중요하면 JPG를 고르면 됩니다. 배경이 투명해야 하거나 글자·선이 많은 이미지라면 PNG가 안전합니다. 사진을 PNG로 바꾸면 화질이 좋아질 것 같지만 그렇지 않습니다. 이미 JPG로 저장되며 사라진 정보는 되살아나지 않고, 파일 크기만 몇 배로 늘어납니다.</p>
+
+      <h2>투명 배경이 있는 이미지</h2>
+      <p>투명한 PNG를 JPG나 BMP로 바꾸면 투명 영역을 표현할 방법이 없습니다. 그대로 두면 검게 나오기 때문에, 이 도구는 JPG·BMP를 선택했을 때 배경색을 고르는 항목을 함께 보여 줍니다. 기본값은 흰색이며, 이미지가 놓일 배경과 같은 색을 지정하면 자연스럽게 이어집니다.</p>
+
+      <h2>품질 설정</h2>
+      <p>JPG와 WebP는 품질을 조절할 수 있습니다. 기본값 90%는 눈으로 차이를 느끼기 어려우면서 용량을 충분히 줄이는 지점입니다. 웹용으로 더 가볍게 만들고 싶다면 75~85% 구간을 시도해 보세요. 60% 아래로 내리면 색 경계가 뭉개지는 것이 보이기 시작합니다.</p>
+
+      <h2>크기 조정</h2>
+      <p>최근 휴대폰 사진은 긴 변이 4000px를 넘는 경우가 많습니다. 블로그나 게시판에 올릴 용도라면 1920px 이하로 줄이는 것만으로 용량이 크게 줄고, 화면에서 보이는 품질 차이는 거의 없습니다. 형식 변환과 크기 조정을 한 번에 적용할 수 있습니다.</p>
+
+      <h2>브라우저에 따른 제약</h2>
+      <p>WebP 저장은 Chrome, Edge, Firefox에서 동작하며 Safari 계열(맥과 아이폰의 기본 브라우저)에서는 지원되지 않습니다. 이 경우 도구가 자동으로 감지해 WebP 항목을 비활성화하므로, 형식이 다른 파일이 저장되는 일은 없습니다. 아이폰에서 WebP로 바꿔야 한다면 Chrome 같은 다른 브라우저를 사용해 주세요.</p>
+      <p>입력은 PNG, JPG, WebP, BMP는 물론 GIF와 AVIF도 받을 수 있습니다. 다만 아이폰이 기본으로 쓰는 HEIC는 브라우저가 읽지 못하므로, 아이폰에서 사진을 내보낼 때 ‘높은 호환성’ 설정을 사용하거나 미리 JPG로 저장해 주세요.</p>
+
+      <h2>여러 장을 한 번에</h2>
+      <p>한 번에 최대 20장까지 올릴 수 있고, 변환이 끝나면 파일별로 저장하거나 ZIP으로 한꺼번에 받을 수 있습니다. 애니메이션 GIF나 움직이는 WebP를 변환하면 첫 장면만 정지 이미지로 저장된다는 점은 미리 알아 두세요.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../index.html">형식 변환 열기</a>
+        <a class="btn" href="../privacy.html">개인정보처리방침</a>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="../about.html">소개</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+        <a href="../terms.html">이용약관</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+      <p>© <span id="y"></span> 생활 웹 도구</p>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

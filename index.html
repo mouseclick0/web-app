@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>생활 웹 도구 — 날씨·음력·IP·무료 웹 유틸리티</title>
-  <meta name="description" content="생활 웹 도구에서 날씨, 양력·음력 변환, 내 아이피 찾기, 이미지 텍스트 추출, 로또 번호 생성, 브라우저 게임을 무료로 이용하세요. 사용 가이드와 개인정보처리방침을 제공합니다." />
+  <meta name="description" content="생활 웹 도구에서 날씨, 양력·음력 변환, 내 아이피 찾기, 이미지 텍스트 추출, 이미지 형식 변환, 로또 번호 생성을 무료로 이용하세요. 사용 가이드와 개인정보처리방침을 제공합니다." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://mouseclick0.github.io/web-app/" />
   <meta property="og:type" content="website" />
@@ -614,6 +614,105 @@
       .ocr-actions {
         grid-template-columns: 1fr 1fr;
       }
+    }
+
+    .convert-list {
+      display: grid;
+      gap: 0.6rem;
+      margin: 0 0 1.25rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .convert-list[hidden] {
+      display: none !important;
+    }
+
+    .convert-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      background: var(--toggle-bg);
+      text-align: left;
+    }
+
+    .convert-thumb {
+      flex: 0 0 auto;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 8px;
+      object-fit: cover;
+      background: var(--toggle-hover);
+    }
+
+    .convert-meta {
+      display: grid;
+      gap: 0.15rem;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .convert-meta strong {
+      font-size: 0.88rem;
+      color: var(--text);
+      overflow-wrap: anywhere;
+    }
+
+    .convert-meta span {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .convert-item-actions {
+      display: flex;
+      flex: 0 0 auto;
+      gap: 0.4rem;
+    }
+
+    .convert-mini-btn {
+      padding: 0.4rem 0.7rem;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .convert-mini-btn.ghost {
+      border-color: var(--toggle-border);
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .convert-mini-btn:hover {
+      opacity: 0.88;
+    }
+
+    #convertQualityRow[hidden],
+    #convertBackgroundRow[hidden],
+    #convertWebpNote[hidden] {
+      display: none !important;
+    }
+
+    #convertBackground {
+      width: 100%;
+      height: 2.6rem;
+      padding: 0.2rem;
+      border: 1px solid var(--toggle-border);
+      border-radius: 10px;
+      background: var(--toggle-bg);
+      cursor: pointer;
+    }
+
+    #convertQuality {
+      width: 100%;
+      accent-color: var(--accent);
     }
 
     .video-status-panel {
@@ -2392,6 +2491,7 @@
         <li data-i18n="home.introLi2">양력/음력 상호 변환, 60갑자·12띠 확인</li>
         <li data-i18n="home.introLi3">IPv4/IPv6·ISP·국가·도시 조회 및 복사</li>
         <li data-i18n="home.introLi5">이미지 속 글자를 텍스트로 추출(업로드 없이 처리)</li>
+        <li data-i18n="home.introLi6">PNG·JPG·WebP·BMP 이미지 형식 상호 변환</li>
         <li data-i18n="home.introLi4">지뢰찾기·테트리스·오목·기억력 테스트</li>
       </ul>
     </section>
@@ -2654,6 +2754,29 @@
       <button type="button" class="entry-btn" id="openOcrBtn" data-i18n="home.ocr.cta">이미지 텍스트 추출</button>
     </section>
 
+    <section class="card home-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.convert.aria" aria-label="이미지 형식 변환 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="38" width="104" height="104" rx="14" fill="#5eb0f7" />
+          <rect x="44" y="56" width="76" height="52" rx="8" fill="#ffffff" opacity="0.25" />
+          <circle cx="68" cy="76" r="9" fill="#ffd54f" />
+          <path d="M50 104l22-24 17 17 12-12 21 19H50z" fill="#ffffff" opacity="0.8" />
+          <text x="82" y="132" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">PNG</text>
+          <path d="M148 74h24" stroke="#90caf9" stroke-width="7" stroke-linecap="round" />
+          <path d="M164 62l14 12-14 12" fill="none" stroke="#90caf9" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M172 106h-24" stroke="#90caf9" stroke-width="7" stroke-linecap="round" />
+          <path d="M156 94l-14 12 14 12" fill="none" stroke="#90caf9" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="186" y="38" width="104" height="104" rx="14" fill="#2563c7" />
+          <rect x="200" y="56" width="76" height="52" rx="8" fill="#ffffff" opacity="0.25" />
+          <circle cx="224" cy="76" r="9" fill="#ffd54f" />
+          <path d="M206 104l22-24 17 17 12-12 21 19h-72z" fill="#ffffff" opacity="0.8" />
+          <text x="238" y="132" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">JPG</text>
+        </svg>
+      </div>
+      <p class="home-subtitle" data-i18n="home.convert.subtitle">PNG·JPG·WebP·BMP 이미지를 원하는 형식으로 바꿉니다.</p>
+      <button type="button" class="entry-btn" id="openConvertBtn" data-i18n="home.convert.cta">이미지 형식 변환</button>
+    </section>
+
     <section class="card home-guides">
       <h2 data-i18n="home.guidesTitle">사용 가이드</h2>
       <p data-i18n="home.guidesDesc">도구를 쓰기 전에 읽어 보면 좋은 설명 글입니다. 검색·공유에도 유리하도록 독립 페이지로 구성했습니다.</p>
@@ -2663,6 +2786,7 @@
         <a href="guides/calendar.html">양력·음력 변환<span>윤달·갑자·띠 개념</span></a>
         <a href="guides/ip.html">내 아이피 찾기<span>IPv4/IPv6와 ISP 의미</span></a>
         <a href="guides/ocr.html">이미지 텍스트 추출<span>정확도를 높이는 촬영·설정법</span></a>
+        <a href="guides/convert.html">이미지 형식 변환<span>PNG·JPG·WebP·BMP 선택 기준</span></a>
         <a href="guides/lotto.html">로또 생성기<span>참고용 이용 안내</span></a>
         <a href="guides/games.html">브라우저 게임<span>규칙과 초보 팁</span></a>
         <a href="faq.html">FAQ<span>자주 묻는 질문</span></a>
@@ -3231,6 +3355,67 @@
     <button type="button" class="back-btn" id="backHomeFromOcrBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
+  <main class="card" id="convertView" hidden>
+    <div class="card-head">
+      <h1 data-i18n="convert.title">이미지 형식 변환</h1>
+    </div>
+    <p class="subtitle" data-i18n="convert.subtitle">PNG·JPG·WebP·BMP 이미지를 서로 변환합니다. 이미지는 서버로 전송되지 않고 브라우저 안에서만 처리됩니다.</p>
+
+    <label class="upload-zone" id="convertUploadZone" for="convertInput">
+      <strong data-i18n="convert.uploadStrong">이미지를 드롭하거나 클릭해서 업로드</strong>
+      <span data-i18n="convert.uploadHint">한 번에 최대 20장, 장당 20MB까지 올릴 수 있습니다.</span>
+      <input type="file" id="convertInput" accept="image/*" multiple />
+    </label>
+
+    <div class="cutout-controls">
+      <label class="form-field" for="convertFormat">
+        <span data-i18n="convert.formatLabel">변환할 형식</span>
+        <select id="convertFormat" class="video-url-input">
+          <option value="png" data-i18n="convert.format.png" selected>PNG (투명 유지, 무손실)</option>
+          <option value="jpeg" data-i18n="convert.format.jpeg">JPG (사진에 적합, 용량 작음)</option>
+          <option value="webp" data-i18n="convert.format.webp">WebP (같은 화질에 더 작은 용량)</option>
+          <option value="bmp" data-i18n="convert.format.bmp">BMP (무압축, 용량 큼)</option>
+        </select>
+      </label>
+
+      <p class="ocr-note" id="convertWebpNote" data-i18n="convert.webpNote" hidden>이 브라우저(Safari 계열)는 WebP 저장을 지원하지 않아 해당 옵션을 사용할 수 없습니다. Chrome, Edge, Firefox에서는 사용할 수 있습니다.</p>
+
+      <label class="form-field" id="convertQualityRow" for="convertQuality" hidden>
+        <span><span data-i18n="convert.qualityLabel">품질</span> <output id="convertQualityValue">90%</output></span>
+        <input type="range" id="convertQuality" min="40" max="100" step="5" value="90" />
+      </label>
+
+      <label class="form-field" id="convertBackgroundRow" for="convertBackground" hidden>
+        <span data-i18n="convert.backgroundLabel">투명 영역을 채울 배경색</span>
+        <input type="color" id="convertBackground" value="#ffffff" />
+      </label>
+
+      <label class="form-field" for="convertResize">
+        <span data-i18n="convert.resizeLabel">크기 조정</span>
+        <select id="convertResize" class="video-url-input">
+          <option value="0" data-i18n="convert.resize.keep" selected>원본 크기 유지</option>
+          <option value="2560" data-i18n="convert.resize.2560">긴 변 2560px 이하</option>
+          <option value="1920" data-i18n="convert.resize.1920">긴 변 1920px 이하</option>
+          <option value="1280" data-i18n="convert.resize.1280">긴 변 1280px 이하</option>
+          <option value="800" data-i18n="convert.resize.800">긴 변 800px 이하</option>
+        </select>
+      </label>
+
+      <button type="button" class="cutout-btn" id="convertRunBtn" data-i18n="convert.run" disabled>변환하기</button>
+    </div>
+
+    <p class="cutout-status" id="convertStatus" aria-live="polite">이미지를 업로드하면 변환할 수 있습니다.</p>
+
+    <ul class="convert-list" id="convertList" hidden></ul>
+
+    <div class="ocr-actions">
+      <button type="button" class="download-btn" id="convertZipBtn" data-i18n="convert.zip" disabled>ZIP으로 모두 저장</button>
+      <button type="button" class="download-btn" id="convertClearBtn" data-i18n="convert.clear" disabled>목록 비우기</button>
+    </div>
+
+    <button type="button" class="back-btn" id="backHomeFromConvertBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
   <footer class="site-footer">
     <div class="site-footer-inner">
       <nav aria-label="하단 메뉴">
@@ -3322,6 +3507,7 @@
     const calendarView = document.getElementById("calendarView");
     const ipView = document.getElementById("ipView");
     const ocrView = document.getElementById("ocrView");
+    const convertView = document.getElementById("convertView");
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
     const openVideoBtn = document.getElementById("openVideoBtn");
@@ -3488,6 +3674,7 @@
       if (calendarView) calendarView.hidden = view !== calendarView;
       if (ipView) ipView.hidden = view !== ipView;
       if (ocrView) ocrView.hidden = view !== ocrView;
+      if (convertView) convertView.hidden = view !== convertView;
       if (view !== tetrisView) {
         pauseTetris(true);
         stopTetrisBgm();
@@ -5656,6 +5843,7 @@
   <script src="calendar.js"></script>
   <script src="ip.js"></script>
   <script src="ocr.js"></script>
+  <script src="convert.js"></script>
   <script>
     var yearEl = document.getElementById("siteYear");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());

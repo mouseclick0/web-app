@@ -902,6 +902,145 @@
       accent-color: var(--accent);
     }
 
+    #speechInput {
+      min-height: 12rem;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      resize: vertical;
+    }
+
+    .speech-result {
+      display: grid;
+      gap: 0.3rem;
+      margin: 0 0 1.25rem;
+      padding: 1.1rem 1rem;
+      border: 1px solid var(--accent);
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--accent) 10%, var(--toggle-bg));
+      text-align: center;
+    }
+
+    .speech-result-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .speech-time {
+      font-size: 2.1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--accent);
+    }
+
+    .speech-breakdown {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .speech-preset-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .speech-preset {
+      flex: 1 1 5rem;
+      padding: 0.5rem 0.6rem;
+      border: 1px solid var(--toggle-border);
+      border-radius: 999px;
+      background: var(--card-bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .speech-preset:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .speech-preset.active {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    #speechSpeed {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+
+    .speech-speed-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.3rem;
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+
+    .speech-target-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    .speech-target-msg {
+      margin: 0.8rem 0 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .speech-target-msg.over {
+      color: #d9534f;
+    }
+
+    .speech-target-msg.under,
+    .speech-target-msg.match {
+      color: var(--accent);
+    }
+
+    .speech-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+      margin: 0 0 1.25rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .speech-stats li {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      background: var(--toggle-bg);
+    }
+
+    .speech-stats span {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .speech-stats strong {
+      font-size: 0.88rem;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    @media (min-width: 34rem) {
+      .speech-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
     .video-status-panel {
       margin: 0 0 1rem;
       padding: 0.85rem 1rem;
@@ -2680,6 +2819,7 @@
         <li data-i18n="home.introLi5">이미지 속 글자를 텍스트로 추출(업로드 없이 처리)</li>
         <li data-i18n="home.introLi6">PNG·JPG·WebP·BMP 이미지 형식 상호 변환</li>
         <li data-i18n="home.introLi7">이미지 자르기·회전·반전·크기 조절</li>
+        <li data-i18n="home.introLi8">발표 대본의 예상 발표 시간과 분량 계산</li>
         <li data-i18n="home.introLi4">지뢰찾기·테트리스·오목·기억력 테스트</li>
       </ul>
     </section>
@@ -2984,6 +3124,26 @@
       <button type="button" class="entry-btn" id="openEditorBtn" data-i18n="home.editor.cta">이미지 자르기·회전</button>
     </section>
 
+    <section class="card home-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.speech.aria" aria-label="발표 시간 계산 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="34" y="26" width="120" height="128" rx="13" fill="#ffffff" opacity="0.94" />
+          <rect x="50" y="48" width="88" height="9" rx="4.5" fill="#2563c7" />
+          <rect x="50" y="68" width="88" height="9" rx="4.5" fill="#2563c7" opacity="0.72" />
+          <rect x="50" y="88" width="66" height="9" rx="4.5" fill="#2563c7" opacity="0.52" />
+          <rect x="50" y="108" width="88" height="9" rx="4.5" fill="#2563c7" opacity="0.72" />
+          <rect x="50" y="128" width="44" height="9" rx="4.5" fill="#2563c7" opacity="0.4" />
+          <circle cx="228" cy="98" r="52" fill="#5eb0f7" />
+          <circle cx="228" cy="98" r="40" fill="#ffffff" opacity="0.9" />
+          <rect x="214" y="26" width="28" height="13" rx="6.5" fill="#2563c7" />
+          <rect x="222" y="36" width="12" height="12" fill="#2563c7" />
+          <path d="M228 74v26h20" fill="none" stroke="#2563c7" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <p class="home-subtitle" data-i18n="home.speech.subtitle">발표 대본을 넣으면 예상 발표 시간과 분량을 알려 줍니다.</p>
+      <button type="button" class="entry-btn" id="openSpeechBtn" data-i18n="home.speech.cta">발표 시간 계산</button>
+    </section>
+
     <section class="card home-guides">
       <h2 data-i18n="home.guidesTitle">사용 가이드</h2>
       <p data-i18n="home.guidesDesc">도구를 쓰기 전에 읽어 보면 좋은 설명 글입니다. 검색·공유에도 유리하도록 독립 페이지로 구성했습니다.</p>
@@ -2995,6 +3155,7 @@
         <a href="guides/ocr.html">이미지 텍스트 추출<span>정확도를 높이는 촬영·설정법</span></a>
         <a href="guides/convert.html">이미지 형식 변환<span>PNG·JPG·WebP·BMP 선택 기준</span></a>
         <a href="guides/editor.html">이미지 자르기·회전<span>비율 자르기와 크기 조절 요령</span></a>
+        <a href="guides/speech.html">발표 시간 계산<span>대본 분량과 말하기 속도 잡는 법</span></a>
         <a href="guides/lotto.html">로또 생성기<span>참고용 이용 안내</span></a>
         <a href="guides/games.html">브라우저 게임<span>규칙과 초보 팁</span></a>
         <a href="faq.html">FAQ<span>자주 묻는 질문</span></a>
@@ -3745,6 +3906,70 @@
     <button type="button" class="back-btn" id="backHomeFromEditorBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
+  <main class="card" id="speechView" hidden>
+    <div class="card-head">
+      <h1 data-i18n="speech.title">발표 시간 계산기</h1>
+    </div>
+    <p class="subtitle" data-i18n="speech.subtitle">발표 대본을 넣으면 예상 발표 시간과 글자 수를 계산합니다. 입력한 내용은 서버로 전송되지 않고 브라우저 안에서만 처리됩니다.</p>
+
+    <label class="form-field" for="speechInput">
+      <span data-i18n="speech.scriptLabel">발표 대본</span>
+      <textarea id="speechInput" rows="10" spellcheck="false" data-i18n-placeholder="speech.scriptPlaceholder" placeholder="발표할 내용을 붙여넣거나 직접 입력하세요."></textarea>
+    </label>
+
+    <div class="speech-result editor-field">
+      <span class="speech-result-label" data-i18n="speech.resultLabel">예상 발표 시간</span>
+      <strong class="speech-time" id="speechTime">0초</strong>
+      <span class="speech-breakdown" id="speechBreakdown">대본을 입력하면 예상 시간이 표시됩니다.</span>
+    </div>
+
+    <div class="editor-group">
+      <h2 data-i18n="speech.speedTitle">말하기 속도</h2>
+      <div class="speech-preset-row" id="speechPresets">
+        <button type="button" class="speech-preset" data-preset="slow" data-i18n="speech.preset.slow">천천히</button>
+        <button type="button" class="speech-preset" data-preset="normal" data-i18n="speech.preset.normal">보통</button>
+        <button type="button" class="speech-preset" data-preset="fast" data-i18n="speech.preset.fast">빠르게</button>
+        <button type="button" class="speech-preset" data-preset="anchor" data-i18n="speech.preset.anchor">뉴스 앵커</button>
+      </div>
+      <div class="speech-speed-row">
+        <span data-i18n="speech.speedLabel">속도</span>
+        <output id="speechSpeedValue">100%</output>
+      </div>
+      <input type="range" id="speechSpeed" min="60" max="140" step="5" value="100" />
+      <label class="editor-lock" for="speechPause">
+        <input type="checkbox" id="speechPause" checked />
+        <span data-i18n="speech.pauseLabel">문장·문단 사이 호흡 반영</span>
+      </label>
+      <p class="editor-help" data-i18n="speech.rateNote">기본값은 일반적인 발표 속도(한국어 분당 300자, 영어 분당 130단어)입니다. 사람마다 다르니 한 번 소리 내어 읽어 보고 조절해 주세요.</p>
+    </div>
+
+    <div class="editor-group">
+      <h2 data-i18n="speech.targetTitle">목표 시간 맞추기</h2>
+      <div class="speech-target-row">
+        <label class="form-field" for="speechTargetMin">
+          <span data-i18n="speech.targetMinutes">분</span>
+          <input type="number" id="speechTargetMin" class="video-url-input" min="0" max="600" step="1" value="5" />
+        </label>
+        <label class="form-field" for="speechTargetSec">
+          <span data-i18n="speech.targetSeconds">초</span>
+          <input type="number" id="speechTargetSec" class="video-url-input" min="0" max="59" step="1" value="0" />
+        </label>
+      </div>
+      <p class="speech-target-msg" id="speechTargetMsg">목표 시간을 정하면 얼마나 줄이거나 늘려야 하는지 알려 드립니다.</p>
+    </div>
+
+    <ul class="speech-stats" id="speechStats"></ul>
+
+    <p class="cutout-status" id="speechStatus" aria-live="polite"></p>
+
+    <div class="editor-btn-row editor-history-row">
+      <button type="button" class="editor-btn" id="speechCopyBtn" data-i18n="speech.copy">결과 복사</button>
+      <button type="button" class="editor-btn" id="speechClearBtn" data-i18n="speech.clear">대본 지우기</button>
+    </div>
+
+    <button type="button" class="back-btn" id="backHomeFromSpeechBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
   <footer class="site-footer">
     <div class="site-footer-inner">
       <nav aria-label="하단 메뉴">
@@ -3838,6 +4063,7 @@
     const ocrView = document.getElementById("ocrView");
     const convertView = document.getElementById("convertView");
     const editorView = document.getElementById("editorView");
+    const speechView = document.getElementById("speechView");
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
     const openVideoBtn = document.getElementById("openVideoBtn");
@@ -4006,6 +4232,7 @@
       if (ocrView) ocrView.hidden = view !== ocrView;
       if (convertView) convertView.hidden = view !== convertView;
       if (editorView) editorView.hidden = view !== editorView;
+      if (speechView) speechView.hidden = view !== speechView;
       if (view !== tetrisView) {
         pauseTetris(true);
         stopTetrisBgm();
@@ -6166,6 +6393,7 @@
       if (typeof window.refreshWeatherI18n === "function") window.refreshWeatherI18n();
       if (typeof window.refreshCalendarI18n === "function") window.refreshCalendarI18n();
       if (typeof window.refreshIpI18n === "function") window.refreshIpI18n();
+      if (typeof window.refreshSpeechI18n === "function") window.refreshSpeechI18n();
     };
 
     window.onI18nApplied();
@@ -6176,6 +6404,7 @@
   <script src="ocr.js"></script>
   <script src="convert.js"></script>
   <script src="editor.js"></script>
+  <script src="speech.js"></script>
   <script>
     var yearEl = document.getElementById("siteYear");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());

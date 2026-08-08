@@ -715,6 +715,193 @@
       accent-color: var(--accent);
     }
 
+    #editorPanel[hidden],
+    #editorStage[hidden],
+    #editorQualityRow[hidden],
+    #editorBackgroundRow[hidden],
+    #editorWebpNote[hidden] {
+      display: none !important;
+    }
+
+    .editor-stage-wrap {
+      margin: 0 0 0.6rem;
+      text-align: center;
+    }
+
+    .editor-stage {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+      background: var(--toggle-bg);
+      line-height: 0;
+      cursor: crosshair;
+      touch-action: none;
+    }
+
+    #editorCanvas {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 26rem;
+    }
+
+    .editor-crop {
+      position: absolute;
+      box-sizing: border-box;
+      border: 1px solid rgba(255, 255, 255, 0.92);
+      box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.45);
+      cursor: move;
+    }
+
+    .editor-crop[hidden] {
+      display: none !important;
+    }
+
+    .editor-handle {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      margin: -8px 0 0 -8px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .editor-handle[data-handle="nw"] { left: 0; top: 0; cursor: nwse-resize; }
+    .editor-handle[data-handle="n"] { left: 50%; top: 0; cursor: ns-resize; }
+    .editor-handle[data-handle="ne"] { left: 100%; top: 0; cursor: nesw-resize; }
+    .editor-handle[data-handle="w"] { left: 0; top: 50%; cursor: ew-resize; }
+    .editor-handle[data-handle="e"] { left: 100%; top: 50%; cursor: ew-resize; }
+    .editor-handle[data-handle="sw"] { left: 0; top: 100%; cursor: nesw-resize; }
+    .editor-handle[data-handle="s"] { left: 50%; top: 100%; cursor: ns-resize; }
+    .editor-handle[data-handle="se"] { left: 100%; top: 100%; cursor: nwse-resize; }
+
+    .editor-crop.ratio-locked .editor-handle[data-handle="n"],
+    .editor-crop.ratio-locked .editor-handle[data-handle="s"],
+    .editor-crop.ratio-locked .editor-handle[data-handle="w"],
+    .editor-crop.ratio-locked .editor-handle[data-handle="e"] {
+      display: none;
+    }
+
+    .editor-info {
+      margin: 0 0 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .editor-group {
+      margin-bottom: 1.25rem;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      background: var(--toggle-bg);
+      text-align: left;
+    }
+
+    .editor-group h2 {
+      margin: 0 0 0.7rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .editor-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .editor-btn {
+      flex: 1 1 7rem;
+      padding: 0.55rem 0.7rem;
+      border: 1px solid var(--toggle-border);
+      border-radius: 10px;
+      background: var(--card-bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .editor-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .editor-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .editor-crop-info {
+      margin: 0.7rem 0 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .editor-help {
+      margin: 0;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .editor-field {
+      margin-top: 0.7rem;
+    }
+
+    .editor-history-row {
+      margin-bottom: 1rem;
+    }
+
+    .editor-size-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: end;
+      gap: 0.5rem;
+    }
+
+    .editor-size-x {
+      padding-bottom: 0.8rem;
+      color: var(--muted);
+    }
+
+    .editor-lock {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin: 0.7rem 0;
+      font-size: 0.83rem;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .editor-lock input {
+      width: auto;
+      accent-color: var(--accent);
+    }
+
+    #editorBackground {
+      width: 100%;
+      height: 2.6rem;
+      padding: 0.2rem;
+      border: 1px solid var(--toggle-border);
+      border-radius: 10px;
+      background: var(--toggle-bg);
+      cursor: pointer;
+    }
+
+    #editorQuality {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+
     .video-status-panel {
       margin: 0 0 1rem;
       padding: 0.85rem 1rem;
@@ -2492,6 +2679,7 @@
         <li data-i18n="home.introLi3">IPv4/IPv6·ISP·국가·도시 조회 및 복사</li>
         <li data-i18n="home.introLi5">이미지 속 글자를 텍스트로 추출(업로드 없이 처리)</li>
         <li data-i18n="home.introLi6">PNG·JPG·WebP·BMP 이미지 형식 상호 변환</li>
+        <li data-i18n="home.introLi7">이미지 자르기·회전·반전·크기 조절</li>
         <li data-i18n="home.introLi4">지뢰찾기·테트리스·오목·기억력 테스트</li>
       </ul>
     </section>
@@ -2777,6 +2965,25 @@
       <button type="button" class="entry-btn" id="openConvertBtn" data-i18n="home.convert.cta">이미지 형식 변환</button>
     </section>
 
+    <section class="card home-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.editor.aria" aria-label="이미지 자르기·회전 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="62" y="34" width="150" height="112" rx="14" fill="#5eb0f7" />
+          <rect x="78" y="52" width="118" height="76" rx="9" fill="#ffffff" opacity="0.24" />
+          <circle cx="106" cy="76" r="11" fill="#ffd54f" />
+          <path d="M84 124l30-32 22 22 16-16 30 26H84z" fill="#ffffff" opacity="0.8" />
+          <path d="M96 20v130" stroke="#2563c7" stroke-width="7" stroke-linecap="round" />
+          <path d="M46 70h130" stroke="#2563c7" stroke-width="7" stroke-linecap="round" />
+          <path d="M178 30v130" stroke="#2563c7" stroke-width="7" stroke-linecap="round" />
+          <path d="M56 110h130" stroke="#2563c7" stroke-width="7" stroke-linecap="round" />
+          <path d="M232 128a34 34 0 1 0-10-24" fill="none" stroke="#90caf9" stroke-width="9" stroke-linecap="round" />
+          <path d="M210 78l12 26 26-12" fill="none" stroke="#90caf9" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <p class="home-subtitle" data-i18n="home.editor.subtitle">이미지를 원하는 영역만 자르고 회전하거나 크기를 바꿉니다.</p>
+      <button type="button" class="entry-btn" id="openEditorBtn" data-i18n="home.editor.cta">이미지 자르기·회전</button>
+    </section>
+
     <section class="card home-guides">
       <h2 data-i18n="home.guidesTitle">사용 가이드</h2>
       <p data-i18n="home.guidesDesc">도구를 쓰기 전에 읽어 보면 좋은 설명 글입니다. 검색·공유에도 유리하도록 독립 페이지로 구성했습니다.</p>
@@ -2787,6 +2994,7 @@
         <a href="guides/ip.html">내 아이피 찾기<span>IPv4/IPv6와 ISP 의미</span></a>
         <a href="guides/ocr.html">이미지 텍스트 추출<span>정확도를 높이는 촬영·설정법</span></a>
         <a href="guides/convert.html">이미지 형식 변환<span>PNG·JPG·WebP·BMP 선택 기준</span></a>
+        <a href="guides/editor.html">이미지 자르기·회전<span>비율 자르기와 크기 조절 요령</span></a>
         <a href="guides/lotto.html">로또 생성기<span>참고용 이용 안내</span></a>
         <a href="guides/games.html">브라우저 게임<span>규칙과 초보 팁</span></a>
         <a href="faq.html">FAQ<span>자주 묻는 질문</span></a>
@@ -3416,6 +3624,127 @@
     <button type="button" class="back-btn" id="backHomeFromConvertBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
+  <main class="card" id="editorView" hidden>
+    <div class="card-head">
+      <h1 data-i18n="editor.title">이미지 자르기·회전</h1>
+    </div>
+    <p class="subtitle" data-i18n="editor.subtitle">이미지를 원하는 영역만 자르고, 회전·반전하고, 크기를 바꿉니다. 이미지는 서버로 전송되지 않고 브라우저 안에서만 처리됩니다.</p>
+
+    <label class="upload-zone" id="editorUploadZone" for="editorInput">
+      <strong data-i18n="editor.uploadStrong">이미지를 드롭하거나 클릭해서 업로드</strong>
+      <span data-i18n="editor.uploadHint">한 장씩 편집합니다. 20MB까지 올릴 수 있습니다.</span>
+      <input type="file" id="editorInput" accept="image/*" />
+    </label>
+
+    <p class="cutout-status" id="editorStatus" aria-live="polite">이미지를 업로드하면 편집할 수 있습니다.</p>
+
+    <div id="editorPanel" hidden>
+      <div class="editor-stage-wrap">
+        <div class="editor-stage" id="editorStage">
+          <canvas id="editorCanvas"></canvas>
+          <div class="editor-crop" id="editorCrop" hidden>
+            <span class="editor-handle" data-handle="nw"></span>
+            <span class="editor-handle" data-handle="n"></span>
+            <span class="editor-handle" data-handle="ne"></span>
+            <span class="editor-handle" data-handle="w"></span>
+            <span class="editor-handle" data-handle="e"></span>
+            <span class="editor-handle" data-handle="sw"></span>
+            <span class="editor-handle" data-handle="s"></span>
+            <span class="editor-handle" data-handle="se"></span>
+          </div>
+        </div>
+      </div>
+
+      <p class="editor-info" id="editorSizeInfo"></p>
+
+      <div class="editor-group">
+        <h2 data-i18n="editor.rotateTitle">회전과 반전</h2>
+        <div class="editor-btn-row">
+          <button type="button" class="editor-btn" id="editorRotateLeftBtn" data-i18n="editor.rotateLeft" disabled>왼쪽으로 90°</button>
+          <button type="button" class="editor-btn" id="editorRotateRightBtn" data-i18n="editor.rotateRight" disabled>오른쪽으로 90°</button>
+          <button type="button" class="editor-btn" id="editorFlipHBtn" data-i18n="editor.flipH" disabled>좌우 반전</button>
+          <button type="button" class="editor-btn" id="editorFlipVBtn" data-i18n="editor.flipV" disabled>상하 반전</button>
+        </div>
+      </div>
+
+      <div class="editor-group">
+        <h2 data-i18n="editor.cropTitle">자르기</h2>
+        <p class="editor-help" data-i18n="editor.cropHelp">이미지 위에서 드래그해 남길 영역을 지정하세요. 모서리를 끌면 크기를, 안쪽을 끌면 위치를 조절할 수 있습니다.</p>
+        <label class="form-field editor-field" for="editorRatio">
+          <span data-i18n="editor.ratioLabel">비율 고정</span>
+          <select id="editorRatio" class="video-url-input">
+            <option value="free" data-i18n="editor.ratio.free" selected>자유 비율</option>
+            <option value="1:1" data-i18n="editor.ratio.square">1:1 (정사각형)</option>
+            <option value="4:3" data-i18n="editor.ratio.landscape43">4:3 (가로)</option>
+            <option value="3:4" data-i18n="editor.ratio.portrait34">3:4 (세로)</option>
+            <option value="16:9" data-i18n="editor.ratio.landscape169">16:9 (가로 와이드)</option>
+            <option value="9:16" data-i18n="editor.ratio.portrait916">9:16 (세로 와이드)</option>
+          </select>
+        </label>
+        <p class="editor-crop-info" id="editorCropInfo">선택한 영역이 없습니다.</p>
+        <div class="editor-btn-row editor-field">
+          <button type="button" class="editor-btn" id="editorApplyCropBtn" data-i18n="editor.applyCrop" disabled>선택 영역으로 자르기</button>
+          <button type="button" class="editor-btn" id="editorClearCropBtn" data-i18n="editor.clearCrop" disabled>선택 해제</button>
+        </div>
+      </div>
+
+      <div class="editor-group">
+        <h2 data-i18n="editor.resizeTitle">크기 조절</h2>
+        <div class="editor-size-row">
+          <label class="form-field" for="editorWidth">
+            <span data-i18n="editor.widthLabel">가로(px)</span>
+            <input type="number" id="editorWidth" class="video-url-input" min="1" max="10000" step="1" />
+          </label>
+          <span class="editor-size-x">×</span>
+          <label class="form-field" for="editorHeight">
+            <span data-i18n="editor.heightLabel">세로(px)</span>
+            <input type="number" id="editorHeight" class="video-url-input" min="1" max="10000" step="1" />
+          </label>
+        </div>
+        <label class="editor-lock" for="editorLockAspect">
+          <input type="checkbox" id="editorLockAspect" checked />
+          <span data-i18n="editor.lockAspect">가로세로 비율 유지</span>
+        </label>
+        <div class="editor-btn-row">
+          <button type="button" class="editor-btn" id="editorApplyResizeBtn" data-i18n="editor.applyResize" disabled>크기 적용</button>
+        </div>
+      </div>
+
+      <div class="editor-group">
+        <h2 data-i18n="editor.saveTitle">저장</h2>
+        <label class="form-field" for="editorFormat">
+          <span data-i18n="editor.formatLabel">저장할 형식</span>
+          <select id="editorFormat" class="video-url-input">
+            <option value="png" data-i18n="convert.format.png" selected>PNG (투명 유지, 무손실)</option>
+            <option value="jpeg" data-i18n="convert.format.jpeg">JPG (사진에 적합, 용량 작음)</option>
+            <option value="webp" data-i18n="convert.format.webp">WebP (같은 화질에 더 작은 용량)</option>
+          </select>
+        </label>
+
+        <p class="ocr-note" id="editorWebpNote" data-i18n="convert.webpNote" hidden>이 브라우저(Safari 계열)는 WebP 저장을 지원하지 않아 해당 옵션을 사용할 수 없습니다. Chrome, Edge, Firefox에서는 사용할 수 있습니다.</p>
+
+        <label class="form-field editor-field" id="editorQualityRow" for="editorQuality" hidden>
+          <span><span data-i18n="convert.qualityLabel">품질</span> <output id="editorQualityValue">90%</output></span>
+          <input type="range" id="editorQuality" min="40" max="100" step="5" value="90" />
+        </label>
+
+        <label class="form-field editor-field" id="editorBackgroundRow" for="editorBackground" hidden>
+          <span data-i18n="convert.backgroundLabel">투명 영역을 채울 배경색</span>
+          <input type="color" id="editorBackground" value="#ffffff" />
+        </label>
+      </div>
+
+      <div class="editor-btn-row editor-history-row">
+        <button type="button" class="editor-btn" id="editorUndoBtn" data-i18n="editor.undo" disabled>한 단계 되돌리기</button>
+        <button type="button" class="editor-btn" id="editorResetBtn" data-i18n="editor.reset" disabled>원본으로 되돌리기</button>
+      </div>
+
+      <button type="button" class="download-btn" id="editorSaveBtn" data-i18n="editor.save" disabled>편집한 이미지 저장</button>
+    </div>
+
+    <button type="button" class="back-btn" id="backHomeFromEditorBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
   <footer class="site-footer">
     <div class="site-footer-inner">
       <nav aria-label="하단 메뉴">
@@ -3508,6 +3837,7 @@
     const ipView = document.getElementById("ipView");
     const ocrView = document.getElementById("ocrView");
     const convertView = document.getElementById("convertView");
+    const editorView = document.getElementById("editorView");
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
     const openVideoBtn = document.getElementById("openVideoBtn");
@@ -3675,6 +4005,7 @@
       if (ipView) ipView.hidden = view !== ipView;
       if (ocrView) ocrView.hidden = view !== ocrView;
       if (convertView) convertView.hidden = view !== convertView;
+      if (editorView) editorView.hidden = view !== editorView;
       if (view !== tetrisView) {
         pauseTetris(true);
         stopTetrisBgm();
@@ -5844,6 +6175,7 @@
   <script src="ip.js"></script>
   <script src="ocr.js"></script>
   <script src="convert.js"></script>
+  <script src="editor.js"></script>
   <script>
     var yearEl = document.getElementById("siteYear");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());

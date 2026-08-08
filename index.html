@@ -4253,6 +4253,7 @@
     let mineTimerId = null;
     let mineSeconds = 0;
     let mineFlagCount = 0;
+    let mineAudioCtx = null;
 
     const TETRIS_COLS = 10;
     const TETRIS_ROWS = 20;
@@ -5063,11 +5064,41 @@
       }
     }
 
+    // Synthesized so the fanfare needs no audio asset and no network request.
+    function playMineWinSound() {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      try {
+        if (!mineAudioCtx) mineAudioCtx = new AudioCtx();
+        if (mineAudioCtx.state === "suspended") mineAudioCtx.resume();
+        const ctx = mineAudioCtx;
+        const notes = [523.25, 659.25, 783.99, 1046.5];
+        const start = ctx.currentTime + 0.03;
+        notes.forEach(function (freq, index) {
+          const last = index === notes.length - 1;
+          const at = start + index * 0.12;
+          const duration = last ? 0.5 : 0.18;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = "triangle";
+          osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0.0001, at);
+          gain.gain.exponentialRampToValueAtTime(last ? 0.22 : 0.16, at + 0.015);
+          gain.gain.exponentialRampToValueAtTime(0.0001, at + duration);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(at);
+          osc.stop(at + duration + 0.02);
+        });
+      } catch (e) {}
+    }
+
     function endMineGame(won) {
       mineEnded = true;
       stopMineTimer();
       if (won) {
         setMineStatus(t("mine.status.win", { seconds: mineSeconds }), "win");
+        playMineWinSound();
       } else {
         revealAllMines();
         setMineStatus(t("mine.status.lose"), "lose");

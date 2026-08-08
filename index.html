@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>생활 웹 도구 — 날씨·음력·IP·무료 웹 유틸리티</title>
-  <meta name="description" content="생활 웹 도구에서 날씨, 양력·음력 변환, 내 아이피 찾기, 로또 번호 생성, 브라우저 게임을 무료로 이용하세요. 사용 가이드와 개인정보처리방침을 제공합니다." />
+  <meta name="description" content="생활 웹 도구에서 날씨, 양력·음력 변환, 내 아이피 찾기, 이미지 텍스트 추출, 로또 번호 생성, 브라우저 게임을 무료로 이용하세요. 사용 가이드와 개인정보처리방침을 제공합니다." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://mouseclick0.github.io/web-app/" />
   <meta property="og:type" content="website" />
@@ -538,6 +538,82 @@
       font-size: 0.82rem;
       color: var(--muted);
       line-height: 1.5;
+    }
+
+    .ocr-note {
+      margin: 0 0 1rem;
+      padding: 0.7rem 0.9rem;
+      border-radius: 12px;
+      background: var(--toggle-bg);
+      border: 1px solid var(--card-border);
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.55;
+    }
+
+    .ocr-progress {
+      margin: 0 0 1rem;
+    }
+
+    .ocr-progress[hidden] {
+      display: none !important;
+    }
+
+    .ocr-progress-track {
+      height: 0.55rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--text) 12%, transparent);
+      overflow: hidden;
+    }
+
+    .ocr-progress-fill {
+      display: block;
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #4da3f7, #2563c7);
+      transition: width 0.2s ease;
+    }
+
+    .ocr-preview-box {
+      margin: 0 0 1.25rem;
+      padding: 0.75rem;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      background: var(--toggle-bg);
+      text-align: center;
+    }
+
+    .ocr-preview-box[hidden] {
+      display: none !important;
+    }
+
+    .ocr-preview-box img {
+      max-width: 100%;
+      max-height: 18rem;
+      border-radius: 10px;
+    }
+
+    .ocr-result-field {
+      margin-bottom: 1rem;
+    }
+
+    .ocr-result-field textarea {
+      min-height: 12rem;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+    }
+
+    .ocr-actions {
+      display: grid;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (min-width: 30rem) {
+      .ocr-actions {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     .video-status-panel {
@@ -2315,6 +2391,7 @@
         <li data-i18n="home.introLi1">위치 기반 날씨(현재·24시간·7일)와 도시 검색</li>
         <li data-i18n="home.introLi2">양력/음력 상호 변환, 60갑자·12띠 확인</li>
         <li data-i18n="home.introLi3">IPv4/IPv6·ISP·국가·도시 조회 및 복사</li>
+        <li data-i18n="home.introLi5">이미지 속 글자를 텍스트로 추출(업로드 없이 처리)</li>
         <li data-i18n="home.introLi4">지뢰찾기·테트리스·오목·기억력 테스트</li>
       </ul>
     </section>
@@ -2556,6 +2633,27 @@
       <button type="button" class="entry-btn" id="openIpBtn" data-i18n="home.ip.cta">내 아이피 찾기</button>
     </section>
 
+    <section class="card home-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.ocr.aria" aria-label="이미지 텍스트 추출 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="34" y="30" width="130" height="120" rx="16" fill="#5eb0f7" />
+          <rect x="50" y="48" width="98" height="60" rx="10" fill="#ffffff" opacity="0.22" />
+          <circle cx="78" cy="70" r="11" fill="#ffd54f" />
+          <path d="M56 104l26-28 20 20 14-14 26 26H56z" fill="#ffffff" opacity="0.75" />
+          <path d="M176 82h28" stroke="#90caf9" stroke-width="8" stroke-linecap="round" />
+          <path d="M194 66l18 16-18 16" fill="none" stroke="#90caf9" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="224" y="30" width="62" height="120" rx="12" fill="#ffffff" opacity="0.92" />
+          <rect x="236" y="50" width="38" height="8" rx="4" fill="#2563c7" />
+          <rect x="236" y="68" width="38" height="8" rx="4" fill="#2563c7" opacity="0.75" />
+          <rect x="236" y="86" width="26" height="8" rx="4" fill="#2563c7" opacity="0.55" />
+          <rect x="236" y="104" width="38" height="8" rx="4" fill="#2563c7" opacity="0.75" />
+          <rect x="236" y="122" width="20" height="8" rx="4" fill="#2563c7" opacity="0.4" />
+        </svg>
+      </div>
+      <p class="home-subtitle" data-i18n="home.ocr.subtitle">이미지 속 글자를 브라우저에서 바로 텍스트로 추출합니다.</p>
+      <button type="button" class="entry-btn" id="openOcrBtn" data-i18n="home.ocr.cta">이미지 텍스트 추출</button>
+    </section>
+
     <section class="card home-guides">
       <h2 data-i18n="home.guidesTitle">사용 가이드</h2>
       <p data-i18n="home.guidesDesc">도구를 쓰기 전에 읽어 보면 좋은 설명 글입니다. 검색·공유에도 유리하도록 독립 페이지로 구성했습니다.</p>
@@ -2564,6 +2662,7 @@
         <a href="guides/weather.html">날씨 활용법<span>예보 읽는 법과 한계</span></a>
         <a href="guides/calendar.html">양력·음력 변환<span>윤달·갑자·띠 개념</span></a>
         <a href="guides/ip.html">내 아이피 찾기<span>IPv4/IPv6와 ISP 의미</span></a>
+        <a href="guides/ocr.html">이미지 텍스트 추출<span>정확도를 높이는 촬영·설정법</span></a>
         <a href="guides/lotto.html">로또 생성기<span>참고용 이용 안내</span></a>
         <a href="guides/games.html">브라우저 게임<span>규칙과 초보 팁</span></a>
         <a href="faq.html">FAQ<span>자주 묻는 질문</span></a>
@@ -3081,6 +3180,57 @@
     <button type="button" class="back-btn" id="backHomeFromIpBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
+  <main class="card" id="ocrView" hidden>
+    <div class="card-head">
+      <h1 data-i18n="ocr.title">이미지 텍스트 추출</h1>
+    </div>
+    <p class="subtitle" data-i18n="ocr.subtitle">이미지 속 글자를 읽어 텍스트로 바꿉니다. 이미지는 서버로 전송되지 않고 브라우저 안에서만 처리됩니다.</p>
+
+    <label class="upload-zone" id="ocrUploadZone" for="ocrImageInput">
+      <strong data-i18n="ocr.uploadStrong">이미지를 드롭하거나 클릭해서 업로드</strong>
+      <span data-i18n="ocr.uploadHint">JPG, PNG, WebP, BMP 이미지를 지원합니다. (PDF 미지원)</span>
+      <input type="file" id="ocrImageInput" accept="image/*" />
+    </label>
+
+    <div class="cutout-controls">
+      <label class="form-field" for="ocrLangSelect">
+        <span data-i18n="ocr.langLabel">인식 언어</span>
+        <select id="ocrLangSelect" class="video-url-input">
+          <option value="kor+eng" data-i18n="ocr.lang.korEng" selected>한국어 + 영어</option>
+          <option value="kor" data-i18n="ocr.lang.kor">한국어</option>
+          <option value="eng" data-i18n="ocr.lang.eng">영어</option>
+          <option value="jpn" data-i18n="ocr.lang.jpn">일본어</option>
+          <option value="chi_sim" data-i18n="ocr.lang.chi">중국어(간체)</option>
+        </select>
+      </label>
+      <button type="button" class="cutout-btn" id="ocrRunBtn" data-i18n="ocr.run" disabled>텍스트 추출하기</button>
+    </div>
+
+    <p class="ocr-note" data-i18n="ocr.firstRunNote">언어를 처음 사용할 때는 인식 데이터를 내려받아 시간이 걸립니다. 이후에는 브라우저에 저장되어 빨라집니다.</p>
+
+    <div class="ocr-progress" id="ocrProgress" hidden>
+      <div class="ocr-progress-track"><span class="ocr-progress-fill" id="ocrProgressFill"></span></div>
+    </div>
+
+    <p class="cutout-status" id="ocrStatus" aria-live="polite">이미지를 업로드하면 추출을 시작할 수 있습니다.</p>
+
+    <div class="ocr-preview-box" id="ocrPreviewBox" hidden>
+      <img id="ocrPreview" data-i18n-alt="ocr.previewAlt" alt="업로드한 이미지 미리보기" />
+    </div>
+
+    <label class="form-field ocr-result-field" for="ocrResult">
+      <span data-i18n="ocr.resultLabel">추출된 텍스트</span>
+      <textarea id="ocrResult" rows="10" spellcheck="false" data-i18n-placeholder="ocr.resultPlaceholder" placeholder="추출된 텍스트가 여기에 표시됩니다. 직접 수정할 수도 있습니다."></textarea>
+    </label>
+
+    <div class="ocr-actions">
+      <button type="button" class="download-btn" id="ocrCopyBtn" data-i18n="ocr.copy" disabled>텍스트 복사</button>
+      <button type="button" class="download-btn" id="ocrDownloadBtn" data-i18n="ocr.download" disabled>.txt 파일로 저장</button>
+    </div>
+
+    <button type="button" class="back-btn" id="backHomeFromOcrBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
   <footer class="site-footer">
     <div class="site-footer-inner">
       <nav aria-label="하단 메뉴">
@@ -3171,6 +3321,7 @@
     const weatherView = document.getElementById("weatherView");
     const calendarView = document.getElementById("calendarView");
     const ipView = document.getElementById("ipView");
+    const ocrView = document.getElementById("ocrView");
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
     const openVideoBtn = document.getElementById("openVideoBtn");
@@ -3336,6 +3487,7 @@
       if (weatherView) weatherView.hidden = view !== weatherView;
       if (calendarView) calendarView.hidden = view !== calendarView;
       if (ipView) ipView.hidden = view !== ipView;
+      if (ocrView) ocrView.hidden = view !== ocrView;
       if (view !== tetrisView) {
         pauseTetris(true);
         stopTetrisBgm();
@@ -3343,6 +3495,7 @@
       if (view !== memoryView) {
         stopMemoryTimer();
       }
+      window.scrollTo(0, 0);
     }
 
     const partnershipForm = document.getElementById("partnershipForm");
@@ -5502,6 +5655,7 @@
   <script src="weather.js"></script>
   <script src="calendar.js"></script>
   <script src="ip.js"></script>
+  <script src="ocr.js"></script>
   <script>
     var yearEl = document.getElementById("siteYear");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());

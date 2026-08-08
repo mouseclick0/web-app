@@ -103,9 +103,10 @@
       flex: 0 1 auto;
     }
 
-    .home-intro,
-    .home-guides {
+    .card.home-intro,
+    .card.home-guides {
       grid-column: 1 / -1;
+      width: 100%;
       text-align: left;
     }
 
@@ -118,6 +119,7 @@
 
     .home-intro p,
     .home-guides p {
+      max-width: 72ch;
       margin: 0 0 0.85rem;
       color: var(--muted);
       line-height: 1.65;
@@ -148,11 +150,13 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.9rem;
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
 
     .home-guide-links a:hover {
       border-color: var(--accent);
       color: var(--accent);
+      transform: translateY(-3px);
     }
 
     .home-guide-links span {
@@ -180,8 +184,8 @@
     .home-grid {
       width: min(100%, 1080px);
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 16.5rem), 1fr));
+      gap: 1rem;
     }
 
     .home-title {
@@ -194,7 +198,55 @@
     }
 
     .home-card {
-      text-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      padding: 1.35rem 1.3rem 1.5rem;
+      text-align: left;
+      transition: background-color 0.25s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .home-card:hover,
+    .home-card:focus-within {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 34px var(--accent-glow), 0 0 0 1px var(--accent);
+    }
+
+    .home-card-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+
+    .home-card-btn {
+      padding: 0;
+      border: none;
+      background: none;
+      color: var(--text);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    /* Stretches the button's hit area over the whole card without nesting interactive elements. */
+    .home-card-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+    }
+
+    .home-card-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .home-card:hover .home-card-btn {
+      color: var(--accent);
     }
 
     .local-only-card {
@@ -203,6 +255,10 @@
 
     html.owner-tools .local-only-card {
       display: block;
+    }
+
+    html.owner-tools .home-card.local-only-card {
+      display: flex;
     }
 
     .card-head {
@@ -219,20 +275,45 @@
       min-width: 0;
     }
 
+    .home-card .card-head {
+      margin-bottom: 0;
+    }
+
+    /* The illustrations use a 16:9 viewBox, so the tile matches that ratio to avoid letterboxing. */
     .feature-hero {
       display: block;
-      width: min(100%, 17rem);
-      height: auto;
-      margin: 0 auto 1.1rem;
-      filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.22));
+      width: 5rem;
+      height: 3.1rem;
+      padding: 0.3rem;
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      transition: transform 0.2s ease;
+    }
+
+    .home-card:hover .feature-hero {
+      transform: scale(1.07);
     }
 
     .home-subtitle {
-      max-width: 24rem;
-      margin: 0 auto 1.75rem;
-      font-size: 0.95rem;
+      margin: 0;
+      font-size: 0.86rem;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.55;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .home-card,
+      .feature-hero,
+      .home-guide-links a {
+        transition: none;
+      }
+
+      .home-card:hover,
+      .home-card:focus-within,
+      .home-card:hover .feature-hero,
+      .home-guide-links a:hover {
+        transform: none;
+      }
     }
 
     .cutout-hero {
@@ -1973,10 +2054,6 @@
         padding-top: 4.5rem;
       }
 
-      .home-grid {
-        grid-template-columns: 1fr;
-      }
-
       .preview-grid {
         grid-template-columns: 1fr;
       }
@@ -2845,8 +2922,8 @@
           <rect x="132" y="146" width="116" height="8" rx="4" fill="#ffffff" opacity="0.28" />
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openVideoBtn" data-i18n="home.video.cta">유튜브 동영상 다운로드</button></h2>
       <p class="home-subtitle" data-i18n="home.video.subtitle">로컬 yt-dlp 서버로 유튜브 영상을 미리보고 다운로드합니다.</p>
-      <button type="button" class="entry-btn" id="openVideoBtn" data-i18n="home.video.cta">유튜브 동영상 다운로드</button>
     </section>
 
     <section class="card home-card local-only-card">
@@ -2861,8 +2938,8 @@
           <path d="M206 151h22v-22" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openCutoutBtn" data-i18n="home.cutout.cta">이미지 누끼 제거</button></h2>
       <p class="home-subtitle" data-i18n="home.cutout.subtitle">로컬 AI 서버로 사람·제품 등 배경을 깨끗하게 제거합니다.</p>
-      <button type="button" class="entry-btn" id="openCutoutBtn" data-i18n="home.cutout.cta">이미지 누끼 제거</button>
     </section>
 
     <section class="card home-card">
@@ -2901,8 +2978,8 @@
           <text x="247" y="132" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#ffffff">45</text>
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openLottoBtn" data-i18n="home.lotto.cta">로또 번호 생성기</button></h2>
       <p class="home-subtitle" data-i18n="home.lotto.subtitle">6/45 로또 번호를 한 번에 5게임까지 추천합니다.</p>
-      <button type="button" class="entry-btn" id="openLottoBtn" data-i18n="home.lotto.cta">로또 번호 생성기</button>
     </section>
 
     <section class="card home-card">
@@ -2943,8 +3020,8 @@
           <text x="116" y="110" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#81c784">2</text>
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openMinesweeperBtn" data-i18n="home.minesweeper.cta">지뢰찾기 게임</button></h2>
       <p class="home-subtitle" data-i18n="home.minesweeper.subtitle">지뢰를 피해 모든 빈칸을 여는 클래식 퍼즐 게임입니다.</p>
-      <button type="button" class="entry-btn" id="openMinesweeperBtn" data-i18n="home.minesweeper.cta">지뢰찾기 게임</button>
     </section>
 
     <section class="card home-card">
@@ -2965,8 +3042,8 @@
           <rect x="242" y="124" width="28" height="28" rx="4" fill="#ffd54f" />
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openTetrisBtn" data-i18n="home.tetris.cta">테트리스 게임</button></h2>
       <p class="home-subtitle" data-i18n="home.tetris.subtitle">블록을 쌓아 줄을 지우는 테트리스. 레벨 1부터 99까지.</p>
-      <button type="button" class="entry-btn" id="openTetrisBtn" data-i18n="home.tetris.cta">테트리스 게임</button>
     </section>
 
     <section class="card home-card">
@@ -2990,8 +3067,8 @@
           <circle cx="158" cy="48" r="14" fill="#f5f5f5" stroke="#999" />
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openGomokuBtn" data-i18n="home.gomoku.cta">오목 게임</button></h2>
       <p class="home-subtitle" data-i18n="home.gomoku.subtitle">흑·백을 고르고 AI와 19×19 오목을 둡니다. 레벨 1~99.</p>
-      <button type="button" class="entry-btn" id="openGomokuBtn" data-i18n="home.gomoku.cta">오목 게임</button>
     </section>
 
     <section class="card home-card">
@@ -3008,8 +3085,8 @@
           <text x="234" y="152" text-anchor="middle" font-size="28">⭐</text>
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openMemoryBtn" data-i18n="home.memory.cta">기억력 테스트</button></h2>
       <p class="home-subtitle" data-i18n="home.memory.subtitle">16장 카드 속 8쌍 이모지를 빠르게 맞춰 보세요.</p>
-      <button type="button" class="entry-btn" id="openMemoryBtn" data-i18n="home.memory.cta">기억력 테스트</button>
     </section>
 
     <section class="card home-card">
@@ -3020,8 +3097,8 @@
           <path d="M70 132c10 0 18-7 18-16s-8-16-18-16c-2 0-4 0-6 1-3-12-14-20-27-20-16 0-28 12-28 28 0 1 0 2 0 3-9 2-16 10-16 19 0 11 9 20 20 20h57z" fill="#90caf9" opacity="0.9" />
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openWeatherBtn" data-i18n="home.weather.cta">날씨 정보</button></h2>
       <p class="home-subtitle" data-i18n="home.weather.subtitle">내 위치 기준 현재·24시간 날씨를 확인합니다.</p>
-      <button type="button" class="entry-btn" id="openWeatherBtn" data-i18n="home.weather.cta">날씨 정보</button>
     </section>
 
     <section class="card home-card">
@@ -3043,8 +3120,8 @@
           <text x="268" y="100" text-anchor="middle" font-size="28">🌙</text>
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openCalendarBtn" data-i18n="home.calendar.cta">양력/음력 변환기</button></h2>
       <p class="home-subtitle" data-i18n="home.calendar.subtitle">양력·음력 날짜를 서로 바꾸고 60갑자·띠를 확인합니다.</p>
-      <button type="button" class="entry-btn" id="openCalendarBtn" data-i18n="home.calendar.cta">양력/음력 변환기</button>
     </section>
 
     <section class="card home-card">
@@ -3057,8 +3134,8 @@
           <text x="160" y="158" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" opacity="0.9">IP</text>
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openIpBtn" data-i18n="home.ip.cta">내 아이피 찾기</button></h2>
       <p class="home-subtitle" data-i18n="home.ip.subtitle">현재 공인 IP와 ISP, 국가·도시 정보를 확인합니다.</p>
-      <button type="button" class="entry-btn" id="openIpBtn" data-i18n="home.ip.cta">내 아이피 찾기</button>
     </section>
 
     <section class="card home-card">
@@ -3078,8 +3155,8 @@
           <rect x="236" y="122" width="20" height="8" rx="4" fill="#2563c7" opacity="0.4" />
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openOcrBtn" data-i18n="home.ocr.cta">이미지 텍스트 추출</button></h2>
       <p class="home-subtitle" data-i18n="home.ocr.subtitle">이미지 속 글자를 브라우저에서 바로 텍스트로 추출합니다.</p>
-      <button type="button" class="entry-btn" id="openOcrBtn" data-i18n="home.ocr.cta">이미지 텍스트 추출</button>
     </section>
 
     <section class="card home-card">
@@ -3101,8 +3178,8 @@
           <text x="238" y="132" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">JPG</text>
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openConvertBtn" data-i18n="home.convert.cta">이미지 형식 변환</button></h2>
       <p class="home-subtitle" data-i18n="home.convert.subtitle">PNG·JPG·WebP·BMP 이미지를 원하는 형식으로 바꿉니다.</p>
-      <button type="button" class="entry-btn" id="openConvertBtn" data-i18n="home.convert.cta">이미지 형식 변환</button>
     </section>
 
     <section class="card home-card">
@@ -3120,8 +3197,8 @@
           <path d="M210 78l12 26 26-12" fill="none" stroke="#90caf9" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openEditorBtn" data-i18n="home.editor.cta">이미지 자르기·회전</button></h2>
       <p class="home-subtitle" data-i18n="home.editor.subtitle">이미지를 원하는 영역만 자르고 회전하거나 크기를 바꿉니다.</p>
-      <button type="button" class="entry-btn" id="openEditorBtn" data-i18n="home.editor.cta">이미지 자르기·회전</button>
     </section>
 
     <section class="card home-card">
@@ -3140,8 +3217,8 @@
           <path d="M228 74v26h20" fill="none" stroke="#2563c7" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openSpeechBtn" data-i18n="home.speech.cta">발표 시간 계산</button></h2>
       <p class="home-subtitle" data-i18n="home.speech.subtitle">발표 대본을 넣으면 예상 발표 시간과 분량을 알려 줍니다.</p>
-      <button type="button" class="entry-btn" id="openSpeechBtn" data-i18n="home.speech.cta">발표 시간 계산</button>
     </section>
 
     <section class="card home-guides">

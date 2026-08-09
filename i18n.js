@@ -1,6 +1,9 @@
 /* global window */
 (function (global) {
   var LANG_KEY = "web-pages-lang";
+  // Set once the visitor picks a language themselves, so the generated info pages
+  // stop offering to switch them to their browser language.
+  var PICKED_KEY = "web-pages-lang-picked";
   var SUPPORTED = ["ko", "en", "ja", "zh-Hans", "zh-Hant", "es", "pt-BR"];
   // Codes stored by earlier versions, mapped to their current equivalent.
   var LEGACY = { zh: "zh-Hans" };
@@ -3678,6 +3681,7 @@
     if (persist !== false) {
       try {
         localStorage.setItem(LANG_KEY, lang);
+        localStorage.setItem(PICKED_KEY, "1");
       } catch (e) {}
     }
     applyI18n();

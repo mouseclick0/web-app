@@ -212,7 +212,52 @@ a:hover { text-decoration: underline; }
 
 .page-lang-select:hover { border-color: var(--accent); }
 
+/* Suggests the visitor's own language without redirecting them there. */
+.lang-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 1.25rem;
+  background: var(--surface);
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+
+.lang-hint p {
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+.lang-hint-go {
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: underline;
+}
+
+.lang-hint-close {
+  flex: 0 0 auto;
+  /* Keeps the close button away from the link once the bar wraps on narrow screens. */
+  margin-left: auto;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0.15rem 0.35rem;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.lang-hint-close:hover {
+  color: var(--text);
+  background: var(--border);
+}
+
 @media (max-width: 640px) {
   .site-nav { width: 100%; }
   .page-lang-select { width: 100%; }
+  .lang-hint { padding: 0.6rem 1rem; }
 }

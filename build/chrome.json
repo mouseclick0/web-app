@@ -9,6 +9,44 @@
     "es": "Español",
     "pt-BR": "Português (BR)"
   },
+  "_hintComment": "Shown when the visitor's browser language differs from the page language. Written in the language being offered, since that is the language the reader wants.",
+  "hint": {
+    "ko": {
+      "suggest": "이 페이지는 한국어로도 볼 수 있습니다.",
+      "view": "한국어로 보기",
+      "dismiss": "닫기"
+    },
+    "en": {
+      "suggest": "This page is also available in English.",
+      "view": "View in English",
+      "dismiss": "Dismiss"
+    },
+    "ja": {
+      "suggest": "このページは日本語でもご覧いただけます。",
+      "view": "日本語で見る",
+      "dismiss": "閉じる"
+    },
+    "zh-Hans": {
+      "suggest": "本页面也提供简体中文版本。",
+      "view": "查看简体中文",
+      "dismiss": "关闭"
+    },
+    "zh-Hant": {
+      "suggest": "本頁面也提供繁體中文版本。",
+      "view": "檢視繁體中文",
+      "dismiss": "關閉"
+    },
+    "es": {
+      "suggest": "Esta página también está disponible en español.",
+      "view": "Ver en español",
+      "dismiss": "Cerrar"
+    },
+    "pt-BR": {
+      "suggest": "Esta página também está disponível em português.",
+      "view": "Ver em português",
+      "dismiss": "Fechar"
+    }
+  },
   "strings": {
     "ko": {
       "navAria": "주요 메뉴",

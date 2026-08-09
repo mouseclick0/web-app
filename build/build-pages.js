@@ -206,6 +206,84 @@ function langSwitcher(lang, file) {
   ].join(EOL);
 }
 
+/*
+ * Offers the visitor their browser language instead of redirecting them.
+ * Automatic redirects would stop crawlers from reaching every translation,
+ * so the choice stays with the reader and the banner speaks the target language.
+ */
+function langHintScript(lang) {
+  return [
+    "    (function () {",
+    "      var PAGE_LANG = " + JSON.stringify(lang) + ";",
+    "      var HINTS = " + JSON.stringify(chrome.hint) + ";",
+    "      try {",
+    '        if (localStorage.getItem("web-pages-lang-picked")) return;',
+    '        if (localStorage.getItem("web-pages-lang-hint") === "off") return;',
+    "      } catch (e) {}",
+    "",
+    "      var HANT = /(^|-)(hant|tw|hk|mo)(-|$)/;",
+    "      function normalize(code) {",
+    '        var c = String(code || "").toLowerCase().replace(/_/g, "-");',
+    '        var base = c.split("-")[0];',
+    '        if (base === "ko") return "ko";',
+    '        if (base === "en") return "en";',
+    '        if (base === "ja") return "ja";',
+    '        if (base === "es") return "es";',
+    '        if (base === "pt") return "pt-BR";',
+    '        if (base === "zh") return HANT.test(c) ? "zh-Hant" : "zh-Hans";',
+    '        if (base === "yue") return /hans|-cn(-|$)/.test(c) ? "zh-Hans" : "zh-Hant";',
+    "        return null;",
+    "      }",
+    "",
+    "      var list = navigator.languages && navigator.languages.length",
+    "        ? navigator.languages",
+    "        : navigator.language ? [navigator.language] : [];",
+    "      var want = null;",
+    "      for (var i = 0; i < list.length && !want; i++) want = normalize(list[i]);",
+    "      // Unsupported languages get the English offer, matching the single-page app.",
+    '      if (!want) want = "en";',
+    "      if (want === PAGE_LANG || !HINTS[want]) return;",
+    "",
+    '      var sel = document.getElementById("pageLangSelect");',
+    '      var opt = sel && sel.querySelector(\'option[value="\' + want + \'"]\');',
+    "      if (!opt) return;",
+    "",
+    "      var text = HINTS[want];",
+    '      var bar = document.createElement("div");',
+    '      bar.className = "lang-hint";',
+    '      bar.setAttribute("lang", want);',
+    '      var msg = document.createElement("p");',
+    "      msg.textContent = text.suggest;",
+    '      var go = document.createElement("a");',
+    '      go.className = "lang-hint-go";',
+    '      go.href = opt.getAttribute("data-href");',
+    "      go.textContent = text.view;",
+    '      go.addEventListener("click", function () {',
+    "        try {",
+    '          localStorage.setItem("web-pages-lang", want);',
+    '          localStorage.setItem("web-pages-lang-picked", "1");',
+    "        } catch (e) {}",
+    "      });",
+    '      var close = document.createElement("button");',
+    '      close.type = "button";',
+    '      close.className = "lang-hint-close";',
+    '      close.setAttribute("aria-label", text.dismiss);',
+    '      close.textContent = "\\u00d7";',
+    '      close.addEventListener("click", function () {',
+    "        try {",
+    '          localStorage.setItem("web-pages-lang-hint", "off");',
+    "        } catch (e) {}",
+    "        bar.remove();",
+    "      });",
+    "",
+    "      bar.appendChild(msg);",
+    "      bar.appendChild(go);",
+    "      bar.appendChild(close);",
+    "      document.body.insertBefore(bar, document.body.firstChild);",
+    "    })();"
+  ].join(EOL);
+}
+
 function head(lang, file, page, content) {
   const prefix = lang === DEFAULT_LANG ? "" : "../";
   const alternates = LANGS.map(function (l) {
@@ -312,14 +390,16 @@ function buildPage(page, lang) {
     "      } catch (e) {}",
     '      var sel = document.getElementById("pageLangSelect");',
     "      if (!sel) return;",
-    '      sel.addEventListener("change", function () {',
+      '      sel.addEventListener("change", function () {',
     "        var opt = sel.options[sel.selectedIndex];",
     "        try {",
     '          localStorage.setItem("web-pages-lang", sel.value);',
+    '          localStorage.setItem("web-pages-lang-picked", "1");',
     "        } catch (e) {}",
     '        window.location.href = opt.getAttribute("data-href");',
     "      });",
-    "    })();"
+    "    })();",
+    langHintScript(lang)
   );
 
   if (page.formScript) {

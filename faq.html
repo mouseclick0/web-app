@@ -299,9 +299,78 @@
         var opt = sel.options[sel.selectedIndex];
         try {
           localStorage.setItem("web-pages-lang", sel.value);
+          localStorage.setItem("web-pages-lang-picked", "1");
         } catch (e) {}
         window.location.href = opt.getAttribute("data-href");
       });
+    })();
+    (function () {
+      var PAGE_LANG = "ko";
+      var HINTS = {"ko":{"suggest":"이 페이지는 한국어로도 볼 수 있습니다.","view":"한국어로 보기","dismiss":"닫기"},"en":{"suggest":"This page is also available in English.","view":"View in English","dismiss":"Dismiss"},"ja":{"suggest":"このページは日本語でもご覧いただけます。","view":"日本語で見る","dismiss":"閉じる"},"zh-Hans":{"suggest":"本页面也提供简体中文版本。","view":"查看简体中文","dismiss":"关闭"},"zh-Hant":{"suggest":"本頁面也提供繁體中文版本。","view":"檢視繁體中文","dismiss":"關閉"},"es":{"suggest":"Esta página también está disponible en español.","view":"Ver en español","dismiss":"Cerrar"},"pt-BR":{"suggest":"Esta página também está disponível em português.","view":"Ver em português","dismiss":"Fechar"}};
+      try {
+        if (localStorage.getItem("web-pages-lang-picked")) return;
+        if (localStorage.getItem("web-pages-lang-hint") === "off") return;
+      } catch (e) {}
+
+      var HANT = /(^|-)(hant|tw|hk|mo)(-|$)/;
+      function normalize(code) {
+        var c = String(code || "").toLowerCase().replace(/_/g, "-");
+        var base = c.split("-")[0];
+        if (base === "ko") return "ko";
+        if (base === "en") return "en";
+        if (base === "ja") return "ja";
+        if (base === "es") return "es";
+        if (base === "pt") return "pt-BR";
+        if (base === "zh") return HANT.test(c) ? "zh-Hant" : "zh-Hans";
+        if (base === "yue") return /hans|-cn(-|$)/.test(c) ? "zh-Hans" : "zh-Hant";
+        return null;
+      }
+
+      var list = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : navigator.language ? [navigator.language] : [];
+      var want = null;
+      for (var i = 0; i < list.length && !want; i++) want = normalize(list[i]);
+      // Unsupported languages get the English offer, matching the single-page app.
+      if (!want) want = "en";
+      if (want === PAGE_LANG || !HINTS[want]) return;
+
+      var sel = document.getElementById("pageLangSelect");
+      var opt = sel && sel.querySelector('option[value="' + want + '"]');
+      if (!opt) return;
+
+      var text = HINTS[want];
+      var bar = document.createElement("div");
+      bar.className = "lang-hint";
+      bar.setAttribute("lang", want);
+      var msg = document.createElement("p");
+      msg.textContent = text.suggest;
+      var go = document.createElement("a");
+      go.className = "lang-hint-go";
+      go.href = opt.getAttribute("data-href");
+      go.textContent = text.view;
+      go.addEventListener("click", function () {
+        try {
+          localStorage.setItem("web-pages-lang", want);
+          localStorage.setItem("web-pages-lang-picked", "1");
+        } catch (e) {}
+      });
+      var close = document.createElement("button");
+      close.type = "button";
+      close.className = "lang-hint-close";
+      close.setAttribute("aria-label", text.dismiss);
+      close.textContent = "\u00d7";
+      close.addEventListener("click", function () {
+        try {
+          localStorage.setItem("web-pages-lang-hint", "off");
+        } catch (e) {}
+        bar.remove();
+      });
+
+      bar.appendChild(msg);
+      bar.appendChild(go);
+      bar.appendChild(close);
+      document.body.insertBefore(bar, document.body.firstChild);
     })();
   </script>
 </body>

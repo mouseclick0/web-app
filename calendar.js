@@ -78,6 +78,17 @@
         String(day).padStart(2, "0")
       );
     }
+    if (lang === "es" || lang === "pt-BR") {
+      return (
+        leapBit +
+        String(day).padStart(2, "0") +
+        "/" +
+        String(month).padStart(2, "0") +
+        "/" +
+        year
+      );
+    }
+    // Remaining languages append CJK date unit characters.
     return (
       leapBit +
       year +

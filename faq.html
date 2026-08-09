@@ -6,6 +6,14 @@
   <title>자주 묻는 질문(FAQ) | WebToolBay</title>
   <meta name="description" content="WebToolBay FAQ. 날씨, 음력 변환, IP 찾기, 로또 생성기, 브라우저 게임 이용 관련 질문과 답변." />
   <link rel="canonical" href="https://mouseclick0.github.io/web-app/faq.html" />
+  <link rel="alternate" hreflang="ko" href="https://mouseclick0.github.io/web-app/faq.html" />
+  <link rel="alternate" hreflang="en" href="https://mouseclick0.github.io/web-app/en/faq.html" />
+  <link rel="alternate" hreflang="ja" href="https://mouseclick0.github.io/web-app/ja/faq.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://mouseclick0.github.io/web-app/zh-Hans/faq.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://mouseclick0.github.io/web-app/zh-Hant/faq.html" />
+  <link rel="alternate" hreflang="es" href="https://mouseclick0.github.io/web-app/es/faq.html" />
+  <link rel="alternate" hreflang="pt-BR" href="https://mouseclick0.github.io/web-app/pt-BR/faq.html" />
+  <link rel="alternate" hreflang="x-default" href="https://mouseclick0.github.io/web-app/faq.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -22,8 +30,18 @@
         <a href="about.html">소개</a>
         <a href="contact.html">문의</a>
       </nav>
+      <select class="page-lang-select" id="pageLangSelect" aria-label="언어 선택">
+        <option value="ko" data-href="faq.html" selected>한국어</option>
+        <option value="en" data-href="en/faq.html">English</option>
+        <option value="ja" data-href="ja/faq.html">日本語</option>
+        <option value="zh-Hans" data-href="zh-Hans/faq.html">简体中文</option>
+        <option value="zh-Hant" data-href="zh-Hant/faq.html">繁體中文</option>
+        <option value="es" data-href="es/faq.html">Español</option>
+        <option value="pt-BR" data-href="pt-BR/faq.html">Português (BR)</option>
+      </select>
     </div>
   </header>
+
   <main class="site-main">
     <p class="breadcrumb"><a href="index.html">홈</a> · FAQ</p>
     <article class="article-card">
@@ -93,6 +111,168 @@
       </div>
     </article>
   </main>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "사이트가 무료인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "네. 현재 공개된 도구와 가이드는 무료로 이용할 수 있습니다. 향후 광고가 표시될 수 있으며, 광고가 도입되면 개인정보처리방침에 안내를 반영합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "회원가입이 필요한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "필요하지 않습니다. 대부분의 기능은 브라우저에서 바로 동작합니다. 일부 설정(언어·테마·선택한 도시 등)만 기기에 저장됩니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "날씨가 내 위치가 아닌데 왜 그런가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "위치 권한을 거부했거나 브라우저가 위치를 제공하지 못하면 기본 도시(서울) 또는 이전에 저장한 도시가 표시될 수 있습니다. ‘내 위치’ 버튼으로 다시 요청하거나 도시 검색으로 변경할 수 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "음력과 양력이 달력 앱과 조금 다릅니다.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "한국천문연구원 계열 데이터를 참고하는 변환 라이브러리를 사용하지만, 윤달 처리나 표기 방식에 따라 다른 앱과 하루 차이가 날 수 있습니다. 법적·제례 일정은 공식 자료를 함께 확인해 주세요."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "IPv6가 ‘확인 불가’로 나옵니다.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "네트워크가 IPv6를 지원하지 않거나, 조회 경로에서 IPv4만 반환하는 경우가 많습니다. IPv4와 ISP·지역 정보는 정상적으로 표시될 수 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "이미지에서 추출한 텍스트가 정확하지 않습니다.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "인쇄된 활자를 기준으로 인식하기 때문에 손글씨, 장식이 강한 글꼴, 흐릿하거나 기울어진 사진은 오인식이 많습니다. 필요한 부분만 크게 잘라내고 정면에서 찍은 이미지를 사용하면 결과가 좋아집니다. 자세한 내용은 이미지 텍스트 추출 가이드를 참고해 주세요."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "업로드한 이미지가 서버에 저장되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "저장되지 않습니다. 텍스트 추출은 브라우저 안에서 처리되며, 이미지는 기기 밖으로 전송되지 않습니다. 다만 인식 언어 데이터를 처음 한 번 외부 CDN에서 내려받습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "이미지 텍스트 추출이 처음에 오래 걸립니다.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "선택한 언어의 인식 데이터를 처음 사용할 때 내려받기 때문입니다. 한 번 받은 뒤에는 브라우저에 저장되어 다음부터 빠르게 시작됩니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "아이폰에서 WebP로 변환이 안 됩니다.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Safari 계열 브라우저는 WebP 저장 기능을 지원하지 않습니다. 이 경우 도구가 자동으로 감지해 WebP 항목을 비활성화하니, Chrome 등 다른 브라우저를 사용하거나 PNG·JPG로 변환해 주세요. 자세한 내용은 이미지 형식 변환 가이드에 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "JPG를 PNG로 바꾸면 화질이 좋아지나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "좋아지지 않습니다. JPG로 저장되면서 이미 사라진 정보는 되살릴 수 없고, 형식만 바뀌면서 파일 크기는 오히려 커집니다. 투명 배경이 필요하거나 무손실 보관이 목적일 때만 PNG를 선택하세요."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "변환하면 사진의 촬영 정보가 남나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "남지 않습니다. 형식을 변환하는 과정에서 촬영 위치·기기 정보 같은 EXIF 메타데이터가 제거됩니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "이미지를 자르거나 회전하면 화질이 나빠지나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "자르기와 90도 단위 회전, 좌우·상하 반전은 화소를 옮기거나 덜어낼 뿐이라 화질이 나빠지지 않습니다. 크기를 줄일 때도 손실은 거의 없지만, 원본보다 크게 키우면 없던 정보를 만들어 낼 수 없어 흐릿해집니다. 자세한 내용은 이미지 자르기·회전 가이드를 참고해 주세요."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "자를 영역이 잘 잡히지 않습니다.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "이미지 위를 드래그하면 영역이 생기고, 모서리의 점을 끌면 크기가, 안쪽을 끌면 위치가 바뀝니다. 프로필 사진이나 썸네일처럼 규격이 정해져 있다면 비율을 먼저 고정한 뒤 드래그하는 편이 편합니다. 비율을 고정하면 비율이 깨지지 않도록 네 모서리 점만 표시됩니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "발표 시간 계산은 얼마나 정확한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "기준은 일반적인 발표 속도(한국어 분당 300자, 영어 분당 130단어)이며, 실제 속도는 사람마다 다릅니다. 원고 앞부분을 소리 내어 읽고 걸린 시간과 비교해 속도를 한 번 맞춰 두면 이후에는 꽤 정확해집니다. 자세한 내용은 발표 시간 계산 가이드에 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "영어 원고도 계산되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "됩니다. 한글·한자·일본어 가나는 글자 단위로, 영어는 단어 단위로 세어 각각의 속도로 계산한 뒤 합칩니다. 한국어 원고에 영어 용어가 섞여 있어도 시간이 부풀지 않습니다. 다만 숫자는 글자 수로만 세기 때문에, 긴 숫자가 많은 원고는 실제 읽는 시간이 계산값보다 깁니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "편집한 내용이 사라졌어요.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "편집 결과는 저장하기 전까지 브라우저 메모리에만 있어서 새로고침하면 사라집니다. 원하는 결과가 나오면 바로 저장해 주세요. 편집 중에는 ‘한 단계 되돌리기’로 직전 작업만 취소하거나 ‘원본으로 되돌리기’로 처음 상태에서 다시 시작할 수 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "로또 번호는 당첨을 보장하나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "보장하지 않습니다. 무작위 참고용 번호이며, 실제 구매·당첨과 무관합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "모바일에서도 잘 되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "반응형으로 제작되어 스마트폰·태블릿에서도 이용할 수 있습니다. 게임은 화면 크기에 따라 조작감이 다를 수 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "오류를 발견했어요.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "문의 페이지에 사용 중인 기기·브라우저와 증상을 적어 주시면 확인하겠습니다."
+        }
+      }
+    ]
+  }
+  </script>
+
   <footer class="site-footer">
     <div class="site-footer-inner">
       <nav aria-label="하단 메뉴">
@@ -106,6 +286,23 @@
       <p>© <span id="y"></span> WebToolBay</p>
     </div>
   </footer>
-  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    (function () {
+      // This page's language comes from its URL, so carry it over to the single-page app.
+      try {
+        localStorage.setItem("web-pages-lang", "ko");
+      } catch (e) {}
+      var sel = document.getElementById("pageLangSelect");
+      if (!sel) return;
+      sel.addEventListener("change", function () {
+        var opt = sel.options[sel.selectedIndex];
+        try {
+          localStorage.setItem("web-pages-lang", sel.value);
+        } catch (e) {}
+        window.location.href = opt.getAttribute("data-href");
+      });
+    })();
+  </script>
 </body>
 </html>

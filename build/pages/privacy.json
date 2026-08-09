@@ -1,0 +1,348 @@
+{
+  "file": "privacy.html",
+  "langs": {
+    "ko": {
+      "title": "개인정보처리방침",
+      "description": "WebToolBay 개인정보처리방침. 수집 항목, 이용 목적, 보관, 제3자 서비스, 쿠키 및 광고 관련 안내.",
+      "breadcrumb": "개인정보처리방침",
+      "h1": "개인정보처리방침",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBay(이하 “사이트”)는 이용자의 개인정보를 중요하게 생각하며, 관련 법령에 따라 아래와 같이 처리합니다. 본 방침은 사이트 이용에 적용됩니다." },
+        { "t": "p", "x": "최종 업데이트: 2026년 8월 2일" },
+        { "t": "h2", "x": "1. 수집하는 정보" },
+        { "t": "p", "x": "사이트는 기본적으로 회원가입을 요구하지 않습니다. 다만 서비스 제공을 위해 아래 정보가 처리될 수 있습니다." },
+        { "t": "ul", "items": [
+          "<strong>문의 양식</strong>: 이름, 이메일, 메시지 내용(이용자가 직접 입력)",
+          "<strong>날씨 기능</strong>: 브라우저 위치 권한을 허용한 경우 대략적인 위치 좌표(기기에서 API 요청에 사용)",
+          "<strong>IP 찾기 기능</strong>: 공인 IP 및 관련 네트워크 정보 조회를 위해 외부 IP 조회 서비스에 요청",
+          "<strong>자동 수집</strong>: 브라우저 언어, 테마 설정 등 이용 편의를 위한 로컬 저장값(localStorage)",
+          "<strong>서버 로그(호스팅)</strong>: GitHub Pages 등 호스팅 환경에서 일반적인 접속 로그가 남을 수 있음"
+        ] },
+        { "t": "h2", "x": "2. 이용 목적" },
+        { "t": "ul", "items": [
+          "날씨·달력·IP 등 요청하신 기능 제공",
+          "문의 접수 및 회신",
+          "서비스 오류 확인과 품질 개선",
+          "법령상 의무 이행"
+        ] },
+        { "t": "h2", "x": "3. 보관 및 파기" },
+        { "t": "p", "x": "문의 내용은 회신 목적에 필요한 기간 동안 보관하며, 목적 달성 후 지체 없이 파기합니다. 브라우저 localStorage에 저장된 설정값은 이용자가 직접 삭제하거나 브라우저 데이터를 지우면 제거됩니다. 위치 정보는 서버에 장기 저장하지 않고, 조회 요청 처리에 사용됩니다." },
+        { "t": "h2", "x": "4. 제3자 서비스" },
+        { "t": "p", "x": "기능 제공을 위해 아래와 같은 외부 서비스를 사용할 수 있습니다." },
+        { "t": "ul", "items": [
+          "Open-Meteo(날씨 데이터)",
+          "ipify / ipwho.is 등 IP·지역 정보 API",
+          "Formspree(문의 양식 전송)",
+          "Google Fonts 등 폰트·CDN",
+          "GitHub Pages(호스팅)"
+        ] },
+        { "t": "p", "x": "각 서비스는 해당 업체의 정책에 따라 데이터를 처리할 수 있습니다." },
+        { "t": "h2", "x": "5. 쿠키 및 맞춤 광고(애드센스)" },
+        { "t": "p", "x": "향후 Google AdSense 등 광고 서비스를 사용할 경우, Google을 포함한 제3자 공급업체가 쿠키를 사용해 사용자 방문 정보를 기반으로 광고를 게재할 수 있습니다. 이용자는 <a href=\"https://www.google.com/settings/ads\" target=\"_blank\" rel=\"noopener noreferrer\">Google 광고 설정</a>에서 맞춤 광고를 거부할 수 있으며, <a href=\"https://www.aboutads.info\" target=\"_blank\" rel=\"noopener noreferrer\">www.aboutads.info</a>에서 제3자 공급업체의 맞춤 광고 사용을 거부할 수 있습니다." },
+        { "t": "p", "x": "쿠키를 사용하지 않도록 설정하면 맞춤 광고가 게재되지 않을 수 있습니다." },
+        { "t": "h2", "x": "6. 이용자의 권리" },
+        { "t": "p", "x": "이용자는 문의 페이지를 통해 본인 관련 문의 내용의 열람·수정·삭제 요청을 할 수 있습니다. 브라우저에 저장된 설정은 이용자 기기에서 직접 관리할 수 있습니다." },
+        { "t": "h2", "x": "7. 아동의 개인정보" },
+        { "t": "p", "x": "사이트는 아동을 대상으로 한 서비스를 운영하지 않으며, 만 14세 미만 아동의 개인정보를 고의로 수집하지 않습니다." },
+        { "t": "h2", "x": "8. 방침 변경" },
+        { "t": "p", "x": "본 방침이 변경되면 페이지 상단의 업데이트 날짜를 수정하고 사이트에 게시합니다." },
+        { "t": "h2", "x": "9. 문의" },
+        { "t": "p", "x": "개인정보 관련 문의는 <a href=\"contact.html\">문의 페이지</a>로 남겨 주세요." }
+      ]
+    },
+    "en": {
+      "title": "Privacy Policy",
+      "description": "WebToolBay privacy policy: what is collected, why, how long it is kept, third-party services, cookies, and advertising.",
+      "breadcrumb": "Privacy Policy",
+      "h1": "Privacy Policy",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBay (the “site”) takes your privacy seriously and handles personal data as described below, in line with applicable law. This policy applies to your use of the site." },
+        { "t": "p", "x": "Last updated: 2 August 2026" },
+        { "t": "h2", "x": "1. Information we handle" },
+        { "t": "p", "x": "The site does not require you to create an account. The following information may nonetheless be processed in order to provide the service." },
+        { "t": "ul", "items": [
+          "<strong>Contact form</strong>: name, email address, and message content, all entered by you",
+          "<strong>Weather feature</strong>: approximate coordinates, if you grant the browser location permission, used by your device to make the API request",
+          "<strong>IP lookup feature</strong>: a request to an external IP lookup service to retrieve your public IP and related network details",
+          "<strong>Automatically stored</strong>: local values such as browser language and theme preference, saved for convenience (localStorage)",
+          "<strong>Server logs (hosting)</strong>: standard access logs may be recorded by the hosting environment, such as GitHub Pages"
+        ] },
+        { "t": "h2", "x": "2. Why we use it" },
+        { "t": "ul", "items": [
+          "Providing the features you request, such as weather, calendar, and IP lookup",
+          "Receiving and replying to enquiries",
+          "Investigating faults and improving quality",
+          "Meeting legal obligations"
+        ] },
+        { "t": "h2", "x": "3. Retention and deletion" },
+        { "t": "p", "x": "Enquiries are kept only as long as needed to reply and are deleted without undue delay once that purpose is fulfilled. Settings stored in your browser's localStorage are removed when you delete them yourself or clear your browser data. Location data is not stored long term on any server; it is used only to process the request." },
+        { "t": "h2", "x": "4. Third-party services" },
+        { "t": "p", "x": "The following external services may be used to provide features." },
+        { "t": "ul", "items": [
+          "Open-Meteo (weather data)",
+          "ipify / ipwho.is and similar IP and region APIs",
+          "Formspree (contact form delivery)",
+          "Google Fonts and other font or CDN providers",
+          "GitHub Pages (hosting)"
+        ] },
+        { "t": "p", "x": "Each service may process data according to its own policy." },
+        { "t": "h2", "x": "5. Cookies and personalised advertising (AdSense)" },
+        { "t": "p", "x": "If advertising services such as Google AdSense are used in the future, third-party vendors including Google may use cookies to serve ads based on your visits. You can opt out of personalised advertising in <a href=\"https://www.google.com/settings/ads\" target=\"_blank\" rel=\"noopener noreferrer\">Google Ads Settings</a>, and you can opt out of third-party vendors' use of personalised advertising at <a href=\"https://www.aboutads.info\" target=\"_blank\" rel=\"noopener noreferrer\">www.aboutads.info</a>." },
+        { "t": "p", "x": "If you disable cookies, personalised ads may not be shown." },
+        { "t": "h2", "x": "6. Your rights" },
+        { "t": "p", "x": "You may use the contact page to request access to, correction of, or deletion of the enquiry content relating to you. Settings saved in your browser can be managed directly on your own device." },
+        { "t": "h2", "x": "7. Children's privacy" },
+        { "t": "p", "x": "The site does not operate a service aimed at children and does not knowingly collect personal data from children under 14." },
+        { "t": "h2", "x": "8. Changes to this policy" },
+        { "t": "p", "x": "When this policy changes, the update date at the top of the page will be revised and the new version published on the site." },
+        { "t": "h2", "x": "9. Contact" },
+        { "t": "p", "x": "For privacy enquiries, please write to us through the <a href=\"contact.html\">contact page</a>." }
+      ]
+    },
+    "ja": {
+      "title": "プライバシーポリシー",
+      "description": "WebToolBayのプライバシーポリシー。収集する情報、利用目的、保管、第三者サービス、Cookieおよび広告について案内します。",
+      "breadcrumb": "プライバシーポリシー",
+      "h1": "プライバシーポリシー",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBay（以下「本サイト」）は利用者の個人情報を重要なものと考え、関連法令に従って以下のとおり取り扱います。本ポリシーは本サイトのご利用に適用されます。" },
+        { "t": "p", "x": "最終更新日: 2026年8月2日" },
+        { "t": "h2", "x": "1. 取り扱う情報" },
+        { "t": "p", "x": "本サイトは原則として会員登録を必要としません。ただし、サービス提供のために以下の情報を取り扱う場合があります。" },
+        { "t": "ul", "items": [
+          "<strong>お問い合わせフォーム</strong>: お名前、メールアドレス、メッセージの内容（利用者が直接入力）",
+          "<strong>天気機能</strong>: ブラウザの位置情報を許可した場合のおおよその座標（端末からのAPIリクエストに使用）",
+          "<strong>IP確認機能</strong>: グローバルIPおよび関連するネットワーク情報を取得するための外部IP照会サービスへのリクエスト",
+          "<strong>自動的な保存</strong>: ブラウザの言語やテーマ設定など、利便性のためのローカル保存値（localStorage）",
+          "<strong>サーバーログ（ホスティング）</strong>: GitHub Pagesなどのホスティング環境で一般的なアクセスログが記録される場合があります"
+        ] },
+        { "t": "h2", "x": "2. 利用目的" },
+        { "t": "ul", "items": [
+          "天気・カレンダー・IPなど、ご要望の機能の提供",
+          "お問い合わせの受付と返信",
+          "不具合の確認と品質の改善",
+          "法令上の義務の履行"
+        ] },
+        { "t": "h2", "x": "3. 保管と削除" },
+        { "t": "p", "x": "お問い合わせの内容は返信に必要な期間のみ保管し、目的を達成した後は遅滞なく削除します。ブラウザのlocalStorageに保存された設定値は、利用者ご自身が削除するか、ブラウザのデータを消去すると取り除かれます。位置情報はサーバーに長期保存せず、照会リクエストの処理にのみ使用します。" },
+        { "t": "h2", "x": "4. 第三者サービス" },
+        { "t": "p", "x": "機能の提供のため、以下の外部サービスを利用する場合があります。" },
+        { "t": "ul", "items": [
+          "Open-Meteo（天気データ）",
+          "ipify / ipwho.is などのIP・地域情報API",
+          "Formspree（お問い合わせフォームの送信）",
+          "Google Fontsなどのフォント・CDN",
+          "GitHub Pages（ホスティング）"
+        ] },
+        { "t": "p", "x": "各サービスは、それぞれの事業者のポリシーに従ってデータを取り扱う場合があります。" },
+        { "t": "h2", "x": "5. Cookieとパーソナライズ広告（AdSense）" },
+        { "t": "p", "x": "今後Google AdSenseなどの広告サービスを利用する場合、Googleを含む第三者配信事業者がCookieを使用し、利用者の訪問情報に基づいて広告を配信することがあります。パーソナライズ広告は<a href=\"https://www.google.com/settings/ads\" target=\"_blank\" rel=\"noopener noreferrer\">Google広告設定</a>で無効にでき、第三者配信事業者によるパーソナライズ広告の利用は<a href=\"https://www.aboutads.info\" target=\"_blank\" rel=\"noopener noreferrer\">www.aboutads.info</a>で無効にできます。" },
+        { "t": "p", "x": "Cookieを使用しない設定にすると、パーソナライズ広告が表示されない場合があります。" },
+        { "t": "h2", "x": "6. 利用者の権利" },
+        { "t": "p", "x": "利用者はお問い合わせページを通じて、ご自身に関するお問い合わせ内容の開示・訂正・削除を求めることができます。ブラウザに保存された設定は、ご自身の端末で直接管理できます。" },
+        { "t": "h2", "x": "7. 児童の個人情報" },
+        { "t": "p", "x": "本サイトは児童を対象としたサービスを運営しておらず、満14歳未満の児童の個人情報を故意に収集することはありません。" },
+        { "t": "h2", "x": "8. ポリシーの変更" },
+        { "t": "p", "x": "本ポリシーを変更した場合は、ページ上部の更新日を修正し、本サイトに掲載します。" },
+        { "t": "h2", "x": "9. お問い合わせ" },
+        { "t": "p", "x": "個人情報に関するお問い合わせは<a href=\"contact.html\">お問い合わせページ</a>からお送りください。" }
+      ]
+    },
+    "zh-Hans": {
+      "title": "隐私政策",
+      "description": "WebToolBay 隐私政策。说明收集的信息、使用目的、保存期限、第三方服务、Cookie 与广告相关事项。",
+      "breadcrumb": "隐私政策",
+      "h1": "隐私政策",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBay（以下称“本站”）重视用户的个人信息，并依照相关法律法规按以下方式处理。本政策适用于本站的使用。" },
+        { "t": "p", "x": "最后更新：2026 年 8 月 2 日" },
+        { "t": "h2", "x": "1. 处理的信息" },
+        { "t": "p", "x": "本站原则上不要求注册账号。但为提供服务，可能会处理以下信息。" },
+        { "t": "ul", "items": [
+          "<strong>联系表单</strong>：姓名、电子邮箱、留言内容（由用户自行填写）",
+          "<strong>天气功能</strong>：在您允许浏览器位置权限时的大致坐标（由设备用于发起 API 请求）",
+          "<strong>IP 查询功能</strong>：为获取公网 IP 及相关网络信息，向外部 IP 查询服务发起请求",
+          "<strong>自动保存</strong>：浏览器语言、主题设置等为使用便利而保存的本地值（localStorage）",
+          "<strong>服务器日志（托管）</strong>：GitHub Pages 等托管环境可能会记录常规访问日志"
+        ] },
+        { "t": "h2", "x": "2. 使用目的" },
+        { "t": "ul", "items": [
+          "提供天气、日历、IP 等您所请求的功能",
+          "受理并回复咨询",
+          "排查服务故障与改进质量",
+          "履行法律法规规定的义务"
+        ] },
+        { "t": "h2", "x": "3. 保存与销毁" },
+        { "t": "p", "x": "咨询内容仅在回复所需的期间内保存，目的达成后会立即销毁。保存在浏览器 localStorage 中的设置值，在您自行删除或清除浏览器数据后即被移除。位置信息不会长期保存在服务器上，仅用于处理查询请求。" },
+        { "t": "h2", "x": "4. 第三方服务" },
+        { "t": "p", "x": "为提供功能，本站可能使用以下外部服务。" },
+        { "t": "ul", "items": [
+          "Open-Meteo（天气数据）",
+          "ipify / ipwho.is 等 IP 与地区信息 API",
+          "Formspree（联系表单发送）",
+          "Google Fonts 等字体与 CDN",
+          "GitHub Pages（托管）"
+        ] },
+        { "t": "p", "x": "各服务可能依照其所属公司的政策处理数据。" },
+        { "t": "h2", "x": "5. Cookie 与个性化广告（AdSense）" },
+        { "t": "p", "x": "今后如使用 Google AdSense 等广告服务，包括 Google 在内的第三方供应商可能会使用 Cookie，基于用户的访问信息投放广告。您可以在 <a href=\"https://www.google.com/settings/ads\" target=\"_blank\" rel=\"noopener noreferrer\">Google 广告设置</a>中停用个性化广告，也可以在 <a href=\"https://www.aboutads.info\" target=\"_blank\" rel=\"noopener noreferrer\">www.aboutads.info</a> 停用第三方供应商的个性化广告。" },
+        { "t": "p", "x": "如果设置为不使用 Cookie，可能不会展示个性化广告。" },
+        { "t": "h2", "x": "6. 用户的权利" },
+        { "t": "p", "x": "用户可以通过联系页面，要求查阅、更正或删除与本人相关的咨询内容。保存在浏览器中的设置，可在自己的设备上直接管理。" },
+        { "t": "h2", "x": "7. 儿童的个人信息" },
+        { "t": "p", "x": "本站不运营面向儿童的服务，也不会有意收集未满 14 周岁儿童的个人信息。" },
+        { "t": "h2", "x": "8. 政策变更" },
+        { "t": "p", "x": "本政策如有变更，将修改页面顶部的更新日期并在本站公布。" },
+        { "t": "h2", "x": "9. 联系方式" },
+        { "t": "p", "x": "与个人信息相关的咨询，请通过<a href=\"contact.html\">联系页面</a>提交。" }
+      ]
+    },
+    "zh-Hant": {
+      "title": "隱私政策",
+      "description": "WebToolBay 隱私政策。說明蒐集的資訊、使用目的、保存期限、第三方服務、Cookie 與廣告相關事項。",
+      "breadcrumb": "隱私政策",
+      "h1": "隱私政策",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBay（以下稱「本站」）重視使用者的個人資料，並依照相關法令以下列方式處理。本政策適用於本站的使用。" },
+        { "t": "p", "x": "最後更新：2026 年 8 月 2 日" },
+        { "t": "h2", "x": "1. 處理的資訊" },
+        { "t": "p", "x": "本站原則上不需要註冊帳號。但為提供服務，可能會處理下列資訊。" },
+        { "t": "ul", "items": [
+          "<strong>聯絡表單</strong>：姓名、電子信箱、訊息內容（由使用者自行填寫）",
+          "<strong>天氣功能</strong>：在您允許瀏覽器位置權限時的大致座標（由裝置用於發出 API 請求）",
+          "<strong>IP 查詢功能</strong>：為取得對外 IP 及相關網路資訊，向外部 IP 查詢服務發出請求",
+          "<strong>自動保存</strong>：瀏覽器語言、主題設定等為使用便利而保存的本機值（localStorage）",
+          "<strong>伺服器紀錄（主機代管）</strong>：GitHub Pages 等代管環境可能會留下一般的存取紀錄"
+        ] },
+        { "t": "h2", "x": "2. 使用目的" },
+        { "t": "ul", "items": [
+          "提供天氣、日曆、IP 等您所要求的功能",
+          "受理並回覆洽詢",
+          "排查服務錯誤與改善品質",
+          "履行法令規定的義務"
+        ] },
+        { "t": "h2", "x": "3. 保存與銷毀" },
+        { "t": "p", "x": "洽詢內容僅在回覆所需的期間內保存，目的達成後會立即銷毀。保存在瀏覽器 localStorage 中的設定值，在您自行刪除或清除瀏覽器資料後即被移除。位置資訊不會長期保存在伺服器上，僅用於處理查詢請求。" },
+        { "t": "h2", "x": "4. 第三方服務" },
+        { "t": "p", "x": "為提供功能，本站可能使用下列外部服務。" },
+        { "t": "ul", "items": [
+          "Open-Meteo（天氣資料）",
+          "ipify / ipwho.is 等 IP 與地區資訊 API",
+          "Formspree（聯絡表單傳送）",
+          "Google Fonts 等字型與 CDN",
+          "GitHub Pages（主機代管）"
+        ] },
+        { "t": "p", "x": "各服務可能依照其所屬公司的政策處理資料。" },
+        { "t": "h2", "x": "5. Cookie 與個人化廣告（AdSense）" },
+        { "t": "p", "x": "今後如使用 Google AdSense 等廣告服務，包括 Google 在內的第三方供應商可能會使用 Cookie，依據使用者的造訪資訊放送廣告。您可以在 <a href=\"https://www.google.com/settings/ads\" target=\"_blank\" rel=\"noopener noreferrer\">Google 廣告設定</a>停用個人化廣告，也可以在 <a href=\"https://www.aboutads.info\" target=\"_blank\" rel=\"noopener noreferrer\">www.aboutads.info</a> 停用第三方供應商的個人化廣告。" },
+        { "t": "p", "x": "若設定為不使用 Cookie，可能不會顯示個人化廣告。" },
+        { "t": "h2", "x": "6. 使用者的權利" },
+        { "t": "p", "x": "使用者可以透過聯絡頁面，要求查閱、更正或刪除與本人相關的洽詢內容。保存在瀏覽器中的設定，可在自己的裝置上直接管理。" },
+        { "t": "h2", "x": "7. 兒童的個人資料" },
+        { "t": "p", "x": "本站未經營以兒童為對象的服務，也不會刻意蒐集未滿 14 歲兒童的個人資料。" },
+        { "t": "h2", "x": "8. 政策變更" },
+        { "t": "p", "x": "本政策如有變更，將修改頁面上方的更新日期並在本站公告。" },
+        { "t": "h2", "x": "9. 聯絡方式" },
+        { "t": "p", "x": "與個人資料相關的洽詢，請透過<a href=\"contact.html\">聯絡頁面</a>提出。" }
+      ]
+    },
+    "es": {
+      "title": "Política de privacidad",
+      "description": "Política de privacidad de WebToolBay: qué datos se tratan, con qué fin, cuánto se conservan, servicios de terceros, cookies y publicidad.",
+      "breadcrumb": "Política de privacidad",
+      "h1": "Política de privacidad",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBay (en adelante, «el sitio») considera importante la privacidad de sus usuarios y trata los datos personales del modo que se describe a continuación, conforme a la legislación aplicable. Esta política se aplica al uso del sitio." },
+        { "t": "p", "x": "Última actualización: 2 de agosto de 2026" },
+        { "t": "h2", "x": "1. Información que tratamos" },
+        { "t": "p", "x": "El sitio no exige crear una cuenta. Aun así, para prestar el servicio puede ser necesario tratar la siguiente información." },
+        { "t": "ul", "items": [
+          "<strong>Formulario de contacto</strong>: nombre, correo electrónico y contenido del mensaje, introducidos por el propio usuario",
+          "<strong>Función de clima</strong>: coordenadas aproximadas, si concedes el permiso de ubicación del navegador, utilizadas por tu dispositivo para hacer la petición a la API",
+          "<strong>Función de consulta de IP</strong>: una petición a un servicio externo para obtener tu IP pública y los datos de red asociados",
+          "<strong>Almacenamiento automático</strong>: valores locales como el idioma del navegador o el tema elegido, guardados por comodidad (localStorage)",
+          "<strong>Registros del servidor (alojamiento)</strong>: el entorno de alojamiento, como GitHub Pages, puede registrar los accesos habituales"
+        ] },
+        { "t": "h2", "x": "2. Finalidad del tratamiento" },
+        { "t": "ul", "items": [
+          "Prestar las funciones que solicitas, como el clima, el calendario o la consulta de IP",
+          "Recibir consultas y responderlas",
+          "Detectar fallos del servicio y mejorar su calidad",
+          "Cumplir las obligaciones legales"
+        ] },
+        { "t": "h2", "x": "3. Conservación y supresión" },
+        { "t": "p", "x": "Las consultas se conservan solo durante el tiempo necesario para responderlas y se suprimen sin demora una vez cumplida esa finalidad. Los ajustes guardados en el localStorage del navegador se eliminan cuando los borras tú mismo o cuando limpias los datos del navegador. Los datos de ubicación no se almacenan a largo plazo en ningún servidor: se usan únicamente para procesar la petición." },
+        { "t": "h2", "x": "4. Servicios de terceros" },
+        { "t": "p", "x": "Para ofrecer determinadas funciones pueden utilizarse los siguientes servicios externos." },
+        { "t": "ul", "items": [
+          "Open-Meteo (datos meteorológicos)",
+          "ipify / ipwho.is y otras API de IP e información regional",
+          "Formspree (envío del formulario de contacto)",
+          "Google Fonts y otros proveedores de fuentes o CDN",
+          "GitHub Pages (alojamiento)"
+        ] },
+        { "t": "p", "x": "Cada servicio puede tratar los datos conforme a su propia política." },
+        { "t": "h2", "x": "5. Cookies y publicidad personalizada (AdSense)" },
+        { "t": "p", "x": "Si en el futuro se utilizan servicios publicitarios como Google AdSense, proveedores externos —incluido Google— podrán usar cookies para mostrar anuncios basados en tus visitas. Puedes desactivar la publicidad personalizada en la <a href=\"https://www.google.com/settings/ads\" target=\"_blank\" rel=\"noopener noreferrer\">configuración de anuncios de Google</a>, y puedes rechazar el uso de publicidad personalizada por parte de proveedores externos en <a href=\"https://www.aboutads.info\" target=\"_blank\" rel=\"noopener noreferrer\">www.aboutads.info</a>." },
+        { "t": "p", "x": "Si desactivas las cookies, es posible que no se muestren anuncios personalizados." },
+        { "t": "h2", "x": "6. Derechos del usuario" },
+        { "t": "p", "x": "Puedes usar la página de contacto para solicitar el acceso, la rectificación o la supresión del contenido de las consultas que te conciernen. Los ajustes guardados en el navegador puedes gestionarlos directamente en tu dispositivo." },
+        { "t": "h2", "x": "7. Privacidad de los menores" },
+        { "t": "p", "x": "El sitio no ofrece un servicio dirigido a menores y no recoge deliberadamente datos personales de menores de 14 años." },
+        { "t": "h2", "x": "8. Cambios en esta política" },
+        { "t": "p", "x": "Cuando esta política cambie, se actualizará la fecha que aparece en la parte superior de la página y se publicará la nueva versión en el sitio." },
+        { "t": "h2", "x": "9. Contacto" },
+        { "t": "p", "x": "Para consultas sobre privacidad, escríbenos desde la <a href=\"contact.html\">página de contacto</a>." }
+      ]
+    },
+    "pt-BR": {
+      "title": "Política de Privacidade",
+      "description": "Política de privacidade do WebToolBay: quais dados são tratados, para quê, por quanto tempo, serviços de terceiros, cookies e publicidade.",
+      "breadcrumb": "Política de Privacidade",
+      "h1": "Política de Privacidade",
+      "blocks": [
+        { "t": "lead", "x": "O WebToolBay (o “site”) leva a privacidade dos usuários a sério e trata os dados pessoais conforme descrito abaixo, de acordo com a legislação aplicável. Esta política se aplica ao uso do site." },
+        { "t": "p", "x": "Última atualização: 2 de agosto de 2026" },
+        { "t": "h2", "x": "1. Informações tratadas" },
+        { "t": "p", "x": "O site não exige a criação de conta. Ainda assim, para prestar o serviço, as informações a seguir podem ser tratadas." },
+        { "t": "ul", "items": [
+          "<strong>Formulário de contato</strong>: nome, e-mail e conteúdo da mensagem, informados pelo próprio usuário",
+          "<strong>Recurso de clima</strong>: coordenadas aproximadas, caso você conceda a permissão de localização do navegador, usadas pelo seu dispositivo para fazer a requisição à API",
+          "<strong>Recurso de consulta de IP</strong>: uma requisição a um serviço externo para obter o seu IP público e os dados de rede relacionados",
+          "<strong>Armazenamento automático</strong>: valores locais como idioma do navegador e tema escolhido, salvos por conveniência (localStorage)",
+          "<strong>Registros de servidor (hospedagem)</strong>: o ambiente de hospedagem, como o GitHub Pages, pode registrar os acessos comuns"
+        ] },
+        { "t": "h2", "x": "2. Finalidade do tratamento" },
+        { "t": "ul", "items": [
+          "Fornecer os recursos que você solicita, como clima, calendário e consulta de IP",
+          "Receber e responder mensagens",
+          "Investigar falhas do serviço e melhorar a qualidade",
+          "Cumprir obrigações legais"
+        ] },
+        { "t": "h2", "x": "3. Retenção e exclusão" },
+        { "t": "p", "x": "As mensagens são mantidas apenas pelo tempo necessário para a resposta e são excluídas sem demora depois que essa finalidade é cumprida. As configurações salvas no localStorage do navegador são removidas quando você as apaga ou limpa os dados do navegador. Dados de localização não são armazenados por longo prazo em nenhum servidor: servem apenas para processar a requisição." },
+        { "t": "h2", "x": "4. Serviços de terceiros" },
+        { "t": "p", "x": "Para oferecer determinados recursos, os seguintes serviços externos podem ser utilizados." },
+        { "t": "ul", "items": [
+          "Open-Meteo (dados meteorológicos)",
+          "ipify / ipwho.is e outras APIs de IP e informação regional",
+          "Formspree (envio do formulário de contato)",
+          "Google Fonts e outros provedores de fontes ou CDN",
+          "GitHub Pages (hospedagem)"
+        ] },
+        { "t": "p", "x": "Cada serviço pode tratar os dados conforme a sua própria política." },
+        { "t": "h2", "x": "5. Cookies e publicidade personalizada (AdSense)" },
+        { "t": "p", "x": "Caso serviços de publicidade como o Google AdSense venham a ser usados, fornecedores terceiros — inclusive o Google — poderão usar cookies para exibir anúncios com base nas suas visitas. Você pode desativar a publicidade personalizada nas <a href=\"https://www.google.com/settings/ads\" target=\"_blank\" rel=\"noopener noreferrer\">configurações de anúncios do Google</a> e pode recusar o uso de publicidade personalizada por fornecedores terceiros em <a href=\"https://www.aboutads.info\" target=\"_blank\" rel=\"noopener noreferrer\">www.aboutads.info</a>." },
+        { "t": "p", "x": "Se você desativar os cookies, os anúncios personalizados podem não ser exibidos." },
+        { "t": "h2", "x": "6. Direitos do usuário" },
+        { "t": "p", "x": "Você pode usar a página de contato para solicitar acesso, correção ou exclusão do conteúdo das mensagens que dizem respeito a você. As configurações salvas no navegador podem ser gerenciadas diretamente no seu dispositivo." },
+        { "t": "h2", "x": "7. Privacidade de crianças" },
+        { "t": "p", "x": "O site não opera um serviço voltado a crianças e não coleta intencionalmente dados pessoais de menores de 14 anos." },
+        { "t": "h2", "x": "8. Alterações nesta política" },
+        { "t": "p", "x": "Quando esta política mudar, a data de atualização no topo da página será revisada e a nova versão será publicada no site." },
+        { "t": "h2", "x": "9. Contato" },
+        { "t": "p", "x": "Para dúvidas sobre privacidade, fale conosco pela <a href=\"contact.html\">página de contato</a>." }
+      ]
+    }
+  }
+}

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perguntas frequentes | WebToolBay</title>
+  <meta name="description" content="Perguntas frequentes do WebToolBay sobre clima, conversão lunar, consulta de IP, gerador de loteria e os jogos do navegador." />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/pt-BR/faq.html" />
+  <link rel="alternate" hreflang="ko" href="https://mouseclick0.github.io/web-app/faq.html" />
+  <link rel="alternate" hreflang="en" href="https://mouseclick0.github.io/web-app/en/faq.html" />
+  <link rel="alternate" hreflang="ja" href="https://mouseclick0.github.io/web-app/ja/faq.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://mouseclick0.github.io/web-app/zh-Hans/faq.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://mouseclick0.github.io/web-app/zh-Hant/faq.html" />
+  <link rel="alternate" hreflang="es" href="https://mouseclick0.github.io/web-app/es/faq.html" />
+  <link rel="alternate" hreflang="pt-BR" href="https://mouseclick0.github.io/web-app/pt-BR/faq.html" />
+  <link rel="alternate" hreflang="x-default" href="https://mouseclick0.github.io/web-app/faq.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">WebToolBay</a>
+      <nav class="site-nav" aria-label="Menu principal">
+        <a href="../index.html">Início</a>
+        <a href="../guides/index.html">Guias</a>
+        <a href="faq.html">Perguntas frequentes</a>
+        <a href="about.html">Sobre</a>
+        <a href="contact.html">Contato</a>
+      </nav>
+      <select class="page-lang-select" id="pageLangSelect" aria-label="Idioma">
+        <option value="ko" data-href="../faq.html">한국어</option>
+        <option value="en" data-href="../en/faq.html">English</option>
+        <option value="ja" data-href="../ja/faq.html">日本語</option>
+        <option value="zh-Hans" data-href="../zh-Hans/faq.html">简体中文</option>
+        <option value="zh-Hant" data-href="../zh-Hant/faq.html">繁體中文</option>
+        <option value="es" data-href="../es/faq.html">Español</option>
+        <option value="pt-BR" data-href="../pt-BR/faq.html" selected>Português (BR)</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">Início</a> · Perguntas frequentes</p>
+    <article class="article-card">
+      <h1>Perguntas frequentes</h1>
+      <p class="lead">Estas são as dúvidas que aparecem com mais frequência. Para uma explicação mais completa, veja o guia de cada ferramenta.</p>
+
+      <h2>O site é gratuito?</h2>
+      <p>Sim. Todas as ferramentas e guias publicados até agora são de uso gratuito. Anúncios podem aparecer no futuro e, se forem adotados, a política de privacidade será atualizada para explicar como funcionam.</p>
+
+      <h2>Preciso criar uma conta?</h2>
+      <p>Não. Quase tudo funciona direto no navegador. Apenas algumas configurações, como idioma, tema e a cidade escolhida, ficam salvas no seu dispositivo.</p>
+
+      <h2>Por que o clima mostra um lugar diferente do meu?</h2>
+      <p>Se você recusou a permissão de localização ou o navegador não conseguiu informar a posição, é exibida a cidade padrão (Seul) ou a cidade que você salvou antes. Toque no botão “Minha localização” para pedir de novo, ou use a busca de cidades para alterar.</p>
+
+      <h2>As datas lunares e solares diferem um pouco do meu aplicativo de calendário.</h2>
+      <p>A biblioteca de conversão usa dados derivados do Instituto Coreano de Astronomia e Ciências Espaciais, mas o resultado pode variar em um dia em relação a outros aplicativos, dependendo de como os meses intercalares e a notação são tratados. Para prazos legais ou datas de rituais, confirme também em fontes oficiais.</p>
+
+      <h2>Meu IPv6 aparece como “Indisponível”.</h2>
+      <p>Na maioria dos casos a rede não oferece suporte a IPv6, ou o caminho de consulta retorna apenas IPv4. O endereço IPv4, o provedor e as informações de região normalmente continuam sendo exibidos.</p>
+
+      <h2>O texto extraído da minha imagem não está correto.</h2>
+      <p>O reconhecimento é ajustado para texto impresso, então escrita à mão, fontes muito decoradas e fotos borradas ou inclinadas geram muitos erros. Recortar bem a parte que você precisa e usar uma foto tirada de frente melhora bastante o resultado. Veja o <a href="../guides/ocr.html">guia de imagem para texto</a> para mais detalhes.</p>
+
+      <h2>A imagem que eu envio fica guardada em um servidor?</h2>
+      <p>Não. A extração de texto acontece dentro do navegador e a imagem nunca sai do seu dispositivo. A única exceção são os dados de reconhecimento do idioma, baixados uma vez de uma CDN externa.</p>
+
+      <h2>A primeira extração de texto demora muito.</h2>
+      <p>Isso acontece porque os dados de reconhecimento do idioma escolhido são baixados no primeiro uso. Depois de baixados, ficam no cache do navegador e as próximas execuções começam rápido.</p>
+
+      <h2>Não consigo converter para WebP no meu iPhone.</h2>
+      <p>Navegadores baseados no Safari não conseguem salvar em WebP. A ferramenta detecta isso e desativa a opção, então use outro navegador, como o Chrome, ou converta para PNG ou JPG. Há mais detalhes no <a href="../guides/convert.html">guia de conversão de formatos</a>.</p>
+
+      <h2>Converter de JPG para PNG melhora a qualidade?</h2>
+      <p>Não. A informação já descartada quando o arquivo foi salvo como JPG não pode ser recuperada, e trocar apenas o formato costuma deixar o arquivo maior. Escolha PNG somente quando precisar de fundo transparente ou de armazenamento sem perdas.</p>
+
+      <h2>Os dados de captura da foto continuam após a conversão?</h2>
+      <p>Não. Metadados EXIF, como local da captura e informações do aparelho, são removidos durante a conversão de formato.</p>
+
+      <h2>Cortar ou girar uma imagem piora a qualidade?</h2>
+      <p>Cortar, girar em passos de 90 graus e espelhar na horizontal ou na vertical apenas movem ou descartam pixels, então a qualidade não é afetada. Reduzir o tamanho também perde quase nada, mas ampliar além do original não cria detalhes que nunca existiram, e o resultado fica embaçado. Veja o <a href="../guides/editor.html">guia de corte e giro</a> para mais detalhes.</p>
+
+      <h2>Estou com dificuldade para selecionar a área de corte.</h2>
+      <p>Arraste sobre a imagem para criar uma seleção; arraste uma alça de canto para redimensioná-la ou arraste dentro dela para movê-la. Quando o resultado tem formato fixo, como foto de perfil ou miniatura, é mais fácil travar a proporção antes de arrastar. Com a proporção travada, só aparecem as quatro alças de canto, para que o formato não se perca.</p>
+
+      <h2>Qual é a precisão do cálculo de tempo de fala?</h2>
+      <p>A referência é um ritmo comum de apresentação (300 caracteres por minuto em coreano, 130 palavras por minuto em inglês), e o ritmo real varia de pessoa para pessoa. Leia o começo do seu roteiro em voz alta, compare com a estimativa e ajuste o ritmo uma vez: depois disso ele fica bem preciso. Há mais detalhes no <a href="../guides/speech.html">guia de tempo de fala</a>.</p>
+
+      <h2>Funciona com roteiros em outros idiomas?</h2>
+      <p>Sim. Hangul, caracteres han e kana japoneses são contados por caractere, enquanto os idiomas de alfabeto latino são contados por palavra; cada parte é calculada no seu próprio ritmo e depois somada. Por isso termos em inglês dentro de um roteiro coreano não inflam a estimativa. Já os números são contados apenas como caracteres, então um roteiro com muitos números longos leva mais tempo para ser lido do que o cálculo indica.</p>
+
+      <h2>Minhas edições sumiram.</h2>
+      <p>Até você salvar, o resultado editado existe só na memória do navegador, então atualizar a página descarta tudo. Salve assim que o resultado ficar do seu agrado. Durante a edição, use “Desfazer uma etapa” para cancelar apenas a última ação, ou “Voltar ao original” para recomeçar do zero.</p>
+
+      <h2>Os números da loteria garantem prêmio?</h2>
+      <p>Não. São números aleatórios apenas para referência e não têm relação com uma compra ou um sorteio real.</p>
+
+      <h2>Funciona bem no celular?</h2>
+      <p>O site é responsivo, então funciona em celulares e tablets. Os jogos podem ter uma sensação de controle diferente conforme o tamanho da tela.</p>
+
+      <h2>Encontrei um erro.</h2>
+      <p>Descreva o seu aparelho, o navegador e o que aconteceu na <a href="contact.html">página de contato</a> que nós vamos verificar.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../guides/index.html">Todos os guias</a>
+        <a class="btn" href="contact.html">Falar com a gente</a>
+      </div>
+    </article>
+  </main>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O site é gratuito?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. Todas as ferramentas e guias publicados até agora são de uso gratuito. Anúncios podem aparecer no futuro e, se forem adotados, a política de privacidade será atualizada para explicar como funcionam."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Preciso criar uma conta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não. Quase tudo funciona direto no navegador. Apenas algumas configurações, como idioma, tema e a cidade escolhida, ficam salvas no seu dispositivo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Por que o clima mostra um lugar diferente do meu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Se você recusou a permissão de localização ou o navegador não conseguiu informar a posição, é exibida a cidade padrão (Seul) ou a cidade que você salvou antes. Toque no botão “Minha localização” para pedir de novo, ou use a busca de cidades para alterar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "As datas lunares e solares diferem um pouco do meu aplicativo de calendário.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A biblioteca de conversão usa dados derivados do Instituto Coreano de Astronomia e Ciências Espaciais, mas o resultado pode variar em um dia em relação a outros aplicativos, dependendo de como os meses intercalares e a notação são tratados. Para prazos legais ou datas de rituais, confirme também em fontes oficiais."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Meu IPv6 aparece como “Indisponível”.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Na maioria dos casos a rede não oferece suporte a IPv6, ou o caminho de consulta retorna apenas IPv4. O endereço IPv4, o provedor e as informações de região normalmente continuam sendo exibidos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O texto extraído da minha imagem não está correto.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O reconhecimento é ajustado para texto impresso, então escrita à mão, fontes muito decoradas e fotos borradas ou inclinadas geram muitos erros. Recortar bem a parte que você precisa e usar uma foto tirada de frente melhora bastante o resultado. Veja o guia de imagem para texto para mais detalhes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "A imagem que eu envio fica guardada em um servidor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não. A extração de texto acontece dentro do navegador e a imagem nunca sai do seu dispositivo. A única exceção são os dados de reconhecimento do idioma, baixados uma vez de uma CDN externa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "A primeira extração de texto demora muito.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Isso acontece porque os dados de reconhecimento do idioma escolhido são baixados no primeiro uso. Depois de baixados, ficam no cache do navegador e as próximas execuções começam rápido."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Não consigo converter para WebP no meu iPhone.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Navegadores baseados no Safari não conseguem salvar em WebP. A ferramenta detecta isso e desativa a opção, então use outro navegador, como o Chrome, ou converta para PNG ou JPG. Há mais detalhes no guia de conversão de formatos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Converter de JPG para PNG melhora a qualidade?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não. A informação já descartada quando o arquivo foi salvo como JPG não pode ser recuperada, e trocar apenas o formato costuma deixar o arquivo maior. Escolha PNG somente quando precisar de fundo transparente ou de armazenamento sem perdas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Os dados de captura da foto continuam após a conversão?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não. Metadados EXIF, como local da captura e informações do aparelho, são removidos durante a conversão de formato."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cortar ou girar uma imagem piora a qualidade?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cortar, girar em passos de 90 graus e espelhar na horizontal ou na vertical apenas movem ou descartam pixels, então a qualidade não é afetada. Reduzir o tamanho também perde quase nada, mas ampliar além do original não cria detalhes que nunca existiram, e o resultado fica embaçado. Veja o guia de corte e giro para mais detalhes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Estou com dificuldade para selecionar a área de corte.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Arraste sobre a imagem para criar uma seleção; arraste uma alça de canto para redimensioná-la ou arraste dentro dela para movê-la. Quando o resultado tem formato fixo, como foto de perfil ou miniatura, é mais fácil travar a proporção antes de arrastar. Com a proporção travada, só aparecem as quatro alças de canto, para que o formato não se perca."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual é a precisão do cálculo de tempo de fala?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A referência é um ritmo comum de apresentação (300 caracteres por minuto em coreano, 130 palavras por minuto em inglês), e o ritmo real varia de pessoa para pessoa. Leia o começo do seu roteiro em voz alta, compare com a estimativa e ajuste o ritmo uma vez: depois disso ele fica bem preciso. Há mais detalhes no guia de tempo de fala."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Funciona com roteiros em outros idiomas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. Hangul, caracteres han e kana japoneses são contados por caractere, enquanto os idiomas de alfabeto latino são contados por palavra; cada parte é calculada no seu próprio ritmo e depois somada. Por isso termos em inglês dentro de um roteiro coreano não inflam a estimativa. Já os números são contados apenas como caracteres, então um roteiro com muitos números longos leva mais tempo para ser lido do que o cálculo indica."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Minhas edições sumiram.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Até você salvar, o resultado editado existe só na memória do navegador, então atualizar a página descarta tudo. Salve assim que o resultado ficar do seu agrado. Durante a edição, use “Desfazer uma etapa” para cancelar apenas a última ação, ou “Voltar ao original” para recomeçar do zero."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Os números da loteria garantem prêmio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não. São números aleatórios apenas para referência e não têm relação com uma compra ou um sorteio real."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Funciona bem no celular?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O site é responsivo, então funciona em celulares e tablets. Os jogos podem ter uma sensação de controle diferente conforme o tamanho da tela."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Encontrei um erro.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Descreva o seu aparelho, o navegador e o que aconteceu na página de contato que nós vamos verificar."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="Menu do rodapé">
+        <a href="about.html">Sobre</a>
+        <a href="../guides/index.html">Guias</a>
+        <a href="faq.html">Perguntas frequentes</a>
+        <a href="privacy.html">Política de Privacidade</a>
+        <a href="terms.html">Termos de Uso</a>
+        <a href="contact.html">Contato</a>
+      </nav>
+      <p>© <span id="y"></span> WebToolBay</p>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    (function () {
+      // This page's language comes from its URL, so carry it over to the single-page app.
+      try {
+        localStorage.setItem("web-pages-lang", "pt-BR");
+      } catch (e) {}
+      var sel = document.getElementById("pageLangSelect");
+      if (!sel) return;
+      sel.addEventListener("change", function () {
+        var opt = sel.options[sel.selectedIndex];
+        try {
+          localStorage.setItem("web-pages-lang", sel.value);
+        } catch (e) {}
+        window.location.href = opt.getAttribute("data-href");
+      });
+    })();
+  </script>
+</body>
+</html>

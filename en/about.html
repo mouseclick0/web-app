@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | WebToolBay</title>
+  <meta name="description" content="WebToolBay offers free browser utilities you can use right away: weather, solar/lunar conversion, IP lookup, and casual games." />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/en/about.html" />
+  <link rel="alternate" hreflang="ko" href="https://mouseclick0.github.io/web-app/about.html" />
+  <link rel="alternate" hreflang="en" href="https://mouseclick0.github.io/web-app/en/about.html" />
+  <link rel="alternate" hreflang="ja" href="https://mouseclick0.github.io/web-app/ja/about.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://mouseclick0.github.io/web-app/zh-Hans/about.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://mouseclick0.github.io/web-app/zh-Hant/about.html" />
+  <link rel="alternate" hreflang="es" href="https://mouseclick0.github.io/web-app/es/about.html" />
+  <link rel="alternate" hreflang="pt-BR" href="https://mouseclick0.github.io/web-app/pt-BR/about.html" />
+  <link rel="alternate" hreflang="x-default" href="https://mouseclick0.github.io/web-app/about.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">WebToolBay</a>
+      <nav class="site-nav" aria-label="Main menu">
+        <a href="../index.html">Home</a>
+        <a href="../guides/index.html">Guides</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <select class="page-lang-select" id="pageLangSelect" aria-label="Language">
+        <option value="ko" data-href="../about.html">한국어</option>
+        <option value="en" data-href="../en/about.html" selected>English</option>
+        <option value="ja" data-href="../ja/about.html">日本語</option>
+        <option value="zh-Hans" data-href="../zh-Hans/about.html">简体中文</option>
+        <option value="zh-Hant" data-href="../zh-Hant/about.html">繁體中文</option>
+        <option value="es" data-href="../es/about.html">Español</option>
+        <option value="pt-BR" data-href="../pt-BR/about.html">Português (BR)</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">Home</a> · About</p>
+    <article class="article-card">
+      <h1>About WebToolBay</h1>
+      <p class="lead">WebToolBay is a collection of everyday, informational, and study-friendly web utilities that run in your browser with nothing to install. The goal is simple: find the function you need and use it right away, without creating an account.</p>
+
+      <h2>Why this site exists</h2>
+      <p>Checking the weather, converting a lunar date, or looking up your public IP usually means wading through ad-heavy pages or screens that push you to install an app. WebToolBay removes that friction and puts the essential information on a single screen.</p>
+      <p>It also includes light browser games such as Minesweeper, Tetris, Gomoku, and a memory test, so you can take a short break or warm up your focus. Both the tools and the games are for reference and entertainment — there is no gambling and nothing to pay for.</p>
+
+      <h2>What you get</h2>
+      <ul>
+        <li>Location-based weather (current, hourly, and 7-day)</li>
+        <li>Solar/lunar date conversion with the 60-gapja cycle and zodiac</li>
+        <li>Public IPv4/IPv6, ISP, and country/city lookup</li>
+        <li>Lottery number generator (for fun and reference)</li>
+        <li>Minesweeper, Tetris, Gomoku, and a memory test</li>
+        <li>Guide articles covering how to use each tool and the ideas behind it</li>
+      </ul>
+
+      <h2>How the content is run</h2>
+      <p>The site puts explanations that visitors can actually read and use first. Rather than shipping bare tool screens, each feature comes with a guide covering what it means, what to watch out for, and how to get more out of it. External APIs are credited, and how personal data is handled is published in the privacy policy.</p>
+      <p>Copyrighted content is never reproduced without permission, and features with significant policy risk, such as YouTube downloading, are kept off the public screens.</p>
+
+      <h2>Who runs it</h2>
+      <p>WebToolBay is a web project run by one person. For feature requests, bug reports, or partnership and advertising enquiries, please use the form on the contact page. Messages are reviewed as quickly as circumstances allow.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../index.html">Open the tools</a>
+        <a class="btn" href="../guides/index.html">Read the guides</a>
+        <a class="btn" href="contact.html">Contact us</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="Footer menu">
+        <a href="about.html">About</a>
+        <a href="../guides/index.html">Guides</a>
+        <a href="faq.html">FAQ</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p>© <span id="y"></span> WebToolBay. Free web utilities for everyone.</p>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    (function () {
+      // This page's language comes from its URL, so carry it over to the single-page app.
+      try {
+        localStorage.setItem("web-pages-lang", "en");
+      } catch (e) {}
+      var sel = document.getElementById("pageLangSelect");
+      if (!sel) return;
+      sel.addEventListener("change", function () {
+        var opt = sel.options[sel.selectedIndex];
+        try {
+          localStorage.setItem("web-pages-lang", sel.value);
+        } catch (e) {}
+        window.location.href = opt.getAttribute("data-href");
+      });
+    })();
+  </script>
+</body>
+</html>

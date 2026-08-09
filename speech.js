@@ -28,7 +28,11 @@
     var hangul = countMatches(text, /[\uac00-\ud7a3]/g);
     var kana = countMatches(text, /[\u3040-\u30ff]/g);
     var han = countMatches(text, /[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/g);
-    var words = countMatches(text, /[A-Za-z][A-Za-z'\u2019-]*/g);
+    /* Accented letters must stay inside a word so "não" counts once, not twice. */
+    var words = countMatches(
+      text,
+      /[A-Za-z\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u017f][A-Za-z\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u017f'\u2019-]*/g
+    );
     var digitChars = countMatches(text, /\d/g);
     var digitRuns = countMatches(text, /\d+/g);
     var cjk = hangul + kana + han;

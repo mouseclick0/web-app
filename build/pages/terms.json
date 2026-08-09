@@ -1,0 +1,236 @@
+{
+  "file": "terms.html",
+  "langs": {
+    "ko": {
+      "title": "이용약관",
+      "description": "WebToolBay 이용약관. 서비스 목적, 면책, 금지 행위, 지적재산권 및 책임 한계를 안내합니다.",
+      "breadcrumb": "이용약관",
+      "h1": "이용약관",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBay를 이용하기 전에 아래 약관을 확인해 주세요. 사이트를 이용하면 본 약관에 동의한 것으로 간주합니다." },
+        { "t": "p", "x": "최종 업데이트: 2026년 8월 2일" },
+        { "t": "h2", "x": "1. 서비스 개요" },
+        { "t": "p", "x": "WebToolBay는 브라우저에서 사용할 수 있는 정보 조회·변환·간단한 게임 기능을 무료로 제공합니다. 서비스 내용은 예고 없이 추가·변경·중단될 수 있습니다." },
+        { "t": "h2", "x": "2. 이용 목적의 제한" },
+        { "t": "ul", "items": [
+          "로또 번호 생성기는 오락·참고용이며 당첨을 보장하지 않습니다.",
+          "날씨·IP·음력 정보는 외부 데이터와 알고리즘에 의존하므로 절대적 정확성을 보장하지 않습니다.",
+          "게임은 비영리 오락 목적이며, 현금 베팅·도박과 무관합니다."
+        ] },
+        { "t": "h2", "x": "3. 금지 행위" },
+        { "t": "ul", "items": [
+          "서비스의 정상 운영을 방해하는 행위",
+          "타인의 권리를 침해하거나 불법 정보를 유포하는 행위",
+          "자동화된 대량 요청으로 서버·외부 API에 과도한 부하를 주는 행위",
+          "사이트 콘텐츠를 무단 복제하여 상업적으로 재배포하는 행위"
+        ] },
+        { "t": "h2", "x": "4. 지적재산권" },
+        { "t": "p", "x": "사이트에 게시된 원문 가이드, 설명문, 독자적 UI 구성은 운영자에게 권리가 있습니다. 외부 라이브러리·아이콘·날씨 데이터 등은 각 제공자의 라이선스와 정책을 따릅니다." },
+        { "t": "h2", "x": "5. 면책" },
+        { "t": "p", "x": "사이트는 “있는 그대로” 제공됩니다. 정보 오류, 서비스 중단, 외부 API 장애, 이용자 기기·네트워크 문제로 인한 손해에 대해 법령이 허용하는 범위 내에서 책임을 제한합니다. 중요한 일정·계약·법적 판단은 공식 기관의 정보를 기준으로 확인해 주세요." },
+        { "t": "h2", "x": "6. 문의" },
+        { "t": "p", "x": "약관 관련 문의는 <a href=\"contact.html\">문의 페이지</a>를 이용해 주세요." },
+        { "t": "h2", "x": "7. 준거법" },
+        { "t": "p", "x": "본 약관은 대한민국 법령을 기준으로 해석됩니다." }
+      ]
+    },
+    "en": {
+      "title": "Terms of Use",
+      "description": "WebToolBay terms of use: purpose of the service, disclaimers, prohibited conduct, intellectual property, and limits of liability.",
+      "breadcrumb": "Terms of Use",
+      "h1": "Terms of Use",
+      "blocks": [
+        { "t": "lead", "x": "Please read these terms before using WebToolBay. By using the site you are considered to have accepted them." },
+        { "t": "p", "x": "Last updated: 2 August 2026" },
+        { "t": "h2", "x": "1. About the service" },
+        { "t": "p", "x": "WebToolBay provides free browser-based tools for looking up information, converting values, and playing simple games. Features may be added, changed, or discontinued without notice." },
+        { "t": "h2", "x": "2. Limits on intended use" },
+        { "t": "ul", "items": [
+          "The lottery number generator is for entertainment and reference only and does not guarantee any winnings.",
+          "Weather, IP, and lunar calendar information depends on external data and algorithms, so absolute accuracy cannot be guaranteed.",
+          "The games are non-commercial entertainment and have nothing to do with cash betting or gambling."
+        ] },
+        { "t": "h2", "x": "3. Prohibited conduct" },
+        { "t": "ul", "items": [
+          "Interfering with the normal operation of the service",
+          "Infringing the rights of others or distributing unlawful information",
+          "Placing excessive load on the servers or external APIs through automated bulk requests",
+          "Copying site content without permission and redistributing it commercially"
+        ] },
+        { "t": "h2", "x": "4. Intellectual property" },
+        { "t": "p", "x": "The original guides, explanatory text, and custom interface published on this site belong to the operator. External libraries, icons, weather data, and similar resources follow the licence and policy of each provider." },
+        { "t": "h2", "x": "5. Disclaimer" },
+        { "t": "p", "x": "The site is provided “as is”. Liability for damages arising from incorrect information, service interruptions, external API failures, or problems with your own device or network is limited to the extent permitted by law. For important schedules, contracts, or legal decisions, please confirm the details with official sources." },
+        { "t": "h2", "x": "6. Contact" },
+        { "t": "p", "x": "For questions about these terms, please use the <a href=\"contact.html\">contact page</a>." },
+        { "t": "h2", "x": "7. Governing law" },
+        { "t": "p", "x": "These terms are interpreted under the laws of the Republic of Korea." }
+      ]
+    },
+    "ja": {
+      "title": "利用規約",
+      "description": "WebToolBayの利用規約。サービスの目的、免責、禁止行為、知的財産権および責任の範囲について案内します。",
+      "breadcrumb": "利用規約",
+      "h1": "利用規約",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBayをご利用になる前に、以下の規約をご確認ください。本サイトを利用された場合、本規約に同意したものとみなします。" },
+        { "t": "p", "x": "最終更新日: 2026年8月2日" },
+        { "t": "h2", "x": "1. サービスの概要" },
+        { "t": "p", "x": "WebToolBayは、ブラウザで利用できる情報の照会・変換・簡単なゲーム機能を無料で提供します。サービス内容は予告なく追加・変更・中止される場合があります。" },
+        { "t": "h2", "x": "2. 利用目的の制限" },
+        { "t": "ul", "items": [
+          "ロト番号ジェネレーターは娯楽・参考用であり、当選を保証するものではありません。",
+          "天気・IP・旧暦の情報は外部データとアルゴリズムに依存するため、絶対的な正確性は保証できません。",
+          "ゲームは非営利の娯楽目的であり、現金の賭けや賭博とは無関係です。"
+        ] },
+        { "t": "h2", "x": "3. 禁止行為" },
+        { "t": "ul", "items": [
+          "サービスの正常な運営を妨げる行為",
+          "他人の権利を侵害し、または違法な情報を流布する行為",
+          "自動化された大量リクエストにより、サーバーや外部APIに過度な負荷をかける行為",
+          "サイトのコンテンツを無断で複製し、商業的に再配布する行為"
+        ] },
+        { "t": "h2", "x": "4. 知的財産権" },
+        { "t": "p", "x": "本サイトに掲載しているオリジナルのガイド、説明文、独自のUI構成に関する権利は運営者に帰属します。外部ライブラリ・アイコン・天気データなどは、各提供者のライセンスおよびポリシーに従います。" },
+        { "t": "h2", "x": "5. 免責" },
+        { "t": "p", "x": "本サイトは「現状のまま」提供されます。情報の誤り、サービスの中断、外部APIの障害、利用者の機器・ネットワークの問題によって生じた損害については、法令が認める範囲で責任を制限します。重要な予定・契約・法的判断については、公的機関の情報をあわせてご確認ください。" },
+        { "t": "h2", "x": "6. お問い合わせ" },
+        { "t": "p", "x": "規約に関するお問い合わせは<a href=\"contact.html\">お問い合わせページ</a>をご利用ください。" },
+        { "t": "h2", "x": "7. 準拠法" },
+        { "t": "p", "x": "本規約は大韓民国の法令に基づいて解釈されます。" }
+      ]
+    },
+    "zh-Hans": {
+      "title": "服务条款",
+      "description": "WebToolBay 服务条款。说明服务目的、免责声明、禁止行为、知识产权以及责任范围。",
+      "breadcrumb": "服务条款",
+      "h1": "服务条款",
+      "blocks": [
+        { "t": "lead", "x": "使用 WebToolBay 之前，请先阅读以下条款。使用本站即视为您同意本条款。" },
+        { "t": "p", "x": "最后更新：2026 年 8 月 2 日" },
+        { "t": "h2", "x": "1. 服务概述" },
+        { "t": "p", "x": "WebToolBay 免费提供可在浏览器中使用的信息查询、换算与简单游戏功能。服务内容可能在不另行通知的情况下增加、变更或停止。" },
+        { "t": "h2", "x": "2. 使用目的的限制" },
+        { "t": "ul", "items": [
+          "彩票号码生成器仅供休闲与参考，不保证中奖。",
+          "天气、IP 与农历信息依赖外部数据和算法，无法保证绝对准确。",
+          "游戏为非营利的休闲用途，与现金投注和赌博无关。"
+        ] },
+        { "t": "h2", "x": "3. 禁止行为" },
+        { "t": "ul", "items": [
+          "妨碍服务正常运行的行为",
+          "侵害他人权利或散布违法信息的行为",
+          "通过自动化的大量请求，对服务器或外部 API 造成过度负担的行为",
+          "未经许可复制本站内容并进行商业再分发的行为"
+        ] },
+        { "t": "h2", "x": "4. 知识产权" },
+        { "t": "p", "x": "本站发布的原创指南、说明文字与自有界面设计的权利归运营者所有。外部库、图标、天气数据等遵循各自提供方的许可与政策。" },
+        { "t": "h2", "x": "5. 免责声明" },
+        { "t": "p", "x": "本站按“现状”提供。对于信息错误、服务中断、外部 API 故障，以及用户设备或网络问题所造成的损失，在法律允许的范围内限制责任。重要的日程、合同与法律判断，请以官方机构的信息为准。" },
+        { "t": "h2", "x": "6. 联系方式" },
+        { "t": "p", "x": "与条款相关的问题，请通过<a href=\"contact.html\">联系页面</a>提出。" },
+        { "t": "h2", "x": "7. 适用法律" },
+        { "t": "p", "x": "本条款依据大韩民国法律进行解释。" }
+      ]
+    },
+    "zh-Hant": {
+      "title": "服務條款",
+      "description": "WebToolBay 服務條款。說明服務目的、免責聲明、禁止行為、智慧財產權以及責任範圍。",
+      "breadcrumb": "服務條款",
+      "h1": "服務條款",
+      "blocks": [
+        { "t": "lead", "x": "使用 WebToolBay 之前，請先閱讀以下條款。使用本站即視為您同意本條款。" },
+        { "t": "p", "x": "最後更新：2026 年 8 月 2 日" },
+        { "t": "h2", "x": "1. 服務概述" },
+        { "t": "p", "x": "WebToolBay 免費提供可在瀏覽器中使用的資訊查詢、換算與簡單遊戲功能。服務內容可能在未另行通知的情況下新增、變更或停止。" },
+        { "t": "h2", "x": "2. 使用目的的限制" },
+        { "t": "ul", "items": [
+          "彩券號碼生成器僅供休閒與參考，不保證中獎。",
+          "天氣、IP 與農曆資訊依賴外部資料與演算法，無法保證絕對準確。",
+          "遊戲為非營利的休閒用途，與現金投注和賭博無關。"
+        ] },
+        { "t": "h2", "x": "3. 禁止行為" },
+        { "t": "ul", "items": [
+          "妨礙服務正常運作的行為",
+          "侵害他人權利或散布違法資訊的行為",
+          "透過自動化的大量請求，對伺服器或外部 API 造成過度負擔的行為",
+          "未經許可複製本站內容並進行商業再散布的行為"
+        ] },
+        { "t": "h2", "x": "4. 智慧財產權" },
+        { "t": "p", "x": "本站發布的原創指南、說明文字與自有介面設計的權利歸經營者所有。外部函式庫、圖示、天氣資料等則遵循各自提供方的授權與政策。" },
+        { "t": "h2", "x": "5. 免責聲明" },
+        { "t": "p", "x": "本站按「現狀」提供。對於資訊錯誤、服務中斷、外部 API 故障，以及使用者裝置或網路問題所造成的損失，在法律允許的範圍內限制責任。重要的行程、合約與法律判斷，請以官方機構的資訊為準。" },
+        { "t": "h2", "x": "6. 聯絡方式" },
+        { "t": "p", "x": "與條款相關的問題，請透過<a href=\"contact.html\">聯絡頁面</a>提出。" },
+        { "t": "h2", "x": "7. 準據法" },
+        { "t": "p", "x": "本條款依據大韓民國法律進行解釋。" }
+      ]
+    },
+    "es": {
+      "title": "Condiciones de uso",
+      "description": "Condiciones de uso de WebToolBay: finalidad del servicio, exención de responsabilidad, conductas prohibidas, propiedad intelectual y límites de responsabilidad.",
+      "breadcrumb": "Condiciones de uso",
+      "h1": "Condiciones de uso",
+      "blocks": [
+        { "t": "lead", "x": "Lee estas condiciones antes de usar WebToolBay. Al utilizar el sitio se considera que las aceptas." },
+        { "t": "p", "x": "Última actualización: 2 de agosto de 2026" },
+        { "t": "h2", "x": "1. Descripción del servicio" },
+        { "t": "p", "x": "WebToolBay ofrece de forma gratuita herramientas que funcionan en el navegador para consultar información, convertir valores y jugar a juegos sencillos. Las funciones pueden añadirse, modificarse o retirarse sin previo aviso." },
+        { "t": "h2", "x": "2. Límites de uso" },
+        { "t": "ul", "items": [
+          "El generador de números de lotería es de entretenimiento y referencia, y no garantiza ningún premio.",
+          "La información del clima, la IP y el calendario lunar depende de datos y algoritmos externos, por lo que no se puede garantizar una exactitud absoluta.",
+          "Los juegos son entretenimiento sin ánimo de lucro y no tienen relación con apuestas con dinero ni con el juego de azar."
+        ] },
+        { "t": "h2", "x": "3. Conductas prohibidas" },
+        { "t": "ul", "items": [
+          "Interferir en el funcionamiento normal del servicio",
+          "Vulnerar los derechos de terceros o difundir información ilícita",
+          "Sobrecargar los servidores o las API externas mediante peticiones masivas automatizadas",
+          "Copiar el contenido del sitio sin permiso y redistribuirlo con fines comerciales"
+        ] },
+        { "t": "h2", "x": "4. Propiedad intelectual" },
+        { "t": "p", "x": "Las guías originales, los textos explicativos y el diseño propio de la interfaz publicados en este sitio pertenecen a su responsable. Las bibliotecas externas, los iconos, los datos meteorológicos y recursos similares se rigen por la licencia y la política de cada proveedor." },
+        { "t": "h2", "x": "5. Exención de responsabilidad" },
+        { "t": "p", "x": "El sitio se ofrece “tal cual”. La responsabilidad por daños derivados de información incorrecta, interrupciones del servicio, fallos de API externas o problemas del dispositivo o la red del usuario queda limitada en la medida en que lo permita la ley. Para asuntos importantes como plazos, contratos o decisiones legales, confirma los datos con fuentes oficiales." },
+        { "t": "h2", "x": "6. Contacto" },
+        { "t": "p", "x": "Si tienes dudas sobre estas condiciones, utiliza la <a href=\"contact.html\">página de contacto</a>." },
+        { "t": "h2", "x": "7. Legislación aplicable" },
+        { "t": "p", "x": "Estas condiciones se interpretan conforme a la legislación de la República de Corea." }
+      ]
+    },
+    "pt-BR": {
+      "title": "Termos de Uso",
+      "description": "Termos de uso do WebToolBay: finalidade do serviço, isenção de responsabilidade, condutas proibidas, propriedade intelectual e limites de responsabilidade.",
+      "breadcrumb": "Termos de Uso",
+      "h1": "Termos de Uso",
+      "blocks": [
+        { "t": "lead", "x": "Leia estes termos antes de usar o WebToolBay. Ao utilizar o site, considera-se que você os aceitou." },
+        { "t": "p", "x": "Última atualização: 2 de agosto de 2026" },
+        { "t": "h2", "x": "1. Sobre o serviço" },
+        { "t": "p", "x": "O WebToolBay oferece gratuitamente ferramentas que funcionam no navegador para consultar informações, converter valores e jogar joguinhos simples. Os recursos podem ser adicionados, alterados ou descontinuados sem aviso prévio." },
+        { "t": "h2", "x": "2. Limites de uso" },
+        { "t": "ul", "items": [
+          "O gerador de números de loteria é para diversão e referência, e não garante nenhum prêmio.",
+          "As informações de clima, IP e calendário lunar dependem de dados e algoritmos externos, portanto não é possível garantir exatidão absoluta.",
+          "Os jogos têm finalidade de entretenimento sem fins lucrativos e não têm relação com apostas em dinheiro ou jogos de azar."
+        ] },
+        { "t": "h2", "x": "3. Condutas proibidas" },
+        { "t": "ul", "items": [
+          "Interferir no funcionamento normal do serviço",
+          "Violar direitos de terceiros ou divulgar informações ilegais",
+          "Sobrecarregar os servidores ou as APIs externas com requisições automatizadas em massa",
+          "Copiar o conteúdo do site sem autorização e redistribuí-lo comercialmente"
+        ] },
+        { "t": "h2", "x": "4. Propriedade intelectual" },
+        { "t": "p", "x": "Os guias originais, os textos explicativos e o design próprio da interface publicados neste site pertencem ao responsável pelo site. Bibliotecas externas, ícones, dados meteorológicos e recursos semelhantes seguem a licença e a política de cada fornecedor." },
+        { "t": "h2", "x": "5. Isenção de responsabilidade" },
+        { "t": "p", "x": "O site é fornecido “como está”. A responsabilidade por danos decorrentes de informações incorretas, interrupções do serviço, falhas de APIs externas ou problemas no dispositivo ou na rede do usuário fica limitada na medida permitida por lei. Para assuntos importantes como prazos, contratos ou decisões jurídicas, confirme os dados em fontes oficiais." },
+        { "t": "h2", "x": "6. Contato" },
+        { "t": "p", "x": "Em caso de dúvidas sobre estes termos, use a <a href=\"contact.html\">página de contato</a>." },
+        { "t": "h2", "x": "7. Lei aplicável" },
+        { "t": "p", "x": "Estes termos são interpretados conforme a legislação da República da Coreia." }
+      ]
+    }
+  }
+}

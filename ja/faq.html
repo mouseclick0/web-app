@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>よくある質問（FAQ） | WebToolBay</title>
+  <meta name="description" content="WebToolBayのFAQ。天気、旧暦変換、IP確認、ロトジェネレーター、ブラウザゲームの利用に関する質問と回答。" />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/ja/faq.html" />
+  <link rel="alternate" hreflang="ko" href="https://mouseclick0.github.io/web-app/faq.html" />
+  <link rel="alternate" hreflang="en" href="https://mouseclick0.github.io/web-app/en/faq.html" />
+  <link rel="alternate" hreflang="ja" href="https://mouseclick0.github.io/web-app/ja/faq.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://mouseclick0.github.io/web-app/zh-Hans/faq.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://mouseclick0.github.io/web-app/zh-Hant/faq.html" />
+  <link rel="alternate" hreflang="es" href="https://mouseclick0.github.io/web-app/es/faq.html" />
+  <link rel="alternate" hreflang="pt-BR" href="https://mouseclick0.github.io/web-app/pt-BR/faq.html" />
+  <link rel="alternate" hreflang="x-default" href="https://mouseclick0.github.io/web-app/faq.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">WebToolBay</a>
+      <nav class="site-nav" aria-label="メインメニュー">
+        <a href="../index.html">ホーム</a>
+        <a href="../guides/index.html">ガイド</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">サイト紹介</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+      <select class="page-lang-select" id="pageLangSelect" aria-label="言語選択">
+        <option value="ko" data-href="../faq.html">한국어</option>
+        <option value="en" data-href="../en/faq.html">English</option>
+        <option value="ja" data-href="../ja/faq.html" selected>日本語</option>
+        <option value="zh-Hans" data-href="../zh-Hans/faq.html">简体中文</option>
+        <option value="zh-Hant" data-href="../zh-Hant/faq.html">繁體中文</option>
+        <option value="es" data-href="../es/faq.html">Español</option>
+        <option value="pt-BR" data-href="../pt-BR/faq.html">Português (BR)</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">ホーム</a> · FAQ</p>
+    <article class="article-card">
+      <h1>よくある質問（FAQ）</h1>
+      <p class="lead">ご利用中によくいただく質問をまとめました。詳しい説明は各ガイド記事をご覧ください。</p>
+
+      <h2>サイトは無料ですか？</h2>
+      <p>はい。現在公開しているツールとガイドは無料でご利用いただけます。今後広告が表示される場合があり、導入時にはプライバシーポリシーに案内を反映します。</p>
+
+      <h2>会員登録は必要ですか？</h2>
+      <p>必要ありません。ほとんどの機能はブラウザ上でそのまま動作します。言語・テーマ・選択した都市など一部の設定のみが端末に保存されます。</p>
+
+      <h2>天気が自分の位置と違うのはなぜですか？</h2>
+      <p>位置情報の許可を拒否した場合や、ブラウザが位置を取得できなかった場合は、デフォルトの都市（ソウル）または以前に保存した都市が表示されることがあります。「現在地」ボタンで再度リクエストするか、都市検索から変更できます。</p>
+
+      <h2>旧暦と新暦がカレンダーアプリと少し違います。</h2>
+      <p>韓国天文研究院系のデータを参照する変換ライブラリを使用していますが、閏月の扱いや表記の方法によって他のアプリと1日ずれることがあります。法的な期日や祭祀の日程については、公式資料もあわせてご確認ください。</p>
+
+      <h2>IPv6が「確認できません」と表示されます。</h2>
+      <p>ネットワークがIPv6に対応していないか、照会経路がIPv4のみを返す場合がほとんどです。IPv4とISP・地域の情報は正常に表示されることがあります。</p>
+
+      <h2>画像から抽出したテキストが正確ではありません。</h2>
+      <p>印刷された活字を基準に認識するため、手書き、装飾の強いフォント、ぼやけた写真や傾いた写真では誤認識が多くなります。必要な部分だけを大きく切り出し、正面から撮影した画像を使うと結果が良くなります。詳しくは<a href="../guides/ocr.html">画像テキスト抽出ガイド</a>をご覧ください。</p>
+
+      <h2>アップロードした画像はサーバーに保存されますか？</h2>
+      <p>保存されません。テキスト抽出はブラウザ内で処理され、画像が端末の外に送信されることはありません。ただし、認識用の言語データは初回のみ外部CDNからダウンロードします。</p>
+
+      <h2>画像のテキスト抽出が初回だけ時間がかかります。</h2>
+      <p>選択した言語の認識データを初めて使うときにダウンロードするためです。一度取得すればブラウザに保存され、次回からは素早く開始できます。</p>
+
+      <h2>iPhoneでWebPに変換できません。</h2>
+      <p>Safari系のブラウザはWebPの保存に対応していません。その場合はツールが自動的に検出してWebPの項目を無効にしますので、Chromeなど別のブラウザを使うか、PNG・JPGに変換してください。詳しくは<a href="../guides/convert.html">画像形式変換ガイド</a>にあります。</p>
+
+      <h2>JPGをPNGに変えると画質は良くなりますか？</h2>
+      <p>良くなりません。JPGとして保存された時点で失われた情報は元に戻せず、形式が変わるだけでファイルサイズはむしろ大きくなります。透明な背景が必要な場合や、可逆で保管したい場合にのみPNGを選んでください。</p>
+
+      <h2>変換すると写真の撮影情報は残りますか？</h2>
+      <p>残りません。形式を変換する過程で、撮影場所や機器の情報といったEXIFメタデータは削除されます。</p>
+
+      <h2>画像を切り抜いたり回転したりすると画質が落ちますか？</h2>
+      <p>切り抜き、90度単位の回転、左右・上下の反転は画素を移動または削るだけなので、画質は落ちません。サイズを縮小する場合もほとんど劣化しませんが、元より大きくすると存在しない情報を作り出すことはできないため、ぼやけて見えます。詳しくは<a href="../guides/editor.html">画像の切り抜き・回転ガイド</a>をご覧ください。</p>
+
+      <h2>切り抜く範囲がうまく指定できません。</h2>
+      <p>画像の上をドラッグすると範囲ができ、角の点を引くとサイズが、内側を引くと位置が変わります。プロフィール写真やサムネイルのように規格が決まっている場合は、先に比率を固定してからドラッグすると簡単です。比率を固定すると、比率が崩れないように四隅の点だけが表示されます。</p>
+
+      <h2>発表時間の計算はどのくらい正確ですか？</h2>
+      <p>基準は一般的な発表の速度（韓国語で1分あたり300文字、英語で1分あたり130単語）で、実際の速度は人によって異なります。原稿の冒頭を声に出して読み、かかった時間と比べて速度を一度合わせておくと、以降はかなり正確になります。詳しくは<a href="../guides/speech.html">発表時間計算ガイド</a>にあります。</p>
+
+      <h2>英語の原稿も計算できますか？</h2>
+      <p>できます。ハングル・漢字・日本語のかなは文字単位で、英語は単語単位で数え、それぞれの速度で計算してから合算します。韓国語の原稿に英語の用語が混ざっていても時間が膨らむことはありません。ただし数字は文字数としてのみ数えるため、長い数字が多い原稿は実際に読む時間が計算値より長くなります。</p>
+
+      <h2>編集した内容が消えてしまいました。</h2>
+      <p>編集結果は保存するまでブラウザのメモリ上にのみあるため、再読み込みすると消えます。思いどおりの結果になったらすぐに保存してください。編集中は「1段階戻す」で直前の操作だけを取り消したり、「元の画像に戻す」で最初の状態からやり直したりできます。</p>
+
+      <h2>ロトの番号は当選を保証しますか？</h2>
+      <p>保証しません。ランダムな参考用の番号であり、実際の購入や当選とは関係ありません。</p>
+
+      <h2>モバイルでも問題なく使えますか？</h2>
+      <p>レスポンシブ対応のため、スマートフォンやタブレットでもご利用いただけます。ゲームは画面サイズによって操作感が異なる場合があります。</p>
+
+      <h2>不具合を見つけました。</h2>
+      <p><a href="contact.html">お問い合わせページ</a>に、ご利用の端末・ブラウザと症状をお書きいただければ確認します。</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../guides/index.html">ガイド一覧</a>
+        <a class="btn" href="contact.html">お問い合わせ</a>
+      </div>
+    </article>
+  </main>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "サイトは無料ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。現在公開しているツールとガイドは無料でご利用いただけます。今後広告が表示される場合があり、導入時にはプライバシーポリシーに案内を反映します。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "会員登録は必要ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "必要ありません。ほとんどの機能はブラウザ上でそのまま動作します。言語・テーマ・選択した都市など一部の設定のみが端末に保存されます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "天気が自分の位置と違うのはなぜですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "位置情報の許可を拒否した場合や、ブラウザが位置を取得できなかった場合は、デフォルトの都市（ソウル）または以前に保存した都市が表示されることがあります。「現在地」ボタンで再度リクエストするか、都市検索から変更できます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "旧暦と新暦がカレンダーアプリと少し違います。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "韓国天文研究院系のデータを参照する変換ライブラリを使用していますが、閏月の扱いや表記の方法によって他のアプリと1日ずれることがあります。法的な期日や祭祀の日程については、公式資料もあわせてご確認ください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "IPv6が「確認できません」と表示されます。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ネットワークがIPv6に対応していないか、照会経路がIPv4のみを返す場合がほとんどです。IPv4とISP・地域の情報は正常に表示されることがあります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "画像から抽出したテキストが正確ではありません。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "印刷された活字を基準に認識するため、手書き、装飾の強いフォント、ぼやけた写真や傾いた写真では誤認識が多くなります。必要な部分だけを大きく切り出し、正面から撮影した画像を使うと結果が良くなります。詳しくは画像テキスト抽出ガイドをご覧ください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "アップロードした画像はサーバーに保存されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "保存されません。テキスト抽出はブラウザ内で処理され、画像が端末の外に送信されることはありません。ただし、認識用の言語データは初回のみ外部CDNからダウンロードします。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "画像のテキスト抽出が初回だけ時間がかかります。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "選択した言語の認識データを初めて使うときにダウンロードするためです。一度取得すればブラウザに保存され、次回からは素早く開始できます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "iPhoneでWebPに変換できません。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Safari系のブラウザはWebPの保存に対応していません。その場合はツールが自動的に検出してWebPの項目を無効にしますので、Chromeなど別のブラウザを使うか、PNG・JPGに変換してください。詳しくは画像形式変換ガイドにあります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "JPGをPNGに変えると画質は良くなりますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "良くなりません。JPGとして保存された時点で失われた情報は元に戻せず、形式が変わるだけでファイルサイズはむしろ大きくなります。透明な背景が必要な場合や、可逆で保管したい場合にのみPNGを選んでください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "変換すると写真の撮影情報は残りますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "残りません。形式を変換する過程で、撮影場所や機器の情報といったEXIFメタデータは削除されます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "画像を切り抜いたり回転したりすると画質が落ちますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "切り抜き、90度単位の回転、左右・上下の反転は画素を移動または削るだけなので、画質は落ちません。サイズを縮小する場合もほとんど劣化しませんが、元より大きくすると存在しない情報を作り出すことはできないため、ぼやけて見えます。詳しくは画像の切り抜き・回転ガイドをご覧ください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "切り抜く範囲がうまく指定できません。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "画像の上をドラッグすると範囲ができ、角の点を引くとサイズが、内側を引くと位置が変わります。プロフィール写真やサムネイルのように規格が決まっている場合は、先に比率を固定してからドラッグすると簡単です。比率を固定すると、比率が崩れないように四隅の点だけが表示されます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "発表時間の計算はどのくらい正確ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "基準は一般的な発表の速度（韓国語で1分あたり300文字、英語で1分あたり130単語）で、実際の速度は人によって異なります。原稿の冒頭を声に出して読み、かかった時間と比べて速度を一度合わせておくと、以降はかなり正確になります。詳しくは発表時間計算ガイドにあります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "英語の原稿も計算できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "できます。ハングル・漢字・日本語のかなは文字単位で、英語は単語単位で数え、それぞれの速度で計算してから合算します。韓国語の原稿に英語の用語が混ざっていても時間が膨らむことはありません。ただし数字は文字数としてのみ数えるため、長い数字が多い原稿は実際に読む時間が計算値より長くなります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "編集した内容が消えてしまいました。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "編集結果は保存するまでブラウザのメモリ上にのみあるため、再読み込みすると消えます。思いどおりの結果になったらすぐに保存してください。編集中は「1段階戻す」で直前の操作だけを取り消したり、「元の画像に戻す」で最初の状態からやり直したりできます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "ロトの番号は当選を保証しますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "保証しません。ランダムな参考用の番号であり、実際の購入や当選とは関係ありません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "モバイルでも問題なく使えますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "レスポンシブ対応のため、スマートフォンやタブレットでもご利用いただけます。ゲームは画面サイズによって操作感が異なる場合があります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "不具合を見つけました。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "お問い合わせページに、ご利用の端末・ブラウザと症状をお書きいただければ確認します。"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="フッターメニュー">
+        <a href="about.html">サイト紹介</a>
+        <a href="../guides/index.html">ガイド</a>
+        <a href="faq.html">FAQ</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="terms.html">利用規約</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+      <p>© <span id="y"></span> WebToolBay</p>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    (function () {
+      // This page's language comes from its URL, so carry it over to the single-page app.
+      try {
+        localStorage.setItem("web-pages-lang", "ja");
+      } catch (e) {}
+      var sel = document.getElementById("pageLangSelect");
+      if (!sel) return;
+      sel.addEventListener("change", function () {
+        var opt = sel.options[sel.selectedIndex];
+        try {
+          localStorage.setItem("web-pages-lang", sel.value);
+        } catch (e) {}
+        window.location.href = opt.getAttribute("data-href");
+      });
+    })();
+  </script>
+</body>
+</html>

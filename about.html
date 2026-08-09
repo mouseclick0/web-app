@@ -6,6 +6,14 @@
   <title>소개 | WebToolBay</title>
   <meta name="description" content="WebToolBay는 날씨, 양력·음력 변환, IP 확인, 브라우저 게임 등 일상에서 바로 쓰는 무료 웹 유틸리티를 제공합니다." />
   <link rel="canonical" href="https://mouseclick0.github.io/web-app/about.html" />
+  <link rel="alternate" hreflang="ko" href="https://mouseclick0.github.io/web-app/about.html" />
+  <link rel="alternate" hreflang="en" href="https://mouseclick0.github.io/web-app/en/about.html" />
+  <link rel="alternate" hreflang="ja" href="https://mouseclick0.github.io/web-app/ja/about.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://mouseclick0.github.io/web-app/zh-Hans/about.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://mouseclick0.github.io/web-app/zh-Hant/about.html" />
+  <link rel="alternate" hreflang="es" href="https://mouseclick0.github.io/web-app/es/about.html" />
+  <link rel="alternate" hreflang="pt-BR" href="https://mouseclick0.github.io/web-app/pt-BR/about.html" />
+  <link rel="alternate" hreflang="x-default" href="https://mouseclick0.github.io/web-app/about.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -22,6 +30,15 @@
         <a href="about.html">소개</a>
         <a href="contact.html">문의</a>
       </nav>
+      <select class="page-lang-select" id="pageLangSelect" aria-label="언어 선택">
+        <option value="ko" data-href="about.html" selected>한국어</option>
+        <option value="en" data-href="en/about.html">English</option>
+        <option value="ja" data-href="ja/about.html">日本語</option>
+        <option value="zh-Hans" data-href="zh-Hans/about.html">简体中文</option>
+        <option value="zh-Hant" data-href="zh-Hant/about.html">繁體中文</option>
+        <option value="es" data-href="es/about.html">Español</option>
+        <option value="pt-BR" data-href="pt-BR/about.html">Português (BR)</option>
+      </select>
     </div>
   </header>
 
@@ -73,6 +90,23 @@
       <p>© <span id="y"></span> WebToolBay. 방문자를 위한 무료 웹 유틸리티.</p>
     </div>
   </footer>
-  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    (function () {
+      // This page's language comes from its URL, so carry it over to the single-page app.
+      try {
+        localStorage.setItem("web-pages-lang", "ko");
+      } catch (e) {}
+      var sel = document.getElementById("pageLangSelect");
+      if (!sel) return;
+      sel.addEventListener("change", function () {
+        var opt = sel.options[sel.selectedIndex];
+        try {
+          localStorage.setItem("web-pages-lang", sel.value);
+        } catch (e) {}
+        window.location.href = opt.getAttribute("data-href");
+      });
+    })();
+  </script>
 </body>
 </html>

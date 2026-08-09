@@ -1,0 +1,98 @@
+{
+  "_comment": "Shared header/footer strings for the generated static pages. Edit here, then run: node build/build-pages.js",
+  "languageNames": {
+    "ko": "한국어",
+    "en": "English",
+    "ja": "日本語",
+    "zh-Hans": "简体中文",
+    "zh-Hant": "繁體中文",
+    "es": "Español",
+    "pt-BR": "Português (BR)"
+  },
+  "strings": {
+    "ko": {
+      "navAria": "주요 메뉴",
+      "footerNavAria": "하단 메뉴",
+      "langAria": "언어 선택",
+      "home": "홈",
+      "guides": "가이드",
+      "faq": "FAQ",
+      "about": "소개",
+      "contact": "문의",
+      "privacy": "개인정보처리방침",
+      "terms": "이용약관"
+    },
+    "en": {
+      "navAria": "Main menu",
+      "footerNavAria": "Footer menu",
+      "langAria": "Language",
+      "home": "Home",
+      "guides": "Guides",
+      "faq": "FAQ",
+      "about": "About",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use"
+    },
+    "ja": {
+      "navAria": "メインメニュー",
+      "footerNavAria": "フッターメニュー",
+      "langAria": "言語選択",
+      "home": "ホーム",
+      "guides": "ガイド",
+      "faq": "FAQ",
+      "about": "サイト紹介",
+      "contact": "お問い合わせ",
+      "privacy": "プライバシーポリシー",
+      "terms": "利用規約"
+    },
+    "zh-Hans": {
+      "navAria": "主菜单",
+      "footerNavAria": "页脚菜单",
+      "langAria": "选择语言",
+      "home": "首页",
+      "guides": "使用指南",
+      "faq": "常见问题",
+      "about": "关于本站",
+      "contact": "联系我们",
+      "privacy": "隐私政策",
+      "terms": "服务条款"
+    },
+    "zh-Hant": {
+      "navAria": "主選單",
+      "footerNavAria": "頁尾選單",
+      "langAria": "選擇語言",
+      "home": "首頁",
+      "guides": "使用指南",
+      "faq": "常見問題",
+      "about": "關於本站",
+      "contact": "聯絡我們",
+      "privacy": "隱私政策",
+      "terms": "服務條款"
+    },
+    "es": {
+      "navAria": "Menú principal",
+      "footerNavAria": "Menú del pie de página",
+      "langAria": "Idioma",
+      "home": "Inicio",
+      "guides": "Guías",
+      "faq": "Preguntas frecuentes",
+      "about": "Acerca de",
+      "contact": "Contacto",
+      "privacy": "Política de privacidad",
+      "terms": "Condiciones de uso"
+    },
+    "pt-BR": {
+      "navAria": "Menu principal",
+      "footerNavAria": "Menu do rodapé",
+      "langAria": "Idioma",
+      "home": "Início",
+      "guides": "Guias",
+      "faq": "Perguntas frequentes",
+      "about": "Sobre",
+      "contact": "Contato",
+      "privacy": "Política de Privacidade",
+      "terms": "Termos de Uso"
+    }
+  }
+}

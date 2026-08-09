@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Use | WebToolBay</title>
+  <meta name="description" content="WebToolBay terms of use: purpose of the service, disclaimers, prohibited conduct, intellectual property, and limits of liability." />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/en/terms.html" />
+  <link rel="alternate" hreflang="ko" href="https://mouseclick0.github.io/web-app/terms.html" />
+  <link rel="alternate" hreflang="en" href="https://mouseclick0.github.io/web-app/en/terms.html" />
+  <link rel="alternate" hreflang="ja" href="https://mouseclick0.github.io/web-app/ja/terms.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://mouseclick0.github.io/web-app/zh-Hans/terms.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://mouseclick0.github.io/web-app/zh-Hant/terms.html" />
+  <link rel="alternate" hreflang="es" href="https://mouseclick0.github.io/web-app/es/terms.html" />
+  <link rel="alternate" hreflang="pt-BR" href="https://mouseclick0.github.io/web-app/pt-BR/terms.html" />
+  <link rel="alternate" hreflang="x-default" href="https://mouseclick0.github.io/web-app/terms.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">WebToolBay</a>
+      <nav class="site-nav" aria-label="Main menu">
+        <a href="../index.html">Home</a>
+        <a href="../guides/index.html">Guides</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <select class="page-lang-select" id="pageLangSelect" aria-label="Language">
+        <option value="ko" data-href="../terms.html">한국어</option>
+        <option value="en" data-href="../en/terms.html" selected>English</option>
+        <option value="ja" data-href="../ja/terms.html">日本語</option>
+        <option value="zh-Hans" data-href="../zh-Hans/terms.html">简体中文</option>
+        <option value="zh-Hant" data-href="../zh-Hant/terms.html">繁體中文</option>
+        <option value="es" data-href="../es/terms.html">Español</option>
+        <option value="pt-BR" data-href="../pt-BR/terms.html">Português (BR)</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">Home</a> · Terms of Use</p>
+    <article class="article-card">
+      <h1>Terms of Use</h1>
+      <p class="lead">Please read these terms before using WebToolBay. By using the site you are considered to have accepted them.</p>
+      <p>Last updated: 2 August 2026</p>
+
+      <h2>1. About the service</h2>
+      <p>WebToolBay provides free browser-based tools for looking up information, converting values, and playing simple games. Features may be added, changed, or discontinued without notice.</p>
+
+      <h2>2. Limits on intended use</h2>
+      <ul>
+        <li>The lottery number generator is for entertainment and reference only and does not guarantee any winnings.</li>
+        <li>Weather, IP, and lunar calendar information depends on external data and algorithms, so absolute accuracy cannot be guaranteed.</li>
+        <li>The games are non-commercial entertainment and have nothing to do with cash betting or gambling.</li>
+      </ul>
+
+      <h2>3. Prohibited conduct</h2>
+      <ul>
+        <li>Interfering with the normal operation of the service</li>
+        <li>Infringing the rights of others or distributing unlawful information</li>
+        <li>Placing excessive load on the servers or external APIs through automated bulk requests</li>
+        <li>Copying site content without permission and redistributing it commercially</li>
+      </ul>
+
+      <h2>4. Intellectual property</h2>
+      <p>The original guides, explanatory text, and custom interface published on this site belong to the operator. External libraries, icons, weather data, and similar resources follow the licence and policy of each provider.</p>
+
+      <h2>5. Disclaimer</h2>
+      <p>The site is provided “as is”. Liability for damages arising from incorrect information, service interruptions, external API failures, or problems with your own device or network is limited to the extent permitted by law. For important schedules, contracts, or legal decisions, please confirm the details with official sources.</p>
+
+      <h2>6. Contact</h2>
+      <p>For questions about these terms, please use the <a href="contact.html">contact page</a>.</p>
+
+      <h2>7. Governing law</h2>
+      <p>These terms are interpreted under the laws of the Republic of Korea.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="Footer menu">
+        <a href="about.html">About</a>
+        <a href="../guides/index.html">Guides</a>
+        <a href="faq.html">FAQ</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p>© <span id="y"></span> WebToolBay</p>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    (function () {
+      // This page's language comes from its URL, so carry it over to the single-page app.
+      try {
+        localStorage.setItem("web-pages-lang", "en");
+      } catch (e) {}
+      var sel = document.getElementById("pageLangSelect");
+      if (!sel) return;
+      sel.addEventListener("change", function () {
+        var opt = sel.options[sel.selectedIndex];
+        try {
+          localStorage.setItem("web-pages-lang", sel.value);
+        } catch (e) {}
+        window.location.href = opt.getAttribute("data-href");
+      });
+    })();
+  </script>
+</body>
+</html>

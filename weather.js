@@ -134,7 +134,7 @@
         "&longitude=" +
         encodeURIComponent(lon) +
         "&localityLanguage=" +
-        encodeURIComponent((window.getLang && getLang()) || "ko");
+        encodeURIComponent(apiLang());
       var res = await fetch(url);
       if (!res.ok) throw new Error("reverse failed");
       var data = await res.json();
@@ -158,7 +158,7 @@
   }
 
   async function searchCities(query) {
-    var lang = (window.getLang && getLang()) || "ko";
+    var lang = apiLang();
     var url =
       "https://geocoding-api.open-meteo.com/v1/search?name=" +
       encodeURIComponent(query) +
@@ -243,12 +243,25 @@
     refreshIcons(box);
   }
 
+  var LOCALE_TAGS = {
+    ko: "ko-KR",
+    en: "en-US",
+    ja: "ja-JP",
+    "zh-Hans": "zh-CN",
+    "zh-Hant": "zh-TW",
+    es: "es-ES",
+    "pt-BR": "pt-BR"
+  };
+
   function localeTag() {
     var lang = (window.getLang && getLang()) || "ko";
-    if (lang === "zh") return "zh-CN";
-    if (lang === "ja") return "ja-JP";
-    if (lang === "en") return "en-US";
-    return "ko-KR";
+    return LOCALE_TAGS[lang] || "ko-KR";
+  }
+
+  // Geocoding endpoints expect a bare ISO 639-1 code, not a script or region tag.
+  function apiLang() {
+    var lang = (window.getLang && getLang()) || "ko";
+    return lang.split("-")[0];
   }
 
   function dayLabel(isoDate, index) {

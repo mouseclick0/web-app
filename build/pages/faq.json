@@ -1,0 +1,229 @@
+{
+  "file": "faq.html",
+  "langs": {
+    "ko": {
+      "title": "자주 묻는 질문(FAQ)",
+      "description": "WebToolBay FAQ. 날씨, 음력 변환, IP 찾기, 로또 생성기, 브라우저 게임 이용 관련 질문과 답변.",
+      "breadcrumb": "FAQ",
+      "h1": "자주 묻는 질문(FAQ)",
+      "blocks": [
+        { "t": "lead", "x": "서비스를 이용하면서 자주 생기는 질문을 모았습니다. 더 자세한 설명은 각 가이드 문서를 참고해 주세요." },
+        { "t": "qa", "q": "사이트가 무료인가요?", "a": "네. 현재 공개된 도구와 가이드는 무료로 이용할 수 있습니다. 향후 광고가 표시될 수 있으며, 광고가 도입되면 개인정보처리방침에 안내를 반영합니다." },
+        { "t": "qa", "q": "회원가입이 필요한가요?", "a": "필요하지 않습니다. 대부분의 기능은 브라우저에서 바로 동작합니다. 일부 설정(언어·테마·선택한 도시 등)만 기기에 저장됩니다." },
+        { "t": "qa", "q": "날씨가 내 위치가 아닌데 왜 그런가요?", "a": "위치 권한을 거부했거나 브라우저가 위치를 제공하지 못하면 기본 도시(서울) 또는 이전에 저장한 도시가 표시될 수 있습니다. ‘내 위치’ 버튼으로 다시 요청하거나 도시 검색으로 변경할 수 있습니다." },
+        { "t": "qa", "q": "음력과 양력이 달력 앱과 조금 다릅니다.", "a": "한국천문연구원 계열 데이터를 참고하는 변환 라이브러리를 사용하지만, 윤달 처리나 표기 방식에 따라 다른 앱과 하루 차이가 날 수 있습니다. 법적·제례 일정은 공식 자료를 함께 확인해 주세요." },
+        { "t": "qa", "q": "IPv6가 ‘확인 불가’로 나옵니다.", "a": "네트워크가 IPv6를 지원하지 않거나, 조회 경로에서 IPv4만 반환하는 경우가 많습니다. IPv4와 ISP·지역 정보는 정상적으로 표시될 수 있습니다." },
+        { "t": "qa", "q": "이미지에서 추출한 텍스트가 정확하지 않습니다.", "a": "인쇄된 활자를 기준으로 인식하기 때문에 손글씨, 장식이 강한 글꼴, 흐릿하거나 기울어진 사진은 오인식이 많습니다. 필요한 부분만 크게 잘라내고 정면에서 찍은 이미지를 사용하면 결과가 좋아집니다. 자세한 내용은 <a href=\"guides/ocr.html\">이미지 텍스트 추출 가이드</a>를 참고해 주세요." },
+        { "t": "qa", "q": "업로드한 이미지가 서버에 저장되나요?", "a": "저장되지 않습니다. 텍스트 추출은 브라우저 안에서 처리되며, 이미지는 기기 밖으로 전송되지 않습니다. 다만 인식 언어 데이터를 처음 한 번 외부 CDN에서 내려받습니다." },
+        { "t": "qa", "q": "이미지 텍스트 추출이 처음에 오래 걸립니다.", "a": "선택한 언어의 인식 데이터를 처음 사용할 때 내려받기 때문입니다. 한 번 받은 뒤에는 브라우저에 저장되어 다음부터 빠르게 시작됩니다." },
+        { "t": "qa", "q": "아이폰에서 WebP로 변환이 안 됩니다.", "a": "Safari 계열 브라우저는 WebP 저장 기능을 지원하지 않습니다. 이 경우 도구가 자동으로 감지해 WebP 항목을 비활성화하니, Chrome 등 다른 브라우저를 사용하거나 PNG·JPG로 변환해 주세요. 자세한 내용은 <a href=\"guides/convert.html\">이미지 형식 변환 가이드</a>에 있습니다." },
+        { "t": "qa", "q": "JPG를 PNG로 바꾸면 화질이 좋아지나요?", "a": "좋아지지 않습니다. JPG로 저장되면서 이미 사라진 정보는 되살릴 수 없고, 형식만 바뀌면서 파일 크기는 오히려 커집니다. 투명 배경이 필요하거나 무손실 보관이 목적일 때만 PNG를 선택하세요." },
+        { "t": "qa", "q": "변환하면 사진의 촬영 정보가 남나요?", "a": "남지 않습니다. 형식을 변환하는 과정에서 촬영 위치·기기 정보 같은 EXIF 메타데이터가 제거됩니다." },
+        { "t": "qa", "q": "이미지를 자르거나 회전하면 화질이 나빠지나요?", "a": "자르기와 90도 단위 회전, 좌우·상하 반전은 화소를 옮기거나 덜어낼 뿐이라 화질이 나빠지지 않습니다. 크기를 줄일 때도 손실은 거의 없지만, 원본보다 크게 키우면 없던 정보를 만들어 낼 수 없어 흐릿해집니다. 자세한 내용은 <a href=\"guides/editor.html\">이미지 자르기·회전 가이드</a>를 참고해 주세요." },
+        { "t": "qa", "q": "자를 영역이 잘 잡히지 않습니다.", "a": "이미지 위를 드래그하면 영역이 생기고, 모서리의 점을 끌면 크기가, 안쪽을 끌면 위치가 바뀝니다. 프로필 사진이나 썸네일처럼 규격이 정해져 있다면 비율을 먼저 고정한 뒤 드래그하는 편이 편합니다. 비율을 고정하면 비율이 깨지지 않도록 네 모서리 점만 표시됩니다." },
+        { "t": "qa", "q": "발표 시간 계산은 얼마나 정확한가요?", "a": "기준은 일반적인 발표 속도(한국어 분당 300자, 영어 분당 130단어)이며, 실제 속도는 사람마다 다릅니다. 원고 앞부분을 소리 내어 읽고 걸린 시간과 비교해 속도를 한 번 맞춰 두면 이후에는 꽤 정확해집니다. 자세한 내용은 <a href=\"guides/speech.html\">발표 시간 계산 가이드</a>에 있습니다." },
+        { "t": "qa", "q": "영어 원고도 계산되나요?", "a": "됩니다. 한글·한자·일본어 가나는 글자 단위로, 영어는 단어 단위로 세어 각각의 속도로 계산한 뒤 합칩니다. 한국어 원고에 영어 용어가 섞여 있어도 시간이 부풀지 않습니다. 다만 숫자는 글자 수로만 세기 때문에, 긴 숫자가 많은 원고는 실제 읽는 시간이 계산값보다 깁니다." },
+        { "t": "qa", "q": "편집한 내용이 사라졌어요.", "a": "편집 결과는 저장하기 전까지 브라우저 메모리에만 있어서 새로고침하면 사라집니다. 원하는 결과가 나오면 바로 저장해 주세요. 편집 중에는 ‘한 단계 되돌리기’로 직전 작업만 취소하거나 ‘원본으로 되돌리기’로 처음 상태에서 다시 시작할 수 있습니다." },
+        { "t": "qa", "q": "로또 번호는 당첨을 보장하나요?", "a": "보장하지 않습니다. 무작위 참고용 번호이며, 실제 구매·당첨과 무관합니다." },
+        { "t": "qa", "q": "모바일에서도 잘 되나요?", "a": "반응형으로 제작되어 스마트폰·태블릿에서도 이용할 수 있습니다. 게임은 화면 크기에 따라 조작감이 다를 수 있습니다." },
+        { "t": "qa", "q": "오류를 발견했어요.", "a": "<a href=\"contact.html\">문의 페이지</a>에 사용 중인 기기·브라우저와 증상을 적어 주시면 확인하겠습니다." },
+        { "t": "cta", "links": [
+          { "href": "guides/index.html", "label": "가이드 모음", "primary": true },
+          { "href": "contact.html", "label": "문의하기" }
+        ] }
+      ]
+    },
+    "en": {
+      "title": "Frequently Asked Questions (FAQ)",
+      "description": "WebToolBay FAQ: questions and answers about weather, lunar conversion, IP lookup, the lottery generator, and the browser games.",
+      "breadcrumb": "FAQ",
+      "h1": "Frequently Asked Questions (FAQ)",
+      "blocks": [
+        { "t": "lead", "x": "Here are the questions that come up most often. For a fuller explanation, see the guide for each tool." },
+        { "t": "qa", "q": "Is the site free?", "a": "Yes. Every tool and guide published so far is free to use. Ads may appear in the future, and if they are introduced the privacy policy will be updated to explain how they work." },
+        { "t": "qa", "q": "Do I need an account?", "a": "No. Almost everything runs directly in your browser. Only a few settings, such as language, theme, and your chosen city, are stored on your device." },
+        { "t": "qa", "q": "Why is the weather showing somewhere other than my location?", "a": "If you declined the location permission, or the browser could not supply a position, the default city (Seoul) or the city you saved previously is shown instead. Press the “My location” button to request it again, or use the city search to change it." },
+        { "t": "qa", "q": "The lunar and solar dates differ slightly from my calendar app.", "a": "The conversion library draws on data derived from the Korea Astronomy and Space Science Institute, but the result can differ by a day from other apps depending on how leap months and notation are handled. For legal deadlines or ancestral rites, please confirm against official sources as well." },
+        { "t": "qa", "q": "My IPv6 shows as “Unavailable”.", "a": "In most cases the network does not support IPv6, or the lookup path returns only IPv4. Your IPv4 address along with the ISP and region details can still be displayed normally." },
+        { "t": "qa", "q": "The text extracted from my image is inaccurate.", "a": "Recognition is tuned for printed type, so handwriting, heavily decorated fonts, and blurry or tilted photos produce many errors. Cropping tightly around the part you need and using a photo taken straight on will improve the result noticeably. See the <a href=\"guides/ocr.html\">image-to-text guide</a> for details." },
+        { "t": "qa", "q": "Is the image I upload stored on a server?", "a": "No. Text extraction happens inside your browser and the image never leaves your device. The only exception is the recognition language data, which is downloaded once from an external CDN." },
+        { "t": "qa", "q": "Extracting text from an image is slow the first time.", "a": "That is because the recognition data for the language you picked is downloaded on first use. Once it has been fetched it is cached in your browser and later runs start quickly." },
+        { "t": "qa", "q": "I cannot convert to WebP on my iPhone.", "a": "Safari-based browsers do not support saving WebP. The tool detects this and disables the WebP option, so please use another browser such as Chrome, or convert to PNG or JPG instead. There is more detail in the <a href=\"guides/convert.html\">image format conversion guide</a>." },
+        { "t": "qa", "q": "Does converting JPG to PNG improve quality?", "a": "No. Information already discarded when the file was saved as JPG cannot be recovered, and changing only the container tends to make the file larger. Choose PNG only when you need a transparent background or lossless storage." },
+        { "t": "qa", "q": "Does the photo's capture information survive conversion?", "a": "No. EXIF metadata such as the capture location and camera details is stripped during format conversion." },
+        { "t": "qa", "q": "Does cropping or rotating an image reduce its quality?", "a": "Cropping, rotating in 90-degree steps, and flipping horizontally or vertically only move or discard pixels, so quality is unaffected. Reducing the size loses almost nothing either, but enlarging beyond the original cannot invent detail that was never there, so the result looks soft. See the <a href=\"guides/editor.html\">crop and rotate guide</a> for details." },
+        { "t": "qa", "q": "I am having trouble selecting the crop area.", "a": "Drag on the image to create a selection; drag a corner handle to resize it, or drag inside it to move it. When the output has a fixed shape, such as a profile picture or a thumbnail, it is easier to lock the aspect ratio first and then drag. With the ratio locked, only the four corner handles appear so the proportions cannot break." },
+        { "t": "qa", "q": "How accurate is the speaking time estimate?", "a": "The baseline is a typical presentation pace (300 characters per minute in Korean, 130 words per minute in English), and real pace varies from person to person. Read the opening of your script aloud, compare it with the estimate, and adjust the pace once — after that it becomes quite accurate. There is more detail in the <a href=\"guides/speech.html\">speaking time guide</a>." },
+        { "t": "qa", "q": "Does it work for English scripts?", "a": "Yes. Hangul, Han characters, and Japanese kana are counted per character while English is counted per word; each is timed at its own rate and the results are added together. English terms mixed into a Korean script therefore do not inflate the estimate. Numbers, however, are only counted as characters, so a script full of long numbers takes longer to read aloud than the estimate suggests." },
+        { "t": "qa", "q": "My edits disappeared.", "a": "Until you save, the edited result lives only in browser memory, so refreshing the page discards it. Save as soon as you are happy with the result. While editing, you can use “Undo one step” to cancel just the last action, or “Back to original” to start again from the beginning." },
+        { "t": "qa", "q": "Do the lottery numbers guarantee a win?", "a": "No. They are random numbers for reference only and have no bearing on an actual purchase or draw." },
+        { "t": "qa", "q": "Does it work well on mobile?", "a": "The site is responsive, so it works on phones and tablets. The games may feel different to control depending on the screen size." },
+        { "t": "qa", "q": "I found a bug.", "a": "Please describe your device, your browser, and what happened on the <a href=\"contact.html\">contact page</a> and we will look into it." },
+        { "t": "cta", "links": [
+          { "href": "guides/index.html", "label": "All guides", "primary": true },
+          { "href": "contact.html", "label": "Contact us" }
+        ] }
+      ]
+    },
+    "ja": {
+      "title": "よくある質問（FAQ）",
+      "description": "WebToolBayのFAQ。天気、旧暦変換、IP確認、ロトジェネレーター、ブラウザゲームの利用に関する質問と回答。",
+      "breadcrumb": "FAQ",
+      "h1": "よくある質問（FAQ）",
+      "blocks": [
+        { "t": "lead", "x": "ご利用中によくいただく質問をまとめました。詳しい説明は各ガイド記事をご覧ください。" },
+        { "t": "qa", "q": "サイトは無料ですか？", "a": "はい。現在公開しているツールとガイドは無料でご利用いただけます。今後広告が表示される場合があり、導入時にはプライバシーポリシーに案内を反映します。" },
+        { "t": "qa", "q": "会員登録は必要ですか？", "a": "必要ありません。ほとんどの機能はブラウザ上でそのまま動作します。言語・テーマ・選択した都市など一部の設定のみが端末に保存されます。" },
+        { "t": "qa", "q": "天気が自分の位置と違うのはなぜですか？", "a": "位置情報の許可を拒否した場合や、ブラウザが位置を取得できなかった場合は、デフォルトの都市（ソウル）または以前に保存した都市が表示されることがあります。「現在地」ボタンで再度リクエストするか、都市検索から変更できます。" },
+        { "t": "qa", "q": "旧暦と新暦がカレンダーアプリと少し違います。", "a": "韓国天文研究院系のデータを参照する変換ライブラリを使用していますが、閏月の扱いや表記の方法によって他のアプリと1日ずれることがあります。法的な期日や祭祀の日程については、公式資料もあわせてご確認ください。" },
+        { "t": "qa", "q": "IPv6が「確認できません」と表示されます。", "a": "ネットワークがIPv6に対応していないか、照会経路がIPv4のみを返す場合がほとんどです。IPv4とISP・地域の情報は正常に表示されることがあります。" },
+        { "t": "qa", "q": "画像から抽出したテキストが正確ではありません。", "a": "印刷された活字を基準に認識するため、手書き、装飾の強いフォント、ぼやけた写真や傾いた写真では誤認識が多くなります。必要な部分だけを大きく切り出し、正面から撮影した画像を使うと結果が良くなります。詳しくは<a href=\"guides/ocr.html\">画像テキスト抽出ガイド</a>をご覧ください。" },
+        { "t": "qa", "q": "アップロードした画像はサーバーに保存されますか？", "a": "保存されません。テキスト抽出はブラウザ内で処理され、画像が端末の外に送信されることはありません。ただし、認識用の言語データは初回のみ外部CDNからダウンロードします。" },
+        { "t": "qa", "q": "画像のテキスト抽出が初回だけ時間がかかります。", "a": "選択した言語の認識データを初めて使うときにダウンロードするためです。一度取得すればブラウザに保存され、次回からは素早く開始できます。" },
+        { "t": "qa", "q": "iPhoneでWebPに変換できません。", "a": "Safari系のブラウザはWebPの保存に対応していません。その場合はツールが自動的に検出してWebPの項目を無効にしますので、Chromeなど別のブラウザを使うか、PNG・JPGに変換してください。詳しくは<a href=\"guides/convert.html\">画像形式変換ガイド</a>にあります。" },
+        { "t": "qa", "q": "JPGをPNGに変えると画質は良くなりますか？", "a": "良くなりません。JPGとして保存された時点で失われた情報は元に戻せず、形式が変わるだけでファイルサイズはむしろ大きくなります。透明な背景が必要な場合や、可逆で保管したい場合にのみPNGを選んでください。" },
+        { "t": "qa", "q": "変換すると写真の撮影情報は残りますか？", "a": "残りません。形式を変換する過程で、撮影場所や機器の情報といったEXIFメタデータは削除されます。" },
+        { "t": "qa", "q": "画像を切り抜いたり回転したりすると画質が落ちますか？", "a": "切り抜き、90度単位の回転、左右・上下の反転は画素を移動または削るだけなので、画質は落ちません。サイズを縮小する場合もほとんど劣化しませんが、元より大きくすると存在しない情報を作り出すことはできないため、ぼやけて見えます。詳しくは<a href=\"guides/editor.html\">画像の切り抜き・回転ガイド</a>をご覧ください。" },
+        { "t": "qa", "q": "切り抜く範囲がうまく指定できません。", "a": "画像の上をドラッグすると範囲ができ、角の点を引くとサイズが、内側を引くと位置が変わります。プロフィール写真やサムネイルのように規格が決まっている場合は、先に比率を固定してからドラッグすると簡単です。比率を固定すると、比率が崩れないように四隅の点だけが表示されます。" },
+        { "t": "qa", "q": "発表時間の計算はどのくらい正確ですか？", "a": "基準は一般的な発表の速度（韓国語で1分あたり300文字、英語で1分あたり130単語）で、実際の速度は人によって異なります。原稿の冒頭を声に出して読み、かかった時間と比べて速度を一度合わせておくと、以降はかなり正確になります。詳しくは<a href=\"guides/speech.html\">発表時間計算ガイド</a>にあります。" },
+        { "t": "qa", "q": "英語の原稿も計算できますか？", "a": "できます。ハングル・漢字・日本語のかなは文字単位で、英語は単語単位で数え、それぞれの速度で計算してから合算します。韓国語の原稿に英語の用語が混ざっていても時間が膨らむことはありません。ただし数字は文字数としてのみ数えるため、長い数字が多い原稿は実際に読む時間が計算値より長くなります。" },
+        { "t": "qa", "q": "編集した内容が消えてしまいました。", "a": "編集結果は保存するまでブラウザのメモリ上にのみあるため、再読み込みすると消えます。思いどおりの結果になったらすぐに保存してください。編集中は「1段階戻す」で直前の操作だけを取り消したり、「元の画像に戻す」で最初の状態からやり直したりできます。" },
+        { "t": "qa", "q": "ロトの番号は当選を保証しますか？", "a": "保証しません。ランダムな参考用の番号であり、実際の購入や当選とは関係ありません。" },
+        { "t": "qa", "q": "モバイルでも問題なく使えますか？", "a": "レスポンシブ対応のため、スマートフォンやタブレットでもご利用いただけます。ゲームは画面サイズによって操作感が異なる場合があります。" },
+        { "t": "qa", "q": "不具合を見つけました。", "a": "<a href=\"contact.html\">お問い合わせページ</a>に、ご利用の端末・ブラウザと症状をお書きいただければ確認します。" },
+        { "t": "cta", "links": [
+          { "href": "guides/index.html", "label": "ガイド一覧", "primary": true },
+          { "href": "contact.html", "label": "お問い合わせ" }
+        ] }
+      ]
+    },
+    "zh-Hans": {
+      "title": "常见问题（FAQ）",
+      "description": "WebToolBay 常见问题。关于天气、农历换算、IP 查询、彩票生成器与浏览器小游戏的问答。",
+      "breadcrumb": "常见问题",
+      "h1": "常见问题（FAQ）",
+      "blocks": [
+        { "t": "lead", "x": "这里汇总了使用过程中最常见的问题。更详细的说明请参阅各工具的指南文章。" },
+        { "t": "qa", "q": "本站是免费的吗？", "a": "是的。目前公开的工具与指南均可免费使用。今后可能会显示广告，届时会在隐私政策中说明。" },
+        { "t": "qa", "q": "需要注册账号吗？", "a": "不需要。大部分功能直接在浏览器中运行，只有语言、主题、所选城市等少量设置会保存在您的设备上。" },
+        { "t": "qa", "q": "天气显示的不是我的位置，这是为什么？", "a": "如果您拒绝了位置权限，或浏览器无法提供位置，就会显示默认城市（首尔）或您之前保存的城市。可以点击“我的位置”按钮重新请求，或通过城市搜索进行更改。" },
+        { "t": "qa", "q": "农历和公历与日历应用略有出入。", "a": "换算库参考的是韩国天文研究院一系的数据，但因闰月处理和标注方式的不同，可能与其他应用相差一天。涉及法律期限或祭祀日程时，请同时核对官方资料。" },
+        { "t": "qa", "q": "IPv6 显示为“无法确认”。", "a": "多数情况是网络不支持 IPv6，或查询链路只返回 IPv4。IPv4 以及 ISP、地区信息通常仍可正常显示。" },
+        { "t": "qa", "q": "从图片中提取的文字不准确。", "a": "识别以印刷体为基准，因此手写体、装饰性很强的字体，以及模糊或倾斜的照片，误识率较高。把需要的部分裁大一些，并使用正面拍摄的图片，效果会明显改善。详情请参阅<a href=\"guides/ocr.html\">图片文字提取指南</a>。" },
+        { "t": "qa", "q": "上传的图片会保存到服务器吗？", "a": "不会。文字识别在浏览器内完成，图片不会离开您的设备。唯一的例外是识别用的语言数据，会在首次使用时从外部 CDN 下载一次。" },
+        { "t": "qa", "q": "图片文字提取第一次很慢。", "a": "这是因为首次使用所选语言时需要下载识别数据。下载完成后会缓存在浏览器中，之后启动会快很多。" },
+        { "t": "qa", "q": "在 iPhone 上无法转换为 WebP。", "a": "Safari 系列浏览器不支持保存 WebP。工具会自动检测并禁用 WebP 选项，请改用 Chrome 等其他浏览器，或转换为 PNG、JPG。详情见<a href=\"guides/convert.html\">图片格式转换指南</a>。" },
+        { "t": "qa", "q": "把 JPG 转成 PNG 画质会变好吗？", "a": "不会。保存为 JPG 时已经丢失的信息无法恢复，仅更换格式反而会让文件变大。只有在需要透明背景或希望无损保存时才选择 PNG。" },
+        { "t": "qa", "q": "转换后照片的拍摄信息还在吗？", "a": "不会保留。在转换格式的过程中，拍摄位置、设备信息等 EXIF 元数据会被移除。" },
+        { "t": "qa", "q": "裁切或旋转图片会让画质变差吗？", "a": "裁切、以 90 度为单位的旋转，以及水平、垂直翻转，都只是移动或去掉像素，不会降低画质。缩小尺寸时损失也很小，但放大到超过原图就无法凭空生成细节，画面会变模糊。详情请参阅<a href=\"guides/editor.html\">图片裁切与旋转指南</a>。" },
+        { "t": "qa", "q": "裁切区域不好选。", "a": "在图片上拖动即可生成选区，拖动四角的圆点可改变大小，拖动内部可移动位置。如果输出有固定规格，例如头像或缩略图，建议先锁定比例再拖动。锁定比例后只会显示四个角的控制点，以免比例被破坏。" },
+        { "t": "qa", "q": "演讲时间计算有多准确？", "a": "基准是一般的演讲速度（韩语每分钟 300 字，英语每分钟 130 词），实际速度因人而异。把讲稿开头朗读一遍，与计算结果比较后调整一次速度，之后就会相当准确。详情见<a href=\"guides/speech.html\">演讲时间计算指南</a>。" },
+        { "t": "qa", "q": "英文稿件也能计算吗？", "a": "可以。韩文、汉字与日文假名按字符计数，英文按单词计数，各自以对应速度计算后相加。因此韩语稿件中夹杂英文术语也不会让时间虚高。不过数字只按字符计数，所以长数字较多的稿件，实际朗读时间会比计算值更长。" },
+        { "t": "qa", "q": "编辑的内容不见了。", "a": "保存之前，编辑结果只存在于浏览器内存中，刷新页面就会消失。得到满意的效果后请立即保存。编辑过程中可以用“撤销一步”只取消上一步操作，或用“恢复原图”从最初状态重新开始。" },
+        { "t": "qa", "q": "彩票号码能保证中奖吗？", "a": "不能。这些只是随机生成的参考号码，与实际购买和开奖无关。" },
+        { "t": "qa", "q": "手机上也能正常使用吗？", "a": "本站采用响应式设计，手机和平板均可使用。游戏的操作手感可能因屏幕大小而有所不同。" },
+        { "t": "qa", "q": "我发现了一个错误。", "a": "请在<a href=\"contact.html\">联系页面</a>写明您使用的设备、浏览器以及具体现象，我们会进行核查。" },
+        { "t": "cta", "links": [
+          { "href": "guides/index.html", "label": "全部指南", "primary": true },
+          { "href": "contact.html", "label": "联系我们" }
+        ] }
+      ]
+    },
+    "zh-Hant": {
+      "title": "常見問題（FAQ）",
+      "description": "WebToolBay 常見問題。關於天氣、農曆換算、IP 查詢、彩券生成器與瀏覽器小遊戲的問答。",
+      "breadcrumb": "常見問題",
+      "h1": "常見問題（FAQ）",
+      "blocks": [
+        { "t": "lead", "x": "這裡彙整了使用過程中最常見的問題。更詳細的說明請參閱各工具的指南文章。" },
+        { "t": "qa", "q": "本站是免費的嗎？", "a": "是的。目前公開的工具與指南都可以免費使用。日後可能會顯示廣告，屆時會在隱私政策中說明。" },
+        { "t": "qa", "q": "需要註冊帳號嗎？", "a": "不需要。大部分功能直接在瀏覽器中運作，只有語言、主題、所選城市等少量設定會保存在您的裝置上。" },
+        { "t": "qa", "q": "天氣顯示的不是我的位置，這是為什麼？", "a": "如果您拒絕了位置權限，或瀏覽器無法提供位置，就會顯示預設城市（首爾）或您先前保存的城市。可以點選「我的位置」按鈕重新請求，或透過城市搜尋進行變更。" },
+        { "t": "qa", "q": "農曆與公曆和日曆 App 略有出入。", "a": "換算函式庫參考的是韓國天文研究院一系的資料，但因閏月處理與標註方式的不同，可能與其他 App 相差一天。涉及法律期限或祭祀行程時，請同時核對官方資料。" },
+        { "t": "qa", "q": "IPv6 顯示為「無法確認」。", "a": "多數情況是網路不支援 IPv6，或查詢路徑只回傳 IPv4。IPv4 以及 ISP、地區資訊通常仍可正常顯示。" },
+        { "t": "qa", "q": "從圖片中擷取的文字不準確。", "a": "辨識以印刷字體為基準，因此手寫字、裝飾性很強的字型，以及模糊或傾斜的照片，誤判率較高。把需要的部分裁大一些，並使用正面拍攝的圖片，效果會明顯改善。詳情請參閱<a href=\"guides/ocr.html\">圖片文字擷取指南</a>。" },
+        { "t": "qa", "q": "上傳的圖片會保存到伺服器嗎？", "a": "不會。文字辨識在瀏覽器內完成，圖片不會離開您的裝置。唯一的例外是辨識用的語言資料，會在首次使用時從外部 CDN 下載一次。" },
+        { "t": "qa", "q": "圖片文字擷取第一次很慢。", "a": "這是因為首次使用所選語言時需要下載辨識資料。下載完成後會快取在瀏覽器中，之後啟動會快很多。" },
+        { "t": "qa", "q": "在 iPhone 上無法轉換為 WebP。", "a": "Safari 系列瀏覽器不支援儲存 WebP。工具會自動偵測並停用 WebP 選項，請改用 Chrome 等其他瀏覽器，或轉換為 PNG、JPG。詳情見<a href=\"guides/convert.html\">圖片格式轉換指南</a>。" },
+        { "t": "qa", "q": "把 JPG 轉成 PNG 畫質會變好嗎？", "a": "不會。儲存為 JPG 時已經流失的資訊無法還原，僅更換格式反而會讓檔案變大。只有在需要透明背景或希望無損保存時才選擇 PNG。" },
+        { "t": "qa", "q": "轉換後照片的拍攝資訊還在嗎？", "a": "不會保留。在轉換格式的過程中，拍攝位置、裝置資訊等 EXIF 中繼資料會被移除。" },
+        { "t": "qa", "q": "裁切或旋轉圖片會讓畫質變差嗎？", "a": "裁切、以 90 度為單位的旋轉，以及水平、垂直翻轉，都只是移動或去掉像素，不會降低畫質。縮小尺寸時損失也很小，但放大到超過原圖就無法憑空生成細節，畫面會變模糊。詳情請參閱<a href=\"guides/editor.html\">圖片裁切與旋轉指南</a>。" },
+        { "t": "qa", "q": "裁切區域不好選。", "a": "在圖片上拖曳即可產生選取範圍，拖曳四角的圓點可改變大小，拖曳內部可移動位置。如果輸出有固定規格，例如大頭貼或縮圖，建議先鎖定比例再拖曳。鎖定比例後只會顯示四個角的控制點，以免比例被破壞。" },
+        { "t": "qa", "q": "演講時間計算有多準確？", "a": "基準是一般的演講速度（韓語每分鐘 300 字，英語每分鐘 130 個字詞），實際速度因人而異。把講稿開頭朗讀一遍，與計算結果比較後調整一次速度，之後就會相當準確。詳情見<a href=\"guides/speech.html\">演講時間計算指南</a>。" },
+        { "t": "qa", "q": "英文稿件也能計算嗎？", "a": "可以。韓文、漢字與日文假名按字元計數，英文按單字計數，各自以對應速度計算後相加。因此韓語稿件中夾雜英文術語也不會讓時間虛高。不過數字只按字元計數，所以長數字較多的稿件，實際朗讀時間會比計算值更長。" },
+        { "t": "qa", "q": "編輯的內容不見了。", "a": "儲存之前，編輯結果只存在於瀏覽器記憶體中，重新整理頁面就會消失。得到滿意的效果後請立即儲存。編輯過程中可以用「復原一步」只取消上一步操作，或用「還原成原圖」從最初狀態重新開始。" },
+        { "t": "qa", "q": "彩券號碼能保證中獎嗎？", "a": "不能。這些只是隨機產生的參考號碼，與實際購買和開獎無關。" },
+        { "t": "qa", "q": "手機上也能正常使用嗎？", "a": "本站採用響應式設計，手機和平板都能使用。遊戲的操作手感可能因螢幕大小而有所不同。" },
+        { "t": "qa", "q": "我發現了一個錯誤。", "a": "請在<a href=\"contact.html\">聯絡頁面</a>寫明您使用的裝置、瀏覽器以及具體狀況，我們會進行確認。" },
+        { "t": "cta", "links": [
+          { "href": "guides/index.html", "label": "全部指南", "primary": true },
+          { "href": "contact.html", "label": "聯絡我們" }
+        ] }
+      ]
+    },
+    "es": {
+      "title": "Preguntas frecuentes",
+      "description": "Preguntas frecuentes de WebToolBay sobre el clima, la conversión lunar, la consulta de IP, el generador de lotería y los juegos del navegador.",
+      "breadcrumb": "Preguntas frecuentes",
+      "h1": "Preguntas frecuentes",
+      "blocks": [
+        { "t": "lead", "x": "Estas son las dudas que surgen con más frecuencia. Para una explicación más detallada, consulta la guía de cada herramienta." },
+        { "t": "qa", "q": "¿El sitio es gratuito?", "a": "Sí. Todas las herramientas y guías publicadas hasta ahora son de uso gratuito. Es posible que en el futuro se muestren anuncios; si se introducen, la política de privacidad se actualizará para explicarlo." },
+        { "t": "qa", "q": "¿Necesito registrarme?", "a": "No. Casi todo funciona directamente en el navegador. Solo se guardan en tu dispositivo unos pocos ajustes, como el idioma, el tema y la ciudad que hayas elegido." },
+        { "t": "qa", "q": "¿Por qué el clima no corresponde a mi ubicación?", "a": "Si rechazaste el permiso de ubicación o el navegador no pudo facilitar una posición, se muestra la ciudad predeterminada (Seúl) o la que guardaste anteriormente. Pulsa el botón «Mi ubicación» para volver a solicitarla, o cámbiala con el buscador de ciudades." },
+        { "t": "qa", "q": "Las fechas lunares y solares no coinciden del todo con mi aplicación de calendario.", "a": "La biblioteca de conversión se apoya en datos derivados del Instituto Coreano de Astronomía y Ciencias del Espacio, pero el resultado puede variar en un día respecto a otras aplicaciones según cómo se traten los meses intercalares y la notación. Para plazos legales o ritos ancestrales, confirma también con fuentes oficiales." },
+        { "t": "qa", "q": "Mi IPv6 aparece como «No disponible».", "a": "En la mayoría de los casos la red no admite IPv6, o la ruta de consulta solo devuelve IPv4. La dirección IPv4 junto con el proveedor y la región suelen mostrarse con normalidad." },
+        { "t": "qa", "q": "El texto extraído de mi imagen no es exacto.", "a": "El reconocimiento está ajustado a texto impreso, así que la escritura a mano, las tipografías muy decorativas y las fotos borrosas o inclinadas generan bastantes errores. Recortar bien la parte que necesitas y usar una foto tomada de frente mejora mucho el resultado. Consulta la <a href=\"guides/ocr.html\">guía de imagen a texto</a> para más detalles." },
+        { "t": "qa", "q": "¿La imagen que subo se guarda en un servidor?", "a": "No. La extracción de texto ocurre dentro de tu navegador y la imagen nunca sale de tu dispositivo. La única excepción son los datos de reconocimiento del idioma, que se descargan una vez desde una CDN externa." },
+        { "t": "qa", "q": "La primera extracción de texto tarda mucho.", "a": "Se debe a que los datos de reconocimiento del idioma elegido se descargan la primera vez que lo usas. Una vez descargados quedan en la caché del navegador y los siguientes usos arrancan enseguida." },
+        { "t": "qa", "q": "No puedo convertir a WebP en mi iPhone.", "a": "Los navegadores basados en Safari no permiten guardar en WebP. La herramienta lo detecta y desactiva esa opción, así que usa otro navegador como Chrome, o convierte a PNG o JPG. Hay más detalles en la <a href=\"guides/convert.html\">guía de conversión de formatos</a>." },
+        { "t": "qa", "q": "¿Convertir de JPG a PNG mejora la calidad?", "a": "No. La información que ya se perdió al guardar el archivo como JPG no se puede recuperar, y cambiar solo el formato suele aumentar el tamaño del archivo. Elige PNG únicamente cuando necesites fondo transparente o un almacenamiento sin pérdidas." },
+        { "t": "qa", "q": "¿Se conservan los datos de captura de la foto al convertirla?", "a": "No. Los metadatos EXIF, como la ubicación de la toma y el modelo de la cámara, se eliminan durante la conversión de formato." },
+        { "t": "qa", "q": "¿Recortar o girar una imagen empeora su calidad?", "a": "Recortar, girar en pasos de 90 grados y voltear en horizontal o vertical solo mueven o descartan píxeles, así que la calidad no se resiente. Reducir el tamaño tampoco pierde casi nada, pero ampliar más allá del original no puede inventar detalle que nunca existió, así que el resultado se ve borroso. Consulta la <a href=\"guides/editor.html\">guía de recorte y giro</a> para más detalles." },
+        { "t": "qa", "q": "Me cuesta seleccionar la zona de recorte.", "a": "Arrastra sobre la imagen para crear una selección; arrastra un tirador de esquina para cambiar su tamaño o arrastra dentro de ella para moverla. Cuando el resultado tiene una forma fija, como una foto de perfil o una miniatura, resulta más cómodo fijar primero la proporción y arrastrar después. Con la proporción bloqueada solo aparecen los cuatro tiradores de esquina, de modo que no se puede deformar." },
+        { "t": "qa", "q": "¿Hasta qué punto es exacto el cálculo del tiempo de discurso?", "a": "La referencia es un ritmo de presentación habitual (300 caracteres por minuto en coreano, 130 palabras por minuto en inglés), y el ritmo real varía según la persona. Lee en voz alta el principio de tu guion, compáralo con la estimación y ajusta el ritmo una vez: a partir de ahí resulta bastante exacto. Hay más detalles en la <a href=\"guides/speech.html\">guía del tiempo de discurso</a>." },
+        { "t": "qa", "q": "¿Funciona con guiones en otros idiomas?", "a": "Sí. El hangul, los caracteres han y los kana japoneses se cuentan por carácter, mientras que las lenguas con alfabeto latino se cuentan por palabra; cada parte se calcula a su propio ritmo y luego se suman. Por eso los términos en inglés dentro de un guion coreano no inflan la estimación. Los números, en cambio, solo se cuentan como caracteres, así que un guion con muchas cifras largas tarda más en leerse de lo que indica el cálculo." },
+        { "t": "qa", "q": "Han desaparecido mis ediciones.", "a": "Hasta que guardas, el resultado editado existe solo en la memoria del navegador, así que al actualizar la página se pierde. Guarda en cuanto el resultado te convenza. Mientras editas puedes usar «Deshacer un paso» para cancelar solo la última acción, o «Volver al original» para empezar de nuevo." },
+        { "t": "qa", "q": "¿Los números de lotería garantizan un premio?", "a": "No. Son números aleatorios de referencia y no tienen relación con una compra o un sorteo real." },
+        { "t": "qa", "q": "¿Funciona bien en el móvil?", "a": "El sitio es adaptable, así que funciona en teléfonos y tabletas. Los juegos pueden sentirse distintos al controlarlos según el tamaño de la pantalla." },
+        { "t": "qa", "q": "He encontrado un error.", "a": "Descríbenos tu dispositivo, tu navegador y lo que ocurrió en la <a href=\"contact.html\">página de contacto</a> y lo revisaremos." },
+        { "t": "cta", "links": [
+          { "href": "guides/index.html", "label": "Todas las guías", "primary": true },
+          { "href": "contact.html", "label": "Contactar" }
+        ] }
+      ]
+    },
+    "pt-BR": {
+      "title": "Perguntas frequentes",
+      "description": "Perguntas frequentes do WebToolBay sobre clima, conversão lunar, consulta de IP, gerador de loteria e os jogos do navegador.",
+      "breadcrumb": "Perguntas frequentes",
+      "h1": "Perguntas frequentes",
+      "blocks": [
+        { "t": "lead", "x": "Estas são as dúvidas que aparecem com mais frequência. Para uma explicação mais completa, veja o guia de cada ferramenta." },
+        { "t": "qa", "q": "O site é gratuito?", "a": "Sim. Todas as ferramentas e guias publicados até agora são de uso gratuito. Anúncios podem aparecer no futuro e, se forem adotados, a política de privacidade será atualizada para explicar como funcionam." },
+        { "t": "qa", "q": "Preciso criar uma conta?", "a": "Não. Quase tudo funciona direto no navegador. Apenas algumas configurações, como idioma, tema e a cidade escolhida, ficam salvas no seu dispositivo." },
+        { "t": "qa", "q": "Por que o clima mostra um lugar diferente do meu?", "a": "Se você recusou a permissão de localização ou o navegador não conseguiu informar a posição, é exibida a cidade padrão (Seul) ou a cidade que você salvou antes. Toque no botão “Minha localização” para pedir de novo, ou use a busca de cidades para alterar." },
+        { "t": "qa", "q": "As datas lunares e solares diferem um pouco do meu aplicativo de calendário.", "a": "A biblioteca de conversão usa dados derivados do Instituto Coreano de Astronomia e Ciências Espaciais, mas o resultado pode variar em um dia em relação a outros aplicativos, dependendo de como os meses intercalares e a notação são tratados. Para prazos legais ou datas de rituais, confirme também em fontes oficiais." },
+        { "t": "qa", "q": "Meu IPv6 aparece como “Indisponível”.", "a": "Na maioria dos casos a rede não oferece suporte a IPv6, ou o caminho de consulta retorna apenas IPv4. O endereço IPv4, o provedor e as informações de região normalmente continuam sendo exibidos." },
+        { "t": "qa", "q": "O texto extraído da minha imagem não está correto.", "a": "O reconhecimento é ajustado para texto impresso, então escrita à mão, fontes muito decoradas e fotos borradas ou inclinadas geram muitos erros. Recortar bem a parte que você precisa e usar uma foto tirada de frente melhora bastante o resultado. Veja o <a href=\"guides/ocr.html\">guia de imagem para texto</a> para mais detalhes." },
+        { "t": "qa", "q": "A imagem que eu envio fica guardada em um servidor?", "a": "Não. A extração de texto acontece dentro do navegador e a imagem nunca sai do seu dispositivo. A única exceção são os dados de reconhecimento do idioma, baixados uma vez de uma CDN externa." },
+        { "t": "qa", "q": "A primeira extração de texto demora muito.", "a": "Isso acontece porque os dados de reconhecimento do idioma escolhido são baixados no primeiro uso. Depois de baixados, ficam no cache do navegador e as próximas execuções começam rápido." },
+        { "t": "qa", "q": "Não consigo converter para WebP no meu iPhone.", "a": "Navegadores baseados no Safari não conseguem salvar em WebP. A ferramenta detecta isso e desativa a opção, então use outro navegador, como o Chrome, ou converta para PNG ou JPG. Há mais detalhes no <a href=\"guides/convert.html\">guia de conversão de formatos</a>." },
+        { "t": "qa", "q": "Converter de JPG para PNG melhora a qualidade?", "a": "Não. A informação já descartada quando o arquivo foi salvo como JPG não pode ser recuperada, e trocar apenas o formato costuma deixar o arquivo maior. Escolha PNG somente quando precisar de fundo transparente ou de armazenamento sem perdas." },
+        { "t": "qa", "q": "Os dados de captura da foto continuam após a conversão?", "a": "Não. Metadados EXIF, como local da captura e informações do aparelho, são removidos durante a conversão de formato." },
+        { "t": "qa", "q": "Cortar ou girar uma imagem piora a qualidade?", "a": "Cortar, girar em passos de 90 graus e espelhar na horizontal ou na vertical apenas movem ou descartam pixels, então a qualidade não é afetada. Reduzir o tamanho também perde quase nada, mas ampliar além do original não cria detalhes que nunca existiram, e o resultado fica embaçado. Veja o <a href=\"guides/editor.html\">guia de corte e giro</a> para mais detalhes." },
+        { "t": "qa", "q": "Estou com dificuldade para selecionar a área de corte.", "a": "Arraste sobre a imagem para criar uma seleção; arraste uma alça de canto para redimensioná-la ou arraste dentro dela para movê-la. Quando o resultado tem formato fixo, como foto de perfil ou miniatura, é mais fácil travar a proporção antes de arrastar. Com a proporção travada, só aparecem as quatro alças de canto, para que o formato não se perca." },
+        { "t": "qa", "q": "Qual é a precisão do cálculo de tempo de fala?", "a": "A referência é um ritmo comum de apresentação (300 caracteres por minuto em coreano, 130 palavras por minuto em inglês), e o ritmo real varia de pessoa para pessoa. Leia o começo do seu roteiro em voz alta, compare com a estimativa e ajuste o ritmo uma vez: depois disso ele fica bem preciso. Há mais detalhes no <a href=\"guides/speech.html\">guia de tempo de fala</a>." },
+        { "t": "qa", "q": "Funciona com roteiros em outros idiomas?", "a": "Sim. Hangul, caracteres han e kana japoneses são contados por caractere, enquanto os idiomas de alfabeto latino são contados por palavra; cada parte é calculada no seu próprio ritmo e depois somada. Por isso termos em inglês dentro de um roteiro coreano não inflam a estimativa. Já os números são contados apenas como caracteres, então um roteiro com muitos números longos leva mais tempo para ser lido do que o cálculo indica." },
+        { "t": "qa", "q": "Minhas edições sumiram.", "a": "Até você salvar, o resultado editado existe só na memória do navegador, então atualizar a página descarta tudo. Salve assim que o resultado ficar do seu agrado. Durante a edição, use “Desfazer uma etapa” para cancelar apenas a última ação, ou “Voltar ao original” para recomeçar do zero." },
+        { "t": "qa", "q": "Os números da loteria garantem prêmio?", "a": "Não. São números aleatórios apenas para referência e não têm relação com uma compra ou um sorteio real." },
+        { "t": "qa", "q": "Funciona bem no celular?", "a": "O site é responsivo, então funciona em celulares e tablets. Os jogos podem ter uma sensação de controle diferente conforme o tamanho da tela." },
+        { "t": "qa", "q": "Encontrei um erro.", "a": "Descreva o seu aparelho, o navegador e o que aconteceu na <a href=\"contact.html\">página de contato</a> que nós vamos verificar." },
+        { "t": "cta", "links": [
+          { "href": "guides/index.html", "label": "Todos os guias", "primary": true },
+          { "href": "contact.html", "label": "Falar com a gente" }
+        ] }
+      ]
+    }
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "file": "about.html",
+  "langs": {
+    "ko": {
+      "title": "소개",
+      "description": "WebToolBay는 날씨, 양력·음력 변환, IP 확인, 브라우저 게임 등 일상에서 바로 쓰는 무료 웹 유틸리티를 제공합니다.",
+      "breadcrumb": "소개",
+      "h1": "WebToolBay 소개",
+      "footerNote": "방문자를 위한 무료 웹 유틸리티.",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBay는 설치 없이 브라우저에서 바로 사용할 수 있는 생활·정보·학습용 웹 유틸리티 모음입니다. 복잡한 회원 가입 없이, 필요한 기능을 빠르게 찾아 쓰는 것을 목표로 합니다." },
+        { "t": "h2", "x": "이 사이트를 만든 이유" },
+        { "t": "p", "x": "날씨 확인, 음력 날짜 변환, 공인 IP 조회처럼 자주 쓰는 기능은 검색할 때마다 광고가 많은 페이지나 앱 설치 유도 화면을 거치는 경우가 많습니다. WebToolBay는 그런 마찰을 줄이고, 한 화면에서 핵심 정보만 바로 확인하도록 구성했습니다." },
+        { "t": "p", "x": "또한 지뢰찾기·테트리스·오목·기억력 테스트 같은 가벼운 브라우저 게임을 함께 두어, 짧은 휴식을 취하거나 집중력을 가볍게 연습할 수 있게 했습니다. 도구와 게임 모두 상업적 도박이나 유료 유도가 아닌 참고·오락 목적입니다." },
+        { "t": "h2", "x": "제공하는 서비스" },
+        { "t": "ul", "items": [
+          "위치 기반 날씨 정보(현재·시간별·7일)",
+          "양력/음력 날짜 변환과 60갑자·12띠 안내",
+          "공인 IPv4/IPv6, ISP, 국가·도시 확인",
+          "로또 번호 생성기(오락·참고용)",
+          "지뢰찾기, 테트리스, 오목, 기억력 테스트",
+          "사용법·배경지식을 정리한 가이드 문서"
+        ] },
+        { "t": "h2", "x": "콘텐츠 운영 원칙" },
+        { "t": "p", "x": "사이트는 방문자가 실제로 읽고 활용할 수 있는 설명을 우선합니다. 도구 화면만 두지 않고, 각 기능의 의미·주의점·활용 팁을 가이드로 정리합니다. 외부 API를 사용할 때는 출처를 밝히고, 개인정보 처리 방식은 개인정보처리방침에 공개합니다." },
+        { "t": "p", "x": "저작권이 있는 콘텐츠를 무단으로 복제하지 않으며, 유튜브 다운로드처럼 정책 리스크가 큰 기능은 일반 방문 화면에 노출하지 않습니다." },
+        { "t": "h2", "x": "운영자" },
+        { "t": "p", "x": "WebToolBay는 개인이 운영하는 웹 프로젝트입니다. 기능 개선, 오류 제보, 제휴·광고 문의는 문의 페이지의 양식으로 남겨 주세요. 가능한 범위에서 빠르게 확인하겠습니다." },
+        { "t": "cta", "links": [
+          { "href": "index.html", "label": "도구 바로가기", "primary": true },
+          { "href": "guides/index.html", "label": "가이드 보기" },
+          { "href": "contact.html", "label": "문의하기" }
+        ] }
+      ]
+    },
+    "en": {
+      "title": "About",
+      "description": "WebToolBay offers free browser utilities you can use right away: weather, solar/lunar conversion, IP lookup, and casual games.",
+      "breadcrumb": "About",
+      "h1": "About WebToolBay",
+      "footerNote": "Free web utilities for everyone.",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBay is a collection of everyday, informational, and study-friendly web utilities that run in your browser with nothing to install. The goal is simple: find the function you need and use it right away, without creating an account." },
+        { "t": "h2", "x": "Why this site exists" },
+        { "t": "p", "x": "Checking the weather, converting a lunar date, or looking up your public IP usually means wading through ad-heavy pages or screens that push you to install an app. WebToolBay removes that friction and puts the essential information on a single screen." },
+        { "t": "p", "x": "It also includes light browser games such as Minesweeper, Tetris, Gomoku, and a memory test, so you can take a short break or warm up your focus. Both the tools and the games are for reference and entertainment — there is no gambling and nothing to pay for." },
+        { "t": "h2", "x": "What you get" },
+        { "t": "ul", "items": [
+          "Location-based weather (current, hourly, and 7-day)",
+          "Solar/lunar date conversion with the 60-gapja cycle and zodiac",
+          "Public IPv4/IPv6, ISP, and country/city lookup",
+          "Lottery number generator (for fun and reference)",
+          "Minesweeper, Tetris, Gomoku, and a memory test",
+          "Guide articles covering how to use each tool and the ideas behind it"
+        ] },
+        { "t": "h2", "x": "How the content is run" },
+        { "t": "p", "x": "The site puts explanations that visitors can actually read and use first. Rather than shipping bare tool screens, each feature comes with a guide covering what it means, what to watch out for, and how to get more out of it. External APIs are credited, and how personal data is handled is published in the privacy policy." },
+        { "t": "p", "x": "Copyrighted content is never reproduced without permission, and features with significant policy risk, such as YouTube downloading, are kept off the public screens." },
+        { "t": "h2", "x": "Who runs it" },
+        { "t": "p", "x": "WebToolBay is a web project run by one person. For feature requests, bug reports, or partnership and advertising enquiries, please use the form on the contact page. Messages are reviewed as quickly as circumstances allow." },
+        { "t": "cta", "links": [
+          { "href": "index.html", "label": "Open the tools", "primary": true },
+          { "href": "guides/index.html", "label": "Read the guides" },
+          { "href": "contact.html", "label": "Contact us" }
+        ] }
+      ]
+    },
+    "ja": {
+      "title": "サイト紹介",
+      "description": "WebToolBayは、天気、太陽暦・太陰暦変換、IP確認、ブラウザゲームなど、日常ですぐ使える無料ウェブユーティリティを提供します。",
+      "breadcrumb": "サイト紹介",
+      "h1": "WebToolBayについて",
+      "footerNote": "みんなのための無料ウェブユーティリティ。",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBayは、インストール不要でブラウザからすぐ使える生活・情報・学習向けウェブユーティリティ集です。面倒な会員登録なしで、必要な機能をすばやく見つけて使えることを目指しています。" },
+        { "t": "h2", "x": "このサイトを作った理由" },
+        { "t": "p", "x": "天気の確認、旧暦の日付変換、グローバルIPの照会といったよく使う機能は、検索するたびに広告の多いページやアプリのインストールを促す画面を経由しがちです。WebToolBayはその手間を減らし、一つの画面で必要な情報だけをすぐ確認できるように構成しました。" },
+        { "t": "p", "x": "あわせて、マインスイーパ・テトリス・五目並べ・記憶力テストといった軽いブラウザゲームも用意し、短い休憩や集中力の準備に使えるようにしています。ツールもゲームも、賭博や課金への誘導ではなく、参考と娯楽が目的です。" },
+        { "t": "h2", "x": "提供する機能" },
+        { "t": "ul", "items": [
+          "位置情報に基づく天気（現在・時間別・7日間）",
+          "太陽暦／太陰暦の変換と六十干支・十二支の案内",
+          "グローバルIPv4/IPv6、ISP、国・都市の確認",
+          "ロト番号ジェネレーター（娯楽・参考用）",
+          "マインスイーパ、テトリス、五目並べ、記憶力テスト",
+          "使い方と背景知識をまとめたガイド記事"
+        ] },
+        { "t": "h2", "x": "コンテンツ運営の方針" },
+        { "t": "p", "x": "このサイトは、訪問者が実際に読んで活用できる説明を優先します。ツール画面だけを置くのではなく、各機能の意味・注意点・活用のコツをガイドにまとめています。外部APIを使う場合は出典を明記し、個人情報の扱いはプライバシーポリシーで公開しています。" },
+        { "t": "p", "x": "著作権のあるコンテンツを無断で複製することはありません。また、YouTubeのダウンロードのようにポリシー上のリスクが大きい機能は、一般の訪問画面には表示していません。" },
+        { "t": "h2", "x": "運営者" },
+        { "t": "p", "x": "WebToolBayは個人が運営するウェブプロジェクトです。機能の改善要望、不具合の報告、提携・広告のお問い合わせは、お問い合わせページのフォームからお送りください。できる範囲で早めに確認します。" },
+        { "t": "cta", "links": [
+          { "href": "index.html", "label": "ツールを開く", "primary": true },
+          { "href": "guides/index.html", "label": "ガイドを見る" },
+          { "href": "contact.html", "label": "お問い合わせ" }
+        ] }
+      ]
+    },
+    "zh-Hans": {
+      "title": "关于本站",
+      "description": "WebToolBay 提供天气、公历农历转换、IP 查询、浏览器小游戏等日常可直接使用的免费网页工具。",
+      "breadcrumb": "关于本站",
+      "h1": "关于 WebToolBay",
+      "footerNote": "面向所有访客的免费网页工具。",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBay 是一套无需安装、在浏览器中即可使用的生活、信息与学习类网页工具。目标很简单：不用注册账号，快速找到需要的功能并立即使用。" },
+        { "t": "h2", "x": "为什么做这个网站" },
+        { "t": "p", "x": "查天气、换算农历日期、查询公网 IP 这类常用功能，每次搜索往往要经过广告很多的页面，或者引导安装 App 的界面。WebToolBay 减少了这些干扰，把关键信息集中在一个页面上直接呈现。" },
+        { "t": "p", "x": "此外还提供扫雷、俄罗斯方块、五子棋、记忆力测试等轻量浏览器小游戏，可以用来短暂休息或活动一下注意力。工具和游戏都以参考和休闲为目的，不涉及赌博，也没有任何付费引导。" },
+        { "t": "h2", "x": "提供的功能" },
+        { "t": "ul", "items": [
+          "基于位置的天气信息（当前、逐小时、7 天）",
+          "公历／农历日期换算，附六十甲子与十二生肖",
+          "公网 IPv4/IPv6、ISP 与国家、城市查询",
+          "彩票号码生成器（休闲与参考用途）",
+          "扫雷、俄罗斯方块、五子棋、记忆力测试",
+          "整理了用法与背景知识的指南文章"
+        ] },
+        { "t": "h2", "x": "内容运营原则" },
+        { "t": "p", "x": "本站优先提供访客真正读得懂、用得上的说明。不只是放上工具界面，还会用指南整理每项功能的含义、注意事项与使用技巧。使用外部 API 时会注明来源，个人信息的处理方式则公开在隐私政策中。" },
+        { "t": "p", "x": "本站不会擅自复制有版权的内容；对于 YouTube 下载这类政策风险较高的功能，也不会在面向一般访客的页面上展示。" },
+        { "t": "h2", "x": "运营者" },
+        { "t": "p", "x": "WebToolBay 是由个人运营的网页项目。功能改进建议、错误反馈、合作与广告咨询，请通过联系页面的表单提交。我们会在力所能及的范围内尽快查看。" },
+        { "t": "cta", "links": [
+          { "href": "index.html", "label": "开始使用工具", "primary": true },
+          { "href": "guides/index.html", "label": "查看指南" },
+          { "href": "contact.html", "label": "联系我们" }
+        ] }
+      ]
+    },
+    "zh-Hant": {
+      "title": "關於本站",
+      "description": "WebToolBay 提供天氣、公曆農曆轉換、IP 查詢、瀏覽器小遊戲等日常可直接使用的免費網頁工具。",
+      "breadcrumb": "關於本站",
+      "h1": "關於 WebToolBay",
+      "footerNote": "面向所有訪客的免費網頁工具。",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBay 是一套無需安裝、在瀏覽器中就能使用的生活、資訊與學習類網頁工具。目標很單純：不必註冊帳號，快速找到需要的功能並立即使用。" },
+        { "t": "h2", "x": "為什麼做這個網站" },
+        { "t": "p", "x": "查天氣、換算農曆日期、查詢對外 IP 這類常用功能，每次搜尋往往要經過廣告很多的頁面，或是引導安裝 App 的畫面。WebToolBay 減少了這些干擾，把關鍵資訊集中在同一個頁面上直接呈現。" },
+        { "t": "p", "x": "此外也提供掃雷、俄羅斯方塊、五子棋、記憶力測試等輕量瀏覽器小遊戲，可以用來短暫休息或活動一下注意力。工具與遊戲都以參考和休閒為目的，不涉及賭博，也沒有任何付費引導。" },
+        { "t": "h2", "x": "提供的功能" },
+        { "t": "ul", "items": [
+          "基於位置的天氣資訊（當前、逐小時、7 天）",
+          "公曆／農曆日期換算，附六十甲子與十二生肖",
+          "對外 IPv4/IPv6、ISP 與國家、城市查詢",
+          "彩券號碼生成器（休閒與參考用途）",
+          "掃雷、俄羅斯方塊、五子棋、記憶力測試",
+          "整理了用法與背景知識的指南文章"
+        ] },
+        { "t": "h2", "x": "內容經營原則" },
+        { "t": "p", "x": "本站優先提供訪客真正讀得懂、用得上的說明。不只是放上工具介面，還會用指南整理每項功能的意義、注意事項與使用技巧。使用外部 API 時會註明來源，個人資料的處理方式則公開在隱私政策中。" },
+        { "t": "p", "x": "本站不會擅自複製有著作權的內容；對於 YouTube 下載這類政策風險較高的功能，也不會在面向一般訪客的頁面上顯示。" },
+        { "t": "h2", "x": "經營者" },
+        { "t": "p", "x": "WebToolBay 是由個人經營的網頁專案。功能改進建議、錯誤回報、合作與廣告洽詢，請透過聯絡頁面的表單提交。我們會在能力所及的範圍內盡快查看。" },
+        { "t": "cta", "links": [
+          { "href": "index.html", "label": "開始使用工具", "primary": true },
+          { "href": "guides/index.html", "label": "查看指南" },
+          { "href": "contact.html", "label": "聯絡我們" }
+        ] }
+      ]
+    },
+    "es": {
+      "title": "Acerca de",
+      "description": "WebToolBay ofrece utilidades web gratuitas listas para usar: clima, conversión solar/lunar, consulta de IP y juegos casuales.",
+      "breadcrumb": "Acerca de",
+      "h1": "Acerca de WebToolBay",
+      "footerNote": "Utilidades web gratuitas para todos.",
+      "blocks": [
+        { "t": "lead", "x": "WebToolBay es una colección de utilidades web para el día a día, la consulta de información y el estudio, que funcionan en el navegador sin instalar nada. El objetivo es sencillo: encontrar la función que necesitas y usarla al momento, sin crear ninguna cuenta." },
+        { "t": "h2", "x": "Por qué existe este sitio" },
+        { "t": "p", "x": "Consultar el clima, convertir una fecha lunar o averiguar tu IP pública suele implicar pasar por páginas cargadas de anuncios o por pantallas que insisten en que instales una aplicación. WebToolBay elimina esa fricción y muestra la información esencial en una sola pantalla." },
+        { "t": "p", "x": "También incluye juegos ligeros de navegador como Buscaminas, Tetris, Gomoku y un juego de memoria, para tomarte un descanso corto o activar la concentración. Tanto las herramientas como los juegos son de consulta y entretenimiento: no hay apuestas ni nada que pagar." },
+        { "t": "h2", "x": "Qué encontrarás" },
+        { "t": "ul", "items": [
+          "Clima por ubicación (actual, por horas y de 7 días)",
+          "Conversión de fechas solares y lunares con el ciclo de 60 gapja y el zodiaco",
+          "Consulta de IPv4/IPv6 pública, proveedor y país o ciudad",
+          "Generador de números de lotería (con fines lúdicos y de referencia)",
+          "Buscaminas, Tetris, Gomoku y un juego de memoria",
+          "Guías que explican cómo usar cada herramienta y las ideas que hay detrás"
+        ] },
+        { "t": "h2", "x": "Cómo se gestionan los contenidos" },
+        { "t": "p", "x": "El sitio da prioridad a explicaciones que los visitantes puedan leer y aprovechar de verdad. En lugar de ofrecer solo la pantalla de la herramienta, cada función va acompañada de una guía con su significado, sus limitaciones y consejos de uso. Cuando se usan API externas se indica la fuente, y el tratamiento de los datos personales se publica en la política de privacidad." },
+        { "t": "p", "x": "Nunca se reproducen contenidos protegidos por derechos de autor sin permiso, y las funciones con un riesgo normativo alto, como la descarga de YouTube, se mantienen fuera de las pantallas públicas." },
+        { "t": "h2", "x": "Quién lo gestiona" },
+        { "t": "p", "x": "WebToolBay es un proyecto web llevado por una sola persona. Para sugerencias de mejora, avisos de errores o consultas de colaboración y publicidad, utiliza el formulario de la página de contacto. Los mensajes se revisan con la mayor rapidez posible." },
+        { "t": "cta", "links": [
+          { "href": "index.html", "label": "Abrir las herramientas", "primary": true },
+          { "href": "guides/index.html", "label": "Leer las guías" },
+          { "href": "contact.html", "label": "Contactar" }
+        ] }
+      ]
+    },
+    "pt-BR": {
+      "title": "Sobre",
+      "description": "O WebToolBay oferece utilitários web gratuitos prontos para usar: clima, conversão solar/lunar, consulta de IP e joguinhos casuais.",
+      "breadcrumb": "Sobre",
+      "h1": "Sobre o WebToolBay",
+      "footerNote": "Utilitários web gratuitos para todo mundo.",
+      "blocks": [
+        { "t": "lead", "x": "O WebToolBay é uma coleção de utilitários web para o dia a dia, para consulta de informações e para estudo, que funcionam no navegador sem instalar nada. O objetivo é simples: encontrar a função de que você precisa e usá-la na hora, sem criar conta." },
+        { "t": "h2", "x": "Por que este site existe" },
+        { "t": "p", "x": "Ver o clima, converter uma data lunar ou descobrir o seu IP público normalmente exige passar por páginas cheias de anúncios ou por telas insistindo para você instalar um aplicativo. O WebToolBay elimina esse atrito e coloca a informação essencial em uma única tela." },
+        { "t": "p", "x": "O site também traz joguinhos leves de navegador, como Campo Minado, Tetris, Gomoku e um jogo da memória, para uma pausa rápida ou para aquecer a concentração. Tanto as ferramentas quanto os jogos são para consulta e diversão: não há apostas nem nada a pagar." },
+        { "t": "h2", "x": "O que você encontra" },
+        { "t": "ul", "items": [
+          "Clima por localização (atual, por hora e de 7 dias)",
+          "Conversão de datas solares e lunares com o ciclo de 60 gapja e o zodíaco",
+          "Consulta de IPv4/IPv6 público, provedor e país ou cidade",
+          "Gerador de números de loteria (para diversão e referência)",
+          "Campo Minado, Tetris, Gomoku e jogo da memória",
+          "Guias explicando como usar cada ferramenta e as ideias por trás dela"
+        ] },
+        { "t": "h2", "x": "Como o conteúdo é conduzido" },
+        { "t": "p", "x": "O site prioriza explicações que os visitantes consigam de fato ler e aproveitar. Em vez de entregar apenas a tela da ferramenta, cada recurso vem com um guia sobre o que ele significa, o que observar e como tirar mais proveito dele. As APIs externas são creditadas, e o tratamento dos dados pessoais é publicado na política de privacidade." },
+        { "t": "p", "x": "Conteúdo protegido por direitos autorais nunca é reproduzido sem autorização, e recursos com risco elevado de política, como o download do YouTube, ficam fora das telas públicas." },
+        { "t": "h2", "x": "Quem mantém o site" },
+        { "t": "p", "x": "O WebToolBay é um projeto web tocado por uma pessoa só. Para pedidos de melhoria, relatos de erro ou contatos de parceria e publicidade, use o formulário da página de contato. As mensagens são analisadas o mais rápido possível." },
+        { "t": "cta", "links": [
+          { "href": "index.html", "label": "Abrir as ferramentas", "primary": true },
+          { "href": "guides/index.html", "label": "Ler os guias" },
+          { "href": "contact.html", "label": "Falar com a gente" }
+        ] }
+      ]
+    }
+  }
+}

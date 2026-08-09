@@ -6,6 +6,14 @@
   <title>이용약관 | WebToolBay</title>
   <meta name="description" content="WebToolBay 이용약관. 서비스 목적, 면책, 금지 행위, 지적재산권 및 책임 한계를 안내합니다." />
   <link rel="canonical" href="https://mouseclick0.github.io/web-app/terms.html" />
+  <link rel="alternate" hreflang="ko" href="https://mouseclick0.github.io/web-app/terms.html" />
+  <link rel="alternate" hreflang="en" href="https://mouseclick0.github.io/web-app/en/terms.html" />
+  <link rel="alternate" hreflang="ja" href="https://mouseclick0.github.io/web-app/ja/terms.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://mouseclick0.github.io/web-app/zh-Hans/terms.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://mouseclick0.github.io/web-app/zh-Hant/terms.html" />
+  <link rel="alternate" hreflang="es" href="https://mouseclick0.github.io/web-app/es/terms.html" />
+  <link rel="alternate" hreflang="pt-BR" href="https://mouseclick0.github.io/web-app/pt-BR/terms.html" />
+  <link rel="alternate" hreflang="x-default" href="https://mouseclick0.github.io/web-app/terms.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -22,6 +30,15 @@
         <a href="about.html">소개</a>
         <a href="contact.html">문의</a>
       </nav>
+      <select class="page-lang-select" id="pageLangSelect" aria-label="언어 선택">
+        <option value="ko" data-href="terms.html" selected>한국어</option>
+        <option value="en" data-href="en/terms.html">English</option>
+        <option value="ja" data-href="ja/terms.html">日本語</option>
+        <option value="zh-Hans" data-href="zh-Hans/terms.html">简体中文</option>
+        <option value="zh-Hant" data-href="zh-Hant/terms.html">繁體中文</option>
+        <option value="es" data-href="es/terms.html">Español</option>
+        <option value="pt-BR" data-href="pt-BR/terms.html">Português (BR)</option>
+      </select>
     </div>
   </header>
 
@@ -77,6 +94,23 @@
       <p>© <span id="y"></span> WebToolBay</p>
     </div>
   </footer>
-  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    (function () {
+      // This page's language comes from its URL, so carry it over to the single-page app.
+      try {
+        localStorage.setItem("web-pages-lang", "ko");
+      } catch (e) {}
+      var sel = document.getElementById("pageLangSelect");
+      if (!sel) return;
+      sel.addEventListener("change", function () {
+        var opt = sel.options[sel.selectedIndex];
+        try {
+          localStorage.setItem("web-pages-lang", sel.value);
+        } catch (e) {}
+        window.location.href = opt.getAttribute("data-href");
+      });
+    })();
+  </script>
 </body>
 </html>

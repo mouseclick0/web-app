@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>常見問題（FAQ） | WebToolBay</title>
+  <meta name="description" content="WebToolBay 常見問題。關於天氣、農曆換算、IP 查詢、彩券生成器與瀏覽器小遊戲的問答。" />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/zh-Hant/faq.html" />
+  <link rel="alternate" hreflang="ko" href="https://mouseclick0.github.io/web-app/faq.html" />
+  <link rel="alternate" hreflang="en" href="https://mouseclick0.github.io/web-app/en/faq.html" />
+  <link rel="alternate" hreflang="ja" href="https://mouseclick0.github.io/web-app/ja/faq.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://mouseclick0.github.io/web-app/zh-Hans/faq.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://mouseclick0.github.io/web-app/zh-Hant/faq.html" />
+  <link rel="alternate" hreflang="es" href="https://mouseclick0.github.io/web-app/es/faq.html" />
+  <link rel="alternate" hreflang="pt-BR" href="https://mouseclick0.github.io/web-app/pt-BR/faq.html" />
+  <link rel="alternate" hreflang="x-default" href="https://mouseclick0.github.io/web-app/faq.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">WebToolBay</a>
+      <nav class="site-nav" aria-label="主選單">
+        <a href="../index.html">首頁</a>
+        <a href="../guides/index.html">使用指南</a>
+        <a href="faq.html">常見問題</a>
+        <a href="about.html">關於本站</a>
+        <a href="contact.html">聯絡我們</a>
+      </nav>
+      <select class="page-lang-select" id="pageLangSelect" aria-label="選擇語言">
+        <option value="ko" data-href="../faq.html">한국어</option>
+        <option value="en" data-href="../en/faq.html">English</option>
+        <option value="ja" data-href="../ja/faq.html">日本語</option>
+        <option value="zh-Hans" data-href="../zh-Hans/faq.html">简体中文</option>
+        <option value="zh-Hant" data-href="../zh-Hant/faq.html" selected>繁體中文</option>
+        <option value="es" data-href="../es/faq.html">Español</option>
+        <option value="pt-BR" data-href="../pt-BR/faq.html">Português (BR)</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">首頁</a> · 常見問題</p>
+    <article class="article-card">
+      <h1>常見問題（FAQ）</h1>
+      <p class="lead">這裡彙整了使用過程中最常見的問題。更詳細的說明請參閱各工具的指南文章。</p>
+
+      <h2>本站是免費的嗎？</h2>
+      <p>是的。目前公開的工具與指南都可以免費使用。日後可能會顯示廣告，屆時會在隱私政策中說明。</p>
+
+      <h2>需要註冊帳號嗎？</h2>
+      <p>不需要。大部分功能直接在瀏覽器中運作，只有語言、主題、所選城市等少量設定會保存在您的裝置上。</p>
+
+      <h2>天氣顯示的不是我的位置，這是為什麼？</h2>
+      <p>如果您拒絕了位置權限，或瀏覽器無法提供位置，就會顯示預設城市（首爾）或您先前保存的城市。可以點選「我的位置」按鈕重新請求，或透過城市搜尋進行變更。</p>
+
+      <h2>農曆與公曆和日曆 App 略有出入。</h2>
+      <p>換算函式庫參考的是韓國天文研究院一系的資料，但因閏月處理與標註方式的不同，可能與其他 App 相差一天。涉及法律期限或祭祀行程時，請同時核對官方資料。</p>
+
+      <h2>IPv6 顯示為「無法確認」。</h2>
+      <p>多數情況是網路不支援 IPv6，或查詢路徑只回傳 IPv4。IPv4 以及 ISP、地區資訊通常仍可正常顯示。</p>
+
+      <h2>從圖片中擷取的文字不準確。</h2>
+      <p>辨識以印刷字體為基準，因此手寫字、裝飾性很強的字型，以及模糊或傾斜的照片，誤判率較高。把需要的部分裁大一些，並使用正面拍攝的圖片，效果會明顯改善。詳情請參閱<a href="../guides/ocr.html">圖片文字擷取指南</a>。</p>
+
+      <h2>上傳的圖片會保存到伺服器嗎？</h2>
+      <p>不會。文字辨識在瀏覽器內完成，圖片不會離開您的裝置。唯一的例外是辨識用的語言資料，會在首次使用時從外部 CDN 下載一次。</p>
+
+      <h2>圖片文字擷取第一次很慢。</h2>
+      <p>這是因為首次使用所選語言時需要下載辨識資料。下載完成後會快取在瀏覽器中，之後啟動會快很多。</p>
+
+      <h2>在 iPhone 上無法轉換為 WebP。</h2>
+      <p>Safari 系列瀏覽器不支援儲存 WebP。工具會自動偵測並停用 WebP 選項，請改用 Chrome 等其他瀏覽器，或轉換為 PNG、JPG。詳情見<a href="../guides/convert.html">圖片格式轉換指南</a>。</p>
+
+      <h2>把 JPG 轉成 PNG 畫質會變好嗎？</h2>
+      <p>不會。儲存為 JPG 時已經流失的資訊無法還原，僅更換格式反而會讓檔案變大。只有在需要透明背景或希望無損保存時才選擇 PNG。</p>
+
+      <h2>轉換後照片的拍攝資訊還在嗎？</h2>
+      <p>不會保留。在轉換格式的過程中，拍攝位置、裝置資訊等 EXIF 中繼資料會被移除。</p>
+
+      <h2>裁切或旋轉圖片會讓畫質變差嗎？</h2>
+      <p>裁切、以 90 度為單位的旋轉，以及水平、垂直翻轉，都只是移動或去掉像素，不會降低畫質。縮小尺寸時損失也很小，但放大到超過原圖就無法憑空生成細節，畫面會變模糊。詳情請參閱<a href="../guides/editor.html">圖片裁切與旋轉指南</a>。</p>
+
+      <h2>裁切區域不好選。</h2>
+      <p>在圖片上拖曳即可產生選取範圍，拖曳四角的圓點可改變大小，拖曳內部可移動位置。如果輸出有固定規格，例如大頭貼或縮圖，建議先鎖定比例再拖曳。鎖定比例後只會顯示四個角的控制點，以免比例被破壞。</p>
+
+      <h2>演講時間計算有多準確？</h2>
+      <p>基準是一般的演講速度（韓語每分鐘 300 字，英語每分鐘 130 個字詞），實際速度因人而異。把講稿開頭朗讀一遍，與計算結果比較後調整一次速度，之後就會相當準確。詳情見<a href="../guides/speech.html">演講時間計算指南</a>。</p>
+
+      <h2>英文稿件也能計算嗎？</h2>
+      <p>可以。韓文、漢字與日文假名按字元計數，英文按單字計數，各自以對應速度計算後相加。因此韓語稿件中夾雜英文術語也不會讓時間虛高。不過數字只按字元計數，所以長數字較多的稿件，實際朗讀時間會比計算值更長。</p>
+
+      <h2>編輯的內容不見了。</h2>
+      <p>儲存之前，編輯結果只存在於瀏覽器記憶體中，重新整理頁面就會消失。得到滿意的效果後請立即儲存。編輯過程中可以用「復原一步」只取消上一步操作，或用「還原成原圖」從最初狀態重新開始。</p>
+
+      <h2>彩券號碼能保證中獎嗎？</h2>
+      <p>不能。這些只是隨機產生的參考號碼，與實際購買和開獎無關。</p>
+
+      <h2>手機上也能正常使用嗎？</h2>
+      <p>本站採用響應式設計，手機和平板都能使用。遊戲的操作手感可能因螢幕大小而有所不同。</p>
+
+      <h2>我發現了一個錯誤。</h2>
+      <p>請在<a href="contact.html">聯絡頁面</a>寫明您使用的裝置、瀏覽器以及具體狀況，我們會進行確認。</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../guides/index.html">全部指南</a>
+        <a class="btn" href="contact.html">聯絡我們</a>
+      </div>
+    </article>
+  </main>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "本站是免費的嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "是的。目前公開的工具與指南都可以免費使用。日後可能會顯示廣告，屆時會在隱私政策中說明。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "需要註冊帳號嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "不需要。大部分功能直接在瀏覽器中運作，只有語言、主題、所選城市等少量設定會保存在您的裝置上。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "天氣顯示的不是我的位置，這是為什麼？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "如果您拒絕了位置權限，或瀏覽器無法提供位置，就會顯示預設城市（首爾）或您先前保存的城市。可以點選「我的位置」按鈕重新請求，或透過城市搜尋進行變更。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "農曆與公曆和日曆 App 略有出入。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "換算函式庫參考的是韓國天文研究院一系的資料，但因閏月處理與標註方式的不同，可能與其他 App 相差一天。涉及法律期限或祭祀行程時，請同時核對官方資料。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "IPv6 顯示為「無法確認」。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "多數情況是網路不支援 IPv6，或查詢路徑只回傳 IPv4。IPv4 以及 ISP、地區資訊通常仍可正常顯示。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "從圖片中擷取的文字不準確。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "辨識以印刷字體為基準，因此手寫字、裝飾性很強的字型，以及模糊或傾斜的照片，誤判率較高。把需要的部分裁大一些，並使用正面拍攝的圖片，效果會明顯改善。詳情請參閱圖片文字擷取指南。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "上傳的圖片會保存到伺服器嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "不會。文字辨識在瀏覽器內完成，圖片不會離開您的裝置。唯一的例外是辨識用的語言資料，會在首次使用時從外部 CDN 下載一次。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "圖片文字擷取第一次很慢。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "這是因為首次使用所選語言時需要下載辨識資料。下載完成後會快取在瀏覽器中，之後啟動會快很多。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "在 iPhone 上無法轉換為 WebP。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Safari 系列瀏覽器不支援儲存 WebP。工具會自動偵測並停用 WebP 選項，請改用 Chrome 等其他瀏覽器，或轉換為 PNG、JPG。詳情見圖片格式轉換指南。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "把 JPG 轉成 PNG 畫質會變好嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "不會。儲存為 JPG 時已經流失的資訊無法還原，僅更換格式反而會讓檔案變大。只有在需要透明背景或希望無損保存時才選擇 PNG。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "轉換後照片的拍攝資訊還在嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "不會保留。在轉換格式的過程中，拍攝位置、裝置資訊等 EXIF 中繼資料會被移除。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "裁切或旋轉圖片會讓畫質變差嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "裁切、以 90 度為單位的旋轉，以及水平、垂直翻轉，都只是移動或去掉像素，不會降低畫質。縮小尺寸時損失也很小，但放大到超過原圖就無法憑空生成細節，畫面會變模糊。詳情請參閱圖片裁切與旋轉指南。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "裁切區域不好選。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "在圖片上拖曳即可產生選取範圍，拖曳四角的圓點可改變大小，拖曳內部可移動位置。如果輸出有固定規格，例如大頭貼或縮圖，建議先鎖定比例再拖曳。鎖定比例後只會顯示四個角的控制點，以免比例被破壞。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "演講時間計算有多準確？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "基準是一般的演講速度（韓語每分鐘 300 字，英語每分鐘 130 個字詞），實際速度因人而異。把講稿開頭朗讀一遍，與計算結果比較後調整一次速度，之後就會相當準確。詳情見演講時間計算指南。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "英文稿件也能計算嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "可以。韓文、漢字與日文假名按字元計數，英文按單字計數，各自以對應速度計算後相加。因此韓語稿件中夾雜英文術語也不會讓時間虛高。不過數字只按字元計數，所以長數字較多的稿件，實際朗讀時間會比計算值更長。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "編輯的內容不見了。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "儲存之前，編輯結果只存在於瀏覽器記憶體中，重新整理頁面就會消失。得到滿意的效果後請立即儲存。編輯過程中可以用「復原一步」只取消上一步操作，或用「還原成原圖」從最初狀態重新開始。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "彩券號碼能保證中獎嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "不能。這些只是隨機產生的參考號碼，與實際購買和開獎無關。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "手機上也能正常使用嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "本站採用響應式設計，手機和平板都能使用。遊戲的操作手感可能因螢幕大小而有所不同。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "我發現了一個錯誤。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "請在聯絡頁面寫明您使用的裝置、瀏覽器以及具體狀況，我們會進行確認。"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="頁尾選單">
+        <a href="about.html">關於本站</a>
+        <a href="../guides/index.html">使用指南</a>
+        <a href="faq.html">常見問題</a>
+        <a href="privacy.html">隱私政策</a>
+        <a href="terms.html">服務條款</a>
+        <a href="contact.html">聯絡我們</a>
+      </nav>
+      <p>© <span id="y"></span> WebToolBay</p>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    (function () {
+      // This page's language comes from its URL, so carry it over to the single-page app.
+      try {
+        localStorage.setItem("web-pages-lang", "zh-Hant");
+      } catch (e) {}
+      var sel = document.getElementById("pageLangSelect");
+      if (!sel) return;
+      sel.addEventListener("change", function () {
+        var opt = sel.options[sel.selectedIndex];
+        try {
+          localStorage.setItem("web-pages-lang", sel.value);
+        } catch (e) {}
+        window.location.href = opt.getAttribute("data-href");
+      });
+    })();
+  </script>
+</body>
+</html>

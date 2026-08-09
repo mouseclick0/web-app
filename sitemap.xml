@@ -3,11 +3,41 @@
   <url><loc>https://mouseclick0.github.io/web-app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://mouseclick0.github.io/web-app/index.html</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://mouseclick0.github.io/web-app/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mouseclick0.github.io/web-app/privacy.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://mouseclick0.github.io/web-app/terms.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://mouseclick0.github.io/web-app/contact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/en/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/ja/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/zh-Hans/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/zh-Hant/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/es/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/pt-BR/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://mouseclick0.github.io/web-app/faq.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mouseclick0.github.io/web-app/guides/index.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/en/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/ja/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/zh-Hans/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/zh-Hant/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/es/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/pt-BR/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/contact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/en/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/ja/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/zh-Hans/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/zh-Hant/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/es/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/pt-BR/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/privacy.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/en/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/ja/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/zh-Hans/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/zh-Hant/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/es/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/pt-BR/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/terms.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/en/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/ja/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/zh-Hans/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/zh-Hant/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/es/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/pt-BR/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/guides/index.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mouseclick0.github.io/web-app/guides/overview.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mouseclick0.github.io/web-app/guides/weather.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mouseclick0.github.io/web-app/guides/calendar.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -16,6 +46,6 @@
   <url><loc>https://mouseclick0.github.io/web-app/guides/convert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mouseclick0.github.io/web-app/guides/editor.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mouseclick0.github.io/web-app/guides/speech.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mouseclick0.github.io/web-app/guides/lotto.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://mouseclick0.github.io/web-app/guides/games.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/guides/lotto.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mouseclick0.github.io/web-app/guides/games.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

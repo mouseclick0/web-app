@@ -198,6 +198,21 @@ a:hover { text-decoration: underline; }
   font-size: 0.82rem;
 }
 
+.page-lang-select {
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+}
+
+.page-lang-select:hover { border-color: var(--accent); }
+
 @media (max-width: 640px) {
   .site-nav { width: 100%; }
+  .page-lang-select { width: 100%; }
 }

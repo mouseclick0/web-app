@@ -309,6 +309,8 @@ function head(lang, file, page, content) {
     "<head>",
     '  <meta charset="UTF-8" />',
     '  <meta name="viewport" content="width=device-width, initial-scale=1.0" />',
+    '  <meta name="google-adsense-account" content="ca-pub-8051604788880688" />',
+    '  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8051604788880688" crossorigin="anonymous"></script>',
     "  <title>" + esc(content.title) + " | " + BRAND + "</title>",
     '  <meta name="description" content="' + attr(content.description) + '" />',
     '  <link rel="canonical" href="' + attr(pageUrl(lang, file)) + '" />',

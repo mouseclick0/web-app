@@ -3576,15 +3576,22 @@
 
   function normalizeLang(code) {
     var c = String(code || "").toLowerCase().replace(/_/g, "-");
-    if (c.indexOf("ko") === 0) return "ko";
-    if (c.indexOf("ja") === 0) return "ja";
-    if (c.indexOf("es") === 0) return "es";
+    // Compare the primary subtag so codes like "kok" (Konkani) do not match "ko".
+    var base = c.split("-")[0];
+    if (base === "ko") return "ko";
+    // English must be listed here, otherwise a lower-priority language would win
+    // for visitors whose first preference is English.
+    if (base === "en") return "en";
+    if (base === "ja") return "ja";
+    if (base === "es") return "es";
     // European Portuguese falls back to the Brazilian wording.
-    if (c.indexOf("pt") === 0) return "pt-BR";
-    if (c.indexOf("zh") === 0) return HANT_TAG.test(c) ? "zh-Hant" : "zh-Hans";
-    // China-related region tags sometimes appear without zh- prefix in rare cases
-    if (c === "cn" || c === "sg") return "zh-Hans";
-    if (c === "tw" || c === "hk" || c === "mo") return "zh-Hant";
+    if (base === "pt") return "pt-BR";
+    if (base === "zh") return HANT_TAG.test(c) ? "zh-Hant" : "zh-Hans";
+    // Cantonese is written in Traditional characters outside the mainland.
+    if (base === "yue") return /hans|-cn(-|$)/.test(c) ? "zh-Hans" : "zh-Hant";
+    // Region-only tags occasionally arrive without a language subtag.
+    if (base === "cn" || base === "sg") return "zh-Hans";
+    if (base === "tw" || base === "hk" || base === "mo") return "zh-Hant";
     return null;
   }
 

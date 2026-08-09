@@ -42,7 +42,8 @@ const GUIDE_PAGES = [
   "guides/picker.html",
   "guides/speech.html",
   "guides/lotto.html",
-  "guides/games.html"
+  "guides/games.html",
+  "guides/chess.html"
 ];
 
 const EOL = "\r\n";

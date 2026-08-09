@@ -2229,6 +2229,329 @@
       line-height: 1.45;
     }
 
+    .chess-options {
+      display: grid;
+      gap: 0.85rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .chess-option-label {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .chess-diffs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+
+    .chess-option-group:last-child .chess-diffs {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chess-diff {
+      border: 1px solid var(--toggle-border);
+      border-radius: 10px;
+      padding: 0.55rem 0.4rem;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      background: var(--toggle-bg);
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .chess-diff:hover {
+      background: var(--toggle-hover);
+    }
+
+    .chess-diff.active {
+      border-color: var(--accent);
+      color: #fff;
+      background: linear-gradient(160deg, #4da3f7, #2563c7);
+    }
+
+    .chess-hud {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.25rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chess-hud span {
+      color: var(--muted);
+      font-weight: 500;
+      margin-right: 0.25rem;
+    }
+
+    .chess-status {
+      min-height: 1.3rem;
+      margin: 0 0 0.85rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .chess-status.win {
+      color: #81c784;
+      font-weight: 600;
+    }
+
+    .chess-status.lose {
+      color: #ef9a9a;
+      font-weight: 600;
+    }
+
+    .chess-status.draw,
+    .chess-status.warn {
+      color: #ffb74d;
+      font-weight: 600;
+    }
+
+    .chess-board-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.85rem;
+    }
+
+    .chess-board {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      width: min(100%, 30rem);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+      /* Squares and glyphs scale off the board width so the pieces stay legible. */
+      container-type: inline-size;
+    }
+
+    .chess-cell {
+      position: relative;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      line-height: 1;
+      font-size: clamp(1.1rem, 9cqw, 2.6rem);
+      user-select: none;
+      transition: filter 0.12s ease;
+    }
+
+    .chess-cell.light {
+      background: #eceff5;
+    }
+
+    .chess-cell.dark {
+      background: #7f9bc4;
+    }
+
+    /* The solid glyphs are used for both sides, so white is a light fill with an
+       outline. Sizing the outline in em keeps it even as the board scales. */
+    .chess-cell[data-color="w"] {
+      color: #ffffff;
+      -webkit-text-stroke: 0.045em #21252b;
+      paint-order: stroke fill;
+    }
+
+    .chess-cell[data-color="b"] {
+      color: #16181d;
+    }
+
+    .chess-cell.last {
+      box-shadow: inset 0 0 0 3px rgba(255, 193, 71, 0.75);
+    }
+
+    .chess-cell.selected {
+      box-shadow: inset 0 0 0 3px #2563c7;
+    }
+
+    /* A dot marks a quiet destination; a ring marks one that takes a piece. */
+    .chess-cell.target::after {
+      content: "";
+      position: absolute;
+      width: 26%;
+      height: 26%;
+      border-radius: 50%;
+      background: rgba(37, 99, 199, 0.55);
+      pointer-events: none;
+    }
+
+    .chess-cell.target-capture::after {
+      content: "";
+      position: absolute;
+      inset: 8%;
+      border: 4px solid rgba(37, 99, 199, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .chess-cell.in-check {
+      background: radial-gradient(circle, #ef5350 12%, rgba(239, 83, 80, 0.35) 70%);
+    }
+
+    .chess-cell:hover:not(:disabled) {
+      filter: brightness(1.06);
+    }
+
+    .chess-cell:disabled {
+      cursor: default;
+    }
+
+    .chess-cell[data-file]::before,
+    .chess-cell[data-rank]::before {
+      position: absolute;
+      font-size: max(0.5rem, 2.2cqw);
+      font-weight: 700;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .chess-cell[data-file]::before {
+      content: attr(data-file);
+      right: 6%;
+      bottom: 2%;
+    }
+
+    .chess-cell[data-rank]::before {
+      content: attr(data-rank);
+      left: 6%;
+      top: 2%;
+    }
+
+    .chess-cell.light::before {
+      color: #7f9bc4;
+    }
+
+    .chess-cell.dark::before {
+      color: #eceff5;
+    }
+
+    .chess-promo {
+      margin: 0 auto 0.85rem;
+      padding: 0.75rem;
+      max-width: 22rem;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: var(--toggle-bg);
+      text-align: center;
+    }
+
+    .chess-promo p {
+      margin: 0 0 0.6rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .chess-promo-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+
+    .chess-promo-btn {
+      border: 1px solid var(--toggle-border);
+      border-radius: 10px;
+      padding: 0.4rem 0;
+      font-size: 1.9rem;
+      line-height: 1;
+      cursor: pointer;
+      background: var(--surface);
+    }
+
+    .chess-promo-btn[data-color="w"] {
+      color: #ffffff;
+      -webkit-text-stroke: 1px #21252b;
+      paint-order: stroke fill;
+    }
+
+    .chess-promo-btn[data-color="b"] {
+      color: #16181d;
+    }
+
+    .chess-promo-btn:hover {
+      border-color: var(--accent);
+    }
+
+    .chess-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .chess-actions button {
+      border: 1px solid var(--toggle-border);
+      border-radius: 10px;
+      padding: 0.7rem 0.4rem;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      background: var(--toggle-bg);
+    }
+
+    .chess-actions button:hover:not(:disabled) {
+      background: var(--toggle-hover);
+    }
+
+    .chess-actions button:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    .chess-moves-wrap h2 {
+      margin: 0 0 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .chess-moves {
+      margin: 0 0 0.85rem;
+      padding: 0.5rem 0.5rem 0.5rem 2.4rem;
+      max-height: 8.5rem;
+      overflow-y: auto;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      background: var(--toggle-bg);
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chess-moves:empty {
+      display: none;
+    }
+
+    .chess-moves li {
+      padding: 0.1rem 0;
+    }
+
+    .chess-moves li span {
+      display: inline-block;
+      min-width: 4.5rem;
+    }
+
+    .chess-hint {
+      margin: 0 0 0.75rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.45;
+    }
+
     @media (max-width: 560px) {
       .tetris-layout {
         grid-template-columns: 1fr;
@@ -3339,6 +3662,28 @@
 
     <section class="card home-card">
       <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.chess.aria" aria-label="체스 카드 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="88" y="18" width="144" height="144" rx="10" fill="#f4f6fa" />
+          <g fill="#2563c7">
+            <rect x="124" y="18" width="36" height="36" />
+            <rect x="196" y="18" width="36" height="36" />
+            <rect x="88" y="54" width="36" height="36" />
+            <rect x="160" y="54" width="36" height="36" />
+            <rect x="124" y="90" width="36" height="36" />
+            <rect x="196" y="90" width="36" height="36" />
+            <rect x="88" y="126" width="36" height="36" />
+            <rect x="160" y="126" width="36" height="36" />
+          </g>
+          <text x="142" y="84" text-anchor="middle" font-size="40" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.5">♛</text>
+          <text x="178" y="156" text-anchor="middle" font-size="40" fill="#1a1a1a">♞</text>
+        </svg>
+      </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openChessBtn" data-i18n="home.chess.cta">체스</button></h2>
+      <p class="home-subtitle" data-i18n="home.chess.subtitle">초급·중급·고급 AI와 정식 규칙으로 한 판 두어 보세요.</p>
+    </section>
+
+    <section class="card home-card">
+      <div class="card-head">
         <svg class="feature-hero" role="img" data-i18n-aria="home.weather.aria" aria-label="날씨 정보 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
           <circle cx="112" cy="78" r="36" fill="#ffd54f" />
           <path d="M148 108c0-22 18-40 40-40 14 0 26 7 33 18 4-2 9-3 14-3 20 0 36 15 36 34s-16 34-36 34H160c-18 0-32-14-32-32 0-4 1-8 2-11z" fill="#ffffff" opacity="0.92" />
@@ -3502,6 +3847,7 @@
         <a href="guides/picker.html">이미지 컬러 피커<span>색상 코드 형식과 정확히 뽑는 법</span></a>
         <a href="guides/lotto.html">로또 생성기<span>참고용 이용 안내</span></a>
         <a href="guides/games.html">브라우저 게임<span>규칙과 초보 팁</span></a>
+        <a href="guides/chess.html">체스<span>특수 규칙과 기보 읽는 법</span></a>
         <a href="faq.html">FAQ<span>자주 묻는 질문</span></a>
         <a href="about.html">소개<span>운영 목적과 원칙</span></a>
       </div>
@@ -3844,6 +4190,62 @@
 
     <p class="memory-hint" data-i18n="memory.hint">한 쌍을 맞출 때마다 카드가 고정되고 효과음이 울립니다. 모두 맞추면 완료 팡파레가 나옵니다.</p>
     <button type="button" class="back-btn" id="backHomeFromMemoryBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
+  <main class="card chess-card" id="chessView" hidden>
+    <div class="card-head">
+      <h1 data-i18n="chess.title">체스</h1>
+    </div>
+    <p class="subtitle" data-i18n="chess.subtitle">캐슬링·앙파상·승격까지 정식 규칙을 따르는 체스입니다. AI는 브라우저 안에서 계산하며 기록은 어디에도 저장되지 않습니다.</p>
+
+    <div class="chess-options">
+      <div class="chess-option-group">
+        <span class="chess-option-label" id="chessLevelLabel" data-i18n="chess.levelLabel">난이도</span>
+        <div class="chess-diffs" role="group" aria-labelledby="chessLevelLabel">
+          <button type="button" class="chess-diff" data-level="easy" data-i18n="chess.diff.easy">초급</button>
+          <button type="button" class="chess-diff" data-level="normal" data-i18n="chess.diff.normal">중급</button>
+          <button type="button" class="chess-diff" data-level="hard" data-i18n="chess.diff.hard">고급</button>
+        </div>
+      </div>
+      <div class="chess-option-group">
+        <span class="chess-option-label" id="chessSideLabel" data-i18n="chess.sideLabel">내 기물</span>
+        <div class="chess-diffs" role="group" aria-labelledby="chessSideLabel">
+          <button type="button" class="chess-diff" data-side="w" data-i18n="chess.side.whiteFirst">백 (선공)</button>
+          <button type="button" class="chess-diff" data-side="b" data-i18n="chess.side.blackSecond">흑 (후공)</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chess-hud" aria-live="polite">
+      <div><span data-i18n="chess.hud.turn">차례</span><strong id="chessTurn">백</strong></div>
+      <div><span data-i18n="chess.hud.material">기물 차이</span><strong id="chessMaterial">0</strong></div>
+      <div><span data-i18n="chess.hud.moves">수</span><strong id="chessMoveCount">0</strong></div>
+    </div>
+
+    <p class="chess-status" id="chessStatus" aria-live="polite">기물을 누르면 갈 수 있는 칸이 표시됩니다.</p>
+
+    <div class="chess-board-wrap">
+      <div class="chess-board" id="chessBoard" role="grid" data-i18n-aria="chess.boardAria" aria-label="체스판"></div>
+    </div>
+
+    <div class="chess-promo" id="chessPromo" hidden>
+      <p data-i18n="chess.promoTitle">승격할 기물을 고르세요.</p>
+      <div class="chess-promo-row" id="chessPromoRow"></div>
+    </div>
+
+    <div class="chess-actions">
+      <button type="button" id="chessNewBtn" data-i18n="chess.new">새 게임</button>
+      <button type="button" id="chessUndoBtn" data-i18n="chess.undo">한 수 무르기</button>
+      <button type="button" id="chessFlipBtn" data-i18n="chess.flip">판 뒤집기</button>
+    </div>
+
+    <div class="chess-moves-wrap">
+      <h2 data-i18n="chess.movesTitle">기보</h2>
+      <ol class="chess-moves" id="chessMoves"></ol>
+    </div>
+
+    <p class="chess-hint" data-i18n="chess.hint">기물을 누른 뒤 표시된 칸을 눌러 옮깁니다. 무르기는 내 수와 AI의 응수를 함께 되돌립니다.</p>
+    <button type="button" class="back-btn" id="backHomeFromChessBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
   <main class="weather-shell" id="weatherView" hidden>
@@ -4518,6 +4920,7 @@
     const editorView = document.getElementById("editorView");
     const speechView = document.getElementById("speechView");
     const pickerView = document.getElementById("pickerView");
+    const chessView = document.getElementById("chessView");
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
     const openVideoBtn = document.getElementById("openVideoBtn");
@@ -4690,6 +5093,7 @@
       if (editorView) editorView.hidden = view !== editorView;
       if (speechView) speechView.hidden = view !== speechView;
       if (pickerView) pickerView.hidden = view !== pickerView;
+      if (chessView) chessView.hidden = view !== chessView;
       if (view !== tetrisView) {
         pauseTetris(true);
         stopTetrisBgm();
@@ -6962,6 +7366,7 @@
       if (typeof window.refreshIpI18n === "function") window.refreshIpI18n();
       if (typeof window.refreshSpeechI18n === "function") window.refreshSpeechI18n();
       if (typeof window.refreshPickerI18n === "function") window.refreshPickerI18n();
+      if (typeof window.refreshChessI18n === "function") window.refreshChessI18n();
     };
 
     window.onI18nApplied();
@@ -6974,6 +7379,7 @@
   <script src="editor.js"></script>
   <script src="speech.js"></script>
   <script src="picker.js"></script>
+  <script src="chess.js"></script>
   <script>
     var yearEl = document.getElementById("siteYear");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());

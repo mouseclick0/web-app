@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>체스 게임 가이드 | WebToolBay</title>
+  <meta name="description" content="브라우저에서 AI와 두는 체스. 캐슬링·앙파상·승격 규칙, 무승부 조건, 난이도 차이와 조작 방법, 기보 읽는 법을 정리했습니다." />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/guides/chess.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">WebToolBay</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="../index.html">홈</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../about.html">소개</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">홈</a> · <a href="index.html">가이드</a> · 체스</p>
+    <article class="article-card">
+      <h1>체스 게임 가이드</h1>
+      <p class="lead">설치나 회원 가입 없이 브라우저에서 바로 AI와 체스를 둘 수 있습니다. 규칙은 정식 체스를 그대로 따르며, 수를 계산하는 엔진도 내려받는 파일 없이 페이지 안에서 동작합니다. 대국 내용은 서버로 전송되지 않고 새로 고치면 사라집니다.</p>
+
+      <h2>조작 방법</h2>
+      <p>옮기고 싶은 기물을 누르면 갈 수 있는 칸에 표시가 나타납니다. 빈 칸은 가운데 점으로, 상대 기물을 잡을 수 있는 칸은 테두리 원으로 구분됩니다. 표시된 칸을 다시 누르면 이동합니다. 잘못 눌렀다면 다른 기물을 누르거나 판의 빈 곳을 눌러 선택을 해제하면 됩니다. 드래그가 아니라 두 번 누르는 방식이라 휴대폰에서도 손이 미끄러질 걱정이 없습니다.</p>
+      <p>직전에 오간 수는 노란 테두리로 남고, 킹이 공격받으면 그 칸이 붉게 표시됩니다. 판 왼쪽에는 1부터 8까지의 숫자가, 아래쪽에는 a부터 h까지의 알파벳이 붙어 있어 기보와 대조하기 쉽습니다.</p>
+
+      <h2>난이도 고르기</h2>
+      <p>초급은 한 수 앞만 보고 가끔 엉뚱한 수를 두기 때문에, 규칙을 막 익힌 단계에서 이겨 보기 좋습니다. 중급은 세 수 앞까지 읽으며 공짜로 놓인 기물은 놓치지 않습니다. 고급은 다섯 수까지 내다보고 교환이 끝난 뒤의 형세까지 확인하므로, 한 수 실수하면 그대로 밀립니다.</p>
+      <p>난이도는 언제든 바꿀 수 있지만 누르는 순간 새 판이 시작됩니다. 두던 판을 끝내고 나서 바꾸는 편이 좋습니다. 기기 성능이 낮으면 고급이 정해진 시간 안에 다섯 수까지 못 읽을 수 있는데, 이때는 읽던 깊이까지의 결과로 두므로 멈추거나 느려지지 않습니다.</p>
+
+      <h2>정식 규칙을 모두 지원합니다</h2>
+      <p>초보자가 자주 헷갈리는 특수 규칙도 그대로 구현되어 있습니다.</p>
+      <p><strong>캐슬링</strong>은 킹과 룩이 아직 한 번도 움직이지 않았고, 그 사이에 기물이 없으며, 킹이 지나가는 칸과 도착하는 칸이 공격받지 않을 때만 가능합니다. 킹을 두 칸 옆으로 옮기면 룩이 자동으로 따라옵니다.</p>
+      <p><strong>앙파상</strong>은 상대 폰이 두 칸 전진해 내 폰 옆에 나란히 섰을 때, 바로 다음 수에 한해 그 폰을 지나가며 잡는 규칙입니다. 한 수라도 넘기면 권리가 사라집니다.</p>
+      <p><strong>승격</strong>은 폰이 맨 끝 줄에 닿았을 때 일어납니다. 판 아래에 선택 상자가 열리고 퀸·룩·비숍·나이트 중에서 고를 수 있습니다. 대부분 퀸을 고르지만, 퀸으로 승격하면 오히려 스테일메이트가 되는 상황에서는 룩을 고르는 편이 낫습니다.</p>
+
+      <h2>승부가 나는 방식</h2>
+      <p>킹이 공격받고 있는데 그 위협을 푸는 수가 하나도 없으면 체크메이트로 게임이 끝납니다. 반대로 킹이 공격받지는 않는데 둘 수 있는 합법적인 수가 전혀 없으면 스테일메이트가 되어 무승부입니다. 크게 이기고 있어도 상대 기물을 다 잡아 놓고 킹만 남기면 실수로 스테일메이트를 만들기 쉬우니 주의하세요.</p>
+      <p>이 밖에도 세 가지 무승부 조건을 판정합니다. 폰이 움직이지 않고 기물도 잡히지 않은 채 양쪽이 50수씩 두면 50수 규칙으로, 같은 국면이 세 번 반복되면 반복 규칙으로 무승부가 됩니다. 킹만 남거나 킹과 비숍 하나, 킹과 나이트 하나처럼 어느 쪽도 체크메이트를 만들 수 없는 조합이 되어도 무승부로 처리합니다.</p>
+
+      <h2>기보 읽는 법</h2>
+      <p>판 아래에는 대국 기록이 표준 대수 기보로 쌓입니다. 기물은 앞 글자로 적는데 K는 킹, Q는 퀸, R은 룩, B는 비숍, N은 나이트이고 폰은 글자를 붙이지 않습니다. 예를 들어 <code>Nf3</code>은 나이트가 f3으로 간 수, <code>e4</code>는 폰이 e4로 간 수입니다. 기물을 잡으면 x를 넣어 <code>Bxc6</code>처럼 적고, 폰이 잡을 때는 출발한 세로줄을 앞에 붙여 <code>exd5</code>로 씁니다.</p>
+      <p>캐슬링은 킹 쪽이 <code>O-O</code>, 퀸 쪽이 <code>O-O-O</code>입니다. 승격은 <code>e8=Q</code>처럼 뒤에 붙이고, 체크는 <code>+</code>, 체크메이트는 <code>#</code>로 표시합니다. 같은 종류의 기물 두 개가 같은 칸에 갈 수 있을 때는 <code>Nbd2</code>처럼 출발한 줄을 덧붙여 구분합니다.</p>
+
+      <h2>무르기와 판 뒤집기</h2>
+      <p>한 수 무르기를 누르면 내가 둔 수와 AI의 응수를 한 번에 되돌립니다. 한쪽만 되돌리면 차례가 어긋나기 때문입니다. 판 뒤집기는 보는 방향만 바꿀 뿐 대국에는 영향을 주지 않으므로, 상대 입장에서 형세를 확인하고 싶을 때 쓰면 됩니다. 흑을 고르면 처음부터 흑이 아래에 오도록 자동으로 뒤집힙니다.</p>
+
+      <h2>초보자를 위한 조언</h2>
+      <p>초반에는 가운데 네 칸을 폰으로 차지하고 나이트와 비숍을 먼저 꺼낸 다음 캐슬링으로 킹을 안전한 구석에 넣는 순서가 무난합니다. 같은 기물을 초반에 여러 번 움직이면 그만큼 다른 기물이 늦게 나오므로 손해입니다.</p>
+      <p>한 수를 두기 전에 상대가 방금 둔 수가 무엇을 노리는지 한 번 확인하는 습관이 실력을 가장 빨리 올려 줍니다. 내 기물 중에 아무도 지켜 주지 않는 것이 있는지, 상대 기물이 내 킹이나 퀸을 향해 줄을 맞추고 있지는 않은지만 살펴도 큰 실수를 줄일 수 있습니다.</p>
+
+      <h2>알아 두면 좋은 제한</h2>
+      <p>온라인 대전이나 다른 사람과의 대국은 지원하지 않고, AI와의 1대1 대국만 가능합니다. 대국 기록은 페이지를 벗어나거나 새로 고치면 사라지며 따로 저장하거나 불러올 수 없습니다. 엔진은 브라우저에서 돌아가는 가벼운 구성이라 전용 체스 프로그램만큼 강하지는 않습니다. 취미로 한 판 두거나 규칙을 익히는 용도로 만들어졌습니다.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../index.html">체스 두러 가기</a>
+        <a class="btn" href="games.html">다른 게임 가이드</a>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="../about.html">소개</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+        <a href="../terms.html">이용약관</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+      <p>© <span id="y"></span> WebToolBay</p>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

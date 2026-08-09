@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이미지 컬러 피커 가이드 | WebToolBay</title>
+  <meta name="description" content="이미지에서 색상 코드를 뽑아내는 방법. HEX·RGB·HSL·HSV·CMYK의 차이와 쓰임새, 확대해서 정확한 픽셀을 고르는 요령을 정리했습니다." />
+  <link rel="canonical" href="https://mouseclick0.github.io/web-app/guides/picker.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">WebToolBay</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="../index.html">홈</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../about.html">소개</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">홈</a> · <a href="index.html">가이드</a> · 이미지 컬러 피커</p>
+    <article class="article-card">
+      <h1>이미지 컬러 피커 가이드</h1>
+      <p class="lead">마음에 드는 색을 발견했는데 그 색의 코드를 모를 때가 있습니다. 참고 이미지의 배색을 그대로 쓰고 싶거나, 로고에서 정확한 브랜드 색을 확인해야 하는 경우입니다. 이 글에서는 색을 정확히 집어내는 방법과, 다섯 가지 색상 코드를 언제 어떤 것으로 쓰면 좋은지 정리했습니다.</p>
+
+      <h2>이미지는 어디로 전송되나요</h2>
+      <p>어디로도 전송되지 않습니다. 색을 읽어 내는 일은 브라우저가 이미지를 화면에 그린 뒤 그 픽셀 값을 직접 확인하는 방식이라, 올린 이미지는 기기를 벗어나지 않습니다. 아직 공개되지 않은 시안이나 회사 로고를 다룰 때도 마음 놓고 쓸 수 있습니다.</p>
+
+      <h2>이미지를 넣는 세 가지 방법</h2>
+      <p>가장 간단한 방법은 파일을 끌어다 놓거나 업로드 영역을 클릭해 고르는 것입니다. 두 번째는 붙여넣기입니다. Windows에서 Win+Shift+S로 화면 일부를 캡처한 뒤 페이지에서 Ctrl+V를 누르면 그 이미지가 바로 올라갑니다. 캡처한 화면의 색을 확인할 때 가장 빠릅니다.</p>
+      <p>세 번째는 이미지 주소를 붙여 넣는 방법인데, 여기에는 제약이 하나 있습니다. 브라우저는 보안 규칙 때문에 다른 사이트의 이미지 내용을 함부로 읽지 못합니다. 그 사이트가 외부 접근을 허용한 경우에만 읽을 수 있고, 그렇지 않으면 오류가 표시됩니다. 실패한다면 이미지를 내려받아 파일로 올리는 편이 확실합니다.</p>
+
+      <h2>정확한 지점을 고르는 요령</h2>
+      <p>이미지 위에 마우스를 올리면 그 지점의 색과 좌표가 아래에 미리 표시됩니다. 원하는 색이 맞는지 확인한 뒤 클릭하면 값이 고정됩니다.</p>
+      <p>작은 아이콘이나 가는 선의 색을 뽑을 때는 확대가 필요합니다. 25%부터 400%까지 조절할 수 있는데, 100%를 넘기면 픽셀이 흐려지지 않고 네모 모양 그대로 커지므로 원하는 한 점을 정확히 겨냥할 수 있습니다. 확대한 상태에서 이미지를 끌면 보이는 위치가 움직이고, 끌지 않고 그냥 누르면 색을 가져옵니다.</p>
+      <p>사진에서 색을 뽑을 때는 한 지점만 믿지 않는 편이 좋습니다. JPG로 저장된 사진은 압축 과정에서 인접한 픽셀의 색이 미세하게 달라지고, 그림자나 반사 때문에 같은 물체라도 위치마다 값이 제법 차이 납니다. 몇 군데를 찍어 견본으로 모아 두고 비교하면 대표색을 고르기 쉽습니다.</p>
+
+      <h2>다섯 가지 색상 코드의 쓰임새</h2>
+      <p><strong>HEX</strong>는 <code>#3D9CF5</code> 같은 여섯 자리 표기로, 웹에서 가장 널리 쓰입니다. CSS나 디자인 도구에 그대로 붙여 넣으면 됩니다. 특별한 이유가 없다면 이것을 쓰면 됩니다.</p>
+      <p><strong>RGB</strong>는 빨강·초록·파랑을 0부터 255까지의 숫자로 나타냅니다. HEX와 같은 정보를 다르게 적은 것뿐이지만, 투명도를 함께 지정하거나 코드에서 값을 계산해야 할 때 다루기 편합니다.</p>
+      <p><strong>HSL</strong>은 색상·채도·밝기로 나눠 표현합니다. 이 방식의 장점은 색을 조금씩 조정하기 쉽다는 점입니다. 버튼에 마우스를 올렸을 때 조금 밝게 만들고 싶다면 밝기 값만 올리면 되고, 같은 색조로 여러 단계의 색을 만들 때도 편리합니다.</p>
+      <p><strong>HSV</strong>는 HSL과 비슷하지만 밝기 대신 명도를 씁니다. 포토샵 같은 그래픽 도구의 색상 선택 창이 이 방식을 쓰기 때문에, 그 값을 그대로 옮겨야 할 때 유용합니다.</p>
+      <p><strong>CMYK</strong>는 인쇄용 표기입니다. 다만 여기서 보여 주는 값은 단순 계산으로 변환한 참고값입니다. 실제 인쇄는 종이 종류와 잉크, 색상 프로파일에 따라 결과가 달라지므로, 인쇄소에 넘길 최종 데이터는 전용 프로그램에서 프로파일을 적용해 변환해 주세요.</p>
+
+      <h2>색 견본 모으기</h2>
+      <p>‘색 견본에 추가’를 누르면 아래 목록에 색이 쌓입니다. 이미지 곳곳에서 색을 뽑아 배색표를 만들 때 쓰면 됩니다. 견본을 누르면 그 색의 값이 다시 표시되고, 오른쪽 위 × 표시로 하나씩 지울 수 있습니다. ‘전체 복사’를 누르면 모아 둔 HEX 코드가 줄바꿈으로 구분되어 한꺼번에 복사되므로 메모나 스타일 파일에 바로 붙여 넣을 수 있습니다.</p>
+      <p>견본은 최대 24개까지 유지되며, 페이지를 새로고침하면 사라집니다. 오래 보관해야 한다면 복사해서 따로 저장해 주세요.</p>
+
+      <h2>화면에서 바로 색 뽑기</h2>
+      <p>Chrome과 Edge에서는 ‘화면에서 바로 색 추출’ 버튼이 나타납니다. 이 버튼을 누르면 브라우저 밖의 다른 창까지 포함해 화면 어디서든 색을 집을 수 있어, 이미지를 따로 준비하지 않아도 됩니다. Firefox와 Safari는 이 기능을 지원하지 않아 버튼이 표시되지 않습니다.</p>
+
+      <h2>알아 두면 좋은 점</h2>
+      <p>투명한 부분을 클릭하면 안내가 함께 표시됩니다. 완전히 투명한 픽셀은 눈에 보이는 색이 없으므로 값이 의미를 갖지 않고, 반투명한 픽셀은 실제로 화면에서 보이는 색과 다르게 나올 수 있습니다. 배경과 겹쳐 보이는 색이 필요하다면 <a href="editor.html">이미지 자르기·회전</a>에서 배경색을 넣어 JPG로 저장한 뒤 그 결과에서 색을 뽑는 방법이 있습니다.</p>
+      <p>모니터마다 색이 조금씩 다르게 보이지만, 이 도구가 읽는 값은 이미지 파일에 기록된 숫자 그 자체입니다. 화면이 어떻게 보이든 같은 이미지에서는 항상 같은 값이 나옵니다.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../index.html">컬러 피커 열기</a>
+        <a class="btn" href="editor.html">이미지 편집 가이드</a>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="../about.html">소개</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+        <a href="../terms.html">이용약관</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+      <p>© <span id="y"></span> WebToolBay</p>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

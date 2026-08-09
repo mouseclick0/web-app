@@ -39,6 +39,7 @@ const GUIDE_PAGES = [
   "guides/ocr.html",
   "guides/convert.html",
   "guides/editor.html",
+  "guides/picker.html",
   "guides/speech.html",
   "guides/lotto.html",
   "guides/games.html"

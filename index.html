@@ -941,6 +941,181 @@
       margin-bottom: 1rem;
     }
 
+    #pickerPanel[hidden],
+    #pickerDetail[hidden],
+    #pickerEmpty[hidden],
+    #pickerPaletteEmpty[hidden],
+    #pickerAlphaNote[hidden],
+    #pickerEyeDropperBtn[hidden] {
+      display: none !important;
+    }
+
+    .picker-url-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.5rem;
+      align-items: end;
+      margin-bottom: 0.5rem;
+    }
+
+    .picker-url-row .editor-btn {
+      flex: 0 0 auto;
+    }
+
+    .picker-url-note {
+      margin-bottom: 0.9rem;
+    }
+
+    .picker-eyedropper-row {
+      margin-bottom: 1rem;
+    }
+
+    .picker-stage-wrap {
+      max-height: 26rem;
+      overflow: auto;
+      overscroll-behavior: contain;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      background: var(--toggle-bg);
+      line-height: 0;
+    }
+
+    #pickerCanvas {
+      display: block;
+      margin: 0 auto;
+      cursor: crosshair;
+      touch-action: none;
+    }
+
+    /* The height is reserved so the readout appearing does not shift the controls below. */
+    .picker-hover-chip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      min-height: 1.2rem;
+      margin: 0.55rem 0 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .picker-hover-chip.is-empty {
+      visibility: hidden;
+    }
+
+    .picker-hover-swatch {
+      width: 1.1rem;
+      height: 1.1rem;
+      border: 1px solid var(--card-border);
+      border-radius: 5px;
+    }
+
+    .picker-zoom-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .picker-zoom-value {
+      min-width: 3.6rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .picker-swatch-big {
+      display: grid;
+      place-items: center;
+      height: 5rem;
+      margin-bottom: 0.8rem;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .picker-values {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .picker-value-row {
+      display: grid;
+      grid-template-columns: 3.4rem minmax(0, 1fr) auto;
+      gap: 0.45rem;
+      align-items: center;
+    }
+
+    .picker-value-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .picker-value-row input {
+      font-size: 0.82rem;
+    }
+
+    .picker-value-row .editor-btn {
+      flex: 0 0 auto;
+      padding: 0.45rem 0.65rem;
+      font-size: 0.78rem;
+    }
+
+    .picker-alpha-note {
+      margin-top: 0.6rem;
+    }
+
+    .picker-palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 0.2rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .picker-swatch-item {
+      position: relative;
+      line-height: 0;
+    }
+
+    .picker-swatch {
+      width: 2.6rem;
+      height: 2.6rem;
+      padding: 0;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .picker-swatch:hover {
+      border-color: var(--accent);
+    }
+
+    .picker-swatch-remove {
+      position: absolute;
+      top: -0.4rem;
+      right: -0.4rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      padding: 0;
+      border: 1px solid var(--card-border);
+      border-radius: 50%;
+      background: var(--card-bg);
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .picker-swatch-remove:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
     .editor-size-row {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
@@ -3293,6 +3468,24 @@
       <p class="home-subtitle" data-i18n="home.speech.subtitle">발표 대본을 넣으면 예상 발표 시간과 분량을 알려 줍니다.</p>
     </section>
 
+    <section class="card home-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.picker.aria" aria-label="이미지 컬러 피커 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="28" width="150" height="124" rx="14" fill="#ffffff" opacity="0.94" />
+          <rect x="44" y="42" width="60" height="46" rx="8" fill="#5eb0f7" />
+          <rect x="110" y="42" width="56" height="46" rx="8" fill="#ffd54f" />
+          <rect x="44" y="96" width="56" height="42" rx="8" fill="#2563c7" />
+          <rect x="106" y="96" width="60" height="42" rx="8" fill="#90caf9" />
+          <circle cx="214" cy="62" r="26" fill="#5eb0f7" />
+          <circle cx="214" cy="62" r="14" fill="#ffffff" opacity="0.92" />
+          <path d="M248 118l30-30a16 16 0 0 1 23 23l-30 30z" fill="#2563c7" />
+          <path d="M244 122l-14 40 40-14z" fill="#ffd54f" />
+        </svg>
+      </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openPickerBtn" data-i18n="home.picker.cta">이미지 컬러 피커</button></h2>
+      <p class="home-subtitle" data-i18n="home.picker.subtitle">이미지를 클릭해 HEX·RGB·HSL 같은 색상 코드를 뽑아냅니다.</p>
+    </section>
+
     <section class="card home-guides">
       <h2 data-i18n="home.guidesTitle">사용 가이드</h2>
       <p data-i18n="home.guidesDesc">도구를 쓰기 전에 읽어 보면 좋은 설명 글입니다. 검색·공유에도 유리하도록 독립 페이지로 구성했습니다.</p>
@@ -3305,6 +3498,7 @@
         <a href="guides/convert.html">이미지 형식 변환<span>PNG·JPG·WebP·BMP 선택 기준</span></a>
         <a href="guides/editor.html">이미지 자르기·회전<span>비율 자르기와 크기 조절 요령</span></a>
         <a href="guides/speech.html">발표 시간 계산<span>대본 분량과 말하기 속도 잡는 법</span></a>
+        <a href="guides/picker.html">이미지 컬러 피커<span>색상 코드 형식과 정확히 뽑는 법</span></a>
         <a href="guides/lotto.html">로또 생성기<span>참고용 이용 안내</span></a>
         <a href="guides/games.html">브라우저 게임<span>규칙과 초보 팁</span></a>
         <a href="faq.html">FAQ<span>자주 묻는 질문</span></a>
@@ -4125,6 +4319,109 @@
     <button type="button" class="back-btn" id="backHomeFromSpeechBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
+  <main class="card" id="pickerView" hidden>
+    <div class="card-head">
+      <h1 data-i18n="picker.title">이미지 컬러 피커</h1>
+    </div>
+    <p class="subtitle" data-i18n="picker.subtitle">이미지에서 원하는 지점을 클릭해 색상 코드를 뽑아냅니다. 이미지는 서버로 전송되지 않고 브라우저 안에서만 처리됩니다.</p>
+
+    <label class="upload-zone" id="pickerUploadZone" for="pickerInput">
+      <strong data-i18n="picker.uploadStrong">이미지를 드롭하거나 클릭해서 업로드</strong>
+      <span data-i18n="picker.uploadHint">붙여넣기(Ctrl+V)로도 넣을 수 있습니다. 20MB까지 올릴 수 있습니다.</span>
+      <input type="file" id="pickerInput" accept="image/*" />
+    </label>
+
+    <div class="picker-url-row">
+      <label class="form-field" for="pickerUrlInput">
+        <span data-i18n="picker.urlLabel">이미지 주소로 불러오기</span>
+        <input type="url" id="pickerUrlInput" class="video-url-input" placeholder="https://example.com/image.png" />
+      </label>
+      <button type="button" class="editor-btn" id="pickerUrlBtn" data-i18n="picker.urlLoad">불러오기</button>
+    </div>
+    <p class="editor-help picker-url-note" data-i18n="picker.urlNote">외부 접근을 허용한 주소만 읽을 수 있습니다. 실패하면 이미지를 내려받아 올려 주세요.</p>
+
+    <div class="editor-btn-row picker-eyedropper-row">
+      <button type="button" class="editor-btn" id="pickerEyeDropperBtn" data-i18n="picker.eyedropper" hidden>화면에서 바로 색 추출</button>
+    </div>
+
+    <p class="cutout-status" id="pickerStatus" aria-live="polite">이미지를 올리면 색을 추출할 수 있습니다.</p>
+
+    <div id="pickerPanel" hidden>
+      <div class="picker-stage-wrap" id="pickerStageWrap">
+        <canvas id="pickerCanvas"></canvas>
+      </div>
+      <p class="picker-hover-chip is-empty" id="pickerHoverChip">
+        <span class="picker-hover-swatch" id="pickerHoverSwatch"></span>
+        <span id="pickerHoverText"></span>
+      </p>
+
+      <div class="editor-group">
+        <h2 data-i18n="picker.zoomTitle">확대와 이동</h2>
+        <div class="picker-zoom-row">
+          <button type="button" class="editor-btn" id="pickerZoomOutBtn" data-i18n="picker.zoomOut">축소</button>
+          <output class="picker-zoom-value" id="pickerZoomValue">100%</output>
+          <button type="button" class="editor-btn" id="pickerZoomInBtn" data-i18n="picker.zoomIn">확대</button>
+        </div>
+        <div class="editor-btn-row">
+          <button type="button" class="editor-btn" id="pickerZoomFitBtn" data-i18n="picker.zoomFit">화면에 맞추기</button>
+          <button type="button" class="editor-btn" id="pickerZoomActualBtn" data-i18n="picker.zoomActual">원본 크기</button>
+        </div>
+        <p class="editor-help" data-i18n="picker.zoomHint">25~400%까지 확대할 수 있습니다. 이미지를 끌면 보이는 위치를 옮기고, 그냥 누르면 그 지점의 색을 가져옵니다.</p>
+      </div>
+
+      <div class="editor-group">
+        <h2 data-i18n="picker.pickedTitle">추출한 색</h2>
+        <p class="editor-help" id="pickerEmpty" data-i18n="picker.pickEmpty">이미지에서 원하는 지점을 클릭해 보세요.</p>
+        <div id="pickerDetail" hidden>
+          <div class="picker-swatch-big" id="pickerSwatch">#000000</div>
+          <div class="picker-values">
+            <div class="picker-value-row">
+              <span class="picker-value-label">HEX</span>
+              <input type="text" class="video-url-input" id="pickerValue_hex" readonly />
+              <button type="button" class="editor-btn" data-picker-copy="hex" data-i18n="picker.copy">복사</button>
+            </div>
+            <div class="picker-value-row">
+              <span class="picker-value-label">RGB</span>
+              <input type="text" class="video-url-input" id="pickerValue_rgb" readonly />
+              <button type="button" class="editor-btn" data-picker-copy="rgb" data-i18n="picker.copy">복사</button>
+            </div>
+            <div class="picker-value-row">
+              <span class="picker-value-label">HSL</span>
+              <input type="text" class="video-url-input" id="pickerValue_hsl" readonly />
+              <button type="button" class="editor-btn" data-picker-copy="hsl" data-i18n="picker.copy">복사</button>
+            </div>
+            <div class="picker-value-row">
+              <span class="picker-value-label">HSV</span>
+              <input type="text" class="video-url-input" id="pickerValue_hsv" readonly />
+              <button type="button" class="editor-btn" data-picker-copy="hsv" data-i18n="picker.copy">복사</button>
+            </div>
+            <div class="picker-value-row">
+              <span class="picker-value-label">CMYK</span>
+              <input type="text" class="video-url-input" id="pickerValue_cmyk" readonly />
+              <button type="button" class="editor-btn" data-picker-copy="cmyk" data-i18n="picker.copy">복사</button>
+            </div>
+          </div>
+          <p class="editor-help picker-alpha-note" id="pickerAlphaNote" hidden></p>
+          <div class="editor-btn-row editor-field">
+            <button type="button" class="editor-btn" id="pickerAddSwatchBtn" data-i18n="picker.addSwatch">색 견본에 추가</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="editor-group">
+        <h2 data-i18n="picker.paletteTitle">색 견본</h2>
+        <p class="editor-help" id="pickerPaletteEmpty" data-i18n="picker.paletteEmpty">추가한 색이 여기에 모입니다. 견본을 누르면 값을 다시 불러옵니다.</p>
+        <ul class="picker-palette" id="pickerPalette"></ul>
+        <div class="editor-btn-row editor-field">
+          <button type="button" class="editor-btn" id="pickerCopyAllBtn" data-i18n="picker.paletteCopyAll" disabled>전체 복사</button>
+          <button type="button" class="editor-btn" id="pickerClearPaletteBtn" data-i18n="picker.paletteClear" disabled>비우기</button>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="back-btn" id="backHomeFromPickerBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
   <footer class="site-footer">
     <div class="site-footer-inner">
       <nav data-i18n-aria="footer.aria" aria-label="하단 메뉴">
@@ -4219,6 +4516,7 @@
     const convertView = document.getElementById("convertView");
     const editorView = document.getElementById("editorView");
     const speechView = document.getElementById("speechView");
+    const pickerView = document.getElementById("pickerView");
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
     const openVideoBtn = document.getElementById("openVideoBtn");
@@ -4390,6 +4688,7 @@
       if (convertView) convertView.hidden = view !== convertView;
       if (editorView) editorView.hidden = view !== editorView;
       if (speechView) speechView.hidden = view !== speechView;
+      if (pickerView) pickerView.hidden = view !== pickerView;
       if (view !== tetrisView) {
         pauseTetris(true);
         stopTetrisBgm();
@@ -6661,6 +6960,7 @@
       if (typeof window.refreshCalendarI18n === "function") window.refreshCalendarI18n();
       if (typeof window.refreshIpI18n === "function") window.refreshIpI18n();
       if (typeof window.refreshSpeechI18n === "function") window.refreshSpeechI18n();
+      if (typeof window.refreshPickerI18n === "function") window.refreshPickerI18n();
     };
 
     window.onI18nApplied();
@@ -6672,6 +6972,7 @@
   <script src="convert.js"></script>
   <script src="editor.js"></script>
   <script src="speech.js"></script>
+  <script src="picker.js"></script>
   <script>
     var yearEl = document.getElementById("siteYear");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());

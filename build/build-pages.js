@@ -14,7 +14,7 @@ const ROOT = path.resolve(__dirname, "..");
 const PAGES_DIR = path.join(__dirname, "pages");
 
 // Change this one line when the site moves to its own domain.
-const BASE_URL = "https://mouseclick0.github.io/web-app/";
+const BASE_URL = "https://webtoolbay.com/";
 
 const BRAND = "WebToolBay";
 const DEFAULT_LANG = "ko";

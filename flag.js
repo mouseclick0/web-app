@@ -128,6 +128,7 @@
   var MAX_LIVES = 3;
 
   var els = {};
+  var audioCtx = null;
   var state = {
     playing: false,
     answered: false,
@@ -139,6 +140,42 @@
     choices: [],
     recentCodes: []
   };
+
+  function ensureAudio() {
+    var AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return null;
+    if (!audioCtx) audioCtx = new AudioCtx();
+    if (audioCtx.state === "suspended") audioCtx.resume();
+    return audioCtx;
+  }
+
+  function playTone(freq, startOffset, duration, type, gainValue) {
+    var ctx = ensureAudio();
+    if (!ctx || !freq) return;
+    var now = ctx.currentTime + (startOffset || 0);
+    var osc = ctx.createOscillator();
+    var gain = ctx.createGain();
+    osc.type = type || "sine";
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(gainValue || 0.18, now + 0.015);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + Math.max(0.04, duration - 0.02));
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + duration + 0.03);
+  }
+
+  function playCorrectSound() {
+    playTone(523.25, 0, 0.12, "triangle", 0.16);
+    playTone(659.25, 0.09, 0.12, "triangle", 0.18);
+    playTone(783.99, 0.18, 0.18, "triangle", 0.2);
+  }
+
+  function playWrongSound() {
+    playTone(220, 0, 0.16, "square", 0.1);
+    playTone(164.81, 0.12, 0.22, "square", 0.12);
+  }
 
   function tt(key, params) {
     return typeof window.t === "function" ? window.t(key, params) : key;
@@ -160,7 +197,27 @@
   }
 
   function flagUrl(code) {
-    return "https://flagcdn.com/w320/" + code + ".png";
+    // SVG keeps official proportions (e.g. square CH, non-rectangular NP).
+    return "https://flagcdn.com/" + code + ".svg";
+  }
+
+  function fitFlagImage() {
+    var img = els.flagImg;
+    if (!img || !img.parentElement) return;
+    var frame = img.parentElement;
+    var pad = 24;
+    var fw = Math.max(1, frame.clientWidth - pad);
+    var fh = Math.max(1, frame.clientHeight - pad);
+    var nw = img.naturalWidth || 0;
+    var nh = img.naturalHeight || 0;
+    if (!nw || !nh) {
+      // SVG may report 0 until laid out; fall back to viewBox-ish square.
+      nw = 320;
+      nh = 320;
+    }
+    var scale = Math.min(fw / nw, fh / nh);
+    img.style.width = Math.max(1, Math.floor(nw * scale)) + "px";
+    img.style.height = Math.max(1, Math.floor(nh * scale)) + "px";
   }
 
   function shuffle(arr) {
@@ -253,6 +310,7 @@
   }
 
   function startGame() {
+    ensureAudio();
     state.playing = true;
     state.answered = false;
     state.lives = MAX_LIVES;
@@ -295,6 +353,30 @@
       .replace(/"/g, "&quot;");
   }
 
+  function formatDetailLine(key, country, capital) {
+    return escapeHtml(tt(key))
+      .split("{country}")
+      .join('<b class="flag-hl-country">' + escapeHtml(country) + "</b>")
+      .split("{capital}")
+      .join('<b class="flag-hl-capital">' + escapeHtml(capital) + "</b>");
+  }
+
+  function renderAnswerFeedback(correct) {
+    if (!els.feedback || !state.current) return;
+    els.feedback.hidden = false;
+    els.feedback.className = "flag-feedback " + (correct ? "is-correct" : "is-wrong");
+    els.feedback.innerHTML =
+      "<strong>" +
+      escapeHtml(tt(correct ? "flag.correct" : "flag.wrong")) +
+      "</strong><span>" +
+      formatDetailLine(
+        correct ? "flag.capitalLine" : "flag.answerLine",
+        labelOf(state.current),
+        capitalOf(state.current)
+      ) +
+      "</span>";
+  }
+
   function nextRound() {
     if (!state.playing) return;
     state.answered = false;
@@ -306,15 +388,15 @@
 
     if (els.flagImg) {
       els.flagImg.alt = tt("flag.flagAlt");
+      els.flagImg.removeAttribute("width");
+      els.flagImg.removeAttribute("height");
+      els.flagImg.removeAttribute("srcset");
+      els.flagImg.removeAttribute("sizes");
+      els.flagImg.onload = function () {
+        fitFlagImage();
+      };
       els.flagImg.src = flagUrl(answer.code);
-      els.flagImg.srcset =
-        "https://flagcdn.com/w160/" +
-        answer.code +
-        ".png 160w, https://flagcdn.com/w320/" +
-        answer.code +
-        ".png 320w, https://flagcdn.com/w640/" +
-        answer.code +
-        ".png 640w";
+      if (els.flagImg.complete) fitFlagImage();
     }
     if (els.feedback) {
       els.feedback.hidden = true;
@@ -357,21 +439,8 @@
       state.streak += 1;
       state.score += 10 + Math.min(state.streak, 20);
       saveBest();
-      if (els.feedback) {
-        els.feedback.hidden = false;
-        els.feedback.className = "flag-feedback is-correct";
-        els.feedback.innerHTML =
-          "<strong>" +
-          escapeHtml(tt("flag.correct")) +
-          "</strong><span>" +
-          escapeHtml(
-            tt("flag.capitalLine", {
-              country: labelOf(state.current),
-              capital: capitalOf(state.current)
-            })
-          ) +
-          "</span>";
-      }
+      playCorrectSound();
+      renderAnswerFeedback(true);
       if (els.nextBtn) {
         els.nextBtn.hidden = false;
         els.nextBtn.focus();
@@ -379,21 +448,8 @@
     } else {
       state.lives -= 1;
       state.streak = 0;
-      if (els.feedback) {
-        els.feedback.hidden = false;
-        els.feedback.className = "flag-feedback is-wrong";
-        els.feedback.innerHTML =
-          "<strong>" +
-          escapeHtml(tt("flag.wrong")) +
-          "</strong><span>" +
-          escapeHtml(
-            tt("flag.answerLine", {
-              country: labelOf(state.current),
-              capital: capitalOf(state.current)
-            })
-          ) +
-          "</span>";
-      }
+      playWrongSound();
+      renderAnswerFeedback(false);
       if (state.lives <= 0) {
         gameOver();
       } else if (els.nextBtn) {
@@ -437,6 +493,9 @@
         startGame();
       });
     }
+    window.addEventListener("resize", function () {
+      if (state.playing && els.flagImg && els.flagImg.src) fitFlagImage();
+    });
   }
 
   function refreshI18n() {
@@ -451,7 +510,6 @@
         if (found) b.textContent = labelOf(found);
       });
       if (els.feedback && !els.feedback.hidden && state.current) {
-        var correctPick = els.choices && els.choices.querySelector(".is-correct.is-wrong") === null;
         var wasCorrect = els.feedback.classList.contains("is-correct");
         if (els.feedback.classList.contains("is-over")) {
           els.feedback.innerHTML =
@@ -460,32 +518,9 @@
             "</strong><span>" +
             escapeHtml(tt("flag.gameOverDetail", { score: state.score, best: state.best })) +
             "</span>";
-        } else if (wasCorrect) {
-          els.feedback.innerHTML =
-            "<strong>" +
-            escapeHtml(tt("flag.correct")) +
-            "</strong><span>" +
-            escapeHtml(
-              tt("flag.capitalLine", {
-                country: labelOf(state.current),
-                capital: capitalOf(state.current)
-              })
-            ) +
-            "</span>";
         } else {
-          els.feedback.innerHTML =
-            "<strong>" +
-            escapeHtml(tt("flag.wrong")) +
-            "</strong><span>" +
-            escapeHtml(
-              tt("flag.answerLine", {
-                country: labelOf(state.current),
-                capital: capitalOf(state.current)
-              })
-            ) +
-            "</span>";
+          renderAnswerFeedback(wasCorrect);
         }
-        void correctPick;
       }
     }
     renderHud();

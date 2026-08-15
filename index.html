@@ -2321,36 +2321,28 @@
     }
 
     .flag-frame {
+      position: relative;
       width: min(100%, 22rem);
       aspect-ratio: 3 / 2;
       border-radius: 16px;
       border: 1px solid var(--toggle-border);
-      background:
-        linear-gradient(45deg, #cfd8e3 25%, transparent 25%) 0 0 / 16px 16px,
-        linear-gradient(-45deg, #cfd8e3 25%, transparent 25%) 0 8px / 16px 16px,
-        linear-gradient(45deg, transparent 75%, #cfd8e3 75%) 8px -8px / 16px 16px,
-        linear-gradient(-45deg, transparent 75%, #cfd8e3 75%) -8px 0 / 16px 16px,
-        #e8eef5;
+      background: #ffffff;
       box-shadow: var(--card-shadow);
       overflow: hidden;
-      display: grid;
-      place-items: center;
     }
 
     [data-theme="dark"] .flag-frame {
-      background:
-        linear-gradient(45deg, #243044 25%, transparent 25%) 0 0 / 16px 16px,
-        linear-gradient(-45deg, #243044 25%, transparent 25%) 0 8px / 16px 16px,
-        linear-gradient(45deg, transparent 75%, #243044 75%) 8px -8px / 16px 16px,
-        linear-gradient(-45deg, transparent 75%, #243044 75%) -8px 0 / 16px 16px,
-        #152033;
+      background: #1a2332;
     }
 
     .flag-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       display: block;
+      max-width: none;
+      max-height: none;
     }
 
     .flag-choices {
@@ -2414,6 +2406,32 @@
     .flag-feedback span {
       color: var(--muted);
       font-size: 0.92rem;
+    }
+
+    .flag-feedback .flag-hl-country,
+    .flag-feedback .flag-hl-capital {
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .flag-feedback.is-correct .flag-hl-country,
+    .flag-feedback.is-correct .flag-hl-capital {
+      color: #1b5e20;
+    }
+
+    .flag-feedback.is-wrong .flag-hl-country,
+    .flag-feedback.is-wrong .flag-hl-capital {
+      color: #b71c1c;
+    }
+
+    [data-theme="dark"] .flag-feedback.is-correct .flag-hl-country,
+    [data-theme="dark"] .flag-feedback.is-correct .flag-hl-capital {
+      color: #81c784;
+    }
+
+    [data-theme="dark"] .flag-feedback.is-wrong .flag-hl-country,
+    [data-theme="dark"] .flag-feedback.is-wrong .flag-hl-capital {
+      color: #ef9a9a;
     }
 
     .flag-feedback.is-correct {
@@ -4461,7 +4479,7 @@
     <div id="flagPlayArea" hidden>
       <div class="flag-stage">
         <div class="flag-frame">
-          <img id="flagImage" alt="" width="320" height="213" decoding="async" />
+          <img id="flagImage" alt="" decoding="async" />
         </div>
         <div class="flag-choices" id="flagChoices" role="group" data-i18n-aria="flag.choicesAria" aria-label="나라 선택지"></div>
       </div>

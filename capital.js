@@ -12,6 +12,9 @@
       ? window.FLAG_COUNTRIES
       : [];
 
+  var CITIES =
+    typeof window !== "undefined" && window.FLAG_CITIES ? window.FLAG_CITIES : {};
+
   var BEST_KEY = "webtoolbay-capital-best";
   var USED_KEY = "webtoolbay-capital-used";
   var MAX_LIVES = 3;
@@ -216,41 +219,54 @@
     return pick;
   }
 
-  // Choices are countries; buttons show their capital names.
+  // Same-country cities only; buttons show city names.
+  function cityEntriesOf(country) {
+    var data = CITIES[country.code];
+    if (!data || !data.ko || !data.en || !data.ko.length) {
+      return [{ ko: country.ko.capital, en: country.en.capital }];
+    }
+    var out = [];
+    var n = Math.min(data.ko.length, data.en.length);
+    for (var i = 0; i < n; i++) {
+      if (!data.ko[i] || !data.en[i]) continue;
+      out.push({ ko: data.ko[i], en: data.en[i] });
+    }
+    return out.length ? out : [{ ko: country.ko.capital, en: country.en.capital }];
+  }
+
+  function cityLabel(entry) {
+    if (!entry) return "";
+    var bucket = langBucket();
+    return entry[bucket] || entry.en;
+  }
+
+  function isCapitalEntry(entry, country) {
+    return (
+      !!entry &&
+      !!country &&
+      (entry.en === country.en.capital || entry.ko === country.ko.capital)
+    );
+  }
+
   function pickChoices(answer) {
-    var answerCap = capitalOf(answer);
-    function usable(c) {
-      if (!c || c.code === answer.code) return false;
-      var cap = capitalOf(c);
-      return !!cap && cap !== answerCap;
+    var entries = cityEntriesOf(answer);
+    var capitalEntry = null;
+    for (var i = 0; i < entries.length; i++) {
+      if (isCapitalEntry(entries[i], answer)) {
+        capitalEntry = entries[i];
+        break;
+      }
     }
-    var sameTier = COUNTRIES.filter(function (c) {
-      return usable(c) && Math.abs(c.tier - answer.tier) <= 1;
-    });
-    if (sameTier.length < 3) {
-      sameTier = COUNTRIES.filter(usable);
+    if (!capitalEntry) {
+      capitalEntry = { ko: answer.ko.capital, en: answer.en.capital };
+      entries = [capitalEntry].concat(entries);
     }
-    // Prefer unique capital labels among distractors.
-    var seen = Object.create(null);
-    seen[answerCap] = true;
-    var unique = [];
-    shuffle(sameTier).forEach(function (c) {
-      var cap = capitalOf(c);
-      if (seen[cap]) return;
-      seen[cap] = true;
-      unique.push(c);
-    });
-    var distractors = unique.slice(0, 3);
-    while (distractors.length < 3) {
-      var fallback = COUNTRIES.filter(function (c) {
-        return usable(c) && distractors.indexOf(c) === -1 && !seen[capitalOf(c)];
-      });
-      if (!fallback.length) break;
-      var next = fallback[Math.floor(Math.random() * fallback.length)];
-      seen[capitalOf(next)] = true;
-      distractors.push(next);
-    }
-    return shuffle([answer].concat(distractors));
+    var distractors = shuffle(
+      entries.filter(function (e) {
+        return !isCapitalEntry(e, answer);
+      })
+    ).slice(0, 3);
+    return shuffle([capitalEntry].concat(distractors));
   }
 
   function loadBest() {
@@ -445,28 +461,28 @@
   function renderChoices() {
     if (!els.choices) return;
     els.choices.innerHTML = "";
-    state.choices.forEach(function (country) {
+    state.choices.forEach(function (entry) {
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "flag-choice";
-      btn.textContent = capitalOf(country);
-      btn.dataset.code = country.code;
+      btn.textContent = cityLabel(entry);
+      btn.dataset.en = entry.en;
       btn.addEventListener("click", function () {
-        onPick(country.code, btn);
+        onPick(entry.en, btn);
       });
       els.choices.appendChild(btn);
     });
   }
 
-  function onPick(code, btn) {
+  function onPick(enKey, btn) {
     if (!state.playing || state.answered || !state.current) return;
     state.answered = true;
     markUsed(state.current.code);
-    var correct = code === state.current.code;
+    var correct = enKey === state.current.en.capital;
     var buttons = els.choices.querySelectorAll("button");
     Array.prototype.forEach.call(buttons, function (b) {
       b.disabled = true;
-      if (b.dataset.code === state.current.code) b.classList.add("is-correct");
+      if (b.dataset.en === state.current.en.capital) b.classList.add("is-correct");
       if (b === btn && !correct) b.classList.add("is-wrong");
     });
 
@@ -545,10 +561,10 @@
     } else if (state.playing && state.current && state.answered) {
       var buttons = els.choices ? els.choices.querySelectorAll("button") : [];
       Array.prototype.forEach.call(buttons, function (b) {
-        var found = COUNTRIES.filter(function (c) {
-          return c.code === b.dataset.code;
+        var found = state.choices.filter(function (entry) {
+          return entry.en === b.dataset.en;
         })[0];
-        if (found) b.textContent = capitalOf(found);
+        if (found) b.textContent = cityLabel(found);
       });
       if (els.feedback && !els.feedback.hidden && state.current) {
         var wasCorrect = els.feedback.classList.contains("is-correct");

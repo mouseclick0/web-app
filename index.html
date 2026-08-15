@@ -2451,6 +2451,22 @@
       line-height: 1.55;
     }
 
+    .capital-prompt {
+      width: min(100%, 22rem);
+      display: grid;
+      gap: 0.65rem;
+      justify-items: center;
+    }
+
+    .capital-country-name {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-align: center;
+      line-height: 1.35;
+    }
+
     @media (max-width: 560px) {
       .flag-hud {
         grid-template-columns: 1fr 1fr;
@@ -3700,7 +3716,7 @@
         <li data-i18n="home.introLi7">이미지 자르기·회전·반전·크기 조절</li>
         <li data-i18n="home.introLi9">이미지에서 HEX·RGB·HSL 등 색상 코드 추출</li>
         <li data-i18n="home.introLi8">발표 대본의 예상 발표 시간과 분량 계산</li>
-        <li data-i18n="home.introLi4">지뢰찾기·테트리스·오목·기억력 테스트·체스·국기 맞추기</li>
+        <li data-i18n="home.introLi4">지뢰찾기·테트리스·오목·기억력 테스트·체스·국기 맞추기·수도 맞추기</li>
       </ul>
     </section>
 
@@ -3939,6 +3955,29 @@
       </div>
       <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openFlagBtn" data-i18n="home.flag.cta">나라 국기 맞추기</button></h2>
       <p class="home-subtitle" data-i18n="home.flag.subtitle">국기를 보고 4개 보기 중 나라를 고르면 정답과 수도를 바로 알려 줍니다.</p>
+    </section>
+
+    <section class="card home-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.capital.aria" aria-label="수도 맞추기 카드 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="36" y="34" width="248" height="112" rx="18" fill="#1e4f9c" />
+          <!-- Taegeukgi -->
+          <rect x="86" y="48" width="148" height="84" rx="6" fill="#ffffff" />
+          <circle cx="160" cy="90" r="18" fill="#cd2e3a" />
+          <path d="M160 72a18 18 0 0 1 0 36a9 9 0 0 1 0-18a9 9 0 0 0 0-18z" fill="#0047a0" />
+          <circle cx="160" cy="81" r="4.5" fill="#cd2e3a" />
+          <circle cx="160" cy="99" r="4.5" fill="#0047a0" />
+          <g stroke="#111111" stroke-width="2.6" stroke-linecap="round">
+            <path d="M118 62h16M118 67.5h16M118 73h16" />
+            <path d="M186 62h7M197 62h7M186 67.5h16M186 73h7M197 73h7" />
+            <path d="M118 107h7M129 107h7M118 112.5h7M129 112.5h7M118 118h16" />
+            <path d="M186 107h16M186 112.5h7M197 112.5h7M186 118h16" />
+          </g>
+          <text x="160" y="158" text-anchor="middle" font-size="22">🇰🇷</text>
+        </svg>
+      </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openCapitalBtn" data-i18n="home.capital.cta">나라 수도 맞추기</button></h2>
+      <p class="home-subtitle" data-i18n="home.capital.subtitle">나라 이름과 국기를 보고 4개 도시 중 수도를 고르세요.</p>
     </section>
 
     <section class="card home-card">
@@ -4491,6 +4530,51 @@
     </div>
 
     <button type="button" class="back-btn" id="backHomeFromFlagBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
+  <main class="card" id="capitalView" hidden>
+    <div class="card-head">
+      <h2 data-i18n="capital.title">나라 수도 맞추기</h2>
+    </div>
+    <p class="subtitle" data-i18n="capital.subtitle">나라 이름과 국기를 보고 수도를 고르세요. 정답이면 바로 확인할 수 있습니다.</p>
+
+    <ol class="flag-howto">
+      <li data-i18n="capital.how1">화면에 나온 나라와 국기를 보고 4개 도시 중 수도를 선택하세요.</li>
+      <li data-i18n="capital.how2">정답이면 연승·점수가 쌓이고, 오답이면 생명이 줄며 정답 수도를 보여 줍니다. 연승은 생명이 다할 때까지 유지됩니다.</li>
+      <li data-i18n="capital.how3">UN 회원국·속령이 나오며 다시 시작 전까지 같은 나라는 중복되지 않습니다. 연승이 오를수록 중급·고급으로 진행하고, 생명 3개가 모두 소진되면 게임이 끝납니다.</li>
+    </ol>
+
+    <div class="flag-hud" aria-live="polite">
+      <div><span data-i18n="capital.streak">연승</span><strong id="capitalStreakHud">0</strong></div>
+      <div><span data-i18n="capital.lives">생명</span><strong id="capitalLivesHud">❤️❤️❤️</strong></div>
+      <div><span data-i18n="capital.score">점수</span><strong id="capitalScoreHud">0</strong></div>
+      <div><span data-i18n="capital.best">최고</span><strong id="capitalBestHud">0</strong></div>
+    </div>
+
+    <div class="flag-idle" id="capitalIdle">
+      <div class="flag-idle-icon" aria-hidden="true">🏛️</div>
+      <p data-i18n="capital.idle">게임 시작을 눌러 수도 퀴즈를 시작하세요.</p>
+      <button type="button" class="flag-start-btn" id="capitalStartBtn" data-i18n="capital.start">게임 시작</button>
+    </div>
+
+    <div id="capitalPlayArea" hidden>
+      <div class="flag-stage">
+        <div class="capital-prompt">
+          <div class="flag-frame">
+            <img id="capitalFlagImage" alt="" decoding="async" />
+          </div>
+          <p class="capital-country-name" id="capitalCountryName"></p>
+        </div>
+        <div class="flag-choices" id="capitalChoices" role="group" data-i18n-aria="capital.choicesAria" aria-label="수도 선택지"></div>
+      </div>
+      <div class="flag-feedback" id="capitalFeedback" hidden></div>
+      <div class="flag-actions">
+        <button type="button" class="flag-next-btn" id="capitalNextBtn" hidden data-i18n="capital.next">다음 문제</button>
+        <button type="button" class="flag-restart-btn" id="capitalRestartBtn" hidden data-i18n="capital.restart">다시 시작</button>
+      </div>
+    </div>
+
+    <button type="button" class="back-btn" id="backHomeFromCapitalBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
   <main class="card chess-card" id="chessView" hidden>
@@ -5214,6 +5298,7 @@
     const gomokuView = document.getElementById("gomokuView");
     const memoryView = document.getElementById("memoryView");
     const flagView = document.getElementById("flagView");
+    const capitalView = document.getElementById("capitalView");
     const weatherView = document.getElementById("weatherView");
     const calendarView = document.getElementById("calendarView");
     const ipView = document.getElementById("ipView");
@@ -5231,6 +5316,7 @@
     const openGomokuBtn = document.getElementById("openGomokuBtn");
     const openMemoryBtn = document.getElementById("openMemoryBtn");
     const openFlagBtn = document.getElementById("openFlagBtn");
+    const openCapitalBtn = document.getElementById("openCapitalBtn");
     const backHomeBtn = document.getElementById("backHomeBtn");
     const backHomeFromCutoutBtn = document.getElementById("backHomeFromCutoutBtn");
     const backHomeFromVideoBtn = document.getElementById("backHomeFromVideoBtn");
@@ -5239,6 +5325,7 @@
     const backHomeFromGomokuBtn = document.getElementById("backHomeFromGomokuBtn");
     const backHomeFromMemoryBtn = document.getElementById("backHomeFromMemoryBtn");
     const backHomeFromFlagBtn = document.getElementById("backHomeFromFlagBtn");
+    const backHomeFromCapitalBtn = document.getElementById("backHomeFromCapitalBtn");
     const resultsEl = document.getElementById("results");
     const drawBtn = document.getElementById("drawBtn");
     const uploadZone = document.getElementById("uploadZone");
@@ -5390,6 +5477,7 @@
       gomokuView.hidden = view !== gomokuView;
       memoryView.hidden = view !== memoryView;
       if (flagView) flagView.hidden = view !== flagView;
+      if (capitalView) capitalView.hidden = view !== capitalView;
       if (weatherView) weatherView.hidden = view !== weatherView;
       if (calendarView) calendarView.hidden = view !== calendarView;
       if (ipView) ipView.hidden = view !== ipView;
@@ -7395,6 +7483,12 @@
       });
     }
 
+    if (openCapitalBtn && capitalView) {
+      openCapitalBtn.addEventListener("click", () => {
+        showView(capitalView);
+      });
+    }
+
     backHomeFromMemoryBtn.addEventListener("click", () => {
       stopMemoryTimer();
       showView(homeView);
@@ -7405,6 +7499,13 @@
       backHomeFromFlagBtn.addEventListener("click", () => {
         showView(homeView);
         openFlagBtn.focus();
+      });
+    }
+
+    if (backHomeFromCapitalBtn && openCapitalBtn) {
+      backHomeFromCapitalBtn.addEventListener("click", () => {
+        showView(homeView);
+        openCapitalBtn.focus();
       });
     }
 
@@ -7686,6 +7787,7 @@
       if (typeof window.refreshPickerI18n === "function") window.refreshPickerI18n();
       if (typeof window.refreshChessI18n === "function") window.refreshChessI18n();
       if (typeof window.refreshFlagI18n === "function") window.refreshFlagI18n();
+      if (typeof window.refreshCapitalI18n === "function") window.refreshCapitalI18n();
     };
 
     window.onI18nApplied();
@@ -7701,6 +7803,7 @@
   <script src="chess.js"></script>
   <script src="flag-countries.js?v=20260816f"></script>
   <script src="flag.js?v=20260816f"></script>
+  <script src="capital.js?v=20260816a"></script>
   <script>
     var yearEl = document.getElementById("siteYear");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());

@@ -138,7 +138,7 @@
     best: 0,
     current: null,
     choices: [],
-    recentCodes: []
+    usedCodes: Object.create(null)
   };
 
   function ensureAudio() {
@@ -247,21 +247,16 @@
 
   function unusedCountries(maxTier) {
     return COUNTRIES.filter(function (c) {
-      return c.tier <= maxTier && state.recentCodes.indexOf(c.code) === -1;
+      return c.tier <= maxTier && !state.usedCodes[c.code];
     });
   }
 
   function pickAnswer() {
     var maxTier = maxTierForStreak(state.streak);
     var pool = unusedCountries(maxTier);
-    // Prefer unused countries; widen tier before ever repeating.
+    // Widen difficulty before giving up — never reuse a flag until restart.
     if (!pool.length) pool = unusedCountries(3);
-    if (!pool.length) {
-      // Every country already appeared this run — only then reshuffle.
-      state.recentCodes = [];
-      pool = unusedCountries(maxTier);
-      if (!pool.length) pool = COUNTRIES.slice();
-    }
+    if (!pool.length) return null;
     return pool[Math.floor(Math.random() * pool.length)];
   }
 
@@ -332,7 +327,7 @@
     state.lives = MAX_LIVES;
     state.streak = 0;
     state.score = 0;
-    state.recentCodes = [];
+    state.usedCodes = Object.create(null);
     if (els.idle) els.idle.hidden = true;
     if (els.playArea) els.playArea.hidden = false;
     if (els.restartBtn) els.restartBtn.hidden = false;
@@ -358,6 +353,26 @@
       Array.prototype.forEach.call(els.choices.querySelectorAll("button"), function (btn) {
         btn.disabled = true;
       });
+    }
+  }
+
+  function deckComplete() {
+    state.playing = false;
+    saveBest();
+    renderHud();
+    if (els.feedback) {
+      els.feedback.hidden = false;
+      els.feedback.className = "flag-feedback is-correct";
+      els.feedback.innerHTML =
+        "<strong>" +
+        escapeHtml(tt("flag.deckDone")) +
+        "</strong><span>" +
+        escapeHtml(tt("flag.deckDoneDetail", { score: state.score })) +
+        "</span>";
+    }
+    if (els.nextBtn) els.nextBtn.hidden = true;
+    if (els.choices) {
+      els.choices.innerHTML = "";
     }
   }
 
@@ -397,9 +412,13 @@
     if (!state.playing) return;
     state.answered = false;
     var answer = pickAnswer();
+    if (!answer) {
+      deckComplete();
+      return;
+    }
     state.current = answer;
+    state.usedCodes[answer.code] = true;
     state.choices = pickChoices(answer);
-    state.recentCodes.push(answer.code);
 
     if (els.flagImg) {
       els.flagImg.alt = tt("flag.flagAlt");
@@ -410,7 +429,9 @@
       els.flagImg.onload = function () {
         fitFlagImage();
       };
-      els.flagImg.src = flagUrl(answer);
+      // Cache-bust so a previous SVG is not reused by the browser for a new round.
+      var url = flagUrl(answer);
+      els.flagImg.src = url + (url.indexOf("?") === -1 ? "?" : "&") + "r=" + encodeURIComponent(answer.code);
       if (els.flagImg.complete) fitFlagImage();
     }
     if (els.feedback) {

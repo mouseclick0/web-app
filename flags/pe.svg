@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+  <!-- Peru state flag: vertical red-white-red with national coat of arms -->
+  <rect width="900" height="600" fill="#D91023"/>
+  <rect x="300" width="300" height="600" fill="#FFFFFF"/>
+  <g transform="translate(450 300)">
+    <!-- Palm wreath -->
+    <path d="M-78 48c-18-34-14-70 6-96 8 22 18 38 30 50-20 12-32 30-36 46z" fill="#1B7A3D"/>
+    <path d="M78 48c18-34 14-70-6-96-8 22-18 38-30 50 20 12 32 30 36 46z" fill="#1B7A3D"/>
+    <path d="M-70 20c-10-28-4-54 12-74 6 18 14 32 24 42-16 8-26 20-36 32z" fill="#24964B"/>
+    <path d="M70 20c10-28 4-54-12-74-6 18-14 32-24 42 16 8 26 20 36 32z" fill="#24964B"/>
+    <!-- Ribbon -->
+    <path d="M-42 58h84l10 18H-52z" fill="#D91023"/>
+    <path d="M-36 64h72l6 10H-42z" fill="#FFFFFF"/>
+    <path d="M-30 70h60l4 8H-34z" fill="#D91023"/>
+    <!-- Shield -->
+    <path d="M-48-78h96v52c0 42-30 70-48 82-18-12-48-40-48-82z" fill="#F5E6C8" stroke="#8B6914" stroke-width="4"/>
+    <path d="M-48-78h96v52c0 42-30 70-48 82-18-12-48-40-48-82z" fill="none" stroke="#C5A000" stroke-width="2"/>
+    <!-- Shield divisions -->
+    <path d="M0-78v134" stroke="#8B6914" stroke-width="3"/>
+    <path d="M-48-18h96" stroke="#8B6914" stroke-width="3"/>
+    <!-- Vicuña -->
+    <g transform="translate(-24 -48) scale(0.9)">
+      <ellipse cx="0" cy="8" rx="14" ry="10" fill="#C47A3A"/>
+      <rect x="-4" y="-10" width="7" height="16" rx="3" fill="#C47A3A"/>
+      <circle cx="-1" cy="-14" r="6" fill="#C47A3A"/>
+      <path d="M-6-16h-6l2 4z" fill="#C47A3A"/>
+      <circle cx="-3" cy="-15" r="1.2" fill="#222"/>
+    </g>
+    <!-- Cinchona tree -->
+    <g transform="translate(24 -48)">
+      <rect x="-3" y="-2" width="6" height="22" fill="#6B3F1D"/>
+      <circle cx="0" cy="-10" r="12" fill="#2E8B57"/>
+      <circle cx="-7" cy="-6" r="7" fill="#3CB371"/>
+      <circle cx="7" cy="-7" r="7" fill="#3CB371"/>
+    </g>
+    <!-- Cornucopia -->
+    <g transform="translate(0 20)">
+      <path d="M-22 4c8-18 28-22 40-10 4 4 2 12-4 14-12 4-24 2-32-4z" fill="#E6B422"/>
+      <circle cx="8" cy="-8" r="5" fill="#D91023"/>
+      <circle cx="16" cy="-2" r="4" fill="#2E8B57"/>
+      <circle cx="4" cy="2" r="3.5" fill="#F4D03F"/>
+      <circle cx="18" cy="6" r="3" fill="#D91023"/>
+    </g>
+  </g>
+</svg>

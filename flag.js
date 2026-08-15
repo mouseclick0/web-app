@@ -66,7 +66,7 @@
     { code: "hk", tier: 2, ko: { name: "홍콩", capital: "홍콩" }, en: { name: "Hong Kong", capital: "Hong Kong" } },
     { code: "cl", tier: 2, ko: { name: "칠레", capital: "산티아고" }, en: { name: "Chile", capital: "Santiago" } },
     { code: "co", tier: 2, ko: { name: "콜롬비아", capital: "보고타" }, en: { name: "Colombia", capital: "Bogotá" } },
-    { code: "pe", tier: 2, ko: { name: "페루", capital: "리마" }, en: { name: "Peru", capital: "Lima" } },
+    { code: "pe", tier: 2, flag: "flags/pe.svg", ko: { name: "페루", capital: "리마" }, en: { name: "Peru", capital: "Lima" } },
     { code: "ve", tier: 2, ko: { name: "베네수엘라", capital: "카라카스" }, en: { name: "Venezuela", capital: "Caracas" } },
     { code: "cu", tier: 2, ko: { name: "쿠바", capital: "아바나" }, en: { name: "Cuba", capital: "Havana" } },
     { code: "ng", tier: 2, ko: { name: "나이지리아", capital: "아부자" }, en: { name: "Nigeria", capital: "Abuja" } },
@@ -196,7 +196,15 @@
     return (country[bucket] || country.en).capital;
   }
 
-  function flagUrl(code) {
+  function flagUrl(countryOrCode) {
+    var country =
+      typeof countryOrCode === "object" && countryOrCode
+        ? countryOrCode
+        : COUNTRIES.filter(function (c) {
+            return c.code === countryOrCode;
+          })[0];
+    if (country && country.flag) return country.flag;
+    var code = country ? country.code : String(countryOrCode || "");
     // SVG keeps official proportions (e.g. square CH, non-rectangular NP).
     return "https://flagcdn.com/" + code + ".svg";
   }
@@ -237,15 +245,23 @@
     return 1;
   }
 
-  function pickAnswer() {
-    var maxTier = maxTierForStreak(state.streak);
-    var pool = COUNTRIES.filter(function (c) {
+  function unusedCountries(maxTier) {
+    return COUNTRIES.filter(function (c) {
       return c.tier <= maxTier && state.recentCodes.indexOf(c.code) === -1;
     });
-    if (pool.length < 8) {
-      pool = COUNTRIES.filter(function (c) { return c.tier <= maxTier; });
+  }
+
+  function pickAnswer() {
+    var maxTier = maxTierForStreak(state.streak);
+    var pool = unusedCountries(maxTier);
+    // Prefer unused countries; widen tier before ever repeating.
+    if (!pool.length) pool = unusedCountries(3);
+    if (!pool.length) {
+      // Every country already appeared this run — only then reshuffle.
+      state.recentCodes = [];
+      pool = unusedCountries(maxTier);
+      if (!pool.length) pool = COUNTRIES.slice();
     }
-    if (!pool.length) pool = COUNTRIES.slice();
     return pool[Math.floor(Math.random() * pool.length)];
   }
 
@@ -384,7 +400,6 @@
     state.current = answer;
     state.choices = pickChoices(answer);
     state.recentCodes.push(answer.code);
-    if (state.recentCodes.length > 12) state.recentCodes.shift();
 
     if (els.flagImg) {
       els.flagImg.alt = tt("flag.flagAlt");
@@ -395,7 +410,7 @@
       els.flagImg.onload = function () {
         fitFlagImage();
       };
-      els.flagImg.src = flagUrl(answer.code);
+      els.flagImg.src = flagUrl(answer);
       if (els.flagImg.complete) fitFlagImage();
     }
     if (els.feedback) {

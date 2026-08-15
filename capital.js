@@ -15,6 +15,13 @@
   var CITIES =
     typeof window !== "undefined" && window.FLAG_CITIES ? window.FLAG_CITIES : {};
 
+  var COORDS =
+    typeof window !== "undefined" && window.FLAG_COORDS ? window.FLAG_COORDS : {};
+
+  var mapApi = null;
+  var mapMarker = null;
+  var leafletLoading = null;
+
   var BEST_KEY = "webtoolbay-capital-best";
   var USED_KEY = "webtoolbay-capital-used";
   var MAX_LIVES = 3;
@@ -220,6 +227,141 @@
   }
 
   // Same-country cities only; buttons show city names.
+  function coordsOf(country) {
+    if (!country || !country.code) return null;
+    var pair = COORDS[country.code];
+    if (!pair || pair.length < 2) return null;
+    var lat = Number(pair[0]);
+    var lng = Number(pair[1]);
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+    return [lat, lng];
+  }
+
+  function zoomForCountry(code) {
+    var tight = {
+      va: 7,
+      mc: 7,
+      sm: 7,
+      li: 7,
+      ad: 7,
+      sg: 6,
+      hk: 6,
+      mo: 6,
+      bh: 6,
+      mt: 6,
+      mv: 5,
+      sc: 5,
+      mu: 5,
+      cv: 5,
+      st: 5,
+      km: 5,
+      nr: 6,
+      tv: 6,
+      ki: 4,
+      fm: 4,
+      mh: 4,
+      pw: 5,
+      gi: 7,
+      ax: 5,
+      fo: 5,
+      gl: 3
+    };
+    return tight[code] || 4;
+  }
+
+  function ensureLeaflet(done) {
+    if (typeof window.L !== "undefined") {
+      done();
+      return;
+    }
+    if (leafletLoading) {
+      leafletLoading.then(done);
+      return;
+    }
+    leafletLoading = new Promise(function (resolve) {
+      var cssId = "leaflet-css-cdn";
+      if (!document.getElementById(cssId)) {
+        var link = document.createElement("link");
+        link.id = cssId;
+        link.rel = "stylesheet";
+        link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+        document.head.appendChild(link);
+      }
+      var script = document.createElement("script");
+      script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+      script.onload = function () {
+        resolve();
+      };
+      script.onerror = function () {
+        leafletLoading = null;
+        resolve();
+      };
+      document.head.appendChild(script);
+    });
+    leafletLoading.then(done);
+  }
+
+  function hideCountryMap() {
+    if (els.mapPanel) els.mapPanel.hidden = true;
+    if (els.flagBtn) {
+      els.flagBtn.classList.remove("is-map-open");
+      els.flagBtn.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  function showCountryMap() {
+    if (!els.mapPanel || !els.mapCanvas || !state.current) return;
+    var coords = coordsOf(state.current);
+    if (!coords) return;
+    els.mapPanel.hidden = false;
+    if (els.flagBtn) {
+      els.flagBtn.classList.add("is-map-open");
+      els.flagBtn.setAttribute("aria-expanded", "true");
+    }
+    ensureLeaflet(function () {
+      if (typeof window.L === "undefined" || !els.mapCanvas) return;
+      var zoom = zoomForCountry(state.current.code);
+      if (!mapApi) {
+        mapApi = window.L.map(els.mapCanvas, {
+          scrollWheelZoom: false,
+          attributionControl: true
+        });
+        window.L
+          .tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+            subdomains: "abcd",
+            maxZoom: 8,
+            minZoom: 1
+          })
+          .addTo(mapApi);
+        var pinIcon = window.L.divIcon({
+          className: "",
+          html: '<div class="capital-map-pin-icon" aria-hidden="true"></div>',
+          iconSize: [18, 18],
+          iconAnchor: [9, 9]
+        });
+        mapMarker = window.L.marker(coords, { icon: pinIcon }).addTo(mapApi);
+        mapApi.setView(coords, zoom);
+      } else {
+        mapMarker.setLatLng(coords);
+        mapApi.setView(coords, zoom, { animate: true });
+      }
+      setTimeout(function () {
+        if (mapApi) mapApi.invalidateSize();
+      }, 80);
+    });
+  }
+
+  function toggleCountryMap() {
+    if (!state.playing || !state.current) return;
+    if (els.mapPanel && !els.mapPanel.hidden) {
+      hideCountryMap();
+    } else {
+      showCountryMap();
+    }
+  }
+
   function cityEntriesOf(country) {
     var data = CITIES[country.code];
     if (!data || !data.ko || !data.en || !data.ko.length) {
@@ -316,6 +458,7 @@
     if (els.nextBtn) els.nextBtn.hidden = true;
     if (els.restartBtn) els.restartBtn.hidden = true;
     if (els.countryName) els.countryName.textContent = "";
+    hideCountryMap();
     renderHud();
   }
 
@@ -434,6 +577,7 @@
     if (els.countryName) {
       els.countryName.textContent = labelOf(answer);
     }
+    hideCountryMap();
     if (els.flagImg) {
       els.flagImg.alt = tt("capital.flagAlt", { country: labelOf(answer) });
       els.flagImg.removeAttribute("width");
@@ -518,7 +662,10 @@
     els.nextBtn = document.getElementById("capitalNextBtn");
     els.restartBtn = document.getElementById("capitalRestartBtn");
     els.flagImg = document.getElementById("capitalFlagImage");
+    els.flagBtn = document.getElementById("capitalFlagBtn");
     els.countryName = document.getElementById("capitalCountryName");
+    els.mapPanel = document.getElementById("capitalMapPanel");
+    els.mapCanvas = document.getElementById("capitalMapCanvas");
     els.choices = document.getElementById("capitalChoices");
     els.feedback = document.getElementById("capitalFeedback");
     els.streak = document.getElementById("capitalStreakHud");
@@ -546,8 +693,16 @@
         startGame(true);
       });
     }
+    if (els.flagBtn) {
+      els.flagBtn.addEventListener("click", function () {
+        toggleCountryMap();
+      });
+    }
     window.addEventListener("resize", function () {
       if (state.playing && els.flagImg && els.flagImg.src) fitFlagImage();
+      if (mapApi && els.mapPanel && !els.mapPanel.hidden) {
+        mapApi.invalidateSize();
+      }
     });
   }
 

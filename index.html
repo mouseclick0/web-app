@@ -4459,8 +4459,8 @@
 
     <ol class="flag-howto">
       <li data-i18n="flag.how1">국기를 보고 4개 보기 중 나라 이름을 선택하세요.</li>
-      <li data-i18n="flag.how2">정답이면 연승·점수를 얻고, 오답이면 생명이 줄며 정답 나라와 수도를 보여 줍니다.</li>
-      <li data-i18n="flag.how3">연승이 오를수록 더 어려운 국기가 나옵니다. 생명 3개가 모두 소진되면 게임이 끝납니다.</li>
+      <li data-i18n="flag.how2">정답이면 연승·점수가 쌓이고, 오답이면 생명이 줄며 정답 나라와 수도를 보여 줍니다. 연승은 생명이 다할 때까지 유지됩니다.</li>
+      <li data-i18n="flag.how3">UN 회원국·속령 국기가 나오며 다시 시작 전까지 같은 국기는 중복되지 않습니다. 연승이 오를수록 중급·고급으로 진행하고, 생명 3개가 모두 소진되면 게임이 끝납니다.</li>
     </ol>
 
     <div class="flag-hud" aria-live="polite">
@@ -7699,7 +7699,8 @@
   <script src="speech.js"></script>
   <script src="picker.js"></script>
   <script src="chess.js"></script>
-  <script src="flag.js?v=20260815b"></script>
+  <script src="flag-countries.js?v=20260816e"></script>
+  <script src="flag.js?v=20260816e"></script>
   <script>
     var yearEl = document.getElementById("siteYear");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());

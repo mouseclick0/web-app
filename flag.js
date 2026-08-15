@@ -2,6 +2,10 @@
 (function () {
   "use strict";
 
+  // Prevent double-loading (duplicate listeners → duplicate flags at high streak).
+  if (typeof window !== "undefined" && window.__WEBTOOLBAY_FLAG_QUIZ__) return;
+  if (typeof window !== "undefined") window.__WEBTOOLBAY_FLAG_QUIZ__ = true;
+
   // Loaded from flag-countries.js (UN members + territories).
   var COUNTRIES =
     typeof window !== "undefined" &&
@@ -19,13 +23,15 @@
   var state = {
     playing: false,
     answered: false,
+    picking: false,
     lives: MAX_LIVES,
     streak: 0,
     score: 0,
     best: 0,
     current: null,
     choices: [],
-    usedCodes: Object.create(null)
+    usedCodes: Object.create(null),
+    usedList: []
   };
 
   function ensureAudio() {
@@ -133,28 +139,44 @@
     return 1;
   }
 
-  function readUsedCodes() {
-    var map = Object.create(null);
+  function isUsed(code) {
+    return !!state.usedCodes[String(code)];
+  }
+
+  function readUsedList() {
     try {
       var raw = sessionStorage.getItem(USED_KEY);
-      if (!raw) return map;
+      if (!raw) return [];
       var list = JSON.parse(raw);
-      if (Array.isArray(list)) {
-        list.forEach(function (code) {
-          if (code) map[String(code)] = true;
-        });
-      }
-    } catch (e) {}
-    return map;
+      if (!Array.isArray(list)) return [];
+      return list
+        .map(function (code) {
+          return code ? String(code) : "";
+        })
+        .filter(Boolean);
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function applyUsedList(list) {
+    state.usedList = [];
+    state.usedCodes = Object.create(null);
+    (list || []).forEach(function (code) {
+      if (!code || state.usedCodes[code]) return;
+      state.usedCodes[code] = true;
+      state.usedList.push(code);
+    });
   }
 
   function writeUsedCodes() {
     try {
-      sessionStorage.setItem(USED_KEY, JSON.stringify(Object.keys(state.usedCodes)));
+      sessionStorage.setItem(USED_KEY, JSON.stringify(state.usedList));
     } catch (e) {}
   }
 
   function clearUsedCodes() {
+    state.usedList = [];
     state.usedCodes = Object.create(null);
     try {
       sessionStorage.removeItem(USED_KEY);
@@ -163,34 +185,50 @@
 
   function markUsed(code) {
     if (!code) return;
-    state.usedCodes[String(code)] = true;
+    var key = String(code);
+    if (state.usedCodes[key]) return;
+    state.usedCodes[key] = true;
+    state.usedList.push(key);
     writeUsedCodes();
+  }
+
+  // Union in-memory + sessionStorage so a wiped map cannot revive used flags.
+  function mergeUsedFromStorage() {
+    var stored = readUsedList();
+    if (!stored.length) return;
+    stored.forEach(function (code) {
+      markUsed(code);
+    });
   }
 
   function unusedCountries(maxTier) {
     return COUNTRIES.filter(function (c) {
-      return c.tier <= maxTier && !state.usedCodes[c.code];
+      return c.tier <= maxTier && !isUsed(c.code);
     });
   }
 
   function pickAnswer() {
+    mergeUsedFromStorage();
     var maxTier = maxTierForStreak(state.streak);
     var pool = [];
     // Prefer the hardest unlocked tier so difficulty rises with streak.
     for (var t = maxTier; t >= 1; t--) {
       pool = COUNTRIES.filter(function (c) {
-        return c && c.code && c.tier === t && !state.usedCodes[c.code];
+        return c && c.code && c.tier === t && !isUsed(c.code);
       });
       if (pool.length) break;
     }
     // If the unlocked pool is empty before the next streak gate, keep going.
     if (!pool.length) {
       pool = COUNTRIES.filter(function (c) {
-        return c && c.code && !state.usedCodes[c.code];
+        return c && c.code && !isUsed(c.code);
       });
     }
     if (!pool.length) return null;
-    return pool[Math.floor(Math.random() * pool.length)];
+    var pick = pool[Math.floor(Math.random() * pool.length)];
+    // Claim immediately so a second pick cannot take the same flag.
+    markUsed(pick.code);
+    return pick;
   }
 
   function pickChoices(answer) {
@@ -263,7 +301,7 @@
     if (resetUsed !== false) {
       clearUsedCodes();
     } else {
-      state.usedCodes = readUsedCodes();
+      applyUsedList(readUsedList());
     }
     if (els.idle) els.idle.hidden = true;
     if (els.playArea) els.playArea.hidden = false;
@@ -352,10 +390,12 @@
   }
 
   function nextRound() {
-    if (!state.playing) return;
+    if (!state.playing || state.picking) return;
+    state.picking = true;
     state.answered = false;
     var answer = pickAnswer();
     if (!answer) {
+      state.picking = false;
       deckComplete();
       return;
     }
@@ -385,6 +425,7 @@
     if (els.nextBtn) els.nextBtn.hidden = true;
     renderChoices();
     renderHud();
+    state.picking = false;
   }
 
   function renderChoices() {
@@ -457,7 +498,8 @@
   }
 
   function bind() {
-    if (!els.view) return;
+    if (!els.view || els.view.dataset.flagBound === "1") return;
+    els.view.dataset.flagBound = "1";
     if (els.startBtn) {
       els.startBtn.addEventListener("click", function () {
         startGame(true);
@@ -466,7 +508,7 @@
     if (els.nextBtn) {
       els.nextBtn.addEventListener("click", function () {
         // Never restart from "next" — that was clearing used flags mid-run.
-        if (!state.playing || state.lives <= 0 || !state.answered) return;
+        if (!state.playing || state.lives <= 0 || !state.answered || state.picking) return;
         nextRound();
       });
     }
@@ -511,7 +553,7 @@
   function init() {
     cacheEls();
     if (!els.view) return;
-    state.usedCodes = readUsedCodes();
+    applyUsedList(readUsedList());
     loadBest();
     setIdle();
     bind();

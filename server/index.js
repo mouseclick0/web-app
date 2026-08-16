@@ -9,6 +9,7 @@ const cors = require("cors");
 const { ensureYtDlp, getYtDlpPath } = require("./ensure-ytdlp");
 const { ensureFfmpeg, getFfmpegPath } = require("./ensure-ffmpeg");
 const { registerCutoutRoutes } = require("./cutout");
+const { registerGhibliRoutes } = require("./ghibli");
 
 const PORT = Number(process.env.PORT) || 8787;
 const FORMAT_PRESETS = {
@@ -233,6 +234,8 @@ app.get("/api/health", async function (_req, res) {
       ffmpeg: ffmpegOk,
       cutout: true,
       cutoutEngine: "@imgly/background-removal-node",
+      ghibli: true,
+      ghibliEngine: "AnimeGANv2_Hayao (onnxruntime-node)",
       port: PORT
     });
   } catch (error) {
@@ -244,6 +247,7 @@ app.get("/api/health", async function (_req, res) {
 });
 
 registerCutoutRoutes(app);
+registerGhibliRoutes(app);
 
 app.post("/api/info", async function (req, res) {
   try {

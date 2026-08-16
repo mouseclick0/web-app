@@ -1179,6 +1179,73 @@
       text-align: center;
     }
 
+    .dday-actions {
+      display: grid;
+      gap: 0.65rem;
+      margin: 1rem 0 0.75rem;
+    }
+
+    @media (min-width: 560px) {
+      .dday-actions {
+        grid-template-columns: 1.4fr 1fr;
+      }
+    }
+
+    .dday-result {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0 0 1rem;
+      padding: 1.25rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--accent) 8%, var(--toggle-bg));
+      text-align: center;
+    }
+
+    .dday-result-title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .dday-badge {
+      font-size: 2.35rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+      color: var(--muted);
+    }
+
+    .dday-badge.is-minus,
+    .dday-result.is-minus .dday-badge {
+      color: #e53935;
+    }
+
+    .dday-badge.is-day,
+    .dday-result.is-day .dday-badge {
+      color: #2e7d32;
+    }
+
+    .dday-badge.is-plus,
+    .dday-result.is-plus .dday-badge {
+      color: #1565c0;
+    }
+
+    .dday-detail {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .dday-note {
+      margin: 0 0 1rem;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
     .speech-result-label {
       font-size: 0.82rem;
       color: var(--muted);
@@ -3996,6 +4063,27 @@
       <p class="home-subtitle" data-i18n="home.cutout.subtitle">로컬 AI 서버로 사람·제품 등 배경을 깨끗하게 제거합니다.</p>
     </section>
 
+    <section class="card home-card local-only-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.ghibli.aria" aria-label="지브리 스타일 변환 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ghibliSky" x1="40" y1="20" x2="280" y2="120" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#7ec8f5" />
+              <stop offset="1" stop-color="#b8e0a8" />
+            </linearGradient>
+          </defs>
+          <rect x="42" y="28" width="236" height="128" rx="22" fill="url(#ghibliSky)" />
+          <ellipse cx="230" cy="58" rx="28" ry="14" fill="#ffffff" opacity="0.85" />
+          <ellipse cx="250" cy="58" rx="18" ry="10" fill="#ffffff" opacity="0.7" />
+          <path d="M54 118c28-28 62-40 96-28 34 12 58 8 88-10v48H54v-10z" fill="#4a8f5c" opacity="0.9" />
+          <path d="M54 138h212v18H54z" fill="#3d6b4a" opacity="0.85" />
+          <circle cx="96" cy="72" r="16" fill="#ffd54f" opacity="0.95" />
+        </svg>
+      </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openGhibliBtn" data-i18n="home.ghibli.cta">지브리 스타일 변환</button></h2>
+      <p class="home-subtitle" data-i18n="home.ghibli.subtitle">로컬 AI 서버로 사진을 지브리풍 애니 스타일로 바꿉니다.</p>
+    </section>
+
     <section class="card home-card">
       <div class="card-head">
         <svg class="feature-hero" role="img" data-i18n-aria="home.lotto.aria" aria-label="로또 번호 공 이미지" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
@@ -4265,6 +4353,21 @@
 
     <section class="card home-card">
       <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.dday.aria" aria-label="디데이 계산기 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="54" y="36" width="212" height="124" rx="22" fill="#2563c7" opacity="0.9" />
+          <rect x="54" y="36" width="212" height="36" rx="22" fill="#4da3f7" />
+          <rect x="54" y="54" width="212" height="18" fill="#4da3f7" />
+          <circle cx="92" cy="54" r="7" fill="#ffd54f" />
+          <circle cx="118" cy="54" r="7" fill="#ffffff" opacity="0.85" />
+          <text x="160" y="118" text-anchor="middle" font-size="36" font-weight="800" fill="#ffffff">D-Day</text>
+        </svg>
+      </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openDdayBtn" data-i18n="home.dday.cta">디데이 계산기</button></h2>
+      <p class="home-subtitle" data-i18n="home.dday.subtitle">시험·결혼식·여행 등 목표일까지 남은 일수, 지난 날수는 D+로 확인합니다.</p>
+    </section>
+
+    <section class="card home-card">
+      <div class="card-head">
         <svg class="feature-hero" role="img" data-i18n-aria="home.ip.aria" aria-label="내 아이피 찾기 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
           <circle cx="160" cy="92" r="58" fill="#5eb0f7" opacity="0.35" />
           <circle cx="160" cy="92" r="38" fill="#2563c7" />
@@ -4495,6 +4598,64 @@
 
     <button type="button" class="download-btn" id="downloadCutoutBtn" data-i18n="cutout.download" disabled>PNG 다운로드</button>
     <button type="button" class="back-btn" id="backHomeFromCutoutBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
+  <main class="card" id="ghibliView" hidden>
+    <div class="card-head">
+      <h2 data-i18n="ghibli.title">지브리 스타일 변환</h2>
+    </div>
+    <p class="subtitle" data-i18n="ghibli.subtitle">로컬 서버의 AnimeGANv2(Hayao) AI로 사진을 지브리풍 애니 스타일로 변환합니다. server에서 npm start 후 사용하세요. 첫 실행은 모델 다운로드로 시간이 걸릴 수 있습니다.</p>
+
+    <label class="form-field" for="ghibliApiInput">
+      <span data-i18n="ghibli.apiLabel">로컬 API 주소</span>
+      <input
+        class="video-url-input"
+        id="ghibliApiInput"
+        type="url"
+        inputmode="url"
+        autocomplete="off"
+        value="http://127.0.0.1:8787"
+        placeholder="http://127.0.0.1:8787"
+      />
+    </label>
+    <p class="video-api-hint" data-i18n="ghibli.apiHint">동영상 다운로드·누끼와 같은 로컬 서버(http://127.0.0.1:8787)를 사용합니다.</p>
+    <p class="video-health" id="ghibliHealth" aria-live="polite"></p>
+
+    <label class="upload-zone" id="ghibliUploadZone" for="ghibliInput">
+      <strong data-i18n="ghibli.uploadStrong">이미지를 드롭하거나 클릭해서 업로드</strong>
+      <span data-i18n="ghibli.uploadHint">JPG, PNG, WebP 이미지를 지원합니다.</span>
+      <input type="file" id="ghibliInput" accept="image/*" />
+    </label>
+
+    <div class="cutout-controls">
+      <label class="form-field" for="ghibliStyleSelect">
+        <span data-i18n="ghibli.style">스타일</span>
+        <select id="ghibliStyleSelect" class="video-url-input">
+          <option value="hayao" data-i18n="ghibli.style.hayao" selected>Hayao (지브리풍)</option>
+        </select>
+      </label>
+      <button type="button" class="cutout-btn" id="ghibliRunBtn" data-i18n="ghibli.run" disabled>지브리 스타일로 변환</button>
+    </div>
+
+    <p class="cutout-status" id="ghibliStatus">이미지를 업로드하면 원본과 결과가 표시됩니다.</p>
+
+    <div class="preview-grid" id="ghibliPreviewGrid" hidden>
+      <div class="preview-panel">
+        <h2 data-i18n="ghibli.original">원본</h2>
+        <div class="preview-box">
+          <img id="ghibliOriginalPreview" data-i18n-alt="ghibli.originalAlt" alt="업로드한 원본 이미지" hidden />
+        </div>
+      </div>
+      <div class="preview-panel">
+        <h2 data-i18n="ghibli.result">결과</h2>
+        <div class="preview-box">
+          <img id="ghibliResultPreview" data-i18n-alt="ghibli.resultAlt" alt="지브리 스타일 결과 이미지" hidden />
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="download-btn" id="ghibliDownloadBtn" data-i18n="ghibli.download" disabled>PNG 다운로드</button>
+    <button type="button" class="back-btn" id="backHomeFromGhibliBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
   <main class="card" id="videoView" hidden>
@@ -5098,6 +5259,56 @@
     <button type="button" class="back-btn" id="backHomeFromCalendarBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
+  <main class="card" id="ddayView" hidden>
+    <div class="card-head">
+      <h2 data-i18n="dday.title">디데이 계산기</h2>
+    </div>
+    <p class="subtitle" data-i18n="dday.subtitle">시험, 결혼식, 여행 등 중요한 목표일까지 며칠이 남았는지 확인하세요. 이미 지난 날짜라면 D+로 경과 일수를 보여 줍니다.</p>
+
+    <form id="ddayForm">
+      <label class="form-field" for="ddayNameInput">
+        <span data-i18n="dday.nameLabel">행사 / 기념일 이름 (선택)</span>
+        <input
+          class="video-url-input"
+          id="ddayNameInput"
+          type="text"
+          maxlength="80"
+          autocomplete="off"
+          data-i18n-placeholder="dday.namePlaceholder"
+          placeholder="예: 수능, 결혼식, 여행"
+        />
+      </label>
+
+      <label class="form-field" for="ddayTargetInput">
+        <span data-i18n="dday.targetLabel">목표일 (D-Day)</span>
+        <input class="video-url-input" id="ddayTargetInput" type="date" required />
+      </label>
+      <p class="video-api-hint" data-i18n="dday.targetHint">디데이로 설정할 목표 날짜를 선택하세요.</p>
+
+      <label class="form-field" for="ddayBaseInput">
+        <span data-i18n="dday.baseLabel">기준일 (보통 오늘)</span>
+        <input class="video-url-input" id="ddayBaseInput" type="date" required />
+      </label>
+      <p class="video-api-hint" data-i18n="dday.baseHint">기본값은 오늘입니다. 다른 시점으로 시뮬레이션하려면 바꿔 주세요.</p>
+
+      <div class="dday-actions">
+        <button type="submit" class="draw-btn" id="ddayCalcBtn" data-i18n="dday.calculate">디데이 확인하기</button>
+        <button type="button" class="editor-btn" id="ddayResetBtn" data-i18n="dday.reset">초기화</button>
+      </div>
+    </form>
+
+    <section class="dday-result" id="ddayResult" aria-live="polite">
+      <h3 class="dday-result-title" id="ddayResultTitle" hidden></h3>
+      <div class="dday-badge" id="ddayBadge">–</div>
+      <p class="dday-detail" id="ddayDetail">목표일과 기준일을 입력한 뒤 확인하세요.</p>
+    </section>
+
+    <p class="dday-note" data-i18n="dday.note">이 계산기는 날짜 차이만 구합니다(초일불산입). 오늘이 1일이고 내일이 2일이면 D-1입니다. 사귄 날을 1일로 세는 100일 계산과는 다릅니다.</p>
+    <p class="cutout-status" id="ddayStatus" aria-live="polite"></p>
+
+    <button type="button" class="back-btn" id="backHomeFromDdayBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
   <main class="ip-shell" id="ipView" hidden>
     <h2 data-i18n="ip.title">내 아이피 찾기</h2>
     <p class="ip-lead" data-i18n="ip.subtitle">현재 공인 IPv4·IPv6와 ISP, 국가·도시 정보를 확인합니다.</p>
@@ -5600,6 +5811,8 @@
 
     window.onI18nApplied = function () {
       setTheme(getTheme());
+      if (typeof window.refreshGhibliI18n === "function") window.refreshGhibliI18n();
+      if (typeof window.refreshDdayI18n === "function") window.refreshDdayI18n();
     };
 
     applyI18n();
@@ -5608,6 +5821,7 @@
     const homeView = document.getElementById("homeView");
     const lottoView = document.getElementById("lottoView");
     const cutoutView = document.getElementById("cutoutView");
+    const ghibliView = document.getElementById("ghibliView");
     const videoView = document.getElementById("videoView");
     const minesweeperView = document.getElementById("minesweeperView");
     const tetrisView = document.getElementById("tetrisView");
@@ -5618,6 +5832,7 @@
     const noiseView = document.getElementById("noiseView");
     const weatherView = document.getElementById("weatherView");
     const calendarView = document.getElementById("calendarView");
+    const ddayView = document.getElementById("ddayView");
     const ipView = document.getElementById("ipView");
     const ocrView = document.getElementById("ocrView");
     const convertView = document.getElementById("convertView");
@@ -5627,6 +5842,7 @@
     const chessView = document.getElementById("chessView");
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
+    const openGhibliBtn = document.getElementById("openGhibliBtn");
     const openVideoBtn = document.getElementById("openVideoBtn");
     const openMinesweeperBtn = document.getElementById("openMinesweeperBtn");
     const openTetrisBtn = document.getElementById("openTetrisBtn");
@@ -5637,6 +5853,7 @@
     const openNoiseBtn = document.getElementById("openNoiseBtn");
     const backHomeBtn = document.getElementById("backHomeBtn");
     const backHomeFromCutoutBtn = document.getElementById("backHomeFromCutoutBtn");
+    const backHomeFromGhibliBtn = document.getElementById("backHomeFromGhibliBtn");
     const backHomeFromVideoBtn = document.getElementById("backHomeFromVideoBtn");
     const backHomeFromMinesweeperBtn = document.getElementById("backHomeFromMinesweeperBtn");
     const backHomeFromTetrisBtn = document.getElementById("backHomeFromTetrisBtn");
@@ -5790,6 +6007,7 @@
       homeView.hidden = view !== homeView;
       lottoView.hidden = view !== lottoView;
       cutoutView.hidden = view !== cutoutView;
+      if (ghibliView) ghibliView.hidden = view !== ghibliView;
       videoView.hidden = view !== videoView;
       minesweeperView.hidden = view !== minesweeperView;
       tetrisView.hidden = view !== tetrisView;
@@ -5800,6 +6018,7 @@
       if (noiseView) noiseView.hidden = view !== noiseView;
       if (weatherView) weatherView.hidden = view !== weatherView;
       if (calendarView) calendarView.hidden = view !== calendarView;
+      if (ddayView) ddayView.hidden = view !== ddayView;
       if (ipView) ipView.hidden = view !== ipView;
       if (ocrView) ocrView.hidden = view !== ocrView;
       if (convertView) convertView.hidden = view !== convertView;
@@ -6701,6 +6920,20 @@
       showView(homeView);
       openCutoutBtn.focus();
     });
+
+    if (openGhibliBtn && ghibliView) {
+      openGhibliBtn.addEventListener("click", () => {
+        showView(ghibliView);
+        if (typeof window.openGhibliTool === "function") window.openGhibliTool();
+      });
+    }
+
+    if (backHomeFromGhibliBtn) {
+      backHomeFromGhibliBtn.addEventListener("click", () => {
+        showView(homeView);
+        if (openGhibliBtn) openGhibliBtn.focus();
+      });
+    }
 
     openVideoBtn.addEventListener("click", () => {
       showView(videoView);
@@ -8119,6 +8352,7 @@
       } else if (memoryRunning) setMemoryStatus(t("memory.status.playing"));
       if (typeof window.refreshWeatherI18n === "function") window.refreshWeatherI18n();
       if (typeof window.refreshCalendarI18n === "function") window.refreshCalendarI18n();
+      if (typeof window.refreshDdayI18n === "function") window.refreshDdayI18n();
       if (typeof window.refreshIpI18n === "function") window.refreshIpI18n();
       if (typeof window.refreshSpeechI18n === "function") window.refreshSpeechI18n();
       if (typeof window.refreshPickerI18n === "function") window.refreshPickerI18n();
@@ -8126,12 +8360,14 @@
       if (typeof window.refreshFlagI18n === "function") window.refreshFlagI18n();
       if (typeof window.refreshCapitalI18n === "function") window.refreshCapitalI18n();
       if (typeof window.refreshNoiseI18n === "function") window.refreshNoiseI18n();
+      if (typeof window.refreshGhibliI18n === "function") window.refreshGhibliI18n();
     };
 
     window.onI18nApplied();
   </script>
   <script src="weather.js"></script>
   <script src="calendar.js"></script>
+  <script src="dday.js?v=20260817a"></script>
   <script src="ip.js"></script>
   <script src="ocr.js"></script>
   <script src="convert.js"></script>
@@ -8145,6 +8381,7 @@
   <script src="flag.js?v=20260816f"></script>
   <script src="capital.js?v=20260816c"></script>
   <script src="noise.js?v=20260817b"></script>
+  <script src="ghibli.js?v=20260817a"></script>
   <script>
     var yearEl = document.getElementById("siteYear");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());

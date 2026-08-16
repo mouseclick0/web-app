@@ -2532,12 +2532,181 @@
       box-shadow: 0 0 0 6px rgba(229, 57, 53, 0.28);
     }
 
+    .noise-panel {
+      display: grid;
+      gap: 1rem;
+      margin: 0.85rem 0 1rem;
+      padding: 1rem;
+      border: 1px solid var(--toggle-border);
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--surface) 88%, var(--bg));
+    }
+
+    .noise-viz {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 0.35rem;
+      height: 3.25rem;
+      opacity: 0.35;
+    }
+
+    .noise-panel.is-playing .noise-viz {
+      opacity: 1;
+    }
+
+    .noise-viz span {
+      width: 0.45rem;
+      border-radius: 999px;
+      background: var(--accent);
+      height: 30%;
+      transform-origin: bottom;
+    }
+
+    .noise-panel.is-playing .noise-viz span {
+      animation: noise-bar 0.9s ease-in-out infinite;
+    }
+
+    .noise-panel.is-playing .noise-viz span:nth-child(2) { animation-delay: 0.08s; height: 55%; }
+    .noise-panel.is-playing .noise-viz span:nth-child(3) { animation-delay: 0.16s; height: 80%; }
+    .noise-panel.is-playing .noise-viz span:nth-child(4) { animation-delay: 0.24s; height: 45%; }
+    .noise-panel.is-playing .noise-viz span:nth-child(5) { animation-delay: 0.32s; height: 70%; }
+    .noise-panel.is-playing .noise-viz span:nth-child(6) { animation-delay: 0.4s; height: 40%; }
+    .noise-panel.is-playing .noise-viz span:nth-child(7) { animation-delay: 0.48s; height: 60%; }
+
+    @keyframes noise-bar {
+      0%, 100% { transform: scaleY(0.55); }
+      50% { transform: scaleY(1); }
+    }
+
+    .noise-type-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.5rem;
+    }
+
+    .noise-type-group {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .noise-type-label {
+      margin: 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .noise-type-row.is-nature {
+      grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+    }
+
+    .noise-type-btn {
+      border: 1px solid var(--toggle-border);
+      border-radius: 12px;
+      padding: 0.7rem 0.5rem;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text);
+      background: var(--toggle-bg);
+    }
+
+    .noise-type-btn:hover {
+      background: var(--toggle-hover);
+    }
+
+    .noise-type-btn.active {
+      border-color: var(--accent);
+      color: #fff;
+      background: linear-gradient(160deg, #4da3f7, #2563c7);
+    }
+
+    .noise-volume-row,
+    .noise-duration-row {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .noise-volume-head,
+    .noise-duration-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .noise-volume-head strong,
+    .noise-duration-head strong {
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .noise-remain {
+      margin: 0;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .noise-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .noise-play-btn,
+    .noise-stop-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.75rem;
+      padding: 0.7rem 1.2rem;
+      border: 0;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .noise-stop-btn {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--toggle-border);
+    }
+
+    .noise-status {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .noise-status.is-error {
+      color: #c62828;
+    }
+
+    .noise-howto {
+      margin: 0 0 0.85rem;
+      padding-left: 1.15rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
     @media (max-width: 560px) {
       .flag-hud {
         grid-template-columns: 1fr 1fr;
       }
 
       .flag-choices {
+        grid-template-columns: 1fr;
+      }
+
+      .noise-type-row {
         grid-template-columns: 1fr;
       }
     }
@@ -3781,6 +3950,7 @@
         <li data-i18n="home.introLi7">이미지 자르기·회전·반전·크기 조절</li>
         <li data-i18n="home.introLi9">이미지에서 HEX·RGB·HSL 등 색상 코드 추출</li>
         <li data-i18n="home.introLi8">발표 대본의 예상 발표 시간과 분량 계산</li>
+        <li data-i18n="home.introLi10">백색소음(화이트·핑크·브라운) 재생</li>
         <li data-i18n="home.introLi4">지뢰찾기·테트리스·오목·기억력 테스트·체스·국기 맞추기·수도 맞추기</li>
       </ul>
     </section>
@@ -4043,6 +4213,19 @@
       </div>
       <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openCapitalBtn" data-i18n="home.capital.cta">나라 수도 맞추기</button></h2>
       <p class="home-subtitle" data-i18n="home.capital.subtitle">나라 이름과 국기를 보고, 그 나라의 도시 4개 중 수도를 고르세요.</p>
+    </section>
+
+    <section class="card home-card">
+      <div class="card-head">
+        <svg class="feature-hero" role="img" data-i18n-aria="home.noise.aria" aria-label="백색소음 카드 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="36" y="34" width="248" height="112" rx="18" fill="#1e4f9c" />
+          <path d="M70 110c8-28 14-46 22-46s12 34 20 34 12-50 22-50 14 40 22 40 10-28 20-28 14 42 22 42 12-36 20-36 12 28 20 28" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity="0.9" />
+          <circle cx="250" cy="58" r="10" fill="#ffd54f" />
+          <text x="160" y="158" text-anchor="middle" font-size="22">🔊</text>
+        </svg>
+      </div>
+      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openNoiseBtn" data-i18n="home.noise.cta">백색소음</button></h2>
+      <p class="home-subtitle" data-i18n="home.noise.subtitle">화이트·핑크·브라운과 비·폭포·파도·시냇물·바람 소리로 집중이나 휴식을 도와 줍니다.</p>
     </section>
 
     <section class="card home-card">
@@ -4646,6 +4829,68 @@
     </div>
 
     <button type="button" class="back-btn" id="backHomeFromCapitalBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
+  </main>
+
+  <main class="card" id="noiseView" hidden>
+    <div class="card-head">
+      <h2 data-i18n="noise.title">백색소음</h2>
+    </div>
+    <p class="subtitle" data-i18n="noise.subtitle">화이트·핑크·브라운 노이즈와 비·폭포·파도·시냇물·바람 소리를 브라우저에서 바로 재생합니다. 소리는 서버로 전송되지 않습니다.</p>
+
+    <ol class="noise-howto">
+      <li data-i18n="noise.how1">원하는 소리 종류를 고른 뒤 재생을 누르세요.</li>
+      <li data-i18n="noise.how2">재생 시간은 연속재생 또는 10분 단위로 조절할 수 있습니다. 다른 화면으로 나가면 재생이 멈춥니다.</li>
+    </ol>
+
+    <div class="noise-panel" id="noisePanel">
+      <div class="noise-viz" id="noiseViz" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="noise-type-group">
+        <p class="noise-type-label" data-i18n="noise.group.basic">기본 노이즈</p>
+        <div class="noise-type-row" role="group" data-i18n-aria="noise.typesAria" aria-label="노이즈 종류">
+          <button type="button" class="noise-type-btn active" data-noise-type="white" aria-pressed="true" data-i18n="noise.type.white">화이트</button>
+          <button type="button" class="noise-type-btn" data-noise-type="pink" aria-pressed="false" data-i18n="noise.type.pink">핑크</button>
+          <button type="button" class="noise-type-btn" data-noise-type="brown" aria-pressed="false" data-i18n="noise.type.brown">브라운</button>
+        </div>
+      </div>
+
+      <div class="noise-type-group">
+        <p class="noise-type-label" data-i18n="noise.group.nature">자연 소리</p>
+        <div class="noise-type-row is-nature" role="group" data-i18n-aria="noise.natureAria" aria-label="자연 소리 종류">
+          <button type="button" class="noise-type-btn" data-noise-type="rain" aria-pressed="false" data-i18n="noise.type.rain">비</button>
+          <button type="button" class="noise-type-btn" data-noise-type="waterfall" aria-pressed="false" data-i18n="noise.type.waterfall">폭포수</button>
+          <button type="button" class="noise-type-btn" data-noise-type="waves" aria-pressed="false" data-i18n="noise.type.waves">파도</button>
+          <button type="button" class="noise-type-btn" data-noise-type="stream" aria-pressed="false" data-i18n="noise.type.stream">시냇물</button>
+          <button type="button" class="noise-type-btn" data-noise-type="wind" aria-pressed="false" data-i18n="noise.type.wind">나뭇가지 바람</button>
+        </div>
+      </div>
+
+      <div class="noise-duration-row">
+        <div class="noise-duration-head">
+          <span data-i18n="noise.duration">재생 시간</span>
+          <strong id="noiseDurationValue">연속재생</strong>
+        </div>
+        <input type="range" id="noiseDuration" min="0" max="12" step="1" value="0" data-i18n-aria="noise.durationAria" aria-label="재생 시간" />
+        <p class="noise-remain" id="noiseRemain" hidden></p>
+      </div>
+
+      <div class="noise-volume-row">
+        <div class="noise-volume-head">
+          <span data-i18n="noise.volume">볼륨</span>
+          <strong id="noiseVolumeValue">35%</strong>
+        </div>
+        <input type="range" id="noiseVolume" min="0" max="1" step="0.01" value="0.35" data-i18n-aria="noise.volumeAria" aria-label="볼륨" />
+      </div>
+      <div class="noise-actions">
+        <button type="button" class="noise-play-btn" id="noisePlayBtn" data-i18n="noise.play">재생</button>
+        <button type="button" class="noise-stop-btn" id="noiseStopBtn" hidden data-i18n="noise.stop">정지</button>
+      </div>
+      <p class="noise-status" id="noiseStatus" aria-live="polite"></p>
+    </div>
+
+    <button type="button" class="back-btn" id="backHomeFromNoiseBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
   <main class="card chess-card" id="chessView" hidden>
@@ -5370,6 +5615,7 @@
     const memoryView = document.getElementById("memoryView");
     const flagView = document.getElementById("flagView");
     const capitalView = document.getElementById("capitalView");
+    const noiseView = document.getElementById("noiseView");
     const weatherView = document.getElementById("weatherView");
     const calendarView = document.getElementById("calendarView");
     const ipView = document.getElementById("ipView");
@@ -5388,6 +5634,7 @@
     const openMemoryBtn = document.getElementById("openMemoryBtn");
     const openFlagBtn = document.getElementById("openFlagBtn");
     const openCapitalBtn = document.getElementById("openCapitalBtn");
+    const openNoiseBtn = document.getElementById("openNoiseBtn");
     const backHomeBtn = document.getElementById("backHomeBtn");
     const backHomeFromCutoutBtn = document.getElementById("backHomeFromCutoutBtn");
     const backHomeFromVideoBtn = document.getElementById("backHomeFromVideoBtn");
@@ -5397,6 +5644,7 @@
     const backHomeFromMemoryBtn = document.getElementById("backHomeFromMemoryBtn");
     const backHomeFromFlagBtn = document.getElementById("backHomeFromFlagBtn");
     const backHomeFromCapitalBtn = document.getElementById("backHomeFromCapitalBtn");
+    const backHomeFromNoiseBtn = document.getElementById("backHomeFromNoiseBtn");
     const resultsEl = document.getElementById("results");
     const drawBtn = document.getElementById("drawBtn");
     const uploadZone = document.getElementById("uploadZone");
@@ -5549,6 +5797,7 @@
       memoryView.hidden = view !== memoryView;
       if (flagView) flagView.hidden = view !== flagView;
       if (capitalView) capitalView.hidden = view !== capitalView;
+      if (noiseView) noiseView.hidden = view !== noiseView;
       if (weatherView) weatherView.hidden = view !== weatherView;
       if (calendarView) calendarView.hidden = view !== calendarView;
       if (ipView) ipView.hidden = view !== ipView;
@@ -5564,6 +5813,9 @@
       }
       if (view !== memoryView) {
         stopMemoryTimer();
+      }
+      if (view !== noiseView && typeof window.stopNoise === "function") {
+        window.stopNoise();
       }
       window.scrollTo(0, 0);
     }
@@ -7560,6 +7812,12 @@
       });
     }
 
+    if (openNoiseBtn && noiseView) {
+      openNoiseBtn.addEventListener("click", () => {
+        showView(noiseView);
+      });
+    }
+
     backHomeFromMemoryBtn.addEventListener("click", () => {
       stopMemoryTimer();
       showView(homeView);
@@ -7577,6 +7835,14 @@
       backHomeFromCapitalBtn.addEventListener("click", () => {
         showView(homeView);
         openCapitalBtn.focus();
+      });
+    }
+
+    if (backHomeFromNoiseBtn && openNoiseBtn) {
+      backHomeFromNoiseBtn.addEventListener("click", () => {
+        if (typeof window.stopNoise === "function") window.stopNoise();
+        showView(homeView);
+        openNoiseBtn.focus();
       });
     }
 
@@ -7859,6 +8125,7 @@
       if (typeof window.refreshChessI18n === "function") window.refreshChessI18n();
       if (typeof window.refreshFlagI18n === "function") window.refreshFlagI18n();
       if (typeof window.refreshCapitalI18n === "function") window.refreshCapitalI18n();
+      if (typeof window.refreshNoiseI18n === "function") window.refreshNoiseI18n();
     };
 
     window.onI18nApplied();
@@ -7877,6 +8144,7 @@
   <script src="flag-coords.js?v=20260816a"></script>
   <script src="flag.js?v=20260816f"></script>
   <script src="capital.js?v=20260816c"></script>
+  <script src="noise.js?v=20260817b"></script>
   <script>
     var yearEl = document.getElementById("siteYear");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());

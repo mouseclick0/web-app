@@ -454,10 +454,7 @@ function formScript(c) {
 }
 
 function buildSitemap() {
-  const urls = [
-    { loc: BASE_URL, freq: "weekly", pri: "1.0" },
-    { loc: BASE_URL + "index.html", freq: "weekly", pri: "1.0" }
-  ];
+  const urls = [{ loc: BASE_URL, freq: "weekly", pri: "1.0" }];
   for (const name of PAGE_FILES) {
     for (const lang of LANGS) {
       urls.push({

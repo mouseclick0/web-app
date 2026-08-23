@@ -5732,7 +5732,6 @@
     const lottoView = document.getElementById("lottoView");
     const cutoutView = document.getElementById("cutoutView");
     const ghibliView = document.getElementById("ghibliView");
-    const videoView = document.getElementById("videoView");
     const minesweeperView = document.getElementById("minesweeperView");
     const tetrisView = document.getElementById("tetrisView");
     const gomokuView = document.getElementById("gomokuView");
@@ -5753,7 +5752,6 @@
     const openLottoBtn = document.getElementById("openLottoBtn");
     const openCutoutBtn = document.getElementById("openCutoutBtn");
     const openGhibliBtn = document.getElementById("openGhibliBtn");
-    const openVideoBtn = document.getElementById("openVideoBtn");
     const openMinesweeperBtn = document.getElementById("openMinesweeperBtn");
     const openTetrisBtn = document.getElementById("openTetrisBtn");
     const openGomokuBtn = document.getElementById("openGomokuBtn");
@@ -5764,7 +5762,6 @@
     const backHomeBtn = document.getElementById("backHomeBtn");
     const backHomeFromCutoutBtn = document.getElementById("backHomeFromCutoutBtn");
     const backHomeFromGhibliBtn = document.getElementById("backHomeFromGhibliBtn");
-    const backHomeFromVideoBtn = document.getElementById("backHomeFromVideoBtn");
     const backHomeFromMinesweeperBtn = document.getElementById("backHomeFromMinesweeperBtn");
     const backHomeFromTetrisBtn = document.getElementById("backHomeFromTetrisBtn");
     const backHomeFromGomokuBtn = document.getElementById("backHomeFromGomokuBtn");
@@ -5785,24 +5782,6 @@
     const previewGrid = document.getElementById("previewGrid");
     const originalPreview = document.getElementById("originalPreview");
     const resultCanvas = document.getElementById("resultCanvas");
-    const videoUrlForm = document.getElementById("videoUrlForm");
-    const videoUrlInput = document.getElementById("videoUrlInput");
-    const ytdlpApiInput = document.getElementById("ytdlpApiInput");
-    const videoHealth = document.getElementById("videoHealth");
-    const videoStatus = document.getElementById("videoStatus");
-    const videoStatusPanel = document.getElementById("videoStatusPanel");
-    const videoProgressPct = document.getElementById("videoProgressPct");
-    const videoProgressTrack = document.getElementById("videoProgressTrack");
-    const videoProgressFill = document.getElementById("videoProgressFill");
-    const videoPreviewPlaceholder = document.getElementById("videoPreviewPlaceholder");
-    const videoPreview = document.getElementById("videoPreview");
-    const videoEmbed = document.getElementById("videoEmbed");
-    const videoMeta = document.getElementById("videoMeta");
-    const videoMetaTitle = document.getElementById("videoMetaTitle");
-    const videoMetaSub = document.getElementById("videoMetaSub");
-    const videoFormatSelect = document.getElementById("videoFormatSelect");
-    const downloadVideoBtn = document.getElementById("downloadVideoBtn");
-    const loadVideoBtn = document.getElementById("loadVideoBtn");
     const mineBoard = document.getElementById("mineBoard");
     const mineRemaining = document.getElementById("mineRemaining");
     const mineTimer = document.getElementById("mineTimer");
@@ -5859,10 +5838,6 @@
     let sourceFile = null;
     let sourceFileName = "cutout";
     let cutoutServerOk = false;
-    let currentVideoPageUrl = "";
-    let currentVideoFileName = "video.mp4";
-    let currentVideoInfo = null;
-    let ytdlpServerOk = false;
     let mineDiff = "beginner";
     let mineFlagMode = false;
     let mineStarted = false;
@@ -5918,7 +5893,6 @@
       lottoView.hidden = view !== lottoView;
       cutoutView.hidden = view !== cutoutView;
       if (ghibliView) ghibliView.hidden = view !== ghibliView;
-      if (videoView) videoView.hidden = view !== videoView;
       minesweeperView.hidden = view !== minesweeperView;
       tetrisView.hidden = view !== tetrisView;
       gomokuView.hidden = view !== gomokuView;
@@ -6019,7 +5993,6 @@
       try {
         localStorage.setItem(YTDLP_API_KEY, value);
       } catch (e) {}
-      if (ytdlpApiInput) ytdlpApiInput.value = value;
     }
 
     async function checkCutoutHealth() {
@@ -6156,387 +6129,6 @@
     }
 
     loadSavedCutoutApi();
-
-    function setVideoProgress(percent, options) {
-      const opts = options || {};
-      const busy = !!opts.busy;
-      const indeterminate = !!opts.indeterminate;
-      const show = busy || typeof percent === "number";
-
-      if (!videoStatusPanel) return;
-
-      videoStatusPanel.classList.toggle("busy", busy);
-      videoStatusPanel.classList.toggle("indeterminate", busy && indeterminate);
-
-      if (!show) {
-        videoProgressPct.hidden = true;
-        videoProgressTrack.hidden = true;
-        videoProgressFill.style.width = "0%";
-        return;
-      }
-
-      videoProgressPct.hidden = false;
-      videoProgressTrack.hidden = false;
-
-      if (indeterminate || typeof percent !== "number") {
-        videoProgressPct.textContent = "…";
-        videoProgressFill.style.width = "35%";
-        return;
-      }
-
-      const clamped = Math.max(0, Math.min(100, Math.round(percent)));
-      videoProgressPct.textContent = clamped + "%";
-      videoProgressFill.style.width = clamped + "%";
-    }
-
-    function setVideoStatus(message, options) {
-      videoStatus.textContent = message;
-      if (options && (options.busy || typeof options.percent === "number" || options.indeterminate)) {
-        setVideoProgress(options.percent, options);
-      } else if (!options || options.clearProgress) {
-        setVideoProgress(null, { busy: false });
-      }
-    }
-
-    function getYtdlpApiUrl() {
-      if (ytdlpApiInput) {
-        return (ytdlpApiInput.value || "").trim().replace(/\/+$/, "") || YTDLP_DEFAULT_API;
-      }
-      try {
-        return (localStorage.getItem(YTDLP_API_KEY) || "").trim().replace(/\/+$/, "") || YTDLP_DEFAULT_API;
-      } catch (e) {
-        return YTDLP_DEFAULT_API;
-      }
-    }
-
-    function loadSavedYtdlpApi() {
-      try {
-        const saved = localStorage.getItem(YTDLP_API_KEY) || YTDLP_DEFAULT_API;
-        if (ytdlpApiInput) ytdlpApiInput.value = saved;
-      } catch (e) {
-        if (ytdlpApiInput) ytdlpApiInput.value = YTDLP_DEFAULT_API;
-      }
-    }
-
-    function saveYtdlpApi() {
-      const value = getYtdlpApiUrl();
-      try {
-        localStorage.setItem(YTDLP_API_KEY, value);
-      } catch (e) {}
-      if (cutoutApiInput) cutoutApiInput.value = value;
-    }
-
-    function setVideoHealth(message, kind) {
-      if (!videoHealth) return;
-      videoHealth.textContent = message || "";
-      videoHealth.className = "video-health" + (kind ? " " + kind : "");
-    }
-
-    async function checkYtdlpHealth() {
-      if (!videoView) return false;
-      const apiBase = getYtdlpApiUrl();
-      saveYtdlpApi();
-      setVideoHealth(t("video.health.checking"));
-      ytdlpServerOk = false;
-      try {
-        const response = await fetch(apiBase + "/api/health", { method: "GET" });
-        const data = await response.json();
-        if (!response.ok || !data || !data.ok) {
-          throw new Error((data && data.error) || "health failed");
-        }
-        ytdlpServerOk = true;
-        setVideoHealth(t("video.health.ok", { version: data.version || "yt-dlp" }), "ok");
-      } catch (error) {
-        ytdlpServerOk = false;
-        setVideoHealth(t("video.health.bad"), "bad");
-      }
-      updateDownloadEnabled();
-      return ytdlpServerOk;
-    }
-
-    function updateDownloadEnabled() {
-      if (!downloadVideoBtn) return;
-      downloadVideoBtn.disabled = !(currentVideoPageUrl && ytdlpServerOk && currentVideoInfo);
-    }
-
-    function clearVideoMedia() {
-      videoPreview.removeAttribute("src");
-      videoPreview.load();
-      videoPreview.hidden = true;
-      videoEmbed.removeAttribute("src");
-      videoEmbed.hidden = true;
-    }
-
-    function hideVideoMeta() {
-      videoMeta.classList.remove("show");
-      videoMetaTitle.textContent = "";
-      videoMetaSub.textContent = "";
-      videoFormatSelect.innerHTML = "";
-    }
-
-    function resetVideoPreview() {
-      currentVideoPageUrl = "";
-      currentVideoFileName = "video.mp4";
-      currentVideoInfo = null;
-      clearVideoMedia();
-      hideVideoMeta();
-      videoPreviewPlaceholder.hidden = false;
-      updateDownloadEnabled();
-    }
-
-    function showDirectVideoPreview(url) {
-      clearVideoMedia();
-      videoPreviewPlaceholder.hidden = true;
-      videoPreview.hidden = false;
-      videoPreview.src = url;
-    }
-
-    function showYoutubeEmbed(videoId) {
-      clearVideoMedia();
-      videoPreviewPlaceholder.hidden = true;
-      videoEmbed.hidden = false;
-      videoEmbed.src = "https://www.youtube.com/embed/" + encodeURIComponent(videoId);
-    }
-
-    function isYoutubeUrl(parsedUrl) {
-      const host = (parsedUrl.hostname || "").toLowerCase();
-      return host === "youtu.be" || host === "youtube.com" || host.endsWith(".youtube.com");
-    }
-
-    function extractYoutubeId(parsedUrl) {
-      const host = (parsedUrl.hostname || "").toLowerCase();
-      if (host === "youtu.be") {
-        const id = parsedUrl.pathname.split("/").filter(Boolean)[0] || "";
-        return /^[\w-]{6,}$/.test(id) ? id : "";
-      }
-
-      const shortMatch = parsedUrl.pathname.match(/^\/(?:shorts|embed|live)\/([\w-]{6,})/);
-      if (shortMatch) return shortMatch[1];
-
-      const fromQuery = parsedUrl.searchParams.get("v");
-      if (fromQuery && /^[\w-]{6,}$/.test(fromQuery)) return fromQuery;
-
-      return "";
-    }
-
-    function formatLabel(id) {
-      const key = "video.format." + id;
-      const label = t(key);
-      return label === key ? id : label;
-    }
-
-    function applyVideoInfo(info, pageUrl) {
-      currentVideoInfo = info;
-      currentVideoPageUrl = pageUrl;
-      currentVideoFileName = info.filename || "video.mp4";
-      videoMetaTitle.textContent = info.title || "";
-      videoMetaSub.textContent = t("video.metaLine", {
-        duration: info.durationText || "-",
-        uploader: info.uploader || "-"
-      });
-      videoFormatSelect.innerHTML = "";
-      (info.formats || []).forEach(function (item) {
-        const opt = document.createElement("option");
-        opt.value = item.id;
-        opt.textContent = formatLabel(item.id);
-        videoFormatSelect.appendChild(opt);
-      });
-      if (!videoFormatSelect.options.length) {
-        const opt = document.createElement("option");
-        opt.value = "best";
-        opt.textContent = formatLabel("best");
-        videoFormatSelect.appendChild(opt);
-      }
-      videoMeta.classList.add("show");
-      updateDownloadEnabled();
-    }
-
-    function maybeShowYoutubePreview(parsedUrl) {
-      if (!isYoutubeUrl(parsedUrl)) return false;
-      const videoId = extractYoutubeId(parsedUrl);
-      if (!videoId) return false;
-      showYoutubeEmbed(videoId);
-      return true;
-    }
-
-    async function loadVideoFromUrl(rawUrl) {
-      const trimmed = (rawUrl || "").trim();
-      if (!trimmed) {
-        setVideoStatus(t("video.status.emptyUrl"));
-        resetVideoPreview();
-        return;
-      }
-
-      let parsedUrl;
-      try {
-        parsedUrl = new URL(trimmed);
-      } catch (error) {
-        setVideoStatus(t("video.status.badUrl"));
-        resetVideoPreview();
-        return;
-      }
-
-      if (parsedUrl.protocol !== "http:" && parsedUrl.protocol !== "https:") {
-        setVideoStatus(t("video.status.badProtocol"));
-        resetVideoPreview();
-        return;
-      }
-
-      saveYtdlpApi();
-      resetVideoPreview();
-      maybeShowYoutubePreview(parsedUrl);
-
-      const healthy = await checkYtdlpHealth();
-      if (!healthy) {
-        setVideoStatus(t("video.status.needServer"));
-        return;
-      }
-
-      setVideoStatus(t("video.status.resolving"));
-      downloadVideoBtn.disabled = true;
-      loadVideoBtn.disabled = true;
-
-      try {
-        const response = await fetch(getYtdlpApiUrl() + "/api/info", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ url: parsedUrl.href })
-        });
-        let data = null;
-        try {
-          data = await response.json();
-        } catch (e) {
-          throw new Error("invalid-json");
-        }
-        if (!response.ok || !data || !data.ok) {
-          throw new Error((data && data.error) || t("video.error.infoFail"));
-        }
-        if (!maybeShowYoutubePreview(parsedUrl)) {
-          clearVideoMedia();
-          videoPreviewPlaceholder.hidden = false;
-          videoPreviewPlaceholder.textContent = t("video.previewPlaceholder");
-        }
-        applyVideoInfo(data, parsedUrl.href);
-        setVideoStatus(t("video.status.ready"));
-      } catch (error) {
-        resetVideoPreview();
-        maybeShowYoutubePreview(parsedUrl);
-        if (error && error.message === "invalid-json") {
-          setVideoStatus(t("video.status.badApiJson"));
-        } else if (error && typeof error.message === "string" && error.message) {
-          setVideoStatus(error.message);
-        } else {
-          setVideoStatus(t("video.status.apiConnectFail"));
-        }
-      } finally {
-        loadVideoBtn.disabled = false;
-        updateDownloadEnabled();
-      }
-    }
-
-    function triggerBlobDownload(blob, fileName) {
-      const objectUrl = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = objectUrl;
-      link.download = fileName;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      setTimeout(function () {
-        URL.revokeObjectURL(objectUrl);
-      }, 1000);
-    }
-
-    async function downloadCurrentVideo() {
-      if (!currentVideoPageUrl || !ytdlpServerOk) {
-        setVideoStatus(t("video.status.needLoad"));
-        return;
-      }
-
-      const format = videoFormatSelect.value || "best";
-      const apiBase = getYtdlpApiUrl();
-      const downloadUrl = apiBase + "/api/download?url=" + encodeURIComponent(currentVideoPageUrl) + "&format=" + encodeURIComponent(format);
-
-      downloadVideoBtn.disabled = true;
-      setVideoStatus(t("video.status.downloadPreparing"), { busy: true, indeterminate: true });
-
-      try {
-        const response = await fetch(downloadUrl);
-        if (!response.ok) {
-          let message = t("video.error.downloadFail");
-          try {
-            const data = await response.json();
-            if (data && data.error) message = data.error;
-          } catch (e) {}
-          throw new Error(message);
-        }
-
-        const total = Number(response.headers.get("Content-Length")) || 0;
-        const reader = response.body && response.body.getReader ? response.body.getReader() : null;
-        let blob;
-
-        if (!reader) {
-          setVideoStatus(t("video.status.downloading"), { busy: true, percent: 0 });
-          blob = await response.blob();
-          setVideoStatus(t("video.status.downloading"), { busy: true, percent: 100 });
-        } else {
-          const chunks = [];
-          let received = 0;
-          setVideoStatus(t("video.status.downloading"), { busy: true, percent: total ? 0 : null, indeterminate: !total });
-
-          while (true) {
-            const result = await reader.read();
-            if (result.done) break;
-            chunks.push(result.value);
-            received += result.value.byteLength;
-            if (total > 0) {
-              const pct = Math.min(100, (received / total) * 100);
-              setVideoStatus(t("video.status.downloading"), { busy: true, percent: pct });
-            } else {
-              setVideoStatus(t("video.status.downloading"), { busy: true, indeterminate: true });
-            }
-          }
-
-          const mime = format === "audio" ? (response.headers.get("Content-Type") || "application/octet-stream") : "video/mp4";
-          blob = new Blob(chunks, { type: mime });
-          setVideoStatus(t("video.status.downloading"), { busy: true, percent: 100 });
-        }
-
-        const header = response.headers.get("Content-Disposition") || "";
-        let fileName = currentVideoFileName || "video.mp4";
-        const utfMatch = header.match(/filename\*=UTF-8''([^;]+)/i);
-        const plainMatch = header.match(/filename="?([^";]+)"?/i);
-        if (utfMatch) {
-          try {
-            fileName = decodeURIComponent(utfMatch[1]);
-          } catch (e) {}
-        } else if (plainMatch) {
-          fileName = plainMatch[1];
-        }
-        if (format !== "audio") {
-          fileName = String(fileName || "video").replace(/\.[^.]+$/, "") + ".mp4";
-        }
-        const saveBlob =
-          format === "audio"
-            ? blob
-            : new Blob([blob], { type: "video/mp4" });
-        triggerBlobDownload(saveBlob, fileName);
-        setVideoStatus(t("video.status.downloadStarted"), { busy: true, percent: 100 });
-        setTimeout(function () {
-          setVideoProgress(null, { busy: false });
-        }, 1200);
-      } catch (error) {
-        setVideoStatus((error && error.message) || t("video.error.downloadFail"));
-      } finally {
-        updateDownloadEnabled();
-      }
-    }
-
-    loadSavedYtdlpApi();
-    if (videoView) checkYtdlpHealth();
 
     function setMineStatus(message, kind) {
       mineStatus.textContent = message;
@@ -6852,21 +6444,6 @@
       backHomeFromGhibliBtn.addEventListener("click", () => {
         showView(homeView);
         if (openGhibliBtn) openGhibliBtn.focus();
-      });
-    }
-
-    if (openVideoBtn && videoView) {
-      openVideoBtn.addEventListener("click", () => {
-        showView(videoView);
-        checkYtdlpHealth();
-        if (videoUrlInput) videoUrlInput.focus();
-      });
-    }
-
-    if (backHomeFromVideoBtn) {
-      backHomeFromVideoBtn.addEventListener("click", () => {
-        showView(homeView);
-        if (openVideoBtn) openVideoBtn.focus();
       });
     }
 
@@ -8131,37 +7708,6 @@
       toggleFlag(Number(btn.dataset.row), Number(btn.dataset.col));
     });
 
-    if (ytdlpApiInput) {
-      ytdlpApiInput.addEventListener("change", function () {
-        saveYtdlpApi();
-        checkYtdlpHealth();
-      });
-      ytdlpApiInput.addEventListener("blur", function () {
-        saveYtdlpApi();
-        checkYtdlpHealth();
-      });
-    }
-
-    if (videoUrlForm) {
-      videoUrlForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        loadVideoFromUrl(videoUrlInput.value);
-      });
-    }
-
-    if (downloadVideoBtn) {
-      downloadVideoBtn.addEventListener("click", () => {
-        downloadCurrentVideo();
-      });
-    }
-
-    if (videoPreview) {
-      videoPreview.addEventListener("error", () => {
-        if (!currentVideoPageUrl) return;
-        setVideoStatus(t("video.status.playFail"));
-      });
-    }
-
     imageInput.addEventListener("change", () => {
       loadImageFile(imageInput.files[0]);
     });
@@ -8240,20 +7786,6 @@
       localizePageLinks();
       updateTetrisMuteBtn();
       if (!sourceImage) setCutoutStatus(t("cutout.status.idle"));
-      if (!currentVideoPageUrl) {
-        var ph = document.getElementById("videoPreviewPlaceholder");
-        if (ph && !ph.hidden) setVideoStatus(t("video.status.idle"));
-      } else if (currentVideoInfo) {
-        setVideoStatus(t("video.status.ready"));
-        videoMetaSub.textContent = t("video.metaLine", {
-          duration: currentVideoInfo.durationText || "-",
-          uploader: currentVideoInfo.uploader || "-"
-        });
-        Array.from(videoFormatSelect.options).forEach(function (opt) {
-          opt.textContent = formatLabel(opt.value);
-        });
-      }
-      if (videoHealth) checkYtdlpHealth();
       if (!mineStarted && !mineEnded) setMineStatus(t("mine.status.idle"));
       else if (mineEnded && mineStatus.classList.contains("win")) {
         setMineStatus(t("mine.status.win", { seconds: mineSeconds }), "win");

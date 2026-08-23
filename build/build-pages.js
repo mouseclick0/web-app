@@ -41,6 +41,8 @@ const GUIDE_PAGES = [
   "guides/editor.html",
   "guides/picker.html",
   "guides/speech.html",
+  "guides/dday.html",
+  "guides/noise.html",
   "guides/lotto.html",
   "guides/games.html",
   "guides/chess.html"

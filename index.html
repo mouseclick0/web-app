@@ -4024,31 +4024,6 @@
 
     <section class="card home-card local-only-card">
       <div class="card-head">
-        <svg class="feature-hero" role="img" data-i18n-aria="home.video.aria" aria-label="동영상 플레이어 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="videoScreen" x1="48" y1="28" x2="272" y2="152" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#5eb0f7" />
-              <stop offset="1" stop-color="#1e4f9c" />
-            </linearGradient>
-            <linearGradient id="videoPlay" x1="140" y1="70" x2="190" y2="120" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#ffffff" />
-              <stop offset="1" stop-color="#d9ecff" />
-            </linearGradient>
-          </defs>
-          <rect x="42" y="34" width="236" height="122" rx="22" fill="url(#videoScreen)" />
-          <rect x="58" y="48" width="204" height="86" rx="12" fill="#0b1524" opacity="0.45" />
-          <circle cx="160" cy="91" r="28" fill="#ffffff" opacity="0.18" />
-          <path d="M150 76l32 15-32 15V76z" fill="url(#videoPlay)" />
-          <rect x="72" y="146" width="48" height="8" rx="4" fill="#ffffff" opacity="0.55" />
-          <rect x="132" y="146" width="116" height="8" rx="4" fill="#ffffff" opacity="0.28" />
-        </svg>
-      </div>
-      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openVideoBtn" data-i18n="home.video.cta">유튜브 동영상 다운로드</button></h2>
-      <p class="home-subtitle" data-i18n="home.video.subtitle">로컬 yt-dlp 서버로 유튜브 영상을 미리보고 다운로드합니다.</p>
-    </section>
-
-    <section class="card home-card local-only-card">
-      <div class="card-head">
         <svg class="feature-hero cutout-hero" role="img" data-i18n-aria="home.cutout.aria" aria-label="이미지 배경 제거 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
           <rect x="54" y="36" width="212" height="132" rx="24" fill="currentColor" opacity="0.16" />
           <rect x="78" y="58" width="164" height="92" rx="16" fill="#ffffff" opacity="0.18" />
@@ -4656,73 +4631,6 @@
 
     <button type="button" class="download-btn" id="ghibliDownloadBtn" data-i18n="ghibli.download" disabled>PNG 다운로드</button>
     <button type="button" class="back-btn" id="backHomeFromGhibliBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
-  </main>
-
-  <main class="card" id="videoView" hidden>
-    <div class="card-head">
-      <h2 data-i18n="video.title">유튜브 동영상 다운로드</h2>
-    </div>
-    <p class="subtitle" data-i18n="video.subtitle">유튜브 등 URL을 붙여넣으면 로컬 yt-dlp 서버로 정보를 읽고 다운로드합니다. 먼저 PC에서 server 폴더의 npm start를 실행하세요.</p>
-
-    <form class="video-url-form" id="videoUrlForm">
-      <label class="form-field" for="ytdlpApiInput">
-        <span data-i18n="video.apiLabel">yt-dlp API 주소</span>
-        <input
-          class="video-url-input"
-          id="ytdlpApiInput"
-          type="url"
-          inputmode="url"
-          autocomplete="off"
-          value="http://127.0.0.1:8787"
-          placeholder="http://127.0.0.1:8787"
-        />
-      </label>
-      <p class="video-api-hint" data-i18n="video.apiHint">기본값은 http://127.0.0.1:8787 입니다. 서버를 켠 뒤 이 기기에 주소가 저장됩니다.</p>
-      <p class="video-health" id="videoHealth" aria-live="polite"></p>
-      <label class="form-field" for="videoUrlInput">
-        <span data-i18n="video.url">영상 URL</span>
-        <div class="video-url-row">
-          <input
-            class="video-url-input"
-            id="videoUrlInput"
-            type="url"
-            inputmode="url"
-            autocomplete="off"
-            data-i18n-placeholder="video.urlPlaceholder" placeholder="https://www.youtube.com/watch?v=..."
-            required
-          />
-          <button type="submit" class="entry-btn video-load-btn" id="loadVideoBtn" data-i18n="video.load">불러오기</button>
-        </div>
-      </label>
-    </form>
-
-    <div class="video-status-panel" id="videoStatusPanel" aria-live="polite">
-      <div class="video-status-row">
-        <p class="video-status-text" id="videoStatus">영상 URL을 입력한 뒤 불러오기를 눌러 주세요.</p>
-        <span class="video-progress-pct" id="videoProgressPct" hidden>0%</span>
-      </div>
-      <div class="video-progress-track" id="videoProgressTrack" hidden>
-        <span class="video-progress-fill" id="videoProgressFill"></span>
-      </div>
-    </div>
-
-    <div class="video-meta" id="videoMeta">
-      <p class="video-meta-title" id="videoMetaTitle"></p>
-      <p class="video-meta-sub" id="videoMetaSub"></p>
-      <label class="video-format-row" for="videoFormatSelect">
-        <span data-i18n="video.format">화질</span>
-        <select id="videoFormatSelect"></select>
-      </label>
-    </div>
-
-    <div class="video-preview-box" id="videoPreviewBox">
-      <p class="video-preview-placeholder" id="videoPreviewPlaceholder" data-i18n="video.previewPlaceholder">미리보기가 여기에 표시됩니다.</p>
-      <video id="videoPreview" controls playsinline hidden></video>
-      <iframe id="videoEmbed" data-i18n-title="video.embedTitle" title="유튜브 미리보기" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen hidden></iframe>
-    </div>
-
-    <button type="button" class="download-btn" id="downloadVideoBtn" data-i18n="video.download" disabled>다운로드</button>
-    <button type="button" class="back-btn" id="backHomeFromVideoBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
   <main class="card minesweeper-card" id="minesweeperView" hidden>
@@ -6008,7 +5916,7 @@
       lottoView.hidden = view !== lottoView;
       cutoutView.hidden = view !== cutoutView;
       if (ghibliView) ghibliView.hidden = view !== ghibliView;
-      videoView.hidden = view !== videoView;
+      if (videoView) videoView.hidden = view !== videoView;
       minesweeperView.hidden = view !== minesweeperView;
       tetrisView.hidden = view !== tetrisView;
       gomokuView.hidden = view !== gomokuView;
@@ -6289,15 +6197,22 @@
     }
 
     function getYtdlpApiUrl() {
-      return (ytdlpApiInput.value || "").trim().replace(/\/+$/, "") || YTDLP_DEFAULT_API;
+      if (ytdlpApiInput) {
+        return (ytdlpApiInput.value || "").trim().replace(/\/+$/, "") || YTDLP_DEFAULT_API;
+      }
+      try {
+        return (localStorage.getItem(YTDLP_API_KEY) || "").trim().replace(/\/+$/, "") || YTDLP_DEFAULT_API;
+      } catch (e) {
+        return YTDLP_DEFAULT_API;
+      }
     }
 
     function loadSavedYtdlpApi() {
       try {
-        const saved = localStorage.getItem(YTDLP_API_KEY);
-        ytdlpApiInput.value = saved || YTDLP_DEFAULT_API;
+        const saved = localStorage.getItem(YTDLP_API_KEY) || YTDLP_DEFAULT_API;
+        if (ytdlpApiInput) ytdlpApiInput.value = saved;
       } catch (e) {
-        ytdlpApiInput.value = YTDLP_DEFAULT_API;
+        if (ytdlpApiInput) ytdlpApiInput.value = YTDLP_DEFAULT_API;
       }
     }
 
@@ -6310,11 +6225,13 @@
     }
 
     function setVideoHealth(message, kind) {
+      if (!videoHealth) return;
       videoHealth.textContent = message || "";
       videoHealth.className = "video-health" + (kind ? " " + kind : "");
     }
 
     async function checkYtdlpHealth() {
+      if (!videoView) return false;
       const apiBase = getYtdlpApiUrl();
       saveYtdlpApi();
       setVideoHealth(t("video.health.checking"));
@@ -6336,6 +6253,7 @@
     }
 
     function updateDownloadEnabled() {
+      if (!downloadVideoBtn) return;
       downloadVideoBtn.disabled = !(currentVideoPageUrl && ytdlpServerOk && currentVideoInfo);
     }
 
@@ -6616,7 +6534,7 @@
     }
 
     loadSavedYtdlpApi();
-    checkYtdlpHealth();
+    if (videoView) checkYtdlpHealth();
 
     function setMineStatus(message, kind) {
       mineStatus.textContent = message;
@@ -6935,16 +6853,20 @@
       });
     }
 
-    openVideoBtn.addEventListener("click", () => {
-      showView(videoView);
-      checkYtdlpHealth();
-      videoUrlInput.focus();
-    });
+    if (openVideoBtn && videoView) {
+      openVideoBtn.addEventListener("click", () => {
+        showView(videoView);
+        checkYtdlpHealth();
+        if (videoUrlInput) videoUrlInput.focus();
+      });
+    }
 
-    backHomeFromVideoBtn.addEventListener("click", () => {
-      showView(homeView);
-      openVideoBtn.focus();
-    });
+    if (backHomeFromVideoBtn) {
+      backHomeFromVideoBtn.addEventListener("click", () => {
+        showView(homeView);
+        if (openVideoBtn) openVideoBtn.focus();
+      });
+    }
 
     openMinesweeperBtn.addEventListener("click", () => {
       showView(minesweeperView);
@@ -8207,28 +8129,36 @@
       toggleFlag(Number(btn.dataset.row), Number(btn.dataset.col));
     });
 
-    ytdlpApiInput.addEventListener("change", function () {
-      saveYtdlpApi();
-      checkYtdlpHealth();
-    });
-    ytdlpApiInput.addEventListener("blur", function () {
-      saveYtdlpApi();
-      checkYtdlpHealth();
-    });
+    if (ytdlpApiInput) {
+      ytdlpApiInput.addEventListener("change", function () {
+        saveYtdlpApi();
+        checkYtdlpHealth();
+      });
+      ytdlpApiInput.addEventListener("blur", function () {
+        saveYtdlpApi();
+        checkYtdlpHealth();
+      });
+    }
 
-    videoUrlForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      loadVideoFromUrl(videoUrlInput.value);
-    });
+    if (videoUrlForm) {
+      videoUrlForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        loadVideoFromUrl(videoUrlInput.value);
+      });
+    }
 
-    downloadVideoBtn.addEventListener("click", () => {
-      downloadCurrentVideo();
-    });
+    if (downloadVideoBtn) {
+      downloadVideoBtn.addEventListener("click", () => {
+        downloadCurrentVideo();
+      });
+    }
 
-    videoPreview.addEventListener("error", () => {
-      if (!currentVideoPageUrl) return;
-      setVideoStatus(t("video.status.playFail"));
-    });
+    if (videoPreview) {
+      videoPreview.addEventListener("error", () => {
+        if (!currentVideoPageUrl) return;
+        setVideoStatus(t("video.status.playFail"));
+      });
+    }
 
     imageInput.addEventListener("change", () => {
       loadImageFile(imageInput.files[0]);

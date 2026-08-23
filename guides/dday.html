@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8051604788880688" crossorigin="anonymous"></script>
+  <title>디데이 계산기 가이드 | WebToolBay</title>
+  <meta name="description" content="시험·결혼식·여행 등 목표일까지 남은 일수를 계산하는 법. D-Day, D-, D+의 의미와 초일불산입, 100일 기념일 계산과의 차이를 정리했습니다." />
+  <link rel="canonical" href="https://webtoolbay.com/guides/dday.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">WebToolBay</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="../index.html">홈</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../about.html">소개</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">홈</a> · <a href="index.html">가이드</a> · 디데이</p>
+    <article class="article-card">
+      <h1>디데이 계산기 가이드</h1>
+      <p class="lead">수능, 자격증 시험, 결혼식, 프로젝트 마감처럼 “그날까지 며칠 남았는지”가 궁금할 때 쓰는 도구입니다. 이미 지난 날짜라면 며칠이 지났는지도 같은 화면에서 확인할 수 있습니다.</p>
+
+      <h2>입력하는 항목</h2>
+      <ul>
+        <li><strong>행사 이름(선택)</strong> — 결과 카드에 표시할 제목입니다. 비워 두어도 계산은 됩니다.</li>
+        <li><strong>목표일</strong> — 카운트다운의 기준이 되는 날짜입니다.</li>
+        <li><strong>기준일</strong> — 기본값은 오늘입니다. “다음 달 1일 기준으로 보면 며칠인가”처럼 시점을 바꿔 시뮬레이션할 수도 있습니다.</li>
+      </ul>
+
+      <h2>결과 읽는 법</h2>
+      <ul>
+        <li><strong>D − N</strong> — 목표일이 기준일보다 미래일 때. 내일이면 D − 1입니다.</li>
+        <li><strong>D − Day</strong> — 기준일과 목표일이 같은 날일 때.</li>
+        <li><strong>D + N</strong> — 목표일이 이미 지났을 때. 지난 일수를 보여 줍니다.</li>
+      </ul>
+
+      <h2>초일불산입이란?</h2>
+      <p>이 계산기는 <strong>날짜의 차이</strong>만 구합니다. 오늘이 1일이고 내일이 2일이면 결과는 D − 1입니다. 시작일을 1일로 세는 방식(초일산입)과는 다릅니다.</p>
+      <p>연인과 사귄 지 100일, 아기 백일처럼 “만난 당날을 1일째”로 세는 기념일 계산이 필요하면 디데이 도구가 아니라 날짜 차이·기념일용 계산을 따로 쓰는 편이 맞습니다. WebToolBay 디데이는 시험·마감·행사 카운트다운용입니다.</p>
+
+      <h2>활용 팁</h2>
+      <p>여러 일정을 비교할 때는 기준일을 고정한 채 목표일만 바꿔 보면 됩니다. 결과는 브라우저에서만 계산되며 서버로 날짜를 보내지 않습니다.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../index.html">디데이 계산기 열기</a>
+        <a class="btn" href="calendar.html">양력·음력 가이드</a>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="../about.html">소개</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+        <a href="../terms.html">이용약관</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+      <p>© <span id="y"></span> WebToolBay</p>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

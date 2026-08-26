@@ -3953,6 +3953,32 @@
         gap: 0.2rem;
       }
     }
+      .tool-page-guide {
+      margin-top: 1.75rem;
+      padding: 1.15rem 0 0.25rem;
+      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      text-align: left;
+      max-width: 42rem;
+    }
+    .tool-page-guide h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.12rem;
+      letter-spacing: -0.01em;
+    }
+    .tool-page-guide h3 {
+      margin: 1rem 0 0.4rem;
+      font-size: 0.95rem;
+    }
+    .tool-page-guide p,
+    .tool-page-guide li {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+    .tool-page-guide p { margin: 0 0 0.55rem; }
+    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide a { color: var(--accent); text-decoration: none; }
+    .tool-page-guide a:hover { text-decoration: underline; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -5090,6 +5116,24 @@
 
     <p class="dday-note" data-i18n="dday.note">이 계산기는 날짜 차이만 구합니다(초일불산입). 오늘이 1일이고 내일이 2일이면 D-1입니다. 사귄 날을 1일로 세는 100일 계산과는 다릅니다.</p>
     <p class="cutout-status" id="ddayStatus" aria-live="polite"></p>
+
+        <section class="tool-page-guide" aria-label="디데이 계산기 이용 안내">
+      <h2>디데이 계산기 이용 안내</h2>
+      <h3>사용법</h3>
+      <p>기준일과 목표일을 고르면 남은 날(D−), 당일(D-Day), 지난 날(D+)을 구분해 보여 줍니다.</p>
+      <p>시험·여행·행사처럼 제목을 적어 두면 결과 해석이 더 분명해지고, 초기화로 다시 시작할 수 있습니다.</p>
+      <h3>주의할 점</h3>
+      <ul>
+        <li>날짜 계산 방식(초일불산입 등)은 기관·상황마다 다를 수 있습니다. 행정·계약 일정은 공식 안내를 우선하세요.</li>
+        <li>시간대·자정 기준으로 하루가 바뀌면 결과가 달라질 수 있으니, 당일 일정은 여유를 두고 확인하세요.</li>
+      </ul>
+      <h3>관련 가이드</h3>
+      <ul>
+        <li><a href="guides/dday.html">디데이 계산 가이드</a></li>
+        <li><a href="guides/calendar.html">양력·음력 변환 가이드</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </section>
 
     <button type="button" class="back-btn" id="backHomeFromDdayBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>

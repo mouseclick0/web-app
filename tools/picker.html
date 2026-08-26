@@ -3953,6 +3953,32 @@
         gap: 0.2rem;
       }
     }
+      .tool-page-guide {
+      margin-top: 1.75rem;
+      padding: 1.15rem 0 0.25rem;
+      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      text-align: left;
+      max-width: 42rem;
+    }
+    .tool-page-guide h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.12rem;
+      letter-spacing: -0.01em;
+    }
+    .tool-page-guide h3 {
+      margin: 1rem 0 0.4rem;
+      font-size: 0.95rem;
+    }
+    .tool-page-guide p,
+    .tool-page-guide li {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+    .tool-page-guide p { margin: 0 0 0.55rem; }
+    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide a { color: var(--accent); text-decoration: none; }
+    .tool-page-guide a:hover { text-decoration: underline; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -5518,6 +5544,25 @@
         </div>
       </div>
     </div>
+
+        <section class="tool-page-guide" aria-label="이미지 컬러 피커 이용 안내">
+      <h2>이미지 컬러 피커 이용 안내</h2>
+      <h3>사용법</h3>
+      <p>이미지를 올리거나 URL로 불러온 뒤, 화면을 클릭하거나 스포이드로 원하는 픽셀 색을 뽑으세요.</p>
+      <p>HEX·RGB·HSL 형식으로 확인할 수 있고, 스와치에 모아 두었다가 한꺼번에 복사할 수도 있습니다.</p>
+      <h3>주의할 점</h3>
+      <ul>
+        <li>확대·축소 후에도 클릭한 픽셀 기준으로 색을 읽습니다. 경계선·그라데이션은 주변색과 섞여 보일 수 있습니다.</li>
+        <li>모니터 보정·브라우저 색 공간에 따라 체감 색과 코드가 조금 다를 수 있습니다.</li>
+        <li>외부 이미지 URL은 서버 CORS 정책 때문에 불러오지 못하는 경우가 있습니다. 그때는 파일 업로드를 사용하세요.</li>
+      </ul>
+      <h3>관련 가이드</h3>
+      <ul>
+        <li><a href="guides/picker.html">컬러 피커 가이드</a></li>
+        <li><a href="guides/editor.html">이미지 자르기·회전 가이드</a></li>
+        <li><a href="guides/convert.html">이미지 형식 변환 가이드</a></li>
+      </ul>
+    </section>
 
     <button type="button" class="back-btn" id="backHomeFromPickerBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>

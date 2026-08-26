@@ -3953,6 +3953,32 @@
         gap: 0.2rem;
       }
     }
+      .tool-page-guide {
+      margin-top: 1.75rem;
+      padding: 1.15rem 0 0.25rem;
+      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      text-align: left;
+      max-width: 42rem;
+    }
+    .tool-page-guide h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.12rem;
+      letter-spacing: -0.01em;
+    }
+    .tool-page-guide h3 {
+      margin: 1rem 0 0.4rem;
+      font-size: 0.95rem;
+    }
+    .tool-page-guide p,
+    .tool-page-guide li {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+    .tool-page-guide p { margin: 0 0 0.55rem; }
+    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide a { color: var(--accent); text-decoration: none; }
+    .tool-page-guide a:hover { text-decoration: underline; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -4637,6 +4663,25 @@
     <div class="gomoku-board-wrap">
       <div class="gomoku-board" id="gomokuBoard" role="grid" data-i18n-aria="gomoku.boardAria" aria-label="오목 판"></div>
     </div>
+
+        <section class="tool-page-guide" aria-label="오목 이용 안내">
+      <h2>오목 이용 안내</h2>
+      <h3>사용법</h3>
+      <p>흑·백과 AI 레벨을 고른 뒤 시작하면 19×19 판에서 대국할 수 있습니다. 가로·세로·대각선으로 같은 색 돌 5개를 먼저 만들면 승리합니다.</p>
+      <p>내 차례에 빈 칸을 눌러 착수하고, 필요하면 재시작으로 새 판을 열 수 있습니다.</p>
+      <h3>주의할 점</h3>
+      <ul>
+        <li>초보자는 상대의 열린 3·4를 막는 수를 우선하는 편이 안전합니다.</li>
+        <li>AI 난이도가 높을수록 계산이 깊어져 응답이 조금 느려질 수 있습니다.</li>
+        <li>규칙 설명과 초보 팁은 게임 가이드에서 이어서 확인할 수 있습니다.</li>
+      </ul>
+      <h3>관련 가이드</h3>
+      <ul>
+        <li><a href="guides/games.html">브라우저 게임 가이드</a></li>
+        <li><a href="guides/chess.html">체스 가이드</a></li>
+        <li><a href="tools/index.html">도구 목록</a></li>
+      </ul>
+    </section>
 
     <button type="button" class="back-btn" id="backHomeFromGomokuBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>

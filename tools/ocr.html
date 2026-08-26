@@ -3953,6 +3953,32 @@
         gap: 0.2rem;
       }
     }
+      .tool-page-guide {
+      margin-top: 1.75rem;
+      padding: 1.15rem 0 0.25rem;
+      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      text-align: left;
+      max-width: 42rem;
+    }
+    .tool-page-guide h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.12rem;
+      letter-spacing: -0.01em;
+    }
+    .tool-page-guide h3 {
+      margin: 1rem 0 0.4rem;
+      font-size: 0.95rem;
+    }
+    .tool-page-guide p,
+    .tool-page-guide li {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+    .tool-page-guide p { margin: 0 0 0.55rem; }
+    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide a { color: var(--accent); text-decoration: none; }
+    .tool-page-guide a:hover { text-decoration: underline; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -5169,6 +5195,25 @@
       <button type="button" class="download-btn" id="ocrCopyBtn" data-i18n="ocr.copy" disabled>텍스트 복사</button>
       <button type="button" class="download-btn" id="ocrDownloadBtn" data-i18n="ocr.download" disabled>.txt 파일로 저장</button>
     </div>
+
+        <section class="tool-page-guide" aria-label="이미지 텍스트 추출 이용 안내">
+      <h2>이미지 텍스트 추출 이용 안내</h2>
+      <h3>사용법</h3>
+      <p>이미지 파일을 올리거나 끌어다 놓은 뒤 인식 언어를 고르고 추출을 실행하세요. 결과는 아래에서 복사하거나 텍스트 파일로 저장할 수 있습니다.</p>
+      <p>처음 쓰는 언어는 인식 데이터를 내려받아 시간이 조금 걸릴 수 있고, 이후에는 브라우저에 저장되어 더 빨라집니다.</p>
+      <h3>주의할 점</h3>
+      <ul>
+        <li>이미지는 서버로 전송되지 않고 브라우저 안에서만 처리됩니다.</li>
+        <li>흐리거나 기울어진 사진, 손글씨, 배경이 복잡한 이미지는 오인식이 날 수 있습니다. 선명하고 대비가 큰 이미지가 유리합니다.</li>
+        <li>PDF는 지원하지 않습니다. 필요하면 먼저 이미지로 변환한 뒤 사용하세요.</li>
+      </ul>
+      <h3>관련 가이드</h3>
+      <ul>
+        <li><a href="guides/ocr.html">OCR 가이드</a></li>
+        <li><a href="guides/convert.html">이미지 형식 변환 가이드</a></li>
+        <li><a href="guides/editor.html">이미지 자르기·회전 가이드</a></li>
+      </ul>
+    </section>
 
     <button type="button" class="back-btn" id="backHomeFromOcrBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>

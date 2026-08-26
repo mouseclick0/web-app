@@ -4039,43 +4039,6 @@
       <p>공개 도구 대부분은 브라우저 안에서 바로 실행되며, 기능에 따라 입력값이 서버에 저장되지 않거나 기기 안에서만 처리되도록 설계했습니다. 위치·IP처럼 외부 데이터 조회가 필요한 기능은 안내 문서와 정책 페이지에서 처리 방식을 확인할 수 있습니다. 사용 전에 가이드와 FAQ를 함께 읽으면 각 기능의 한계와 주의점도 빠르게 파악할 수 있습니다.</p>
     </section>
 
-    <section class="card home-card local-only-card">
-      <div class="card-head">
-        <svg class="feature-hero cutout-hero" role="img" data-i18n-aria="home.cutout.aria" aria-label="이미지 배경 제거 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <rect x="54" y="36" width="212" height="132" rx="24" fill="currentColor" opacity="0.16" />
-          <rect x="78" y="58" width="164" height="92" rx="16" fill="#ffffff" opacity="0.18" />
-          <path d="M103 130l38-42 30 29 19-22 44 35H103z" fill="currentColor" opacity="0.55" />
-          <circle cx="207" cy="82" r="17" fill="#ffd54f" />
-          <path d="M96 54l128 96" stroke="#ffffff" stroke-width="12" stroke-linecap="round" opacity="0.95" />
-          <path d="M114 53h-22v22" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
-          <path d="M206 151h22v-22" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
-        </svg>
-      </div>
-      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openCutoutBtn" data-i18n="home.cutout.cta">이미지 누끼 제거</button></h2>
-      <p class="home-subtitle" data-i18n="home.cutout.subtitle">로컬 AI 서버로 사람·제품 등 배경을 깨끗하게 제거합니다.</p>
-    </section>
-
-    <section class="card home-card local-only-card">
-      <div class="card-head">
-        <svg class="feature-hero" role="img" data-i18n-aria="home.ghibli.aria" aria-label="지브리 스타일 변환 아이콘" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="ghibliSky" x1="40" y1="20" x2="280" y2="120" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#7ec8f5" />
-              <stop offset="1" stop-color="#b8e0a8" />
-            </linearGradient>
-          </defs>
-          <rect x="42" y="28" width="236" height="128" rx="22" fill="url(#ghibliSky)" />
-          <ellipse cx="230" cy="58" rx="28" ry="14" fill="#ffffff" opacity="0.85" />
-          <ellipse cx="250" cy="58" rx="18" ry="10" fill="#ffffff" opacity="0.7" />
-          <path d="M54 118c28-28 62-40 96-28 34 12 58 8 88-10v48H54v-10z" fill="#4a8f5c" opacity="0.9" />
-          <path d="M54 138h212v18H54z" fill="#3d6b4a" opacity="0.85" />
-          <circle cx="96" cy="72" r="16" fill="#ffd54f" opacity="0.95" />
-        </svg>
-      </div>
-      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openGhibliBtn" data-i18n="home.ghibli.cta">지브리 스타일 변환</button></h2>
-      <p class="home-subtitle" data-i18n="home.ghibli.subtitle">로컬 AI 서버로 사진을 지브리풍 애니 스타일로 바꿉니다.</p>
-    </section>
-
     <section class="card home-card">
       <div class="card-head">
         <svg class="feature-hero" role="img" data-i18n-aria="home.lotto.aria" aria-label="로또 번호 공 이미지" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
@@ -4535,123 +4498,6 @@
     <button type="button" class="back-btn" id="backHomeBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
 
     <p class="hint" data-i18n="lotto.hint">이 페이지는 참고용이며, 당첨을 보장하지 않습니다.</p>
-  </main>
-
-  <main class="card" id="cutoutView" hidden>
-    <div class="card-head">
-      <h2 data-i18n="cutout.title">이미지 누끼 제거</h2>
-    </div>
-    <p class="subtitle" data-i18n="cutout.subtitle">로컬 서버의 AI(ONNX)로 배경을 제거합니다. 사람·제품·복잡한 배경에 적합합니다. server에서 npm start 후 사용하세요.</p>
-
-    <label class="form-field" for="cutoutApiInput">
-      <span data-i18n="cutout.apiLabel">로컬 API 주소</span>
-      <input
-        class="video-url-input"
-        id="cutoutApiInput"
-        type="url"
-        inputmode="url"
-        autocomplete="off"
-        value="http://127.0.0.1:8787"
-        placeholder="http://127.0.0.1:8787"
-      />
-    </label>
-    <p class="video-api-hint" data-i18n="cutout.apiHint">로컬 서버(http://127.0.0.1:8787)를 사용합니다.</p>
-    <p class="video-health" id="cutoutHealth" aria-live="polite"></p>
-
-    <label class="upload-zone" id="uploadZone" for="imageInput">
-      <strong data-i18n="cutout.uploadStrong">이미지를 드롭하거나 클릭해서 업로드</strong>
-      <span data-i18n="cutout.uploadHint">JPG, PNG, WebP 이미지를 지원합니다.</span>
-      <input type="file" id="imageInput" accept="image/*" />
-    </label>
-
-    <div class="cutout-controls">
-      <label class="form-field" for="cutoutModelSelect">
-        <span data-i18n="cutout.model">AI 모델</span>
-        <select id="cutoutModelSelect" class="video-url-input">
-          <option value="medium" data-i18n="cutout.model.medium" selected>정확도 우선 (medium)</option>
-          <option value="small" data-i18n="cutout.model.small">속도 우선 (small)</option>
-        </select>
-      </label>
-      <button type="button" class="cutout-btn" id="removeBgBtn" data-i18n="cutout.remove" disabled>배경 제거하기</button>
-    </div>
-
-    <p class="cutout-status" id="cutoutStatus">이미지를 업로드하면 원본과 결과가 표시됩니다.</p>
-
-    <div class="preview-grid" id="previewGrid" hidden>
-      <div class="preview-panel">
-        <h2 data-i18n="cutout.original">원본</h2>
-        <div class="preview-box">
-          <img id="originalPreview" data-i18n-alt="cutout.originalAlt" alt="업로드한 원본 이미지" />
-        </div>
-      </div>
-      <div class="preview-panel">
-        <h2 data-i18n="cutout.result">결과</h2>
-        <div class="preview-box">
-          <canvas id="resultCanvas"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <button type="button" class="download-btn" id="downloadCutoutBtn" data-i18n="cutout.download" disabled>PNG 다운로드</button>
-    <button type="button" class="back-btn" id="backHomeFromCutoutBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
-  </main>
-
-  <main class="card" id="ghibliView" hidden>
-    <div class="card-head">
-      <h2 data-i18n="ghibli.title">지브리 스타일 변환</h2>
-    </div>
-    <p class="subtitle" data-i18n="ghibli.subtitle">로컬 서버의 AnimeGANv2(Hayao) AI로 사진을 지브리풍 애니 스타일로 변환합니다. server에서 npm start 후 사용하세요. 첫 실행은 모델 다운로드로 시간이 걸릴 수 있습니다.</p>
-
-    <label class="form-field" for="ghibliApiInput">
-      <span data-i18n="ghibli.apiLabel">로컬 API 주소</span>
-      <input
-        class="video-url-input"
-        id="ghibliApiInput"
-        type="url"
-        inputmode="url"
-        autocomplete="off"
-        value="http://127.0.0.1:8787"
-        placeholder="http://127.0.0.1:8787"
-      />
-    </label>
-    <p class="video-api-hint" data-i18n="ghibli.apiHint">누끼와 같은 로컬 서버(http://127.0.0.1:8787)를 사용합니다.</p>
-    <p class="video-health" id="ghibliHealth" aria-live="polite"></p>
-
-    <label class="upload-zone" id="ghibliUploadZone" for="ghibliInput">
-      <strong data-i18n="ghibli.uploadStrong">이미지를 드롭하거나 클릭해서 업로드</strong>
-      <span data-i18n="ghibli.uploadHint">JPG, PNG, WebP 이미지를 지원합니다.</span>
-      <input type="file" id="ghibliInput" accept="image/*" />
-    </label>
-
-    <div class="cutout-controls">
-      <label class="form-field" for="ghibliStyleSelect">
-        <span data-i18n="ghibli.style">스타일</span>
-        <select id="ghibliStyleSelect" class="video-url-input">
-          <option value="hayao" data-i18n="ghibli.style.hayao" selected>Hayao (지브리풍)</option>
-        </select>
-      </label>
-      <button type="button" class="cutout-btn" id="ghibliRunBtn" data-i18n="ghibli.run" disabled>지브리 스타일로 변환</button>
-    </div>
-
-    <p class="cutout-status" id="ghibliStatus">이미지를 업로드하면 원본과 결과가 표시됩니다.</p>
-
-    <div class="preview-grid" id="ghibliPreviewGrid" hidden>
-      <div class="preview-panel">
-        <h2 data-i18n="ghibli.original">원본</h2>
-        <div class="preview-box">
-          <img id="ghibliOriginalPreview" data-i18n-alt="ghibli.originalAlt" alt="업로드한 원본 이미지" hidden />
-        </div>
-      </div>
-      <div class="preview-panel">
-        <h2 data-i18n="ghibli.result">결과</h2>
-        <div class="preview-box">
-          <img id="ghibliResultPreview" data-i18n-alt="ghibli.resultAlt" alt="지브리 스타일 결과 이미지" hidden />
-        </div>
-      </div>
-    </div>
-
-    <button type="button" class="download-btn" id="ghibliDownloadBtn" data-i18n="ghibli.download" disabled>PNG 다운로드</button>
-    <button type="button" class="back-btn" id="backHomeFromGhibliBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 
   <main class="card minesweeper-card" id="minesweeperView" hidden>
@@ -5740,7 +5586,6 @@
 
     window.onI18nApplied = function () {
       setTheme(getTheme());
-      if (typeof window.refreshGhibliI18n === "function") window.refreshGhibliI18n();
       if (typeof window.refreshDdayI18n === "function") window.refreshDdayI18n();
     };
 
@@ -5749,8 +5594,6 @@
 
     const homeView = document.getElementById("homeView");
     const lottoView = document.getElementById("lottoView");
-    const cutoutView = document.getElementById("cutoutView");
-    const ghibliView = document.getElementById("ghibliView");
     const minesweeperView = document.getElementById("minesweeperView");
     const tetrisView = document.getElementById("tetrisView");
     const gomokuView = document.getElementById("gomokuView");
@@ -5769,8 +5612,6 @@
     const pickerView = document.getElementById("pickerView");
     const chessView = document.getElementById("chessView");
     const openLottoBtn = document.getElementById("openLottoBtn");
-    const openCutoutBtn = document.getElementById("openCutoutBtn");
-    const openGhibliBtn = document.getElementById("openGhibliBtn");
     const openMinesweeperBtn = document.getElementById("openMinesweeperBtn");
     const openTetrisBtn = document.getElementById("openTetrisBtn");
     const openGomokuBtn = document.getElementById("openGomokuBtn");
@@ -5779,8 +5620,6 @@
     const openCapitalBtn = document.getElementById("openCapitalBtn");
     const openNoiseBtn = document.getElementById("openNoiseBtn");
     const backHomeBtn = document.getElementById("backHomeBtn");
-    const backHomeFromCutoutBtn = document.getElementById("backHomeFromCutoutBtn");
-    const backHomeFromGhibliBtn = document.getElementById("backHomeFromGhibliBtn");
     const backHomeFromMinesweeperBtn = document.getElementById("backHomeFromMinesweeperBtn");
     const backHomeFromTetrisBtn = document.getElementById("backHomeFromTetrisBtn");
     const backHomeFromGomokuBtn = document.getElementById("backHomeFromGomokuBtn");
@@ -5790,17 +5629,6 @@
     const backHomeFromNoiseBtn = document.getElementById("backHomeFromNoiseBtn");
     const resultsEl = document.getElementById("results");
     const drawBtn = document.getElementById("drawBtn");
-    const uploadZone = document.getElementById("uploadZone");
-    const imageInput = document.getElementById("imageInput");
-    const cutoutApiInput = document.getElementById("cutoutApiInput");
-    const cutoutHealth = document.getElementById("cutoutHealth");
-    const cutoutModelSelect = document.getElementById("cutoutModelSelect");
-    const removeBgBtn = document.getElementById("removeBgBtn");
-    const downloadCutoutBtn = document.getElementById("downloadCutoutBtn");
-    const cutoutStatus = document.getElementById("cutoutStatus");
-    const previewGrid = document.getElementById("previewGrid");
-    const originalPreview = document.getElementById("originalPreview");
-    const resultCanvas = document.getElementById("resultCanvas");
     const mineBoard = document.getElementById("mineBoard");
     const mineRemaining = document.getElementById("mineRemaining");
     const mineTimer = document.getElementById("mineTimer");
@@ -5846,17 +5674,11 @@
     const memoryDiffButtons = Array.from(document.querySelectorAll(".memory-diff"));
 
     const GAME_COUNT = 5;
-    const YTDLP_API_KEY = "web-pages-ytdlp-api";
-    const YTDLP_DEFAULT_API = "http://127.0.0.1:8787";
     const MINE_DIFFICULTIES = {
       beginner: { rows: 9, cols: 9, mines: 10 },
       intermediate: { rows: 12, cols: 12, mines: 25 },
       expert: { rows: 16, cols: 16, mines: 40 }
     };
-    let sourceImage = null;
-    let sourceFile = null;
-    let sourceFileName = "cutout";
-    let cutoutServerOk = false;
     let mineDiff = "beginner";
     let mineFlagMode = false;
     let mineStarted = false;
@@ -5910,8 +5732,6 @@
     function showView(view) {
       homeView.hidden = view !== homeView;
       lottoView.hidden = view !== lottoView;
-      cutoutView.hidden = view !== cutoutView;
-      if (ghibliView) ghibliView.hidden = view !== ghibliView;
       minesweeperView.hidden = view !== minesweeperView;
       tetrisView.hidden = view !== tetrisView;
       gomokuView.hidden = view !== gomokuView;
@@ -5984,170 +5804,6 @@
         }
       });
     }
-
-    function setCutoutStatus(message) {
-      cutoutStatus.textContent = message;
-    }
-
-    function setCutoutHealth(message, kind) {
-      cutoutHealth.textContent = message || "";
-      cutoutHealth.className = "video-health" + (kind ? " " + kind : "");
-    }
-
-    function getCutoutApiUrl() {
-      return (cutoutApiInput.value || "").trim().replace(/\/+$/, "") || YTDLP_DEFAULT_API;
-    }
-
-    function loadSavedCutoutApi() {
-      try {
-        const saved = localStorage.getItem(YTDLP_API_KEY);
-        cutoutApiInput.value = saved || YTDLP_DEFAULT_API;
-      } catch (e) {
-        cutoutApiInput.value = YTDLP_DEFAULT_API;
-      }
-    }
-
-    function saveCutoutApi() {
-      const value = getCutoutApiUrl();
-      try {
-        localStorage.setItem(YTDLP_API_KEY, value);
-      } catch (e) {}
-    }
-
-    async function checkCutoutHealth() {
-      const apiBase = getCutoutApiUrl();
-      saveCutoutApi();
-      setCutoutHealth(t("cutout.health.checking"));
-      cutoutServerOk = false;
-      try {
-        const response = await fetch(apiBase + "/api/health", { method: "GET" });
-        const data = await response.json();
-        if (!response.ok || !data || !data.ok) {
-          throw new Error((data && data.error) || "health failed");
-        }
-        if (!data.cutout) {
-          cutoutServerOk = false;
-          setCutoutHealth(t("cutout.health.outdated"), "bad");
-          removeBgBtn.disabled = true;
-          return false;
-        }
-        cutoutServerOk = true;
-        setCutoutHealth(t("cutout.health.ok"), "ok");
-      } catch (error) {
-        cutoutServerOk = false;
-        setCutoutHealth(t("cutout.health.bad"), "bad");
-      }
-      removeBgBtn.disabled = !(sourceFile && cutoutServerOk);
-      return cutoutServerOk;
-    }
-
-    function loadImageFile(file) {
-      if (!file || !file.type.startsWith("image/")) {
-        setCutoutStatus(t("cutout.status.badFile"));
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = function () {
-        const img = new Image();
-        img.onload = function () {
-          sourceImage = img;
-          sourceFile = file;
-          sourceFileName = file.name.replace(/\.[^.]+$/, "") || "cutout";
-          originalPreview.src = img.src;
-          previewGrid.hidden = false;
-          removeBgBtn.disabled = !cutoutServerOk;
-          downloadCutoutBtn.disabled = true;
-          setCutoutStatus(t("cutout.status.loaded"));
-
-          const ctx = resultCanvas.getContext("2d");
-          resultCanvas.width = img.naturalWidth;
-          resultCanvas.height = img.naturalHeight;
-          ctx.clearRect(0, 0, resultCanvas.width, resultCanvas.height);
-          ctx.drawImage(img, 0, 0);
-        };
-        img.onerror = function () {
-          setCutoutStatus(t("cutout.status.loadFail"));
-        };
-        img.src = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
-
-    async function removeBackground() {
-      if (!sourceFile) return;
-
-      const healthy = await checkCutoutHealth();
-      if (!healthy) {
-        setCutoutStatus(t("cutout.status.needServer"));
-        return;
-      }
-
-      removeBgBtn.disabled = true;
-      downloadCutoutBtn.disabled = true;
-      setCutoutStatus(t("cutout.status.processing"));
-
-      try {
-        const form = new FormData();
-        form.append("image", sourceFile, sourceFile.name || "image.png");
-        form.append("model", cutoutModelSelect.value || "medium");
-
-        const response = await fetch(getCutoutApiUrl() + "/api/cutout", {
-          method: "POST",
-          body: form
-        });
-
-        if (!response.ok) {
-          let message = t("cutout.status.fail");
-          if (response.status === 404) {
-            message = t("cutout.health.outdated");
-          } else {
-            try {
-              const data = await response.json();
-              if (data && data.error) message = data.error;
-            } catch (e) {}
-          }
-          throw new Error(message);
-        }
-
-        const blob = await response.blob();
-        if (!blob || !blob.size || (blob.type && blob.type.indexOf("image/") !== 0 && blob.type.indexOf("octet-stream") === -1)) {
-          // Some servers may omit type; still try to decode as image.
-        }
-        const objectUrl = URL.createObjectURL(blob);
-        const resultImg = new Image();
-        await new Promise(function (resolve, reject) {
-          resultImg.onload = resolve;
-          resultImg.onerror = function () {
-            reject(new Error(t("cutout.status.fail")));
-          };
-          resultImg.src = objectUrl;
-        });
-
-        const ctx = resultCanvas.getContext("2d");
-        resultCanvas.width = resultImg.naturalWidth;
-        resultCanvas.height = resultImg.naturalHeight;
-        ctx.clearRect(0, 0, resultCanvas.width, resultCanvas.height);
-        ctx.drawImage(resultImg, 0, 0);
-        URL.revokeObjectURL(objectUrl);
-
-        downloadCutoutBtn.disabled = false;
-        setCutoutStatus(t("cutout.status.done"));
-      } catch (error) {
-        setCutoutStatus((error && error.message) || t("cutout.status.fail"));
-      } finally {
-        removeBgBtn.disabled = !(sourceFile && cutoutServerOk);
-      }
-    }
-
-    function downloadCutout() {
-      const link = document.createElement("a");
-      link.download = sourceFileName + "-cutout.png";
-      link.href = resultCanvas.toDataURL("image/png");
-      link.click();
-    }
-
-    loadSavedCutoutApi();
 
     function setMineStatus(message, kind) {
       mineStatus.textContent = message;
@@ -6439,32 +6095,6 @@
       showView(homeView);
       openLottoBtn.focus();
     });
-
-    openCutoutBtn.addEventListener("click", () => {
-      showView(cutoutView);
-      loadSavedCutoutApi();
-      checkCutoutHealth();
-      imageInput.focus();
-    });
-
-    backHomeFromCutoutBtn.addEventListener("click", () => {
-      showView(homeView);
-      openCutoutBtn.focus();
-    });
-
-    if (openGhibliBtn && ghibliView) {
-      openGhibliBtn.addEventListener("click", () => {
-        showView(ghibliView);
-        if (typeof window.openGhibliTool === "function") window.openGhibliTool();
-      });
-    }
-
-    if (backHomeFromGhibliBtn) {
-      backHomeFromGhibliBtn.addEventListener("click", () => {
-        showView(homeView);
-        if (openGhibliBtn) openGhibliBtn.focus();
-      });
-    }
 
     openMinesweeperBtn.addEventListener("click", () => {
       showView(minesweeperView);
@@ -7727,40 +7357,6 @@
       toggleFlag(Number(btn.dataset.row), Number(btn.dataset.col));
     });
 
-    imageInput.addEventListener("change", () => {
-      loadImageFile(imageInput.files[0]);
-    });
-
-    ["dragenter", "dragover"].forEach((eventName) => {
-      uploadZone.addEventListener(eventName, (event) => {
-        event.preventDefault();
-        uploadZone.classList.add("drag-over");
-      });
-    });
-
-    ["dragleave", "drop"].forEach((eventName) => {
-      uploadZone.addEventListener(eventName, (event) => {
-        event.preventDefault();
-        uploadZone.classList.remove("drag-over");
-      });
-    });
-
-    uploadZone.addEventListener("drop", (event) => {
-      loadImageFile(event.dataTransfer.files[0]);
-    });
-
-    cutoutApiInput.addEventListener("change", function () {
-      saveCutoutApi();
-      checkCutoutHealth();
-    });
-    cutoutApiInput.addEventListener("blur", function () {
-      saveCutoutApi();
-      checkCutoutHealth();
-    });
-
-    removeBgBtn.addEventListener("click", removeBackground);
-    downloadCutoutBtn.addEventListener("click", downloadCutout);
-
     drawBtn.addEventListener("click", () => {
       resultsEl.innerHTML = "";
 
@@ -7804,7 +7400,6 @@
       setTheme(getTheme());
       localizePageLinks();
       updateTetrisMuteBtn();
-      if (!sourceImage) setCutoutStatus(t("cutout.status.idle"));
       if (!mineStarted && !mineEnded) setMineStatus(t("mine.status.idle"));
       else if (mineEnded && mineStatus.classList.contains("win")) {
         setMineStatus(t("mine.status.win", { seconds: mineSeconds }), "win");
@@ -7843,7 +7438,6 @@
       if (typeof window.refreshFlagI18n === "function") window.refreshFlagI18n();
       if (typeof window.refreshCapitalI18n === "function") window.refreshCapitalI18n();
       if (typeof window.refreshNoiseI18n === "function") window.refreshNoiseI18n();
-      if (typeof window.refreshGhibliI18n === "function") window.refreshGhibliI18n();
     };
 
     window.onI18nApplied();
@@ -7864,7 +7458,6 @@
   <script src="flag.js?v=20260816f"></script>
   <script src="capital.js?v=20260816c"></script>
   <script src="noise.js?v=20260817b"></script>
-  <script src="ghibli.js?v=20260817a"></script>
   <script>
     var yearEl = document.getElementById("siteYear");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());

@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /server/
+Disallow: /ghibli.js
 
 Sitemap: https://webtoolbay.com/sitemap.xml

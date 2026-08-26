@@ -207,6 +207,7 @@
       gap: 0.55rem;
       padding: 1.35rem 1.3rem 1.5rem;
       text-align: left;
+      cursor: pointer;
       transition: background-color 0.25s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
 
@@ -241,12 +242,13 @@
       color: inherit;
     }
 
-    /* Stretches the button's hit area over the whole card without nesting interactive elements. */
+    /* Stretches the link hit area over the whole card (positioned against .home-card). */
     .home-card-btn::after {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: 20px;
+      z-index: 1;
     }
 
     .home-card-btn:focus-visible {
@@ -6092,8 +6094,21 @@
       resetMinesweeper();
     }
 
+    function isHomeToolLink(el) {
+      if (!el || el.tagName !== "A") return false;
+      var href = el.getAttribute("href") || "";
+      return /(?:^|\/)tools\/[^"'?#]+\.html(?:[?#]|$)/.test(href);
+    }
+
+    function goHomeToolLink(el, event) {
+      if (!isHomeToolLink(el)) return false;
+      if (event) event.preventDefault();
+      window.location.assign(el.href);
+      return true;
+    }
+
     openLottoBtn.addEventListener("click", (event) => {
-      if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openLottoBtn)) return;
+      if (goHomeToolLink(openLottoBtn, event)) return;
       event.preventDefault();
       showView(lottoView);
       drawBtn.focus();
@@ -6109,7 +6124,7 @@
     });
 
     openMinesweeperBtn.addEventListener("click", (event) => {
-      if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openMinesweeperBtn)) return;
+      if (goHomeToolLink(openMinesweeperBtn, event)) return;
       event.preventDefault();
       showView(minesweeperView);
       resetMinesweeper();
@@ -6592,7 +6607,7 @@
     }
 
     openTetrisBtn.addEventListener("click", (event) => {
-      if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openTetrisBtn)) return;
+      if (goHomeToolLink(openTetrisBtn, event)) return;
       event.preventDefault();
       showView(tetrisView);
       prepareTetrisView();
@@ -6954,7 +6969,7 @@
     }
 
     openGomokuBtn.addEventListener("click", (event) => {
-      if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openGomokuBtn)) return;
+      if (goHomeToolLink(openGomokuBtn, event)) return;
       event.preventDefault();
       showView(gomokuView);
       prepareGomokuView();
@@ -7208,7 +7223,7 @@
     }
 
     openMemoryBtn.addEventListener("click", (event) => {
-      if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openMemoryBtn)) return;
+      if (goHomeToolLink(openMemoryBtn, event)) return;
       event.preventDefault();
       showView(memoryView);
       prepareMemoryView();
@@ -7217,7 +7232,7 @@
 
     if (openFlagBtn && flagView) {
       openFlagBtn.addEventListener("click", (event) => {
-        if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openFlagBtn)) return;
+        if (goHomeToolLink(openFlagBtn, event)) return;
         event.preventDefault();
         showView(flagView);
       });
@@ -7225,7 +7240,7 @@
 
     if (openCapitalBtn && capitalView) {
       openCapitalBtn.addEventListener("click", (event) => {
-        if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openCapitalBtn)) return;
+        if (goHomeToolLink(openCapitalBtn, event)) return;
         event.preventDefault();
         showView(capitalView);
       });
@@ -7233,7 +7248,7 @@
 
     if (openNoiseBtn && noiseView) {
       openNoiseBtn.addEventListener("click", (event) => {
-        if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openNoiseBtn)) return;
+        if (goHomeToolLink(openNoiseBtn, event)) return;
         event.preventDefault();
         showView(noiseView);
       });
@@ -7494,7 +7509,6 @@
       if (typeof window.refreshNoiseI18n === "function") window.refreshNoiseI18n();
     };
 
-  <script>
     window.showView = showView;
     window.onI18nApplied();
 
@@ -7529,6 +7543,38 @@
       } else if (name === "capital" && capitalView) {
         showView(capitalView);
       }
+    })();
+
+    // Homepage cards are real links to /tools/*.html. Force navigation so
+    // leftover SPA click handlers cannot swallow the click.
+    (function wireHomeCardNavigation() {
+      if (window.__WTB_TOOL_PAGE__) return;
+      var home = document.getElementById("homeView");
+      if (!home) return;
+
+      function toolHref(el) {
+        if (!el || el.tagName !== "A") return "";
+        var href = el.getAttribute("href") || "";
+        return /(?:^|\/)tools\/[^"'?#]+\.html(?:[?#]|$)/.test(href) ? href : "";
+      }
+
+      home.querySelectorAll("a.home-card-btn").forEach(function (link) {
+        if (!toolHref(link)) return;
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          window.location.assign(link.href);
+        });
+      });
+
+      home.querySelectorAll("section.home-card").forEach(function (card) {
+        var link = card.querySelector("a.home-card-btn");
+        if (!toolHref(link)) return;
+        card.addEventListener("click", function (event) {
+          if (event.target.closest("a, button, input, select, textarea, label")) return;
+          event.preventDefault();
+          window.location.assign(link.href);
+        });
+      });
     })();
   </script>
   <script src="tool-nav.js"></script>

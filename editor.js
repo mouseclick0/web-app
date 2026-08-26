@@ -686,23 +686,15 @@
   function wire() {
     var openBtn = $("openEditorBtn");
     var view = $("editorView");
-    if (!openBtn || !view) return;
+    if (!view) return;
 
-    openBtn.addEventListener("click", function () {
-      if (typeof showView === "function") showView(view);
-      else {
-        document.querySelectorAll("main").forEach(function (m) {
-          m.hidden = m !== view;
-        });
-      }
-      renderSelection();
-    });
-
-    var backBtn = $("backHomeFromEditorBtn");
-    if (backBtn) {
-      backBtn.addEventListener("click", function () {
-        if (typeof showView === "function" && $("homeView")) showView($("homeView"));
-        openBtn.focus();
+    if (typeof window.wtbWireToolPage === "function") {
+      window.wtbWireToolPage({
+        name: "editor",
+        openBtn: openBtn,
+        backBtn: $("backHomeFromEditorBtn"),
+        view: view,
+        onOpen: renderSelection
       });
     }
 

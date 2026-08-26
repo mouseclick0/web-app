@@ -192,23 +192,15 @@
   function wire() {
     var openBtn = $("openDdayBtn");
     var view = $("ddayView");
-    if (!openBtn || !view) return;
+    if (!view) return;
 
-    openBtn.addEventListener("click", function () {
-      if (typeof showView === "function") showView(view);
-      else {
-        document.querySelectorAll("main").forEach(function (m) {
-          m.hidden = m !== view;
-        });
-      }
-      openTool();
-    });
-
-    var backBtn = $("backHomeFromDdayBtn");
-    if (backBtn) {
-      backBtn.addEventListener("click", function () {
-        if (typeof showView === "function" && $("homeView")) showView($("homeView"));
-        openBtn.focus();
+    if (typeof window.wtbWireToolPage === "function") {
+      window.wtbWireToolPage({
+        name: "dday",
+        openBtn: openBtn,
+        backBtn: $("backHomeFromDdayBtn"),
+        view: view,
+        onOpen: openTool
       });
     }
 

@@ -489,24 +489,19 @@
     var openBtn = $("openWeatherBtn");
     var backBtn = $("backHomeFromWeatherBtn");
     var view = $("weatherView");
-    if (!openBtn || !view) return;
+    if (!view) return;
 
-    openBtn.addEventListener("click", function () {
-      if (typeof showView === "function") showView(view);
-      else {
-        document.querySelectorAll("main").forEach(function (m) {
-          m.hidden = m !== view;
-        });
-      }
-      openWeather();
-      if ($("weatherCityInput")) $("weatherCityInput").focus();
-    });
-
-    if (backBtn) {
-      backBtn.addEventListener("click", function () {
-        hideSuggest();
-        if (typeof showView === "function" && $("homeView")) showView($("homeView"));
-        openBtn.focus();
+    if (typeof window.wtbWireToolPage === "function") {
+      window.wtbWireToolPage({
+        name: "weather",
+        openBtn: openBtn,
+        backBtn: backBtn,
+        view: view,
+        onOpen: function () {
+          openWeather();
+          if ($("weatherCityInput")) $("weatherCityInput").focus();
+        },
+        onBack: hideSuggest
       });
     }
 

@@ -180,23 +180,15 @@
   function wire() {
     var openBtn = $("openIpBtn");
     var view = $("ipView");
-    if (!openBtn || !view) return;
+    if (!view) return;
 
-    openBtn.addEventListener("click", function () {
-      if (typeof showView === "function") showView(view);
-      else {
-        document.querySelectorAll("main").forEach(function (m) {
-          m.hidden = m !== view;
-        });
-      }
-      openIp();
-    });
-
-    var backBtn = $("backHomeFromIpBtn");
-    if (backBtn) {
-      backBtn.addEventListener("click", function () {
-        if (typeof showView === "function" && $("homeView")) showView($("homeView"));
-        openBtn.focus();
+    if (typeof window.wtbWireToolPage === "function") {
+      window.wtbWireToolPage({
+        name: "ip",
+        openBtn: openBtn,
+        backBtn: $("backHomeFromIpBtn"),
+        view: view,
+        onOpen: openIp
       });
     }
 

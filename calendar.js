@@ -228,23 +228,15 @@
   function wire() {
     var openBtn = $("openCalendarBtn");
     var view = $("calendarView");
-    if (!openBtn || !view) return;
+    if (!view) return;
 
-    openBtn.addEventListener("click", function () {
-      if (typeof showView === "function") showView(view);
-      else {
-        document.querySelectorAll("main").forEach(function (m) {
-          m.hidden = m !== view;
-        });
-      }
-      openCalendar();
-    });
-
-    var backBtn = $("backHomeFromCalendarBtn");
-    if (backBtn) {
-      backBtn.addEventListener("click", function () {
-        if (typeof showView === "function" && $("homeView")) showView($("homeView"));
-        openBtn.focus();
+    if (typeof window.wtbWireToolPage === "function") {
+      window.wtbWireToolPage({
+        name: "calendar",
+        openBtn: openBtn,
+        backBtn: $("backHomeFromCalendarBtn"),
+        view: view,
+        onOpen: openCalendar
       });
     }
 

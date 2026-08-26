@@ -274,22 +274,14 @@
   function wire() {
     var openBtn = $("openSpeechBtn");
     var view = $("speechView");
-    if (!openBtn || !view) return;
+    if (!view) return;
 
-    openBtn.addEventListener("click", function () {
-      if (typeof showView === "function") showView(view);
-      else {
-        document.querySelectorAll("main").forEach(function (m) {
-          m.hidden = m !== view;
-        });
-      }
-    });
-
-    var backBtn = $("backHomeFromSpeechBtn");
-    if (backBtn) {
-      backBtn.addEventListener("click", function () {
-        if (typeof showView === "function" && $("homeView")) showView($("homeView"));
-        openBtn.focus();
+    if (typeof window.wtbWireToolPage === "function") {
+      window.wtbWireToolPage({
+        name: "speech",
+        openBtn: openBtn,
+        backBtn: $("backHomeFromSpeechBtn"),
+        view: view
       });
     }
 

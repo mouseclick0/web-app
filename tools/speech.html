@@ -4147,7 +4147,7 @@
           <rect x="242" y="124" width="28" height="28" rx="4" fill="#ffd54f" />
         </svg>
       </div>
-      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openTetrisBtn" data-i18n="home.tetris.cta">테트리스 게임</button></h2>
+      <h2 class="home-card-title"><a class="home-card-btn" id="openTetrisBtn" href="tools/tetris.html" data-i18n="home.tetris.cta">테트리스 게임</a></h2>
       <p class="home-subtitle" data-i18n="home.tetris.subtitle">블록을 쌓아 줄을 지우는 테트리스. 레벨 1부터 99까지.</p>
     </section>
 
@@ -4172,7 +4172,7 @@
           <circle cx="158" cy="48" r="14" fill="#f5f5f5" stroke="#999" />
         </svg>
       </div>
-      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openGomokuBtn" data-i18n="home.gomoku.cta">오목 게임</button></h2>
+      <h2 class="home-card-title"><a class="home-card-btn" id="openGomokuBtn" href="tools/gomoku.html" data-i18n="home.gomoku.cta">오목 게임</a></h2>
       <p class="home-subtitle" data-i18n="home.gomoku.subtitle">흑·백을 고르고 AI와 19×19 오목을 둡니다. 레벨 1~99.</p>
     </section>
 
@@ -4190,7 +4190,7 @@
           <text x="234" y="152" text-anchor="middle" font-size="28">⭐</text>
         </svg>
       </div>
-      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openMemoryBtn" data-i18n="home.memory.cta">기억력 테스트</button></h2>
+      <h2 class="home-card-title"><a class="home-card-btn" id="openMemoryBtn" href="tools/memory.html" data-i18n="home.memory.cta">기억력 테스트</a></h2>
       <p class="home-subtitle" data-i18n="home.memory.subtitle">4×4·6×6·8×8 보드에서 이모지 짝을 빠르게 맞춰 보세요.</p>
     </section>
 
@@ -4212,7 +4212,7 @@
           <text x="178" y="156" text-anchor="middle" font-size="40" fill="#1a1a1a">♞</text>
         </svg>
       </div>
-      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openChessBtn" data-i18n="home.chess.cta">체스</button></h2>
+      <h2 class="home-card-title"><a class="home-card-btn" id="openChessBtn" href="tools/chess.html" data-i18n="home.chess.cta">체스</a></h2>
       <p class="home-subtitle" data-i18n="home.chess.subtitle">초급·중급·고급 AI와 정식 규칙으로 한 판 두어 보세요.</p>
     </section>
 
@@ -4239,7 +4239,7 @@
           <text x="160" y="158" text-anchor="middle" font-size="22">🇰🇷</text>
         </svg>
       </div>
-      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openFlagBtn" data-i18n="home.flag.cta">나라 국기 맞추기</button></h2>
+      <h2 class="home-card-title"><a class="home-card-btn" id="openFlagBtn" href="tools/flag.html" data-i18n="home.flag.cta">나라 국기 맞추기</a></h2>
       <p class="home-subtitle" data-i18n="home.flag.subtitle">국기를 보고 4개 보기 중 나라를 고르면 정답과 수도를 바로 알려 줍니다.</p>
     </section>
 
@@ -4262,7 +4262,7 @@
           <text x="160" y="158" text-anchor="middle" font-size="22">🇰🇷</text>
         </svg>
       </div>
-      <h2 class="home-card-title"><button type="button" class="home-card-btn" id="openCapitalBtn" data-i18n="home.capital.cta">나라 수도 맞추기</button></h2>
+      <h2 class="home-card-title"><a class="home-card-btn" id="openCapitalBtn" href="tools/capital.html" data-i18n="home.capital.cta">나라 수도 맞추기</a></h2>
       <p class="home-subtitle" data-i18n="home.capital.subtitle">나라 이름과 국기를 보고, 그 나라의 도시 4개 중 수도를 고르세요.</p>
     </section>
 
@@ -6593,7 +6593,9 @@
       }
     }
 
-    openTetrisBtn.addEventListener("click", () => {
+    openTetrisBtn.addEventListener("click", (event) => {
+      if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openTetrisBtn)) return;
+      event.preventDefault();
       showView(tetrisView);
       prepareTetrisView();
       tetrisStartBtn.focus();
@@ -6602,6 +6604,10 @@
     backHomeFromTetrisBtn.addEventListener("click", () => {
       pauseTetris(true);
       stopTetrisBgm();
+      if (window.__WTB_TOOL_PAGE__) {
+        location.href = "index.html";
+        return;
+      }
       showView(homeView);
       openTetrisBtn.focus();
     });
@@ -6949,7 +6955,9 @@
       if (!gomokuRunning) setGomokuStatus(t("gomoku.status.idle"));
     }
 
-    openGomokuBtn.addEventListener("click", () => {
+    openGomokuBtn.addEventListener("click", (event) => {
+      if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openGomokuBtn)) return;
+      event.preventDefault();
       showView(gomokuView);
       prepareGomokuView();
       gomokuStartBtn.focus();
@@ -6959,6 +6967,10 @@
       if (gomokuAiTimer) {
         clearTimeout(gomokuAiTimer);
         gomokuAiTimer = null;
+      }
+      if (window.__WTB_TOOL_PAGE__) {
+        location.href = "index.html";
+        return;
       }
       showView(homeView);
       openGomokuBtn.focus();
@@ -7197,20 +7209,26 @@
       setMemoryStatus(t("memory.status.idle"));
     }
 
-    openMemoryBtn.addEventListener("click", () => {
+    openMemoryBtn.addEventListener("click", (event) => {
+      if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openMemoryBtn)) return;
+      event.preventDefault();
       showView(memoryView);
       prepareMemoryView();
       memoryStartBtn.focus();
     });
 
     if (openFlagBtn && flagView) {
-      openFlagBtn.addEventListener("click", () => {
+      openFlagBtn.addEventListener("click", (event) => {
+        if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openFlagBtn)) return;
+        event.preventDefault();
         showView(flagView);
       });
     }
 
     if (openCapitalBtn && capitalView) {
-      openCapitalBtn.addEventListener("click", () => {
+      openCapitalBtn.addEventListener("click", (event) => {
+        if (typeof window.wtbIsToolLink === "function" && window.wtbIsToolLink(openCapitalBtn)) return;
+        event.preventDefault();
         showView(capitalView);
       });
     }
@@ -7225,12 +7243,20 @@
 
     backHomeFromMemoryBtn.addEventListener("click", () => {
       stopMemoryTimer();
+      if (window.__WTB_TOOL_PAGE__) {
+        location.href = "index.html";
+        return;
+      }
       showView(homeView);
       openMemoryBtn.focus();
     });
 
     if (backHomeFromFlagBtn && openFlagBtn) {
       backHomeFromFlagBtn.addEventListener("click", () => {
+        if (window.__WTB_TOOL_PAGE__) {
+          location.href = "index.html";
+          return;
+        }
         showView(homeView);
         openFlagBtn.focus();
       });
@@ -7238,6 +7264,10 @@
 
     if (backHomeFromCapitalBtn && openCapitalBtn) {
       backHomeFromCapitalBtn.addEventListener("click", () => {
+        if (window.__WTB_TOOL_PAGE__) {
+          location.href = "index.html";
+          return;
+        }
         showView(homeView);
         openCapitalBtn.focus();
       });
@@ -7482,6 +7512,24 @@
         if (mineResetBtn) mineResetBtn.focus();
       } else if (name === "noise" && noiseView) {
         showView(noiseView);
+      } else if (name === "tetris" && tetrisView) {
+        showView(tetrisView);
+        prepareTetrisView();
+        if (tetrisStartBtn) tetrisStartBtn.focus();
+      } else if (name === "gomoku" && gomokuView) {
+        showView(gomokuView);
+        prepareGomokuView();
+        if (gomokuStartBtn) gomokuStartBtn.focus();
+      } else if (name === "memory" && memoryView) {
+        showView(memoryView);
+        prepareMemoryView();
+        if (memoryStartBtn) memoryStartBtn.focus();
+      } else if (name === "chess" && chessView) {
+        showView(chessView);
+      } else if (name === "flag" && flagView) {
+        showView(flagView);
+      } else if (name === "capital" && capitalView) {
+        showView(capitalView);
       }
     })();
   </script>

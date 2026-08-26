@@ -84,6 +84,42 @@ const TOOLS = [
     title: "지뢰찾기 게임 | WebToolBay",
     description:
       "브라우저에서 바로 즐기는 클래식 지뢰찾기. 난이도를 고르고 지뢰를 피해 빈칸을 여세요."
+  },
+  {
+    id: "tetris",
+    title: "테트리스 게임 | WebToolBay",
+    description:
+      "브라우저에서 바로 즐기는 테트리스 게임입니다. 레벨 1부터 99까지 속도를 조절하며 줄을 지워 보세요."
+  },
+  {
+    id: "gomoku",
+    title: "오목 게임 | WebToolBay",
+    description:
+      "AI와 대국하는 19x19 오목 게임입니다. 흑·백 선택과 레벨 조절이 가능한 브라우저 게임입니다."
+  },
+  {
+    id: "memory",
+    title: "기억력 테스트 | WebToolBay",
+    description:
+      "4x4부터 8x8까지 보드를 고를 수 있는 브라우저 기억력 테스트 게임입니다. 시간과 시도 횟수를 함께 확인하세요."
+  },
+  {
+    id: "chess",
+    title: "체스 | WebToolBay",
+    description:
+      "브라우저에서 AI와 정식 규칙 체스를 둘 수 있습니다. 캐슬링, 앙파상, 승격까지 지원합니다."
+  },
+  {
+    id: "flag",
+    title: "나라 국기 맞추기 | WebToolBay",
+    description:
+      "국기를 보고 4지선다로 나라를 맞히는 브라우저 퀴즈입니다. 정답과 수도를 함께 확인할 수 있습니다."
+  },
+  {
+    id: "capital",
+    title: "나라 수도 맞추기 | WebToolBay",
+    description:
+      "나라 이름과 국기를 보고 수도를 맞히는 브라우저 퀴즈입니다. 가볍게 지리 상식을 점검해 보세요."
   }
 ];
 

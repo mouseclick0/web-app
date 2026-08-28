@@ -2,7 +2,7 @@
   "name": "web-app-ytdlp-server",
   "version": "1.0.0",
   "private": true,
-  "description": "Local API for yt-dlp downloads, AI cutout, and Ghibli-style image conversion",
+  "description": "Local development server for WebToolBay (not used on the public site)",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

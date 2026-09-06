@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="adsense-review">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -377,6 +377,11 @@
       background-size: 5px 5px, 5px 5px;
       background-repeat: no-repeat;
       padding-right: 1.6rem;
+    }
+
+    html.adsense-review .lang-select,
+    html.adsense-review label[for="langSelect"] {
+      display: none !important;
     }
 
     .theme-toggle {
@@ -5742,12 +5747,13 @@
     } catch (e) {}
 
     function showView(view) {
-      homeView.hidden = view !== homeView;
-      lottoView.hidden = view !== lottoView;
-      minesweeperView.hidden = view !== minesweeperView;
-      tetrisView.hidden = view !== tetrisView;
-      gomokuView.hidden = view !== gomokuView;
-      memoryView.hidden = view !== memoryView;
+      if (!view) return;
+      if (homeView) homeView.hidden = view !== homeView;
+      if (lottoView) lottoView.hidden = view !== lottoView;
+      if (minesweeperView) minesweeperView.hidden = view !== minesweeperView;
+      if (tetrisView) tetrisView.hidden = view !== tetrisView;
+      if (gomokuView) gomokuView.hidden = view !== gomokuView;
+      if (memoryView) memoryView.hidden = view !== memoryView;
       if (flagView) flagView.hidden = view !== flagView;
       if (capitalView) capitalView.hidden = view !== capitalView;
       if (noiseView) noiseView.hidden = view !== noiseView;

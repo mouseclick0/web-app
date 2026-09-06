@@ -179,6 +179,14 @@ a:hover { text-decoration: underline; }
 .guide-list strong { display: block; margin-bottom: 0.25rem; }
 .guide-list span { color: var(--muted); font-size: 0.9rem; }
 
+/* AdSense review: hide language switchers so Korean stays the crawl focus */
+html.adsense-review .lang-select,
+html.adsense-review .page-lang-select,
+html.adsense-review label[for="langSelect"],
+html.adsense-review .lang-hint {
+  display: none !important;
+}
+
 .site-footer {
   border-top: 1px solid var(--border);
   padding: 1.5rem 0 2rem;

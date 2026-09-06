@@ -363,7 +363,11 @@ function head(lang, file, page, content) {
 
   const lines = [
     "<!DOCTYPE html>",
-    '<html lang="' + attr(lang) + '">',
+    '<html lang="' +
+      attr(lang) +
+      '"' +
+      (NOINDEX_NON_DEFAULT_LANGS ? ' class="adsense-review"' : "") +
+      ">",
     "<head>",
     '  <meta charset="UTF-8" />',
     '  <meta name="viewport" content="width=device-width, initial-scale=1.0" />',

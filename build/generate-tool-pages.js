@@ -1099,9 +1099,82 @@ function injectGuideStyles(html) {
     "    .tool-page-guide a { color: var(--accent); text-decoration: none; }",
     "    .tool-page-guide a:hover { text-decoration: underline; }",
     "    html.wtb-tool-page #homeView { display: none !important; }",
+    "    html.adsense-review .lang-select,",
+    "    html.adsense-review .page-lang-select,",
+    "    html.adsense-review label[for=\"langSelect\"] {",
+    "      display: none !important;",
+    "    }",
     ""
   ].join("\n");
   return html.replace("</style>", css + "  </style>");
+}
+
+const ALL_VIEW_IDS = [
+  "homeView",
+  "lottoView",
+  "minesweeperView",
+  "tetrisView",
+  "gomokuView",
+  "memoryView",
+  "flagView",
+  "capitalView",
+  "noiseView",
+  "chessView",
+  "weatherView",
+  "calendarView",
+  "ddayView",
+  "ipView",
+  "ocrView",
+  "convertView",
+  "editorView",
+  "speechView",
+  "pickerView"
+];
+
+function slimToolPage(html, tool) {
+  // Drop other tool/home mains so each /tools URL is unique text, not a full SPA clone.
+  for (const id of ALL_VIEW_IDS) {
+    if (id === tool.viewId) continue;
+    const re = new RegExp(
+      "<main\\b[^>]*\\bid=\"" + id + "\"[^>]*>[\\s\\S]*?<\\/main>",
+      "i"
+    );
+    html = html.replace(re, "");
+  }
+
+  // Show the kept tool view immediately (no hidden attribute).
+  html = html.replace(
+    new RegExp(
+      "(<main\\b[^>]*\\bid=\"" + tool.viewId + "\"[^>]*)\\s+hidden\\b",
+      "i"
+    ),
+    "$1"
+  );
+
+  // Slim header controls: hide language switcher on tool pages during review.
+  html = html.replace(
+    /<html\b([^>]*)>/i,
+    function (m, attrs) {
+      if (/\bclass=/.test(attrs)) {
+        return (
+          "<html" +
+          attrs.replace(
+            /class=(["'])([^"']*)\1/,
+            function (_, q, cls) {
+              const next = (cls + " wtb-tool-page adsense-review")
+                .replace(/\s+/g, " ")
+                .trim();
+              return "class=" + q + next + q;
+            }
+          ) +
+          ">"
+        );
+      }
+      return '<html' + attrs + ' class="wtb-tool-page adsense-review">';
+    }
+  );
+
+  return html;
 }
 
 function main() {
@@ -1112,6 +1185,7 @@ function main() {
     let html = patchHead(source, tool);
     html = injectGuideStyles(html);
     html = injectGuide(html, tool);
+    html = slimToolPage(html, tool);
     const outPath = path.join(OUT_DIR, tool.id + ".html");
     fs.writeFileSync(outPath, html, "utf8");
     console.log("wrote", path.relative(ROOT, outPath));

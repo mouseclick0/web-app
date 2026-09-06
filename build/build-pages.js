@@ -21,6 +21,10 @@ const DEFAULT_LANG = "ko";
 const LANGS = ["ko", "en", "ja", "zh-Hans", "zh-Hant", "es", "pt-BR"];
 const PAGE_FILES = ["about", "faq", "contact", "privacy", "terms"];
 
+// AdSense review period: keep Google focused on Korean pages only.
+// Set back to false after approval if you want multilingual indexing again.
+const NOINDEX_NON_DEFAULT_LANGS = true;
+
 // Pages that exist in every language, so links between them stay in the same folder.
 const SIBLINGS = new Set([
   "about.html",
@@ -45,7 +49,41 @@ const GUIDE_PAGES = [
   "guides/noise.html",
   "guides/lotto.html",
   "guides/games.html",
-  "guides/chess.html"
+  "guides/chess.html",
+  "guides/flag.html",
+  "guides/capital.html",
+  "guides/ipv4-vs-ipv6.html",
+  "guides/image-formats-compare.html",
+  "guides/chess-openings-beginner.html",
+  "guides/precip-probability.html",
+  "guides/lunar-leap-month.html",
+  "guides/ocr-accuracy.html",
+  "guides/speaking-rate.html",
+  "guides/color-codes.html",
+  "guides/noise-types.html",
+  "guides/local-browser-privacy.html"
+];
+
+const TOOL_PAGES = [
+  "tools/",
+  "tools/weather.html",
+  "tools/calendar.html",
+  "tools/ip.html",
+  "tools/ocr.html",
+  "tools/convert.html",
+  "tools/editor.html",
+  "tools/picker.html",
+  "tools/speech.html",
+  "tools/dday.html",
+  "tools/noise.html",
+  "tools/lotto.html",
+  "tools/minesweeper.html",
+  "tools/tetris.html",
+  "tools/gomoku.html",
+  "tools/memory.html",
+  "tools/chess.html",
+  "tools/flag.html",
+  "tools/capital.html"
 ];
 
 const EOL = "\r\n";
@@ -290,20 +328,38 @@ function langHintScript(lang) {
 
 function head(lang, file, page, content) {
   const prefix = lang === DEFAULT_LANG ? "" : "../";
-  const alternates = LANGS.map(function (l) {
-    return (
+  const noindex = NOINDEX_NON_DEFAULT_LANGS && lang !== DEFAULT_LANG;
+  const canonical = pageUrl(noindex ? DEFAULT_LANG : lang, file);
+
+  let alternates;
+  if (NOINDEX_NON_DEFAULT_LANGS) {
+    // Do not advertise noindexed locales via hreflang during review.
+    alternates = [
       '  <link rel="alternate" hreflang="' +
-      attr(l) +
-      '" href="' +
-      attr(pageUrl(l, file)) +
-      '" />'
+        attr(DEFAULT_LANG) +
+        '" href="' +
+        attr(pageUrl(DEFAULT_LANG, file)) +
+        '" />',
+      '  <link rel="alternate" hreflang="x-default" href="' +
+        attr(pageUrl(DEFAULT_LANG, file)) +
+        '" />'
+    ];
+  } else {
+    alternates = LANGS.map(function (l) {
+      return (
+        '  <link rel="alternate" hreflang="' +
+        attr(l) +
+        '" href="' +
+        attr(pageUrl(l, file)) +
+        '" />'
+      );
+    });
+    alternates.push(
+      '  <link rel="alternate" hreflang="x-default" href="' +
+        attr(pageUrl(DEFAULT_LANG, file)) +
+        '" />'
     );
-  });
-  alternates.push(
-    '  <link rel="alternate" hreflang="x-default" href="' +
-      attr(pageUrl(DEFAULT_LANG, file)) +
-      '" />'
-  );
+  }
 
   const lines = [
     "<!DOCTYPE html>",
@@ -314,14 +370,19 @@ function head(lang, file, page, content) {
     '  <meta name="google-adsense-account" content="ca-pub-8051604788880688" />',
     '  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8051604788880688" crossorigin="anonymous"></script>',
     "  <title>" + esc(content.title) + " | " + BRAND + "</title>",
-    '  <meta name="description" content="' + attr(content.description) + '" />',
-    '  <link rel="canonical" href="' + attr(pageUrl(lang, file)) + '" />',
+    '  <meta name="description" content="' + attr(content.description) + '" />'
+  ];
+  if (noindex) {
+    lines.push('  <meta name="robots" content="noindex, follow" />');
+  }
+  lines.push(
+    '  <link rel="canonical" href="' + attr(canonical) + '" />',
     alternates.join(EOL),
     '  <link rel="preconnect" href="https://fonts.googleapis.com" />',
     '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />',
     '  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />',
     '  <link rel="stylesheet" href="' + prefix + 'site.css" />'
-  ];
+  );
   if (page.extraStyle) lines.push("  <style>" + EOL + page.extraStyle + EOL + "  </style>");
   lines.push("</head>");
   return lines.join(EOL);
@@ -457,8 +518,18 @@ function formScript(c) {
 
 function buildSitemap() {
   const urls = [{ loc: BASE_URL, freq: "weekly", pri: "1.0" }];
+
+  for (const t of TOOL_PAGES) {
+    urls.push({
+      loc: BASE_URL + t,
+      freq: "weekly",
+      pri: t === "tools/" ? "0.85" : "0.9"
+    });
+  }
+
+  const pageLangs = NOINDEX_NON_DEFAULT_LANGS ? [DEFAULT_LANG] : LANGS;
   for (const name of PAGE_FILES) {
-    for (const lang of LANGS) {
+    for (const lang of pageLangs) {
       urls.push({
         loc: pageUrl(lang, name + ".html"),
         freq: "monthly",

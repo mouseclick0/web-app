@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://webtoolbay.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://webtoolbay.com/tools/</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://webtoolbay.com/tools/weather.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://webtoolbay.com/tools/calendar.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://webtoolbay.com/tools/ip.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
@@ -19,42 +20,11 @@
   <url><loc>https://webtoolbay.com/tools/chess.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://webtoolbay.com/tools/flag.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://webtoolbay.com/tools/capital.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://webtoolbay.com/tools/</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://webtoolbay.com/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://webtoolbay.com/en/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/ja/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/zh-Hans/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/zh-Hant/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/es/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/pt-BR/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://webtoolbay.com/faq.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://webtoolbay.com/en/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/ja/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/zh-Hans/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/zh-Hant/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/es/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/pt-BR/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://webtoolbay.com/contact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://webtoolbay.com/en/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/ja/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/zh-Hans/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/zh-Hant/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/es/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/pt-BR/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://webtoolbay.com/privacy.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://webtoolbay.com/en/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/ja/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/zh-Hans/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/zh-Hant/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/es/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/pt-BR/privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://webtoolbay.com/terms.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://webtoolbay.com/en/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/ja/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/zh-Hans/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/zh-Hant/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/es/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://webtoolbay.com/pt-BR/terms.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://webtoolbay.com/guides/index.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://webtoolbay.com/guides/overview.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://webtoolbay.com/guides/weather.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -72,14 +42,14 @@
   <url><loc>https://webtoolbay.com/guides/chess.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://webtoolbay.com/guides/flag.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://webtoolbay.com/guides/capital.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://webtoolbay.com/guides/ipv4-vs-ipv6.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://webtoolbay.com/guides/image-formats-compare.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://webtoolbay.com/guides/chess-openings-beginner.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://webtoolbay.com/guides/precip-probability.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://webtoolbay.com/guides/lunar-leap-month.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://webtoolbay.com/guides/ocr-accuracy.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://webtoolbay.com/guides/speaking-rate.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://webtoolbay.com/guides/color-codes.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://webtoolbay.com/guides/noise-types.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://webtoolbay.com/guides/local-browser-privacy.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://webtoolbay.com/guides/ipv4-vs-ipv6.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webtoolbay.com/guides/image-formats-compare.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webtoolbay.com/guides/chess-openings-beginner.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webtoolbay.com/guides/precip-probability.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webtoolbay.com/guides/lunar-leap-month.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webtoolbay.com/guides/ocr-accuracy.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webtoolbay.com/guides/speaking-rate.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webtoolbay.com/guides/color-codes.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webtoolbay.com/guides/noise-types.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://webtoolbay.com/guides/local-browser-privacy.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

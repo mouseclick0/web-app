@@ -1019,7 +1019,7 @@ function patchHead(html, tool) {
     '  <base href="../" />\n' +
     "  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__=" +
     JSON.stringify(tool.id) +
-    ";</script>\n";
+    ';document.documentElement.classList.add("wtb-tool-page");</script>\n';
 
   if (out.indexOf('<base href="../" />') === -1) {
     out = out.replace(/<head>\s*/, "<head>\n" + boot);
@@ -1029,35 +1029,63 @@ function patchHead(html, tool) {
 }
 
 function injectGuide(html, tool) {
-  const guide = renderGuide(tool);
-  const backRe = new RegExp(
-    "(<button[^>]*\\bid=\"" +
-      tool.backBtnId +
-      "\"[\\s\\S]*?<\\/button>)([\\s\\S]*?<\\/main>)"
+  const guide = "\n" + renderGuide(tool);
+  const mainRe = new RegExp(
+    "<main[^>]*\\bid=\"" + tool.viewId + "\"[^>]*>",
+    "i"
   );
-  if (!backRe.test(html)) {
-    throw new Error("back button not found for " + tool.id + " (" + tool.backBtnId + ")");
+  const mainMatch = mainRe.exec(html);
+  if (!mainMatch) {
+    throw new Error("view main not found for " + tool.id + " (" + tool.viewId + ")");
   }
-  return html.replace(backRe, guide + "\n    $1$2");
+  const afterOpen = mainMatch.index + mainMatch[0].length;
+  const mainEnd = html.indexOf("</main>", afterOpen);
+  if (mainEnd === -1) {
+    throw new Error("view main close not found for " + tool.id);
+  }
+  const inner = html.slice(afterOpen, mainEnd);
+
+  let insertAt = -1;
+  const lead = /<p\s+class="[^"]*(?:subtitle|lead)[^"]*"[\s\S]*?<\/p>/i.exec(
+    inner
+  );
+  if (lead) {
+    insertAt = lead.index + lead[0].length;
+  } else {
+    const header =
+      /<div\s+class="(?:card-head|weather-topbar)"[\s\S]*?<\/div>/i.exec(inner);
+    if (header) {
+      insertAt = header.index + header[0].length;
+    } else {
+      const h2 = /<h2[\s\S]*?<\/h2>/i.exec(inner);
+      if (h2) insertAt = h2.index + h2[0].length;
+    }
+  }
+  if (insertAt < 0) {
+    throw new Error("insert point not found for " + tool.id);
+  }
+
+  const next = inner.slice(0, insertAt) + guide + inner.slice(insertAt);
+  return html.slice(0, afterOpen) + next + html.slice(mainEnd);
 }
 
 function injectGuideStyles(html) {
   if (html.indexOf(".tool-page-guide") !== -1) return html;
   const css = [
     "    .tool-page-guide {",
-    "      margin-top: 1.75rem;",
-    "      padding: 1.15rem 0 0.25rem;",
-    "      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);",
+    "      margin: 0.85rem 0 1.35rem;",
+    "      padding: 0 0 1.1rem;",
+    "      border-bottom: 1px solid color-mix(in srgb, var(--text) 12%, transparent);",
     "      text-align: left;",
     "      max-width: 42rem;",
     "    }",
     "    .tool-page-guide h2 {",
-    "      margin: 0 0 0.75rem;",
+    "      margin: 0 0 0.65rem;",
     "      font-size: 1.12rem;",
     "      letter-spacing: -0.01em;",
     "    }",
     "    .tool-page-guide h3 {",
-    "      margin: 1rem 0 0.4rem;",
+    "      margin: 0.9rem 0 0.35rem;",
     "      font-size: 0.95rem;",
     "    }",
     "    .tool-page-guide p,",
@@ -1066,10 +1094,11 @@ function injectGuideStyles(html) {
     "      font-size: 0.9rem;",
     "      line-height: 1.65;",
     "    }",
-    "    .tool-page-guide p { margin: 0 0 0.55rem; }",
-    "    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }",
+    "    .tool-page-guide p { margin: 0 0 0.5rem; }",
+    "    .tool-page-guide ul { margin: 0 0 0.3rem; padding-left: 1.15rem; }",
     "    .tool-page-guide a { color: var(--accent); text-decoration: none; }",
     "    .tool-page-guide a:hover { text-decoration: underline; }",
+    "    html.wtb-tool-page #homeView { display: none !important; }",
     ""
   ].join("\n");
   return html.replace("</style>", css + "  </style>");

@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <base href="../" />
-  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="minesweeper";</script>
+  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="minesweeper";document.documentElement.classList.add("wtb-tool-page");</script>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
@@ -3954,19 +3954,19 @@
       }
     }
       .tool-page-guide {
-      margin-top: 1.75rem;
-      padding: 1.15rem 0 0.25rem;
-      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      margin: 0.85rem 0 1.35rem;
+      padding: 0 0 1.1rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
       text-align: left;
       max-width: 42rem;
     }
     .tool-page-guide h2 {
-      margin: 0 0 0.75rem;
+      margin: 0 0 0.65rem;
       font-size: 1.12rem;
       letter-spacing: -0.01em;
     }
     .tool-page-guide h3 {
-      margin: 1rem 0 0.4rem;
+      margin: 0.9rem 0 0.35rem;
       font-size: 0.95rem;
     }
     .tool-page-guide p,
@@ -3975,10 +3975,11 @@
       font-size: 0.9rem;
       line-height: 1.65;
     }
-    .tool-page-guide p { margin: 0 0 0.55rem; }
-    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide p { margin: 0 0 0.5rem; }
+    .tool-page-guide ul { margin: 0 0 0.3rem; padding-left: 1.15rem; }
     .tool-page-guide a { color: var(--accent); text-decoration: none; }
     .tool-page-guide a:hover { text-decoration: underline; }
+    html.wtb-tool-page #homeView { display: none !important; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -4545,28 +4546,7 @@
       <h2 data-i18n="mine.title">지뢰찾기 게임</h2>
     </div>
     <p class="subtitle" data-i18n="mine.subtitle">왼쪽 클릭으로 칸을 열고, 오른쪽 클릭(또는 깃발 모드)으로 깃발을 꽂으세요. 첫 클릭은 항상 안전합니다.</p>
-
-    <div class="mine-hud">
-      <div class="mine-stats" aria-live="polite">
-        <div><span data-i18n="mine.stat.mines">지뢰</span><strong id="mineRemaining">10</strong></div>
-        <div><span data-i18n="mine.stat.time">시간</span><strong id="mineTimer">0</strong></div>
-      </div>
-      <div class="mine-controls">
-        <button type="button" class="mine-diff active" data-diff="beginner" id="mineDiffBeginner" data-i18n="mine.diff.beginner">초급 · 9×9</button>
-        <button type="button" class="mine-diff" data-diff="intermediate" id="mineDiffIntermediate" data-i18n="mine.diff.intermediate">중급 · 12×12</button>
-        <button type="button" class="mine-diff" data-diff="expert" id="mineDiffExpert" data-i18n="mine.diff.expert">고급 · 16×16</button>
-        <button type="button" class="mine-action" id="mineFlagModeBtn" data-i18n="mine.flagMode" aria-pressed="false">깃발 모드</button>
-        <button type="button" class="mine-action" id="mineResetBtn" data-i18n="mine.reset">다시 시작</button>
-      </div>
-    </div>
-
-    <p class="mine-status" id="mineStatus">칸을 클릭해 게임을 시작하세요.</p>
-
-    <div class="mine-board-wrap">
-      <div class="mine-board" id="mineBoard" role="grid" data-i18n-aria="mine.boardAria" aria-label="지뢰찾기 보드"></div>
-    </div>
-
-        <section class="tool-page-guide" aria-label="지뢰찾기 이용 안내">
+    <section class="tool-page-guide" aria-label="지뢰찾기 이용 안내">
       <h2>지뢰찾기 이용 안내</h2>
       <p>짧은 휴식에 머리만 환기하고 싶을 때 좋은 클래식 퍼즐입니다. 설치·회원 가입 없이 난이도를 고르고 바로 시작할 수 있으며, 현금 베팅이나 결제와는 무관합니다.</p>
       <p>초급에서는 숫자 2·3 주변의 깃발 패턴을 익히는 것이 핵심입니다. 중급 이상에서는 열려 있는 정보만으로 결정되지 않는 ‘추측 칸’이 생길 수 있으니, 한 번에 여러 칸을 열기보다 확실한 칸부터 처리하세요.</p>
@@ -4600,6 +4580,27 @@
         <li><a href="tools/index.html">도구 목록</a></li>
       </ul>
     </section>
+
+
+    <div class="mine-hud">
+      <div class="mine-stats" aria-live="polite">
+        <div><span data-i18n="mine.stat.mines">지뢰</span><strong id="mineRemaining">10</strong></div>
+        <div><span data-i18n="mine.stat.time">시간</span><strong id="mineTimer">0</strong></div>
+      </div>
+      <div class="mine-controls">
+        <button type="button" class="mine-diff active" data-diff="beginner" id="mineDiffBeginner" data-i18n="mine.diff.beginner">초급 · 9×9</button>
+        <button type="button" class="mine-diff" data-diff="intermediate" id="mineDiffIntermediate" data-i18n="mine.diff.intermediate">중급 · 12×12</button>
+        <button type="button" class="mine-diff" data-diff="expert" id="mineDiffExpert" data-i18n="mine.diff.expert">고급 · 16×16</button>
+        <button type="button" class="mine-action" id="mineFlagModeBtn" data-i18n="mine.flagMode" aria-pressed="false">깃발 모드</button>
+        <button type="button" class="mine-action" id="mineResetBtn" data-i18n="mine.reset">다시 시작</button>
+      </div>
+    </div>
+
+    <p class="mine-status" id="mineStatus">칸을 클릭해 게임을 시작하세요.</p>
+
+    <div class="mine-board-wrap">
+      <div class="mine-board" id="mineBoard" role="grid" data-i18n-aria="mine.boardAria" aria-label="지뢰찾기 보드"></div>
+    </div>
 
     <button type="button" class="back-btn" id="backHomeFromMinesweeperBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>

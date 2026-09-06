@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <base href="../" />
-  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="convert";</script>
+  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="convert";document.documentElement.classList.add("wtb-tool-page");</script>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
@@ -3954,19 +3954,19 @@
       }
     }
       .tool-page-guide {
-      margin-top: 1.75rem;
-      padding: 1.15rem 0 0.25rem;
-      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      margin: 0.85rem 0 1.35rem;
+      padding: 0 0 1.1rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
       text-align: left;
       max-width: 42rem;
     }
     .tool-page-guide h2 {
-      margin: 0 0 0.75rem;
+      margin: 0 0 0.65rem;
       font-size: 1.12rem;
       letter-spacing: -0.01em;
     }
     .tool-page-guide h3 {
-      margin: 1rem 0 0.4rem;
+      margin: 0.9rem 0 0.35rem;
       font-size: 0.95rem;
     }
     .tool-page-guide p,
@@ -3975,10 +3975,11 @@
       font-size: 0.9rem;
       line-height: 1.65;
     }
-    .tool-page-guide p { margin: 0 0 0.55rem; }
-    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide p { margin: 0 0 0.5rem; }
+    .tool-page-guide ul { margin: 0 0 0.3rem; padding-left: 1.15rem; }
     .tool-page-guide a { color: var(--accent); text-decoration: none; }
     .tool-page-guide a:hover { text-decoration: underline; }
+    html.wtb-tool-page #homeView { display: none !important; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -5208,6 +5209,42 @@
       <h2 data-i18n="convert.title">이미지 형식 변환</h2>
     </div>
     <p class="subtitle" data-i18n="convert.subtitle">PNG·JPG·WebP·BMP 이미지를 서로 변환합니다. 이미지는 서버로 전송되지 않고 브라우저 안에서만 처리됩니다.</p>
+    <section class="tool-page-guide" aria-label="이미지 형식 변환 이용 안내">
+      <h2>이미지 형식 변환 이용 안내</h2>
+      <p>업로드 폼이 JPG만 받거나, 투명 배경 PNG가 필요할 때처럼 형식만 바꿔야 하는 작업을 위한 도구입니다. 변환은 브라우저에서 바로 이뤄지며, 여러 장이면 ZIP으로도 받을 수 있습니다.</p>
+      <p>형식 선택은 ‘어디에 올릴지’로 정하면 단순합니다. 웹·메일은 JPG·WebP, 투명 로고는 PNG, 구형 프로그램은 BMP를 먼저 고려하세요. 용량이 문제면 WebP를 시험해 보고, 호환성이 문제면 JPG로 되돌리면 됩니다.</p>
+      <p>여러 장을 한 번에 바꿀 때는 ZIP으로 묶어 받으면 정리하기 쉽습니다. 변환 전 원본 폴더를 따로 복사해 두면 잘못된 형식·화질로 덮어쓰는 실수를 막을 수 있습니다.</p>
+      <h3>사용법</h3>
+      <p>변환할 이미지를 추가한 뒤 목표 형식(PNG·JPG·WebP·BMP)을 고르고 변환을 실행하세요.</p>
+      <p>결과는 개별 저장하거나 ZIP으로 받고, 목록을 비운 뒤 다음 작업을 이어갈 수 있습니다.</p>
+      <h3>이런 때 쓰면 좋습니다</h3>
+      <ul>
+        <li>웹·메일 첨부용으로 용량을 줄이기 위해 JPG·WebP로 바꿀 때</li>
+        <li>로고·아이콘의 투명 배경을 유지하려고 PNG로 저장할 때</li>
+        <li>구형 프로그램이 요구하는 BMP로 맞춰야 할 때</li>
+      </ul>
+      <h3>활용 팁</h3>
+      <ul>
+        <li>JPG는 투명 배경을 지원하지 않아 PNG 투명 영역이 단색으로 바뀔 수 있습니다.</li>
+        <li>반복 압축하면 화질이 떨어지므로 원본을 남기고 변환본을 쓰세요.</li>
+        <li>먼저 자르기·회전으로 구도를 맞춘 뒤 변환하면 재작업이 줄어듭니다.</li>
+      </ul>
+      <h3>주의할 점</h3>
+      <ul>
+        <li>매우 큰 이미지는 기기 메모리에 따라 느리거나 실패할 수 있습니다.</li>
+        <li>인쇄용 CMYK 변환이나 고급 색 관리는 지원하지 않습니다.</li>
+      </ul>
+      <h3>자주 묻는 질문</h3>
+      <p><strong>WebP는 언제 쓰나요?</strong> 웹에서 비슷한 화질로 용량을 줄일 때 유리합니다. 다만 일부 구형 소프트웨어는 열지 못할 수 있습니다.</p>
+      <p><strong>파일이 서버에 남나요?</strong> 아니요. 변환은 브라우저 안에서 처리됩니다.</p>
+      <h3>관련 가이드</h3>
+      <ul>
+        <li><a href="guides/convert.html">이미지 형식 변환 가이드</a></li>
+        <li><a href="guides/image-formats-compare.html">WebP vs PNG vs JPG 비교</a></li>
+        <li><a href="guides/editor.html">이미지 자르기·회전 가이드</a></li>
+      </ul>
+    </section>
+
 
     <label class="upload-zone" id="convertUploadZone" for="convertInput">
       <strong data-i18n="convert.uploadStrong">이미지를 드롭하거나 클릭해서 업로드</strong>
@@ -5260,42 +5297,6 @@
       <button type="button" class="download-btn" id="convertZipBtn" data-i18n="convert.zip" disabled>ZIP으로 모두 저장</button>
       <button type="button" class="download-btn" id="convertClearBtn" data-i18n="convert.clear" disabled>목록 비우기</button>
     </div>
-
-        <section class="tool-page-guide" aria-label="이미지 형식 변환 이용 안내">
-      <h2>이미지 형식 변환 이용 안내</h2>
-      <p>업로드 폼이 JPG만 받거나, 투명 배경 PNG가 필요할 때처럼 형식만 바꿔야 하는 작업을 위한 도구입니다. 변환은 브라우저에서 바로 이뤄지며, 여러 장이면 ZIP으로도 받을 수 있습니다.</p>
-      <p>형식 선택은 ‘어디에 올릴지’로 정하면 단순합니다. 웹·메일은 JPG·WebP, 투명 로고는 PNG, 구형 프로그램은 BMP를 먼저 고려하세요. 용량이 문제면 WebP를 시험해 보고, 호환성이 문제면 JPG로 되돌리면 됩니다.</p>
-      <p>여러 장을 한 번에 바꿀 때는 ZIP으로 묶어 받으면 정리하기 쉽습니다. 변환 전 원본 폴더를 따로 복사해 두면 잘못된 형식·화질로 덮어쓰는 실수를 막을 수 있습니다.</p>
-      <h3>사용법</h3>
-      <p>변환할 이미지를 추가한 뒤 목표 형식(PNG·JPG·WebP·BMP)을 고르고 변환을 실행하세요.</p>
-      <p>결과는 개별 저장하거나 ZIP으로 받고, 목록을 비운 뒤 다음 작업을 이어갈 수 있습니다.</p>
-      <h3>이런 때 쓰면 좋습니다</h3>
-      <ul>
-        <li>웹·메일 첨부용으로 용량을 줄이기 위해 JPG·WebP로 바꿀 때</li>
-        <li>로고·아이콘의 투명 배경을 유지하려고 PNG로 저장할 때</li>
-        <li>구형 프로그램이 요구하는 BMP로 맞춰야 할 때</li>
-      </ul>
-      <h3>활용 팁</h3>
-      <ul>
-        <li>JPG는 투명 배경을 지원하지 않아 PNG 투명 영역이 단색으로 바뀔 수 있습니다.</li>
-        <li>반복 압축하면 화질이 떨어지므로 원본을 남기고 변환본을 쓰세요.</li>
-        <li>먼저 자르기·회전으로 구도를 맞춘 뒤 변환하면 재작업이 줄어듭니다.</li>
-      </ul>
-      <h3>주의할 점</h3>
-      <ul>
-        <li>매우 큰 이미지는 기기 메모리에 따라 느리거나 실패할 수 있습니다.</li>
-        <li>인쇄용 CMYK 변환이나 고급 색 관리는 지원하지 않습니다.</li>
-      </ul>
-      <h3>자주 묻는 질문</h3>
-      <p><strong>WebP는 언제 쓰나요?</strong> 웹에서 비슷한 화질로 용량을 줄일 때 유리합니다. 다만 일부 구형 소프트웨어는 열지 못할 수 있습니다.</p>
-      <p><strong>파일이 서버에 남나요?</strong> 아니요. 변환은 브라우저 안에서 처리됩니다.</p>
-      <h3>관련 가이드</h3>
-      <ul>
-        <li><a href="guides/convert.html">이미지 형식 변환 가이드</a></li>
-        <li><a href="guides/image-formats-compare.html">WebP vs PNG vs JPG 비교</a></li>
-        <li><a href="guides/editor.html">이미지 자르기·회전 가이드</a></li>
-      </ul>
-    </section>
 
     <button type="button" class="back-btn" id="backHomeFromConvertBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>

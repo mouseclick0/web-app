@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <base href="../" />
-  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="noise";</script>
+  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="noise";document.documentElement.classList.add("wtb-tool-page");</script>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
@@ -3954,19 +3954,19 @@
       }
     }
       .tool-page-guide {
-      margin-top: 1.75rem;
-      padding: 1.15rem 0 0.25rem;
-      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      margin: 0.85rem 0 1.35rem;
+      padding: 0 0 1.1rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
       text-align: left;
       max-width: 42rem;
     }
     .tool-page-guide h2 {
-      margin: 0 0 0.75rem;
+      margin: 0 0 0.65rem;
       font-size: 1.12rem;
       letter-spacing: -0.01em;
     }
     .tool-page-guide h3 {
-      margin: 1rem 0 0.4rem;
+      margin: 0.9rem 0 0.35rem;
       font-size: 0.95rem;
     }
     .tool-page-guide p,
@@ -3975,10 +3975,11 @@
       font-size: 0.9rem;
       line-height: 1.65;
     }
-    .tool-page-guide p { margin: 0 0 0.55rem; }
-    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide p { margin: 0 0 0.5rem; }
+    .tool-page-guide ul { margin: 0 0 0.3rem; padding-left: 1.15rem; }
     .tool-page-guide a { color: var(--accent); text-decoration: none; }
     .tool-page-guide a:hover { text-decoration: underline; }
+    html.wtb-tool-page #homeView { display: none !important; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -4812,6 +4813,43 @@
       <h2 data-i18n="noise.title">백색소음</h2>
     </div>
     <p class="subtitle" data-i18n="noise.subtitle">화이트·핑크·브라운 노이즈와 비·폭포·파도·시냇물·바람 소리를 브라우저에서 바로 재생합니다. 소리는 서버로 전송되지 않습니다.</p>
+    <section class="tool-page-guide" aria-label="백색소음 이용 안내">
+      <h2>백색소음 이용 안내</h2>
+      <p>공부·업무·짧은 휴식에 일정한 배경음이 필요할 때 쓰는 플레이어입니다. 파일을 받지 않고 브라우저에서 노이즈·자연음 질감을 만들어 재생하며, 볼륨과 타이머로 세션 길이를 조절할 수 있습니다.</p>
+      <p>집중 세션에는 타이머를 25~50분으로 두고, 끝나면 소리를 끄고 짧게 쉬는 방식이 부담이 적습니다. 잠들기 전에는 볼륨을 낮추고 짧은 타이머를 쓰는 편이, 밤새 재생보다 기기 발열·알림 변수에 안전합니다.</p>
+      <p>소리 종류는 취향 차입니다. 날카로우면 브라운·비, 너무 둔탁하면 핑크·시냇물로 바꿔 보세요. 공공장소에서는 이어폰 소리 샘과 탭 음소거 상태를 함께 확인하세요.</p>
+      <h3>사용법</h3>
+      <p>소리 종류를 고른 뒤 재생을 누르면 브라우저에서 바로 재생됩니다. 볼륨과 타이머(연속 또는 분 단위)를 함께 조절할 수 있습니다.</p>
+      <p>화이트·핑크·브라운 노이즈와 비·폭포·파도·시냇물·바람 같은 자연음을 상황에 맞게 선택하세요.</p>
+      <h3>이런 때 쓰면 좋습니다</h3>
+      <ul>
+        <li>카페·집 소음을 가리며 집중 타이머를 돌릴 때</li>
+        <li>잠들기 전 짧은 시간만 부드러운 배경음을 틀 때</li>
+        <li>헤드폰으로 약한 일정한 소리를 배경에 깔 때</li>
+      </ul>
+      <h3>활용 팁</h3>
+      <ul>
+        <li>집중용으로는 화이트·핑크, 부드러운 느낌은 브라운·비·파도를 많이 고릅니다.</li>
+        <li>첫 재생은 브라우저 정책상 클릭(또는 탭) 뒤에만 소리가 납니다.</li>
+        <li>다른 메뉴로 이동하면 재생이 멈출 수 있으니, 긴 수면용 전용 앱과는 다르게 생각하세요.</li>
+      </ul>
+      <h3>주의할 점</h3>
+      <ul>
+        <li>의료·수면 장애 치료가 아니며 취향용 배경음 도구입니다.</li>
+        <li>장시간 큰 볼륨은 청력에 부담이 될 수 있습니다.</li>
+        <li>탭 절전·화면 잠금 시 재생이 끊길 수 있습니다.</li>
+      </ul>
+      <h3>자주 묻는 질문</h3>
+      <p><strong>MP3로 저장되나요?</strong> 아니요. 실시간 합성 재생만 제공하며 파일 다운로드는 없습니다.</p>
+      <p><strong>소리가 안 나요.</strong> 재생 버튼·기기 음소거·탭 음소거를 확인하고, 페이지를 클릭한 뒤 다시 재생해 보세요.</p>
+      <h3>관련 가이드</h3>
+      <ul>
+        <li><a href="guides/noise.html">백색소음 가이드</a></li>
+        <li><a href="guides/overview.html">사이트 한눈에 보기</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </section>
+
 
     <ol class="noise-howto">
       <li data-i18n="noise.how1">원하는 소리 종류를 고른 뒤 재생을 누르세요.</li>
@@ -4865,43 +4903,6 @@
       </div>
       <p class="noise-status" id="noiseStatus" aria-live="polite"></p>
     </div>
-
-        <section class="tool-page-guide" aria-label="백색소음 이용 안내">
-      <h2>백색소음 이용 안내</h2>
-      <p>공부·업무·짧은 휴식에 일정한 배경음이 필요할 때 쓰는 플레이어입니다. 파일을 받지 않고 브라우저에서 노이즈·자연음 질감을 만들어 재생하며, 볼륨과 타이머로 세션 길이를 조절할 수 있습니다.</p>
-      <p>집중 세션에는 타이머를 25~50분으로 두고, 끝나면 소리를 끄고 짧게 쉬는 방식이 부담이 적습니다. 잠들기 전에는 볼륨을 낮추고 짧은 타이머를 쓰는 편이, 밤새 재생보다 기기 발열·알림 변수에 안전합니다.</p>
-      <p>소리 종류는 취향 차입니다. 날카로우면 브라운·비, 너무 둔탁하면 핑크·시냇물로 바꿔 보세요. 공공장소에서는 이어폰 소리 샘과 탭 음소거 상태를 함께 확인하세요.</p>
-      <h3>사용법</h3>
-      <p>소리 종류를 고른 뒤 재생을 누르면 브라우저에서 바로 재생됩니다. 볼륨과 타이머(연속 또는 분 단위)를 함께 조절할 수 있습니다.</p>
-      <p>화이트·핑크·브라운 노이즈와 비·폭포·파도·시냇물·바람 같은 자연음을 상황에 맞게 선택하세요.</p>
-      <h3>이런 때 쓰면 좋습니다</h3>
-      <ul>
-        <li>카페·집 소음을 가리며 집중 타이머를 돌릴 때</li>
-        <li>잠들기 전 짧은 시간만 부드러운 배경음을 틀 때</li>
-        <li>헤드폰으로 약한 일정한 소리를 배경에 깔 때</li>
-      </ul>
-      <h3>활용 팁</h3>
-      <ul>
-        <li>집중용으로는 화이트·핑크, 부드러운 느낌은 브라운·비·파도를 많이 고릅니다.</li>
-        <li>첫 재생은 브라우저 정책상 클릭(또는 탭) 뒤에만 소리가 납니다.</li>
-        <li>다른 메뉴로 이동하면 재생이 멈출 수 있으니, 긴 수면용 전용 앱과는 다르게 생각하세요.</li>
-      </ul>
-      <h3>주의할 점</h3>
-      <ul>
-        <li>의료·수면 장애 치료가 아니며 취향용 배경음 도구입니다.</li>
-        <li>장시간 큰 볼륨은 청력에 부담이 될 수 있습니다.</li>
-        <li>탭 절전·화면 잠금 시 재생이 끊길 수 있습니다.</li>
-      </ul>
-      <h3>자주 묻는 질문</h3>
-      <p><strong>MP3로 저장되나요?</strong> 아니요. 실시간 합성 재생만 제공하며 파일 다운로드는 없습니다.</p>
-      <p><strong>소리가 안 나요.</strong> 재생 버튼·기기 음소거·탭 음소거를 확인하고, 페이지를 클릭한 뒤 다시 재생해 보세요.</p>
-      <h3>관련 가이드</h3>
-      <ul>
-        <li><a href="guides/noise.html">백색소음 가이드</a></li>
-        <li><a href="guides/overview.html">사이트 한눈에 보기</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-      </ul>
-    </section>
 
     <button type="button" class="back-btn" id="backHomeFromNoiseBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>

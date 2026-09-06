@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <base href="../" />
-  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="ip";</script>
+  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="ip";document.documentElement.classList.add("wtb-tool-page");</script>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
@@ -3954,19 +3954,19 @@
       }
     }
       .tool-page-guide {
-      margin-top: 1.75rem;
-      padding: 1.15rem 0 0.25rem;
-      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      margin: 0.85rem 0 1.35rem;
+      padding: 0 0 1.1rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
       text-align: left;
       max-width: 42rem;
     }
     .tool-page-guide h2 {
-      margin: 0 0 0.75rem;
+      margin: 0 0 0.65rem;
       font-size: 1.12rem;
       letter-spacing: -0.01em;
     }
     .tool-page-guide h3 {
-      margin: 1rem 0 0.4rem;
+      margin: 0.9rem 0 0.35rem;
       font-size: 0.95rem;
     }
     .tool-page-guide p,
@@ -3975,10 +3975,11 @@
       font-size: 0.9rem;
       line-height: 1.65;
     }
-    .tool-page-guide p { margin: 0 0 0.55rem; }
-    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide p { margin: 0 0 0.5rem; }
+    .tool-page-guide ul { margin: 0 0 0.3rem; padding-left: 1.15rem; }
     .tool-page-guide a { color: var(--accent); text-decoration: none; }
     .tool-page-guide a:hover { text-decoration: underline; }
+    html.wtb-tool-page #homeView { display: none !important; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -5127,29 +5128,7 @@
   <main class="ip-shell" id="ipView" hidden>
     <h2 data-i18n="ip.title">내 아이피 찾기</h2>
     <p class="ip-lead" data-i18n="ip.subtitle">현재 공인 IPv4·IPv6와 ISP, 국가·도시 정보를 확인합니다.</p>
-
-    <section class="ip-card" aria-live="polite">
-      <div class="ip-row"><span data-i18n="ip.ipv4">IPv4</span><strong id="ipV4Value">--</strong></div>
-      <div class="ip-row"><span data-i18n="ip.ipv6">IPv6</span><strong id="ipV6Value">--</strong></div>
-      <div class="ip-row"><span data-i18n="ip.isp">ISP</span><strong id="ipIspValue">--</strong></div>
-    </section>
-
-    <section class="ip-card" aria-live="polite">
-      <div class="ip-row"><span data-i18n="ip.country">국가</span><strong id="ipCountryValue">--</strong></div>
-      <div class="ip-row"><span data-i18n="ip.city">도시</span><strong id="ipCityValue">--</strong></div>
-    </section>
-
-    <div class="ip-actions">
-      <button type="button" class="entry-btn" id="ipCopyBtn" data-i18n="ip.copy">아이피 복사</button>
-    </div>
-
-    <p class="ip-status" id="ipStatus" aria-live="polite"></p>
-
-    <div class="ip-refresh-wrap">
-      <button type="button" class="entry-btn" id="ipRefreshBtn" data-i18n="ip.refresh">새로고침</button>
-    </div>
-
-        <section class="tool-page-guide" aria-label="내 아이피 찾기 이용 안내">
+    <section class="tool-page-guide" aria-label="내 아이피 찾기 이용 안내">
       <h2>내 아이피 찾기 이용 안내</h2>
       <p>서버 설정, 원격 접속 허용, VPN 동작 확인처럼 “지금 내 공인 IP가 무엇인지”가 필요할 때 씁니다. IPv4와 IPv6, ISP, 대략적인 국가·도시 정보를 한눈에 보고 복사할 수 있습니다.</p>
       <p>공인 IP는 집 공유기 안의 사설 주소(192.168.x.x 등)와 다릅니다. 외부 서버가 ‘당신을 보는’ 주소가 바로 이 값입니다. 방화벽 허용 목록에 넣을 때는 IPv4와 IPv6를 구분해 등록하세요.</p>
@@ -5184,6 +5163,28 @@
         <li><a href="privacy.html">개인정보처리방침</a></li>
       </ul>
     </section>
+
+
+    <section class="ip-card" aria-live="polite">
+      <div class="ip-row"><span data-i18n="ip.ipv4">IPv4</span><strong id="ipV4Value">--</strong></div>
+      <div class="ip-row"><span data-i18n="ip.ipv6">IPv6</span><strong id="ipV6Value">--</strong></div>
+      <div class="ip-row"><span data-i18n="ip.isp">ISP</span><strong id="ipIspValue">--</strong></div>
+    </section>
+
+    <section class="ip-card" aria-live="polite">
+      <div class="ip-row"><span data-i18n="ip.country">국가</span><strong id="ipCountryValue">--</strong></div>
+      <div class="ip-row"><span data-i18n="ip.city">도시</span><strong id="ipCityValue">--</strong></div>
+    </section>
+
+    <div class="ip-actions">
+      <button type="button" class="entry-btn" id="ipCopyBtn" data-i18n="ip.copy">아이피 복사</button>
+    </div>
+
+    <p class="ip-status" id="ipStatus" aria-live="polite"></p>
+
+    <div class="ip-refresh-wrap">
+      <button type="button" class="entry-btn" id="ipRefreshBtn" data-i18n="ip.refresh">새로고침</button>
+    </div>
 
     <button type="button" class="back-btn" id="backHomeFromIpBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>

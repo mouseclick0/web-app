@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <base href="../" />
-  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="picker";</script>
+  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="picker";document.documentElement.classList.add("wtb-tool-page");</script>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
@@ -3954,19 +3954,19 @@
       }
     }
       .tool-page-guide {
-      margin-top: 1.75rem;
-      padding: 1.15rem 0 0.25rem;
-      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      margin: 0.85rem 0 1.35rem;
+      padding: 0 0 1.1rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
       text-align: left;
       max-width: 42rem;
     }
     .tool-page-guide h2 {
-      margin: 0 0 0.75rem;
+      margin: 0 0 0.65rem;
       font-size: 1.12rem;
       letter-spacing: -0.01em;
     }
     .tool-page-guide h3 {
-      margin: 1rem 0 0.4rem;
+      margin: 0.9rem 0 0.35rem;
       font-size: 0.95rem;
     }
     .tool-page-guide p,
@@ -3975,10 +3975,11 @@
       font-size: 0.9rem;
       line-height: 1.65;
     }
-    .tool-page-guide p { margin: 0 0 0.55rem; }
-    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide p { margin: 0 0 0.5rem; }
+    .tool-page-guide ul { margin: 0 0 0.3rem; padding-left: 1.15rem; }
     .tool-page-guide a { color: var(--accent); text-decoration: none; }
     .tool-page-guide a:hover { text-decoration: underline; }
+    html.wtb-tool-page #homeView { display: none !important; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -5454,6 +5455,42 @@
       <h2 data-i18n="picker.title">이미지 컬러 피커</h2>
     </div>
     <p class="subtitle" data-i18n="picker.subtitle">이미지에서 원하는 지점을 클릭해 색상 코드를 뽑아냅니다. 이미지는 서버로 전송되지 않고 브라우저 안에서만 처리됩니다.</p>
+    <section class="tool-page-guide" aria-label="이미지 컬러 피커 이용 안내">
+      <h2>이미지 컬러 피커 이용 안내</h2>
+      <p>참고 이미지·로고·스크린샷에서 정확한 색 코드가 필요할 때 씁니다. 클릭한 픽셀의 HEX·RGB·HSL 등을 바로 확인하고 스와치로 모아 복사할 수 있으며, 이미지는 기기 밖으로 나가지 않습니다.</p>
+      <p>브랜드 색을 뽑을 때는 로고의 ‘가장 평평한 단색 영역’을 클릭하세요. 그라데이션·그림자·안티앨리어싱 경계는 대표색이 아닌 중간값이 나오기 쉽습니다.</p>
+      <p>스와치에 3~6개만 모아도 배색 방향을 잡기 충분합니다. HEX를 복사해 CSS 변수나 디자인 툴 팔레트에 바로 붙여 넣고, 밝기만 조절할 일이 있으면 HSL 값도 함께 메모하세요.</p>
+      <h3>사용법</h3>
+      <p>이미지를 올리거나 URL로 불러온 뒤, 화면을 클릭하거나 스포이드로 원하는 픽셀 색을 뽑으세요.</p>
+      <p>HEX·RGB·HSL 형식으로 확인할 수 있고, 스와치에 모아 두었다가 한꺼번에 복사할 수도 있습니다.</p>
+      <h3>이런 때 쓰면 좋습니다</h3>
+      <ul>
+        <li>브랜드 로고에서 대표색을 CSS·디자인 툴에 옮길 때</li>
+        <li>참고 사진의 배색을 견본으로 모아 팔레트를 만들 때</li>
+        <li>화면 캡처 후 버튼·배경색 코드를 바로 확인할 때</li>
+      </ul>
+      <h3>활용 팁</h3>
+      <ul>
+        <li>가는 선·작은 아이콘은 확대한 뒤 픽셀 단위로 찍으면 정확합니다.</li>
+        <li>사진 압축·그림자 때문에 같은 물체라도 지점마다 값이 달라질 수 있으니 여러 점을 비교하세요.</li>
+        <li>외부 URL이 CORS로 막히면 파일을 내려받아 업로드하세요.</li>
+      </ul>
+      <h3>주의할 점</h3>
+      <ul>
+        <li>모니터 보정·브라우저 색 공간에 따라 체감 색과 코드가 조금 다를 수 있습니다.</li>
+        <li>CMYK 값은 참고용 변환이며, 인쇄 최종본은 전용 프로그램에서 프로파일을 적용하세요.</li>
+      </ul>
+      <h3>자주 묻는 질문</h3>
+      <p><strong>어떤 코드를 쓰면 되나요?</strong> 웹·CSS는 HEX 또는 RGB가 일반적입니다. 밝기만 살짝 바꿀 때는 HSL이 다루기 쉽습니다.</p>
+      <p><strong>견본이 사라졌어요.</strong> 스와치는 페이지를 새로고침하면 초기화됩니다. 필요한 코드는 복사해 따로 저장하세요.</p>
+      <h3>관련 가이드</h3>
+      <ul>
+        <li><a href="guides/picker.html">컬러 피커 가이드</a></li>
+        <li><a href="guides/editor.html">이미지 자르기·회전 가이드</a></li>
+        <li><a href="guides/convert.html">이미지 형식 변환 가이드</a></li>
+      </ul>
+    </section>
+
 
     <label class="upload-zone" id="pickerUploadZone" for="pickerInput">
       <strong data-i18n="picker.uploadStrong">이미지를 드롭하거나 클릭해서 업로드</strong>
@@ -5548,42 +5585,6 @@
         </div>
       </div>
     </div>
-
-        <section class="tool-page-guide" aria-label="이미지 컬러 피커 이용 안내">
-      <h2>이미지 컬러 피커 이용 안내</h2>
-      <p>참고 이미지·로고·스크린샷에서 정확한 색 코드가 필요할 때 씁니다. 클릭한 픽셀의 HEX·RGB·HSL 등을 바로 확인하고 스와치로 모아 복사할 수 있으며, 이미지는 기기 밖으로 나가지 않습니다.</p>
-      <p>브랜드 색을 뽑을 때는 로고의 ‘가장 평평한 단색 영역’을 클릭하세요. 그라데이션·그림자·안티앨리어싱 경계는 대표색이 아닌 중간값이 나오기 쉽습니다.</p>
-      <p>스와치에 3~6개만 모아도 배색 방향을 잡기 충분합니다. HEX를 복사해 CSS 변수나 디자인 툴 팔레트에 바로 붙여 넣고, 밝기만 조절할 일이 있으면 HSL 값도 함께 메모하세요.</p>
-      <h3>사용법</h3>
-      <p>이미지를 올리거나 URL로 불러온 뒤, 화면을 클릭하거나 스포이드로 원하는 픽셀 색을 뽑으세요.</p>
-      <p>HEX·RGB·HSL 형식으로 확인할 수 있고, 스와치에 모아 두었다가 한꺼번에 복사할 수도 있습니다.</p>
-      <h3>이런 때 쓰면 좋습니다</h3>
-      <ul>
-        <li>브랜드 로고에서 대표색을 CSS·디자인 툴에 옮길 때</li>
-        <li>참고 사진의 배색을 견본으로 모아 팔레트를 만들 때</li>
-        <li>화면 캡처 후 버튼·배경색 코드를 바로 확인할 때</li>
-      </ul>
-      <h3>활용 팁</h3>
-      <ul>
-        <li>가는 선·작은 아이콘은 확대한 뒤 픽셀 단위로 찍으면 정확합니다.</li>
-        <li>사진 압축·그림자 때문에 같은 물체라도 지점마다 값이 달라질 수 있으니 여러 점을 비교하세요.</li>
-        <li>외부 URL이 CORS로 막히면 파일을 내려받아 업로드하세요.</li>
-      </ul>
-      <h3>주의할 점</h3>
-      <ul>
-        <li>모니터 보정·브라우저 색 공간에 따라 체감 색과 코드가 조금 다를 수 있습니다.</li>
-        <li>CMYK 값은 참고용 변환이며, 인쇄 최종본은 전용 프로그램에서 프로파일을 적용하세요.</li>
-      </ul>
-      <h3>자주 묻는 질문</h3>
-      <p><strong>어떤 코드를 쓰면 되나요?</strong> 웹·CSS는 HEX 또는 RGB가 일반적입니다. 밝기만 살짝 바꿀 때는 HSL이 다루기 쉽습니다.</p>
-      <p><strong>견본이 사라졌어요.</strong> 스와치는 페이지를 새로고침하면 초기화됩니다. 필요한 코드는 복사해 따로 저장하세요.</p>
-      <h3>관련 가이드</h3>
-      <ul>
-        <li><a href="guides/picker.html">컬러 피커 가이드</a></li>
-        <li><a href="guides/editor.html">이미지 자르기·회전 가이드</a></li>
-        <li><a href="guides/convert.html">이미지 형식 변환 가이드</a></li>
-      </ul>
-    </section>
 
     <button type="button" class="back-btn" id="backHomeFromPickerBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>

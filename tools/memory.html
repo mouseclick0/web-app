@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <base href="../" />
-  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="memory";</script>
+  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="memory";document.documentElement.classList.add("wtb-tool-page");</script>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
@@ -3954,19 +3954,19 @@
       }
     }
       .tool-page-guide {
-      margin-top: 1.75rem;
-      padding: 1.15rem 0 0.25rem;
-      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      margin: 0.85rem 0 1.35rem;
+      padding: 0 0 1.1rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
       text-align: left;
       max-width: 42rem;
     }
     .tool-page-guide h2 {
-      margin: 0 0 0.75rem;
+      margin: 0 0 0.65rem;
       font-size: 1.12rem;
       letter-spacing: -0.01em;
     }
     .tool-page-guide h3 {
-      margin: 1rem 0 0.4rem;
+      margin: 0.9rem 0 0.35rem;
       font-size: 0.95rem;
     }
     .tool-page-guide p,
@@ -3975,10 +3975,11 @@
       font-size: 0.9rem;
       line-height: 1.65;
     }
-    .tool-page-guide p { margin: 0 0 0.55rem; }
-    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide p { margin: 0 0 0.5rem; }
+    .tool-page-guide ul { margin: 0 0 0.3rem; padding-left: 1.15rem; }
     .tool-page-guide a { color: var(--accent); text-decoration: none; }
     .tool-page-guide a:hover { text-decoration: underline; }
+    html.wtb-tool-page #homeView { display: none !important; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -4676,42 +4677,7 @@
       <h2 data-i18n="memory.title">기억력 테스트</h2>
     </div>
     <p class="subtitle" data-i18n="memory.subtitle">보드 크기를 고르고 카드 뒤에 숨은 이모지 짝을 모두 찾아 매칭하세요. 적은 시도·빠른 시간이 목표입니다.</p>
-
-    <div class="memory-hud" aria-live="polite">
-      <div><span data-i18n="memory.pairs">쌍</span><strong id="memoryPairsHud">0 / 8</strong></div>
-      <div><span data-i18n="memory.time">시간</span><strong id="memoryTimeHud">0.00s</strong></div>
-      <div><span data-i18n="memory.moves">시도</span><strong id="memoryMovesHud">0</strong></div>
-      <div><span data-i18n="memory.accuracy">정확도</span><strong id="memoryAccuracyHud">0%</strong></div>
-    </div>
-
-    <div class="memory-diffs">
-      <button type="button" class="memory-diff active" data-level="easy" id="memoryDiffEasy" data-i18n="memory.diff.easy">초급 · 4×4</button>
-      <button type="button" class="memory-diff" data-level="normal" id="memoryDiffNormal" data-i18n="memory.diff.normal">중급 · 6×6</button>
-      <button type="button" class="memory-diff" data-level="hard" id="memoryDiffHard" data-i18n="memory.diff.hard">고급 · 8×8</button>
-    </div>
-
-    <div class="memory-actions">
-      <button type="button" class="memory-start-btn" id="memoryStartBtn" data-i18n="memory.start">테스트 시작</button>
-      <button type="button" id="memoryRestartBtn" data-i18n="memory.restart">다시하기</button>
-    </div>
-
-    <p class="memory-status" id="memoryStatus">시작을 누르면 카드가 섞입니다.</p>
-
-    <div class="memory-board" id="memoryBoard" role="grid" data-i18n-aria="memory.boardAria" aria-label="이모지 매칭 보드"></div>
-
-    <div class="memory-result" id="memoryResult">
-      <h2 data-i18n="memory.result">결과</h2>
-      <p class="memory-result-time" id="memoryFinalTime">0.00s</p>
-      <p class="hint" data-i18n="memory.finalTime" style="margin-top:0;margin-bottom:0.75rem;">최종 시간</p>
-      <div class="memory-result-meta">
-        <div><span data-i18n="memory.moves">시도</span><strong id="memoryFinalMoves">0</strong></div>
-        <div><span data-i18n="memory.accuracy">정확도</span><strong id="memoryFinalAccuracy">0%</strong></div>
-      </div>
-      <button type="button" class="entry-btn" id="memoryShareBtn" data-i18n="memory.share">결과 공유</button>
-    </div>
-
-    <p class="memory-hint" data-i18n="memory.hint">한 쌍을 맞출 때마다 카드가 고정되고 효과음이 울립니다. 모두 맞추면 완료 팡파레가 나옵니다.</p>
-        <section class="tool-page-guide" aria-label="기억력 테스트 이용 안내">
+    <section class="tool-page-guide" aria-label="기억력 테스트 이용 안내">
       <h2>기억력 테스트 이용 안내</h2>
       <p>뒤집힌 카드에서 같은 이모지 쌍을 찾는 기억 게임입니다. 보드 크기와 시도 횟수·시간을 함께 볼 수 있어, 가볍게 위치 기억을 연습하는 용도로 쓰기 좋습니다.</p>
       <p>처음 몇 장은 정보를 모으는 단계입니다. 무작정 맞추려 하기보다, 본 이모지의 위치를 대략적인 구역(좌상·우하 등)으로 기억하는 편이 시도 횟수를 줄입니다.</p>
@@ -4747,6 +4713,41 @@
       </ul>
     </section>
 
+
+    <div class="memory-hud" aria-live="polite">
+      <div><span data-i18n="memory.pairs">쌍</span><strong id="memoryPairsHud">0 / 8</strong></div>
+      <div><span data-i18n="memory.time">시간</span><strong id="memoryTimeHud">0.00s</strong></div>
+      <div><span data-i18n="memory.moves">시도</span><strong id="memoryMovesHud">0</strong></div>
+      <div><span data-i18n="memory.accuracy">정확도</span><strong id="memoryAccuracyHud">0%</strong></div>
+    </div>
+
+    <div class="memory-diffs">
+      <button type="button" class="memory-diff active" data-level="easy" id="memoryDiffEasy" data-i18n="memory.diff.easy">초급 · 4×4</button>
+      <button type="button" class="memory-diff" data-level="normal" id="memoryDiffNormal" data-i18n="memory.diff.normal">중급 · 6×6</button>
+      <button type="button" class="memory-diff" data-level="hard" id="memoryDiffHard" data-i18n="memory.diff.hard">고급 · 8×8</button>
+    </div>
+
+    <div class="memory-actions">
+      <button type="button" class="memory-start-btn" id="memoryStartBtn" data-i18n="memory.start">테스트 시작</button>
+      <button type="button" id="memoryRestartBtn" data-i18n="memory.restart">다시하기</button>
+    </div>
+
+    <p class="memory-status" id="memoryStatus">시작을 누르면 카드가 섞입니다.</p>
+
+    <div class="memory-board" id="memoryBoard" role="grid" data-i18n-aria="memory.boardAria" aria-label="이모지 매칭 보드"></div>
+
+    <div class="memory-result" id="memoryResult">
+      <h2 data-i18n="memory.result">결과</h2>
+      <p class="memory-result-time" id="memoryFinalTime">0.00s</p>
+      <p class="hint" data-i18n="memory.finalTime" style="margin-top:0;margin-bottom:0.75rem;">최종 시간</p>
+      <div class="memory-result-meta">
+        <div><span data-i18n="memory.moves">시도</span><strong id="memoryFinalMoves">0</strong></div>
+        <div><span data-i18n="memory.accuracy">정확도</span><strong id="memoryFinalAccuracy">0%</strong></div>
+      </div>
+      <button type="button" class="entry-btn" id="memoryShareBtn" data-i18n="memory.share">결과 공유</button>
+    </div>
+
+    <p class="memory-hint" data-i18n="memory.hint">한 쌍을 맞출 때마다 카드가 고정되고 효과음이 울립니다. 모두 맞추면 완료 팡파레가 나옵니다.</p>
     <button type="button" class="back-btn" id="backHomeFromMemoryBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>
 

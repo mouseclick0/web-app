@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <base href="../" />
-  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="gomoku";</script>
+  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="gomoku";document.documentElement.classList.add("wtb-tool-page");</script>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
@@ -3954,19 +3954,19 @@
       }
     }
       .tool-page-guide {
-      margin-top: 1.75rem;
-      padding: 1.15rem 0 0.25rem;
-      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      margin: 0.85rem 0 1.35rem;
+      padding: 0 0 1.1rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
       text-align: left;
       max-width: 42rem;
     }
     .tool-page-guide h2 {
-      margin: 0 0 0.75rem;
+      margin: 0 0 0.65rem;
       font-size: 1.12rem;
       letter-spacing: -0.01em;
     }
     .tool-page-guide h3 {
-      margin: 1rem 0 0.4rem;
+      margin: 0.9rem 0 0.35rem;
       font-size: 0.95rem;
     }
     .tool-page-guide p,
@@ -3975,10 +3975,11 @@
       font-size: 0.9rem;
       line-height: 1.65;
     }
-    .tool-page-guide p { margin: 0 0 0.55rem; }
-    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide p { margin: 0 0 0.5rem; }
+    .tool-page-guide ul { margin: 0 0 0.3rem; padding-left: 1.15rem; }
     .tool-page-guide a { color: var(--accent); text-decoration: none; }
     .tool-page-guide a:hover { text-decoration: underline; }
+    html.wtb-tool-page #homeView { display: none !important; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -4633,42 +4634,7 @@
       <h2 data-i18n="gomoku.title">오목 게임</h2>
     </div>
     <p class="subtitle" data-i18n="gomoku.subtitle">돌 색을 고른 뒤 레벨 1~99 AI와 19×19 오목(5목)을 두세요.</p>
-
-    <div class="gomoku-options">
-      <div class="gomoku-options-row">
-        <label class="form-field" for="gomokuColorSelect">
-          <span data-i18n="gomoku.color">내 돌 색</span>
-          <select class="gomoku-select" id="gomokuColorSelect">
-            <option value="black" data-i18n="gomoku.color.black">흑 (선공)</option>
-            <option value="white" data-i18n="gomoku.color.white">백 (후공)</option>
-          </select>
-        </label>
-      </div>
-      <label class="form-field" for="gomokuLevelInput">
-        <span data-i18n="gomoku.level">AI 레벨 (1–99)</span>
-        <input class="gomoku-level-input" id="gomokuLevelInput" type="number" min="1" max="99" value="1" />
-      </label>
-    </div>
-
-    <div class="gomoku-actions">
-      <button type="button" class="gomoku-start-btn" id="gomokuStartBtn" data-i18n="gomoku.start">대국 시작</button>
-      <button type="button" id="gomokuRestartBtn" data-i18n="gomoku.restart">다시 시작</button>
-    </div>
-
-    <div class="gomoku-hud" aria-live="polite">
-      <div><span data-i18n="gomoku.hud.level">레벨</span><strong id="gomokuLevelHud">1</strong></div>
-      <div><span data-i18n="gomoku.hud.turn">차례</span><strong id="gomokuTurnHud">-</strong></div>
-      <div><span data-i18n="gomoku.hud.you">나</span><strong id="gomokuYouHud">흑</strong></div>
-      <div><span data-i18n="gomoku.hud.ai">AI</span><strong id="gomokuAiHud">백</strong></div>
-    </div>
-
-    <p class="gomoku-status" id="gomokuStatus">옵션을 고른 뒤 대국 시작을 눌러 주세요.</p>
-
-    <div class="gomoku-board-wrap">
-      <div class="gomoku-board" id="gomokuBoard" role="grid" data-i18n-aria="gomoku.boardAria" aria-label="오목 판"></div>
-    </div>
-
-        <section class="tool-page-guide" aria-label="오목 이용 안내">
+    <section class="tool-page-guide" aria-label="오목 이용 안내">
       <h2>오목 이용 안내</h2>
       <p>가로·세로·대각선 다섯 목을 먼저 만드는 사람이 이기는 대국 게임입니다. AI 난이도와 흑·백을 고를 수 있어, 혼자 연습하거나 가볍게 승부를 즐기기에 적합합니다.</p>
       <p>열린 3을 두 개 동시에 만드는 수가 승기를 잡는 전형적인 패턴입니다. 반대로 상대가 그 형태를 노리면 공격 한 수보다 방어가 급합니다. 초보 단계에서는 ‘내 수’보다 ‘상대가 다음 수에 이길 수 있는가’를 먼저 보세요.</p>
@@ -4703,6 +4669,41 @@
         <li><a href="tools/index.html">도구 목록</a></li>
       </ul>
     </section>
+
+
+    <div class="gomoku-options">
+      <div class="gomoku-options-row">
+        <label class="form-field" for="gomokuColorSelect">
+          <span data-i18n="gomoku.color">내 돌 색</span>
+          <select class="gomoku-select" id="gomokuColorSelect">
+            <option value="black" data-i18n="gomoku.color.black">흑 (선공)</option>
+            <option value="white" data-i18n="gomoku.color.white">백 (후공)</option>
+          </select>
+        </label>
+      </div>
+      <label class="form-field" for="gomokuLevelInput">
+        <span data-i18n="gomoku.level">AI 레벨 (1–99)</span>
+        <input class="gomoku-level-input" id="gomokuLevelInput" type="number" min="1" max="99" value="1" />
+      </label>
+    </div>
+
+    <div class="gomoku-actions">
+      <button type="button" class="gomoku-start-btn" id="gomokuStartBtn" data-i18n="gomoku.start">대국 시작</button>
+      <button type="button" id="gomokuRestartBtn" data-i18n="gomoku.restart">다시 시작</button>
+    </div>
+
+    <div class="gomoku-hud" aria-live="polite">
+      <div><span data-i18n="gomoku.hud.level">레벨</span><strong id="gomokuLevelHud">1</strong></div>
+      <div><span data-i18n="gomoku.hud.turn">차례</span><strong id="gomokuTurnHud">-</strong></div>
+      <div><span data-i18n="gomoku.hud.you">나</span><strong id="gomokuYouHud">흑</strong></div>
+      <div><span data-i18n="gomoku.hud.ai">AI</span><strong id="gomokuAiHud">백</strong></div>
+    </div>
+
+    <p class="gomoku-status" id="gomokuStatus">옵션을 고른 뒤 대국 시작을 눌러 주세요.</p>
+
+    <div class="gomoku-board-wrap">
+      <div class="gomoku-board" id="gomokuBoard" role="grid" data-i18n-aria="gomoku.boardAria" aria-label="오목 판"></div>
+    </div>
 
     <button type="button" class="back-btn" id="backHomeFromGomokuBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>

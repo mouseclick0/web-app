@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <base href="../" />
-  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="flag";</script>
+  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="flag";document.documentElement.classList.add("wtb-tool-page");</script>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
@@ -3954,19 +3954,19 @@
       }
     }
       .tool-page-guide {
-      margin-top: 1.75rem;
-      padding: 1.15rem 0 0.25rem;
-      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      margin: 0.85rem 0 1.35rem;
+      padding: 0 0 1.1rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
       text-align: left;
       max-width: 42rem;
     }
     .tool-page-guide h2 {
-      margin: 0 0 0.75rem;
+      margin: 0 0 0.65rem;
       font-size: 1.12rem;
       letter-spacing: -0.01em;
     }
     .tool-page-guide h3 {
-      margin: 1rem 0 0.4rem;
+      margin: 0.9rem 0 0.35rem;
       font-size: 0.95rem;
     }
     .tool-page-guide p,
@@ -3975,10 +3975,11 @@
       font-size: 0.9rem;
       line-height: 1.65;
     }
-    .tool-page-guide p { margin: 0 0 0.55rem; }
-    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide p { margin: 0 0 0.5rem; }
+    .tool-page-guide ul { margin: 0 0 0.3rem; padding-left: 1.15rem; }
     .tool-page-guide a { color: var(--accent); text-decoration: none; }
     .tool-page-guide a:hover { text-decoration: underline; }
+    html.wtb-tool-page #homeView { display: none !important; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -4719,41 +4720,7 @@
       <h2 data-i18n="flag.title">나라 국기 맞추기</h2>
     </div>
     <p class="subtitle" data-i18n="flag.subtitle">국기를 보고 나라 이름을 고르세요. 정답과 함께 해당 국가의 수도도 바로 확인할 수 있습니다.</p>
-
-    <ol class="flag-howto">
-      <li data-i18n="flag.how1">국기를 보고 4개 보기 중 나라 이름을 선택하세요.</li>
-      <li data-i18n="flag.how2">정답이면 연승·점수가 쌓이고, 오답이면 생명이 줄며 정답 나라와 수도를 보여 줍니다. 연승은 생명이 다할 때까지 유지됩니다.</li>
-      <li data-i18n="flag.how3">UN 회원국·속령 국기가 나오며 다시 시작 전까지 같은 국기는 중복되지 않습니다. 연승이 오를수록 중급·고급으로 진행하고, 생명 3개가 모두 소진되면 게임이 끝납니다.</li>
-    </ol>
-
-    <div class="flag-hud" aria-live="polite">
-      <div><span data-i18n="flag.streak">연승</span><strong id="flagStreakHud">0</strong></div>
-      <div><span data-i18n="flag.lives">생명</span><strong id="flagLivesHud">❤️❤️❤️</strong></div>
-      <div><span data-i18n="flag.score">점수</span><strong id="flagScoreHud">0</strong></div>
-      <div><span data-i18n="flag.best">최고</span><strong id="flagBestHud">0</strong></div>
-    </div>
-
-    <div class="flag-idle" id="flagIdle">
-      <div class="flag-idle-icon" aria-hidden="true">🏳️</div>
-      <p data-i18n="flag.idle">게임 시작을 눌러 국기 퀴즈를 시작하세요.</p>
-      <button type="button" class="flag-start-btn" id="flagStartBtn" data-i18n="flag.start">게임 시작</button>
-    </div>
-
-    <div id="flagPlayArea" hidden>
-      <div class="flag-stage">
-        <div class="flag-frame">
-          <img id="flagImage" alt="" decoding="async" />
-        </div>
-        <div class="flag-choices" id="flagChoices" role="group" data-i18n-aria="flag.choicesAria" aria-label="나라 선택지"></div>
-      </div>
-      <div class="flag-feedback" id="flagFeedback" hidden></div>
-      <div class="flag-actions">
-        <button type="button" class="flag-next-btn" id="flagNextBtn" hidden data-i18n="flag.next">다음 문제</button>
-        <button type="button" class="flag-restart-btn" id="flagRestartBtn" hidden data-i18n="flag.restart">다시 시작</button>
-      </div>
-    </div>
-
-        <section class="tool-page-guide" aria-label="나라 국기 맞추기 이용 안내">
+    <section class="tool-page-guide" aria-label="나라 국기 맞추기 이용 안내">
       <h2>나라 국기 맞추기 이용 안내</h2>
       <p>국기 이미지를 보고 나라를 고르는 4지선다 퀴즈입니다. 정답을 확인하면서 수도 정보도 볼 수 있어, 지리 상식을 가볍게 점검하거나 아이와 함께 배우기 좋습니다.</p>
       <p>틀렸을 때 수도까지 함께 읽으면 ‘국기–나라–수도’가 한 세트로 남습니다. 비슷해 보이는 국기가 나왔을 때는 색 순서보다 문양(별, 초승달, 십자가, 문장)부터 보세요.</p>
@@ -4788,6 +4755,40 @@
         <li><a href="guides/games.html">브라우저 게임 가이드</a></li>
       </ul>
     </section>
+
+
+    <ol class="flag-howto">
+      <li data-i18n="flag.how1">국기를 보고 4개 보기 중 나라 이름을 선택하세요.</li>
+      <li data-i18n="flag.how2">정답이면 연승·점수가 쌓이고, 오답이면 생명이 줄며 정답 나라와 수도를 보여 줍니다. 연승은 생명이 다할 때까지 유지됩니다.</li>
+      <li data-i18n="flag.how3">UN 회원국·속령 국기가 나오며 다시 시작 전까지 같은 국기는 중복되지 않습니다. 연승이 오를수록 중급·고급으로 진행하고, 생명 3개가 모두 소진되면 게임이 끝납니다.</li>
+    </ol>
+
+    <div class="flag-hud" aria-live="polite">
+      <div><span data-i18n="flag.streak">연승</span><strong id="flagStreakHud">0</strong></div>
+      <div><span data-i18n="flag.lives">생명</span><strong id="flagLivesHud">❤️❤️❤️</strong></div>
+      <div><span data-i18n="flag.score">점수</span><strong id="flagScoreHud">0</strong></div>
+      <div><span data-i18n="flag.best">최고</span><strong id="flagBestHud">0</strong></div>
+    </div>
+
+    <div class="flag-idle" id="flagIdle">
+      <div class="flag-idle-icon" aria-hidden="true">🏳️</div>
+      <p data-i18n="flag.idle">게임 시작을 눌러 국기 퀴즈를 시작하세요.</p>
+      <button type="button" class="flag-start-btn" id="flagStartBtn" data-i18n="flag.start">게임 시작</button>
+    </div>
+
+    <div id="flagPlayArea" hidden>
+      <div class="flag-stage">
+        <div class="flag-frame">
+          <img id="flagImage" alt="" decoding="async" />
+        </div>
+        <div class="flag-choices" id="flagChoices" role="group" data-i18n-aria="flag.choicesAria" aria-label="나라 선택지"></div>
+      </div>
+      <div class="flag-feedback" id="flagFeedback" hidden></div>
+      <div class="flag-actions">
+        <button type="button" class="flag-next-btn" id="flagNextBtn" hidden data-i18n="flag.next">다음 문제</button>
+        <button type="button" class="flag-restart-btn" id="flagRestartBtn" hidden data-i18n="flag.restart">다시 시작</button>
+      </div>
+    </div>
 
     <button type="button" class="back-btn" id="backHomeFromFlagBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>

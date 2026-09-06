@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <base href="../" />
-  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="speech";</script>
+  <script>window.__WTB_TOOL_PAGE__=true;window.__WTB_INITIAL_VIEW__="speech";document.documentElement.classList.add("wtb-tool-page");</script>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
@@ -3954,19 +3954,19 @@
       }
     }
       .tool-page-guide {
-      margin-top: 1.75rem;
-      padding: 1.15rem 0 0.25rem;
-      border-top: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+      margin: 0.85rem 0 1.35rem;
+      padding: 0 0 1.1rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
       text-align: left;
       max-width: 42rem;
     }
     .tool-page-guide h2 {
-      margin: 0 0 0.75rem;
+      margin: 0 0 0.65rem;
       font-size: 1.12rem;
       letter-spacing: -0.01em;
     }
     .tool-page-guide h3 {
-      margin: 1rem 0 0.4rem;
+      margin: 0.9rem 0 0.35rem;
       font-size: 0.95rem;
     }
     .tool-page-guide p,
@@ -3975,10 +3975,11 @@
       font-size: 0.9rem;
       line-height: 1.65;
     }
-    .tool-page-guide p { margin: 0 0 0.55rem; }
-    .tool-page-guide ul { margin: 0 0 0.35rem; padding-left: 1.15rem; }
+    .tool-page-guide p { margin: 0 0 0.5rem; }
+    .tool-page-guide ul { margin: 0 0 0.3rem; padding-left: 1.15rem; }
     .tool-page-guide a { color: var(--accent); text-decoration: none; }
     .tool-page-guide a:hover { text-decoration: underline; }
+    html.wtb-tool-page #homeView { display: none !important; }
   </style>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -5390,6 +5391,42 @@
       <h2 data-i18n="speech.title">발표 시간 계산기</h2>
     </div>
     <p class="subtitle" data-i18n="speech.subtitle">발표 대본을 넣으면 예상 발표 시간과 글자 수를 계산합니다. 입력한 내용은 서버로 전송되지 않고 브라우저 안에서만 처리됩니다.</p>
+    <section class="tool-page-guide" aria-label="발표 시간 계산 이용 안내">
+      <h2>발표 시간 계산 이용 안내</h2>
+      <p>수업 발표, 면접, 회의 브리핑처럼 “이 원고를 읽으면 몇 분이나 걸릴지”가 궁금할 때 쓰는 계산기입니다. 말하기 속도와 목표 시간을 맞추면 분량 과부족을 바로 가늠할 수 있습니다.</p>
+      <p>목표 시간보다 30초~1분 짧게 나오는 분량으로 맞추면, 실제 발표에서 숨 고르기·슬라이드 전환 여유가 생깁니다. 반대로 계산이 목표보다 길면 예시·부연을 먼저 줄이는 편이 속도만 올리는 것보다 자연스럽습니다.</p>
+      <p>한영이 섞인 원고는 구간별로 나눠 계산해 보면 어느 부분이 시간을 잡아먹는지 보이기 쉽습니다. 리허설 후 슬라이더를 본인 속도에 맞게 저장해 두면(메모) 다음 발표 준비가 빨라집니다.</p>
+      <h3>사용법</h3>
+      <p>발표 대본을 붙여 넣고 말하기 속도와 목표 시간을 맞추면, 예상 발표 시간과 분량 과부족을 바로 확인할 수 있습니다.</p>
+      <p>프리셋으로 여유/보통/빠른 속도를 고르거나, 슬라이더로 세밀하게 조절한 뒤 요약 내용을 복사해 준비에 활용하세요.</p>
+      <h3>이런 때 쓰면 좋습니다</h3>
+      <ul>
+        <li>5분·10분 제한 발표에 맞춰 원고를 줄이거나 늘릴 때</li>
+        <li>한영 혼용 대본의 대략 소요 시간을 가늠할 때</li>
+        <li>리허설 전에 “너무 긴지”를 숫자로 먼저 확인할 때</li>
+      </ul>
+      <h3>활용 팁</h3>
+      <ul>
+        <li>실제 발표는 긴장·질의응답·자료 설명 때문에 더 길어질 수 있으니 여유를 두세요.</li>
+        <li>중요한 발표 전에는 소리 내어 읽어 실제 시간을 한 번 더 재는 것이 좋습니다.</li>
+        <li>디데이 계산기로 발표일까지 남은 날을 함께 보면 연습 일정을 잡기 쉽습니다.</li>
+      </ul>
+      <h3>주의할 점</h3>
+      <ul>
+        <li>계산값은 평균 속도 기준 추정치입니다. 사람·상황마다 말하기 속도가 다릅니다.</li>
+        <li>한국어는 글자, 영어는 단어 기준으로 섞어 계산합니다.</li>
+      </ul>
+      <h3>자주 묻는 질문</h3>
+      <p><strong>슬라이드 설명 시간도 포함되나요?</strong> 대본에 적힌 말만 기준으로 합니다. 침묵·데모·질의응답은 별도로 시간을 남겨 두세요.</p>
+      <p><strong>결과가 실제와 달랐어요.</strong> 평소 말하기 속도에 맞게 슬라이더를 조정한 뒤, 한 번 소리 내어 읽어 보정하세요.</p>
+      <h3>관련 가이드</h3>
+      <ul>
+        <li><a href="guides/speech.html">발표 시간 계산 가이드</a></li>
+        <li><a href="guides/dday.html">디데이 계산 가이드</a></li>
+        <li><a href="guides/overview.html">사이트 한눈에 보기</a></li>
+      </ul>
+    </section>
+
 
     <label class="form-field" for="speechInput">
       <span data-i18n="speech.scriptLabel">발표 대본</span>
@@ -5445,42 +5482,6 @@
       <button type="button" class="editor-btn" id="speechCopyBtn" data-i18n="speech.copy">결과 복사</button>
       <button type="button" class="editor-btn" id="speechClearBtn" data-i18n="speech.clear">대본 지우기</button>
     </div>
-
-        <section class="tool-page-guide" aria-label="발표 시간 계산 이용 안내">
-      <h2>발표 시간 계산 이용 안내</h2>
-      <p>수업 발표, 면접, 회의 브리핑처럼 “이 원고를 읽으면 몇 분이나 걸릴지”가 궁금할 때 쓰는 계산기입니다. 말하기 속도와 목표 시간을 맞추면 분량 과부족을 바로 가늠할 수 있습니다.</p>
-      <p>목표 시간보다 30초~1분 짧게 나오는 분량으로 맞추면, 실제 발표에서 숨 고르기·슬라이드 전환 여유가 생깁니다. 반대로 계산이 목표보다 길면 예시·부연을 먼저 줄이는 편이 속도만 올리는 것보다 자연스럽습니다.</p>
-      <p>한영이 섞인 원고는 구간별로 나눠 계산해 보면 어느 부분이 시간을 잡아먹는지 보이기 쉽습니다. 리허설 후 슬라이더를 본인 속도에 맞게 저장해 두면(메모) 다음 발표 준비가 빨라집니다.</p>
-      <h3>사용법</h3>
-      <p>발표 대본을 붙여 넣고 말하기 속도와 목표 시간을 맞추면, 예상 발표 시간과 분량 과부족을 바로 확인할 수 있습니다.</p>
-      <p>프리셋으로 여유/보통/빠른 속도를 고르거나, 슬라이더로 세밀하게 조절한 뒤 요약 내용을 복사해 준비에 활용하세요.</p>
-      <h3>이런 때 쓰면 좋습니다</h3>
-      <ul>
-        <li>5분·10분 제한 발표에 맞춰 원고를 줄이거나 늘릴 때</li>
-        <li>한영 혼용 대본의 대략 소요 시간을 가늠할 때</li>
-        <li>리허설 전에 “너무 긴지”를 숫자로 먼저 확인할 때</li>
-      </ul>
-      <h3>활용 팁</h3>
-      <ul>
-        <li>실제 발표는 긴장·질의응답·자료 설명 때문에 더 길어질 수 있으니 여유를 두세요.</li>
-        <li>중요한 발표 전에는 소리 내어 읽어 실제 시간을 한 번 더 재는 것이 좋습니다.</li>
-        <li>디데이 계산기로 발표일까지 남은 날을 함께 보면 연습 일정을 잡기 쉽습니다.</li>
-      </ul>
-      <h3>주의할 점</h3>
-      <ul>
-        <li>계산값은 평균 속도 기준 추정치입니다. 사람·상황마다 말하기 속도가 다릅니다.</li>
-        <li>한국어는 글자, 영어는 단어 기준으로 섞어 계산합니다.</li>
-      </ul>
-      <h3>자주 묻는 질문</h3>
-      <p><strong>슬라이드 설명 시간도 포함되나요?</strong> 대본에 적힌 말만 기준으로 합니다. 침묵·데모·질의응답은 별도로 시간을 남겨 두세요.</p>
-      <p><strong>결과가 실제와 달랐어요.</strong> 평소 말하기 속도에 맞게 슬라이더를 조정한 뒤, 한 번 소리 내어 읽어 보정하세요.</p>
-      <h3>관련 가이드</h3>
-      <ul>
-        <li><a href="guides/speech.html">발표 시간 계산 가이드</a></li>
-        <li><a href="guides/dday.html">디데이 계산 가이드</a></li>
-        <li><a href="guides/overview.html">사이트 한눈에 보기</a></li>
-      </ul>
-    </section>
 
     <button type="button" class="back-btn" id="backHomeFromSpeechBtn" data-i18n="common.backHome">메인페이지로 돌아가기</button>
   </main>

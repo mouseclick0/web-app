@@ -53,7 +53,7 @@ const TOOLS = [
     ],
     guides: [
       { href: "guides/weather.html", label: "날씨 활용 가이드" },
-      { href: "guides/ip.html", label: "내 아이피 찾기 가이드" },
+      { href: "guides/precip-probability.html", label: "강수 확률 읽는 법" },
       { href: "faq.html", label: "FAQ" }
     ]
   },
@@ -141,8 +141,8 @@ const TOOLS = [
     ],
     guides: [
       { href: "guides/ip.html", label: "내 아이피 찾기 가이드" },
-      { href: "privacy.html", label: "개인정보처리방침" },
-      { href: "faq.html", label: "FAQ" }
+      { href: "guides/ipv4-vs-ipv6.html", label: "IPv4와 IPv6의 차이" },
+      { href: "privacy.html", label: "개인정보처리방침" }
     ]
   },
   {
@@ -230,8 +230,8 @@ const TOOLS = [
     ],
     guides: [
       { href: "guides/convert.html", label: "이미지 형식 변환 가이드" },
-      { href: "guides/editor.html", label: "이미지 자르기·회전 가이드" },
-      { href: "guides/picker.html", label: "컬러 피커 가이드" }
+      { href: "guides/image-formats-compare.html", label: "WebP vs PNG vs JPG 비교" },
+      { href: "guides/editor.html", label: "이미지 자르기·회전 가이드" }
     ]
   },
   {
@@ -709,8 +709,8 @@ const TOOLS = [
     ],
     guides: [
       { href: "guides/chess.html", label: "체스 가이드" },
-      { href: "guides/games.html", label: "브라우저 게임 가이드" },
-      { href: "tools/gomoku.html", label: "오목" }
+      { href: "guides/chess-openings-beginner.html", label: "체스 오프닝 초보 가이드" },
+      { href: "guides/games.html", label: "브라우저 게임 가이드" }
     ]
   },
   {

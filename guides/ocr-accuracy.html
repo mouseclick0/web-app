@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8051604788880688" crossorigin="anonymous"></script>
+  <title>OCR 인식률을 높이는 방법 | WebToolBay</title>
+  <meta name="description" content="이미지 텍스트 추출(OCR) 정확도를 높이는 촬영·전처리 요령, 언어 선택, 표·손글씨 한계, 브라우저에서 안전하게 처리하는 이유를 정리합니다." />
+  <link rel="canonical" href="https://webtoolbay.com/guides/ocr-accuracy.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">WebToolBay</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="../index.html">홈</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../about.html">소개</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">홈</a> · <a href="index.html">가이드</a> · OCR 인식률을 높이는 실전 방법</p>
+    <article class="article-card">
+      <h1>OCR 인식률을 높이는 실전 방법</h1>
+      <p class="lead">OCR은 마법이 아니라 ‘읽기 쉬운 글자 이미지’일수록 잘 동작합니다. 같은 도구라도 사진만 바꿔도 결과가 크게 달라집니다. 브라우저에서 처리되는 WebToolBay OCR을 더 정확히 쓰려면 입력 이미지 품질을 먼저 개선하는 것이 핵심입니다.</p>
+
+      <h2>촬영이 반이다</h2>
+      <p>글자가 화면에 크게 들어오게, 그림자·손가락·반사광이 덜하게 찍으세요. 기울어진 사진은 인식 전에 <a href="../tools/editor.html">자르기·회전</a>으로 수평을 맞추면 오인식이 줄어듭니다. 너무 강한 압축 JPG는 획이 깨질 수 있으니, 가능하면 선명한 원본에 가깝게 유지합니다.</p>
+
+      <h2>한 번에 전체를 고집하지 않기</h2>
+      <p>영수증·표·책 두 페이지처럼 정보가 많으면 영역을 나눠 여러 번 추출한 뒤 붙여 넣는 편이 정확할 때가 많습니다. 여백이 넓은 한 줄 제목보다, 빽빽한 다단 배치는 줄 순서가 섞일 수 있으니 결과를 문단 단위로 교정하세요.</p>
+
+      <h2>언어 설정</h2>
+      <p>한국어 문서는 한국어, 영어 서류는 영어처럼 주 언어를 맞추세요. 처음 쓰는 언어는 인식 데이터를 내려받아 시간이 걸릴 수 있고, 이후에는 브라우저에 저장되어 빨라집니다. 한영 혼용은 주 언어를 고른 뒤 고유명사만 수동 교정하는 방식이 현실적입니다.</p>
+
+      <h2>잘 되는 것 / 어려운 것</h2>
+      <p>인쇄체·고대비·단순한 배경은 강하고, 손글씨·저해상도·워터마크·복잡한 배경은 약합니다. 숫자·날짜·계좌처럼 한 글자 실수가 치명적인 값은 반드시 원본과 대조하세요. PDF는 직접 지원하지 않으므로 페이지 이미지로 만든 뒤 사용합니다.</p>
+
+      <h2>프라이버시 관점</h2>
+      <p>WebToolBay OCR은 이미지를 서버에 올리지 않고 기기 브라우저 안에서 처리합니다. 민감한 서류라도 ‘전송되지 않는다’는 점은 안심 요인이지만, 화면 공유·스크린샷 유출 같은 다른 경로는 여전히 주의해야 합니다. 자세한 흐름은 <a href="ocr.html">OCR 가이드</a>를 참고하세요.</p>
+
+      <h2>표·다단·작은 글씨 대응</h2>
+      <p>표는 칸 선이 글자로 오인되거나 열 순서가 뒤바뀔 수 있습니다. 열이 중요한 데이터는 열 단위로 잘라 인식하거나, 인식 후 스프레드시트에 붙여 넣으며 정렬을 맞추세요. 작은 글씨는 해상도를 높여 다시 찍는 편이, 흐린 사진을 확대해 복구하는 것보다 낫습니다.</p>
+      <p>워터마크·도장·형광펜은 획을 가려 오인식 원인이 됩니다. 가능하면 깨끗한 재촬영이나 자르기로 방해 요소를 줄이세요.</p>
+
+      <h2>결과 검수 최소 루틴</h2>
+      <p>전체 문장을 다시 읽기 어렵다면 최소한 숫자, 날짜, 금액, 고유명사만 원본과 대조하세요. 이 네 가지만 막아도 OCR 사고의 대부분이 줄어듭니다. 민감 서류는 작업 후 다운로드 폴더에 불필요한 복사본이 남았는지 확인합니다.</p>
+
+      <h2>실무에 남기는 포인트</h2>
+      <p>OCR 품질은 모델보다 입력 사진에서 갈리는 경우가 많습니다. 촬영·교정·영역 분할·검수 루틴을 고정하면 도구를 바꿔도 결과가 안정됩니다.</p>
+      <p>브라우저 로컬 처리라도 결과 텍스트를 어디에 붙여 넣는지는 별도 위험입니다. 민감 정보는 저장 위치를 함께 관리하세요.</p>
+
+      <h2>한 가지 더</h2>
+      <p>촬영 각도가 비스듬하면 원근감 때문에 글자 높이가 달라져 인식이 흔들립니다. 가능하면 문서를 정면에서, 페이지 전체가 프레임 안에 들어오게 찍으세요. 유리 액자나 화면을 찍을 때는 조명 반사만 피해도 결과가 눈에 띄게 좋아집니다.</p>
+
+      <h2>추천 작업 순서</h2>
+      <p>① 촬영 ② 회전·자르기로 교정 ③ OCR 추출 ④ 숫자·고유명사 검수 ⑤ 필요 시 텍스트 파일 저장. 이 순서만 지켜도 ‘아예 글자를 다시 치는’ 시간을 크게 줄일 수 있습니다.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../tools/ocr.html">OCR 열기</a>
+        <a class="btn" href="ocr.html">OCR 가이드</a>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="../about.html">소개</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+        <a href="../terms.html">이용약관</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+      <p>© <span id="y"></span> WebToolBay</p>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

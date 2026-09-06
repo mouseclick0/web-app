@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8051604788880688" crossorigin="anonymous"></script>
+  <title>HEX·RGB·HSL 색 코드 차이 | WebToolBay</title>
+  <meta name="description" content="HEX, RGB, HSL, HSV, CMYK 색 코드의 차이와 쓰임새, 이미지에서 대표색을 정확히 뽑는 요령을 정리합니다." />
+  <link rel="canonical" href="https://webtoolbay.com/guides/color-codes.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">WebToolBay</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="../index.html">홈</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../about.html">소개</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">홈</a> · <a href="index.html">가이드</a> · HEX·RGB·HSL, 색 코드는 왜 여러 개일까</p>
+    <article class="article-card">
+      <h1>HEX·RGB·HSL, 색 코드는 왜 여러 개일까</h1>
+      <p class="lead">디자인 툴과 CSS, 인쇄 용도에 따라 색을 적는 방식이 다릅니다. 이미지 컬러 피커로 값을 뽑았다면, 그 숫자를 어디에 붙여 넣을지 이해하는 것이 다음 단계입니다. 이 글은 웹에서 가장 자주 만나는 표기를 중심으로 설명합니다.</p>
+
+      <h2>HEX: 웹의 기본 언어</h2>
+      <p>HEX는 #3D9CF5처럼 여섯 자리 16진수로 빨강·초록·파랑을 표현합니다. CSS, 많은 디자인 툴, 개발 협업에서 가장 흔합니다. 특별한 이유가 없으면 웹 작업의 기본 교환 형식으로 HEX를 쓰면 됩니다.</p>
+
+      <h2>RGB: 같은 정보를 십진수로</h2>
+      <p>RGB는 각 채널을 0~255 숫자로 적습니다. HEX와 본질적으로 같은 색 정보이며, 투명도(알파)를 코드에서 다루거나 계산할 때 편한 경우가 있습니다. ‘값이 다르다’기보다 ‘표기만 다르다’고 이해하면 됩니다.</p>
+
+      <h2>HSL: 밝기 조절에 강하다</h2>
+      <p>HSL은 색상·채도·밝기로 나눕니다. 버튼 hover 시 조금 밝게, 같은 톤의 단계적 팔레트를 만들 때 직관적입니다. 브랜드 메인 색을 정한 뒤 밝기만 바꿔 변형 색을 만들 때 유용합니다.</p>
+
+      <h2>HSV·CMYK는 언제?</h2>
+      <p>HSV는 그래픽 툴 색상 선택 UI와 가까운 표기입니다. CMYK는 인쇄용 개념이지만, 웹 도구의 단순 변환값은 참고용인 경우가 많습니다. 인쇄 최종본은 색상 프로파일이 있는 전용 프로그램에서 다루는 것이 안전합니다.</p>
+
+      <h2>피커로 대표색 뽑기</h2>
+      <p>그라데이션·그림자·안티앨리어싱 경계는 중간값이 나오기 쉽습니다. 로고의 평평한 단색 영역을 확대 후 클릭하세요. 여러 점을 스와치에 모아 비교하면 ‘진짜 브랜드 색’에 가깝게 고를 수 있습니다. 실습은 <a href="../tools/picker.html">이미지 컬러 피커</a>, 자세한 조작은 <a href="picker.html">컬러 피커 가이드</a>를 참고하세요.</p>
+
+      <h2>브랜드 색을 문서화하는 방법</h2>
+      <p>메인 색 하나와 밝은/어두운 변형 두 개, 중립 회색 한두 개만 정리해도 실무에 충분합니다. HEX를 기준값으로 적고, 필요 시 HSL 밝기만 바꿔 변형을 만드세요. 팀과 공유할 때는 이미지 파일보다 코드 목록이 재현성이 높습니다.</p>
+      <p>모니터마다 색이 달라 보여도, 파일에 기록된 코드 자체는 같습니다. 내 화면에서 예쁘다와 코드가 같다를 구분해 소통하면 수정 요청이 명확해집니다.</p>
+
+      <h2>접근성도 함께 생각하기</h2>
+      <p>배경과 글자 색의 대비가 낮으면 가독성이 떨어집니다. 예쁜 파스텔 조합이라도 본문 텍스트에는 충분한 대비를 유지하세요. 색 코드 추출 후 실제 UI에 적용해 보고, 작은 글씨에서도 읽히는지만 확인하면 완성도가 올라갑니다.</p>
+
+      <h2>실무에 남기는 포인트</h2>
+      <p>색 코드는 디자인 언어의 기본 단위입니다. 이미지에서 추출한 값을 문서화해 두면 재작업과 커뮤니케이션 비용이 줄어듭니다.</p>
+      <p>예쁜 색과 읽기 쉬운 색은 다를 수 있습니다. UI 텍스트에는 대비를 우선하고, 포인트 색은 절제해 쓰는 편이 안전한 경우가 많습니다.</p>
+
+      <h2>한 가지 더</h2>
+      <p>추출한 색을 CSS 변수(--brand, --brand-soft)로 이름 붙이면 재사용이 쉬워집니다. 디자인 툴과 개발이 함께 일할 때는 HEX를 단일 소스 오브 트루스로 정하고, HSL 변형은 문서에 부가적으로 적는 방식을 추천합니다.</p>
+
+      <h2>정리</h2>
+      <p>웹·CSS는 HEX/RGB, 톤 조절은 HSL, 인쇄는 전용 CMYK 워크플로. 목적에 맞는 표기를 고르고, 이미지에서 뽑을 때는 깨끗한 단색 영역을 겨냥하세요.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../tools/picker.html">컬러 피커 열기</a>
+        <a class="btn" href="picker.html">피커 가이드</a>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="../about.html">소개</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+        <a href="../terms.html">이용약관</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+      <p>© <span id="y"></span> WebToolBay</p>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

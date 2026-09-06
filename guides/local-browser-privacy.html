@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-adsense-account" content="ca-pub-8051604788880688" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8051604788880688" crossorigin="anonymous"></script>
+  <title>브라우저 로컬 도구와 개인정보 | WebToolBay</title>
+  <meta name="description" content="이미지가 서버로 안 가는 브라우저 로컬 처리의 의미, IP·위치 조회처럼 외부 요청이 필요한 기능의 차이, 안전하게 쓰는 체크리스트를 정리합니다." />
+  <link rel="canonical" href="https://webtoolbay.com/guides/local-browser-privacy.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="../index.html">WebToolBay</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="../index.html">홈</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../about.html">소개</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    <p class="breadcrumb"><a href="../index.html">홈</a> · <a href="index.html">가이드</a> · 브라우저에서만 처리되는 도구, 개인정보는?</p>
+    <article class="article-card">
+      <h1>브라우저에서만 처리되는 도구, 개인정보는?</h1>
+      <p class="lead">‘업로드 없이 처리’ ‘서버에 저장하지 않음’ 같은 문구는 편리하지만, 모든 기능이 같은 방식으로 동작하지는 않습니다. 어떤 작업은 기기 안에서 끝나고, 어떤 작업은 결과 조회를 위해 외부 서비스에 연결됩니다. 차이를 알면 민감한 자료를 다룰 때 판단이 쉬워집니다.</p>
+
+      <h2>로컬 처리란</h2>
+      <p>이미지 OCR·형식 변환·자르기·컬러 피커처럼 파일을 다루는 기능은, 설계상 브라우저가 기기 메모리에서 계산을 끝내는 방식입니다. 이 경우 파일이 WebToolBay 서버에 업로드되어 보관되지 않습니다. 다만 화면 녹화, 원격 지원, 브라우저 확장 프로그램 등 다른 경로로 정보가 샐 수는 있으니 ‘절대 무적’은 아닙니다.</p>
+
+      <h2>외부 조회가 필요한 기능</h2>
+      <p>날씨·공인 IP처럼 ‘내 기기만으로는 알 수 없는 정보’는 외부 API나 네트워크 조회가 필요합니다. 이때는 연결 과정에서 일반적인 웹 요청 메타데이터(IP 등)가 오갈 수 있습니다. 자세한 범위는 <a href="../privacy.html">개인정보처리방침</a>과 각 도구 가이드를 확인하세요.</p>
+
+      <h2>민감 자료 체크리스트</h2>
+      <p>① 신분증·의료·금융 서류는 OCR 후에도 결과를 어디 붙여 넣는지 검토 ② 공용 PC에서는 작업 후 다운로드 폴더·클립보드를 확인 ③ VPN이 필요한 작업과 로컬 이미지 작업을 구분해 생각 ④ 스크린샷에 불필요한 개인정보가 들어가지 않았는지 자르기</p>
+
+      <h2>광고·쿠키와의 관계</h2>
+      <p>사이트에 광고가 붙으면 광고 네트워크의 쿠키·식별자가 사용될 수 있습니다. 이는 로컬 이미지 처리와는 별 계열의 이슈입니다. 맞춤 광고 설정은 브라우저·구글 광고 설정에서 관리할 수 있으며, 방침 문서에 고지합니다.</p>
+
+      <h2>신뢰 페이지를 읽는 이유</h2>
+      <p>도구 화면만 보면 ‘편리함’만 보이고, 정책 페이지를 보면 ‘한계’가 보입니다. FAQ·소개·문의 채널이 열려 있는지는 유틸리티 사이트를 평가할 때 중요한 신호입니다. WebToolBay는 기능을 추가할 때 설명 문서도 같이 갱신하는 것을 목표로 합니다.</p>
+
+      <h2>공용 기기에서의 추가 주의</h2>
+      <p>도서관·회사 공용 PC에서는 로컬 처리라도 다운로드 폴더, 브라우저 기록, 자동 완성, 화면 잠금 여부를 확인하세요. 작업이 끝나면 관련 파일을 삭제하고 클립보드를 덮어쓰는 것이 좋습니다. 개인 기기보다 다음에 앉는 사람을 기준으로 생각하면 판단이 쉬워집니다.</p>
+      <p>확장 프로그램 중에는 페이지 내용을 읽는 것이 있습니다. 민감 서류를 다룰 때는 불필요한 확장을 잠시 끄거나, 신뢰하는 프로필만 사용하세요.</p>
+
+      <h2>기능별로 기대치를 나누기</h2>
+      <p>이미지 도구는 파일 업로드 부담 감소, 날씨/IP는 외부 조회 필요, 문의 양식은 사용자가 보낸 내용이 전달됩니다. 이 세 가지를 섞어 생각하지 않으면 여기 올리면 안 되는 정보를 잘못 판단하기 쉽습니다. 확신이 없으면 해당 가이드와 개인정보처리방침을 먼저 읽고 실행하세요.</p>
+
+      <h2>실무에 남기는 포인트</h2>
+      <p>프라이버시 판단은 ‘이 파일이 서버로 가는가’ 한 줄로 끝나지 않습니다. 화면 공유, 공용 PC, 확장 프로그램, 광고 쿠키까지 범위를 나눠 보세요.</p>
+      <p>기능 유형(로컬 처리 / 외부 조회 / 사용자 전송)을 구분해 기대치를 정하면, 민감 자료를 다룰 때 실수가 줄어듭니다.</p>
+
+      <h2>한 가지 더</h2>
+      <p>회사에서 지급한 기기 관리 정책(MDM)이 있으면, 로컬 처리라도 화면 캡처·파일 저장 규칙이 따로 적용될 수 있습니다. 개인 민감 자료는 개인 기기에서 다루는 편이 정책 충돌이 적습니다. 확신이 없으면 보안 담당자에게 먼저 확인하세요.</p>
+
+      <h2>정리</h2>
+      <p>로컬 처리 도구는 파일 업로드 부담을 줄여 주지만, 모든 기능이 완전 오프라인은 아닙니다. 민감도에 따라 도구를 고르고, 정책 문서와 가이드를 함께 확인하세요. 사이트 구성은 <a href="overview.html">한눈에 보기</a>에서 다시 정리할 수 있습니다.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../privacy.html">개인정보처리방침</a>
+        <a class="btn" href="overview.html">사이트 한눈에 보기</a>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <nav aria-label="하단 메뉴">
+        <a href="../about.html">소개</a>
+        <a href="index.html">가이드</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+        <a href="../terms.html">이용약관</a>
+        <a href="../contact.html">문의</a>
+      </nav>
+      <p>© <span id="y"></span> WebToolBay</p>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

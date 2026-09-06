@@ -160,6 +160,11 @@ a:hover { text-decoration: underline; }
   margin: 1rem 0 0;
 }
 
+.guide-section-title {
+  margin: 1.75rem 0 0.65rem;
+  font-size: 1.05rem;
+}
+
 .guide-list a {
   display: block;
   padding: 1rem 1.1rem;

@@ -1,6 +1,8 @@
 /*
- * Builds standalone /tools/*.html pages from index.html so each tool has a
+ * Builds standalone /tools/*.html pages from index.app.html so each tool has a
  * unique crawlable URL on GitHub Pages, plus substantial usage/editorial copy.
+ * Also writes a slim public index.html that keeps only the homepage hub (no tool
+ * UIs), so Google does not treat /tools/* as duplicates of /.
  *
  *   node build/generate-tool-pages.js
  */
@@ -8,7 +10,8 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
-const INDEX = path.join(ROOT, "index.html");
+const APP_INDEX = path.join(ROOT, "index.app.html");
+const PUBLIC_INDEX = path.join(ROOT, "index.html");
 const OUT_DIR = path.join(ROOT, "tools");
 const BASE_URL = "https://webtoolbay.com/";
 
@@ -1177,8 +1180,99 @@ function slimToolPage(html, tool) {
   return html;
 }
 
+const HOME_DROP_SCRIPTS = [
+  "weather.js",
+  "calendar.js",
+  "dday.js",
+  "ip.js",
+  "ocr.js",
+  "convert.js",
+  "editor.js",
+  "speech.js",
+  "picker.js",
+  "chess.js",
+  "flag-countries.js",
+  "flag-cities.js",
+  "flag-coords.js",
+  "flag.js",
+  "capital.js",
+  "noise.js"
+];
+
+function slimHomePage(html) {
+  for (const id of ALL_VIEW_IDS) {
+    if (id === "homeView") continue;
+    const re = new RegExp(
+      "<main\\b[^>]*\\bid=\"" + id + "\"[^>]*>[\\s\\S]*?<\\/main>",
+      "i"
+    );
+    html = html.replace(re, "");
+  }
+
+  // Ensure home is visible.
+  html = html.replace(
+    /(<main\b[^>]*\bid="homeView"[^>]*)\s+hidden\b/i,
+    "$1"
+  );
+
+  for (const src of HOME_DROP_SCRIPTS) {
+    const re = new RegExp(
+      "\\s*<script\\b[^>]*\\bsrc=[\"']" +
+        src.replace(/\./g, "\\.") +
+        "[^\"']*[\"'][^>]*>\\s*</script>",
+      "gi"
+    );
+    html = html.replace(re, "");
+  }
+
+  // Mark hub mode before other scripts run.
+  if (!html.includes("window.__WTB_HOME_ONLY__=true")) {
+    html = html.replace(
+      /<head([^>]*)>/i,
+      '<head$1>\n  <script>window.__WTB_HOME_ONLY__=true;</script>'
+    );
+  }
+
+  html = html.replace(
+    /<html\b([^>]*)>/i,
+    function (m, attrs) {
+      if (/\bclass=/.test(attrs)) {
+        return (
+          "<html" +
+          attrs.replace(
+            /class=(["'])([^"']*)\1/,
+            function (_, q, cls) {
+              const next = (cls + " wtb-home-only adsense-review")
+                .replace(/\s+/g, " ")
+                .trim();
+              return "class=" + q + next + q;
+            }
+          ) +
+          ">"
+        );
+      }
+      return '<html' + attrs + ' class="wtb-home-only adsense-review">';
+    }
+  );
+
+  // Keep public home canonical/title as the site root.
+  html = html.replace(
+    /<link rel="canonical" href="[^"]*"\s*\/>/,
+    '<link rel="canonical" href="' + BASE_URL + '" />'
+  );
+  html = html.replace(
+    /<meta property="og:url" content="[^"]*"\s*\/>/,
+    '<meta property="og:url" content="' + BASE_URL + '" />'
+  );
+
+  return html;
+}
+
 function main() {
-  const source = fs.readFileSync(INDEX, "utf8");
+  if (!fs.existsSync(APP_INDEX)) {
+    throw new Error("Missing index.app.html (SPA source).");
+  }
+  const source = fs.readFileSync(APP_INDEX, "utf8");
   if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true });
 
   for (const tool of TOOLS) {
@@ -1190,6 +1284,10 @@ function main() {
     fs.writeFileSync(outPath, html, "utf8");
     console.log("wrote", path.relative(ROOT, outPath));
   }
+
+  const homeHtml = slimHomePage(source);
+  fs.writeFileSync(PUBLIC_INDEX, homeHtml, "utf8");
+  console.log("wrote", path.relative(ROOT, PUBLIC_INDEX), "(home hub only)");
 }
 
 main();

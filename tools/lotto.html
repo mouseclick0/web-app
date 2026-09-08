@@ -4297,6 +4297,57 @@
     const memoryShareBtn = document.getElementById("memoryShareBtn");
     const memoryDiffButtons = Array.from(document.querySelectorAll(".memory-diff"));
 
+    // Public homepage is a hub only: tool UIs live on /tools/*.html for unique crawlable content.
+    if (window.__WTB_HOME_ONLY__) {
+      window.showView = function (view) {
+        if (!view) return;
+        document.querySelectorAll("main").forEach(function (m) {
+          m.hidden = m !== view;
+        });
+        window.scrollTo(0, 0);
+      };
+
+      const partnershipFormHome = document.getElementById("partnershipForm");
+      const contactStatusHome = document.getElementById("contactStatus");
+      const contactSubmitBtnHome = document.getElementById("contactSubmitBtn");
+      if (partnershipFormHome) {
+        partnershipFormHome.addEventListener("submit", async function (event) {
+          event.preventDefault();
+          const endpoint = partnershipFormHome.getAttribute("action") || "";
+          if (endpoint.includes("YOUR_FORM_ID")) {
+            contactStatusHome.textContent = t("contact.error.formId");
+            contactStatusHome.className = "form-status error";
+            return;
+          }
+          contactSubmitBtnHome.disabled = true;
+          contactStatusHome.textContent = t("contact.status.sending");
+          contactStatusHome.className = "form-status";
+          try {
+            const res = await fetch(endpoint, {
+              method: "POST",
+              body: new FormData(partnershipFormHome),
+              headers: { Accept: "application/json" }
+            });
+            if (res.ok) {
+              partnershipFormHome.reset();
+              contactStatusHome.textContent = t("contact.status.success");
+              contactStatusHome.className = "form-status success";
+            } else {
+              contactStatusHome.textContent = t("contact.error.send");
+              contactStatusHome.className = "form-status error";
+            }
+          } catch (err) {
+            contactStatusHome.textContent = t("contact.error.network");
+            contactStatusHome.className = "form-status error";
+          } finally {
+            contactSubmitBtnHome.disabled = false;
+          }
+        });
+      }
+
+      window.onI18nApplied();
+    } else {
+
     const GAME_COUNT = 5;
     const MINE_DIFFICULTIES = {
       beginner: { rows: 9, cols: 9, mines: 10 },
@@ -6128,6 +6179,8 @@
 
     window.showView = showView;
     window.onI18nApplied();
+
+    } // end !__WTB_HOME_ONLY__
 
     (function bootInitialToolView() {
       var name = window.__WTB_INITIAL_VIEW__;

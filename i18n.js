@@ -4546,6 +4546,10 @@
       if (saved && SUPPORTED.indexOf(saved) !== -1) return saved;
     } catch (e) {}
 
+    // Indexed pages are Korean; crawlers render with an English UA, so do not auto-switch.
+    var pageLang = normalizeLang(document.documentElement.getAttribute("lang") || "");
+    if (pageLang) return pageLang;
+
     var list = [];
     if (global.navigator) {
       if (global.navigator.languages && global.navigator.languages.length) {

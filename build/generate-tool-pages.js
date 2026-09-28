@@ -764,7 +764,8 @@ const TOOLS = [
     ],
     guides: [
       { href: "guides/flag.html", label: "나라 국기 맞추기 가이드" },
-      { href: "guides/capital.html", label: "나라 수도 맞추기 가이드" }
+      { href: "guides/capital.html", label: "나라 수도 맞추기 가이드" },
+      { href: "guides/kids-geography-quiz.html", label: "초등학생과 함께하는 국기·수도 퀴즈" }
     ]
   },
   {
@@ -807,7 +808,8 @@ const TOOLS = [
     ],
     guides: [
       { href: "guides/capital.html", label: "나라 수도 맞추기 가이드" },
-      { href: "guides/flag.html", label: "나라 국기 맞추기 가이드" }
+      { href: "guides/flag.html", label: "나라 국기 맞추기 가이드" },
+      { href: "guides/kids-geography-quiz.html", label: "초등학생과 함께하는 국기·수도 퀴즈" }
     ]
   }
 ];

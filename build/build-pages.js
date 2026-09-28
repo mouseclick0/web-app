@@ -59,7 +59,8 @@ const GUIDE_PAGES = [
   "guides/speaking-rate.html",
   "guides/color-codes.html",
   "guides/noise-types.html",
-  "guides/local-browser-privacy.html"
+  "guides/local-browser-privacy.html",
+  "guides/kids-geography-quiz.html"
 ];
 
 const TOOL_PAGES = [

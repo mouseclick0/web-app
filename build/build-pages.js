@@ -60,7 +60,8 @@ const GUIDE_PAGES = [
   "guides/color-codes.html",
   "guides/noise-types.html",
   "guides/local-browser-privacy.html",
-  "guides/kids-geography-quiz.html"
+  "guides/kids-geography-quiz.html",
+  "guides/tricolor-flags.html"
 ];
 
 const TOOL_PAGES = [

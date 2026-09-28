@@ -14,6 +14,7 @@ const APP_INDEX = path.join(ROOT, "index.app.html");
 const PUBLIC_INDEX = path.join(ROOT, "index.html");
 const OUT_DIR = path.join(ROOT, "tools");
 const BASE_URL = "https://webtoolbay.com/";
+const HIDDEN_TOOL_IDS = new Set(["lotto", "minesweeper", "tetris", "gomoku", "memory"]);
 
 const TOOLS = [
   {
@@ -720,8 +721,7 @@ const TOOLS = [
     ],
     guides: [
       { href: "guides/chess.html", label: "체스 가이드" },
-      { href: "guides/chess-openings-beginner.html", label: "체스 오프닝 초보 가이드" },
-      { href: "guides/games.html", label: "브라우저 게임 가이드" }
+      { href: "guides/chess-openings-beginner.html", label: "체스 오프닝 초보 가이드" }
     ]
   },
   {
@@ -764,8 +764,7 @@ const TOOLS = [
     ],
     guides: [
       { href: "guides/flag.html", label: "나라 국기 맞추기 가이드" },
-      { href: "guides/capital.html", label: "나라 수도 맞추기 가이드" },
-      { href: "guides/games.html", label: "브라우저 게임 가이드" }
+      { href: "guides/capital.html", label: "나라 수도 맞추기 가이드" }
     ]
   },
   {
@@ -808,8 +807,7 @@ const TOOLS = [
     ],
     guides: [
       { href: "guides/capital.html", label: "나라 수도 맞추기 가이드" },
-      { href: "guides/flag.html", label: "나라 국기 맞추기 가이드" },
-      { href: "guides/games.html", label: "브라우저 게임 가이드" }
+      { href: "guides/flag.html", label: "나라 국기 맞추기 가이드" }
     ]
   }
 ];
@@ -1014,6 +1012,13 @@ function patchHead(html, tool) {
     '<link rel="canonical" href="' + pageUrl + '" />'
   );
 
+  if (HIDDEN_TOOL_IDS.has(tool.id)) {
+    out = out.replace(
+      /<meta name="robots" content="[^"]*"\s*\/>/,
+      '<meta name="robots" content="noindex, follow" />'
+    );
+  }
+
   out = out.replace(
     /<meta property="og:title" content="[^"]*"\s*\/>/,
     '<meta property="og:title" content="' + escapeAttr(tool.title) + '" />'
@@ -1197,6 +1202,14 @@ function slimToolPage(html, tool) {
   return html;
 }
 
+const HIDDEN_HOME_CARD_BTNS = [
+  "openLottoBtn",
+  "openMinesweeperBtn",
+  "openTetrisBtn",
+  "openGomokuBtn",
+  "openMemoryBtn"
+];
+
 const HOME_DROP_SCRIPTS = [
   "weather.js",
   "calendar.js",
@@ -1217,6 +1230,16 @@ const HOME_DROP_SCRIPTS = [
 ];
 
 function slimHomePage(html) {
+  for (const btnId of HIDDEN_HOME_CARD_BTNS) {
+    const re = new RegExp(
+      '\\s*<section class="card home-card">(?:(?!<section\\b)[\\s\\S])*?id="' +
+        btnId +
+        '"[\\s\\S]*?<\\/section>',
+      "i"
+    );
+    html = html.replace(re, "");
+  }
+
   for (const id of ALL_VIEW_IDS) {
     if (id === "homeView") continue;
     const re = new RegExp(

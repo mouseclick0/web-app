@@ -11,7 +11,7 @@
   var I18N = {
     ko: {
       "meta.title": "WebToolBay — 날씨·음력·IP·무료 웹 유틸리티",
-      "meta.description": "WebToolBay에서 날씨, 양력·음력 변환, 내 아이피 찾기, 이미지 텍스트 추출·형식 변환·자르기·색상 추출, 발표 시간 계산, 로또 번호 생성을 무료로 이용하세요.",
+      "meta.description": "WebToolBay에서 날씨, 양력·음력 변환, 내 아이피 찾기, 이미지 텍스트 추출·형식 변환·자르기·색상 추출, 발표 시간 계산, 학습용 체스·지리 퀴즈를 무료로 이용하세요.",
       "lang.aria": "언어 선택",
       "nav.aria": "주요 메뉴",
       "nav.home": "홈",
@@ -654,7 +654,7 @@
     },
     en: {
       "meta.title": "WebToolBay — Weather, Lunar Calendar, IP & Free Utilities",
-      "meta.description": "Free browser tools: weather, solar/lunar conversion, IP lookup, image text and color extraction, format conversion, cropping, speech timing, lotto, and games.",
+      "meta.description": "Free browser tools: weather, solar/lunar conversion, IP lookup, image text and color extraction, format conversion, cropping, speech timing, and chess and geography quizzes.",
       "lang.aria": "Language",
       "nav.aria": "Main menu",
       "nav.home": "Home",
@@ -671,12 +671,12 @@
       "theme.toDarkAria": "Switch to dark mode",
       "home.title": "WebToolBay",
       "home.introTitle": "Everyday web tools in your browser",
-      "home.introP1": "WebToolBay offers weather, solar/lunar conversion, public IP lookup, image text extraction, format conversion, cropping and color picking, speaking time estimates, a reference lotto generator, and light browser games in one place. No sign-up — run what you need and read the guides for how-to tips.",
+      "home.introP1": "WebToolBay offers weather, solar/lunar conversion, public IP lookup, image text extraction, format conversion, cropping and color picking, speaking time estimates, and learning quizzes for chess and geography in one place. No sign-up — run what you need and read the guides for how-to tips.",
       "home.introP2": "We pair tools with explanations and publish privacy, terms, and contact pages so the site stays clear and trustworthy.",
       "home.introLi1": "Location-based weather (now, 24h, 7-day) with city search",
       "home.introLi2": "Solar ↔ lunar conversion with gapja and zodiac",
       "home.introLi3": "IPv4/IPv6, ISP, country/city lookup and copy",
-      "home.introLi4": "Minesweeper, Tetris, Gomoku, memory match, chess, flag quiz, and capital quiz",
+      "home.introLi4": "Chess, flag quiz, and capital quiz for learning",
       "home.introLi5": "Extract text from images, processed without uploading",
       "home.introLi6": "Convert images between PNG, JPG, WebP, and BMP",
       "home.introLi7": "Crop, rotate, flip, and resize images",
@@ -1297,7 +1297,7 @@
     },
     ja: {
       "meta.title": "WebToolBay — 天気・暦・IP・無料ユーティリティ",
-      "meta.description": "天気、太陽暦・太陰暦変換、IP確認、画像の文字抽出・形式変換・切り抜き・色の抽出、発表時間の計算、ロト番号、ブラウザゲームを無料で提供します。",
+      "meta.description": "天気、太陽暦・太陰暦変換、IP確認、画像の文字抽出・形式変換・切り抜き・色の抽出、発表時間の計算、チェス・地理クイズを無料で提供します。",
       "lang.aria": "言語選択",
       "nav.aria": "メインメニュー",
       "nav.home": "ホーム",
@@ -1314,12 +1314,12 @@
       "theme.toDarkAria": "ダークモードに切り替え",
       "home.title": "WebToolBay",
       "home.introTitle": "インストール不要の生活ウェブツール",
-      "home.introP1": "WebToolBayは、天気確認、太陽暦・太陰暦変換、グローバルIP照会、画像の文字抽出・形式変換・切り抜き・色の抽出、発表時間の計算、参考用ロト番号生成、軽いブラウザゲームをまとめて提供します。会員登録なしで必要な機能をすぐ使え、使い方はガイドで確認できます。",
+      "home.introP1": "WebToolBayは、天気確認、太陽暦・太陰暦変換、グローバルIP照会、画像の文字抽出・形式変換・切り抜き・色の抽出、発表時間の計算、学習用のチェス・地理クイズをまとめて提供します。会員登録なしで必要な機能をすぐ使え、使い方はガイドで確認できます。",
       "home.introP2": "ツールと説明をセットで用意し、プライバシーポリシー・利用規約・問い合わせ窓口を公開して信頼できるサイト構造を維持します。",
       "home.introLi1": "位置ベースの天気（現在・24時間・7日）と都市検索",
       "home.introLi2": "太陽暦↔太陰暦変換、六十干支・十二支の確認",
       "home.introLi3": "IPv4/IPv6・ISP・国・都市の照会とコピー",
-      "home.introLi4": "マインスイーパー、テトリス、五目、記憶力テスト、チェス、国旗当て、首都当て",
+      "home.introLi4": "学習用のチェス・国旗当て・首都当てクイズ",
       "home.introLi5": "画像内の文字をテキストに抽出（アップロードなしで処理）",
       "home.introLi6": "PNG・JPG・WebP・BMP画像の相互変換",
       "home.introLi7": "画像の切り抜き・回転・反転・サイズ変更",
@@ -1940,7 +1940,7 @@
     },
     "zh-Hans": {
       "meta.title": "WebToolBay — 天气·农历·IP·免费实用工具",
-      "meta.description": "免费提供天气、公历农历转换、IP 查询、图片文字提取、格式转换、裁剪与取色、演讲时长计算、彩票参考号码与浏览器小游戏。",
+      "meta.description": "免费提供天气、公历农历转换、IP 查询、图片文字提取、格式转换、裁剪与取色、演讲时长计算、国际象棋与地理测验。",
       "lang.aria": "语言选择",
       "nav.aria": "主菜单",
       "nav.home": "首页",
@@ -1957,12 +1957,12 @@
       "theme.toDarkAria": "切换到深色模式",
       "home.title": "WebToolBay",
       "home.introTitle": "无需安装的生活网页工具",
-      "home.introP1": "WebToolBay集中提供天气查询、公历/农历转换、公网 IP 查询、图片文字提取、格式转换、裁剪与取色、演讲时长计算、参考用彩票号码生成与轻松小游戏。无需注册即可使用，并可通过指南了解用法与注意事项。",
+      "home.introP1": "WebToolBay集中提供天气查询、公历/农历转换、公网 IP 查询、图片文字提取、格式转换、裁剪与取色、演讲时长计算以及用于学习的国际象棋和地理测验。无需注册即可使用，并可通过指南了解用法与注意事项。",
       "home.introP2": "我们把工具与说明放在一起，并公开隐私政策、服务条款与联系方式，保持清晰可信的网站结构。",
       "home.introLi1": "基于位置的天气（当前·24小时·7天）与城市搜索",
       "home.introLi2": "公历↔农历互转，查看六十甲子与生肖",
       "home.introLi3": "IPv4/IPv6、ISP、国家与城市查询及复制",
-      "home.introLi4": "扫雷、俄罗斯方块、五子棋、记忆力测试、国际象棋、国旗测验、首都测验",
+      "home.introLi4": "用于学习的国际象棋、国旗测验、首都测验",
       "home.introLi5": "从图片中提取文字（无需上传，本地处理）",
       "home.introLi6": "PNG、JPG、WebP、BMP 图片格式互转",
       "home.introLi7": "图片裁剪、旋转、翻转与尺寸调整",
@@ -2583,7 +2583,7 @@
     },
     "zh-Hant": {
       "meta.title": "WebToolBay — 天氣·農曆·IP·免費實用工具",
-      "meta.description": "免費提供天氣、公曆農曆轉換、IP 查詢、圖片文字擷取、格式轉換、裁切與取色、演講時長計算、彩券參考號碼與瀏覽器小遊戲。",
+      "meta.description": "免費提供天氣、公曆農曆轉換、IP 查詢、圖片文字擷取、格式轉換、裁切與取色、演講時長計算、西洋棋與地理測驗。",
       "lang.aria": "語言選擇",
       "nav.aria": "主選單",
       "nav.home": "首頁",
@@ -2600,12 +2600,12 @@
       "theme.toDarkAria": "切換到深色模式",
       "home.title": "WebToolBay",
       "home.introTitle": "無需安裝的生活網頁工具",
-      "home.introP1": "WebToolBay集中提供天氣查詢、公曆/農曆轉換、對外 IP 查詢、圖片文字擷取、格式轉換、裁切與取色、演講時長計算、參考用彩券號碼生成與輕鬆小遊戲。無需註冊即可使用，並可透過指南瞭解用法與注意事項。",
+      "home.introP1": "WebToolBay集中提供天氣查詢、公曆/農曆轉換、對外 IP 查詢、圖片文字擷取、格式轉換、裁切與取色、演講時長計算以及用於學習的西洋棋與地理測驗。無需註冊即可使用，並可透過指南瞭解用法與注意事項。",
       "home.introP2": "我們把工具與說明放在一起，並公開隱私政策、服務條款與聯絡方式，保持清晰可信的網站結構。",
       "home.introLi1": "基於位置的天氣（當前·24小時·7天）與城市搜尋",
       "home.introLi2": "公曆↔農曆互轉，檢視六十甲子與生肖",
       "home.introLi3": "IPv4/IPv6、ISP、國家與城市查詢及複製",
-      "home.introLi4": "掃雷、俄羅斯方塊、五子棋、記憶力測試、西洋棋、國旗測驗、首都測驗",
+      "home.introLi4": "用於學習的西洋棋、國旗測驗、首都測驗",
       "home.introLi5": "從圖片中擷取文字（無需上傳，本地處理）",
       "home.introLi6": "PNG、JPG、WebP、BMP 圖片格式互轉",
       "home.introLi7": "圖片裁切、旋轉、翻轉與尺寸調整",
@@ -3226,7 +3226,7 @@
     },
     es: {
       "meta.title": "WebToolBay — Clima, calendario lunar, IP y utilidades gratuitas",
-      "meta.description": "Herramientas gratuitas: clima, conversión solar/lunar, IP, texto y color de imágenes, conversión y recorte, duración de discursos, lotería y juegos.",
+      "meta.description": "Herramientas gratuitas: clima, conversión solar/lunar, IP, texto y color de imágenes, conversión y recorte, duración de discursos, ajedrez y quizzes de geografía.",
       "lang.aria": "Idioma",
       "nav.aria": "Menú principal",
       "nav.home": "Inicio",
@@ -3243,12 +3243,12 @@
       "theme.toDarkAria": "Cambiar a modo oscuro",
       "home.title": "WebToolBay",
       "home.introTitle": "Utilidades web de uso diario en tu navegador",
-      "home.introP1": "WebToolBay reúne el clima, la conversión solar/lunar, la consulta de IP pública, la extracción de texto y de color de imágenes, la conversión de formatos y el recorte, el cálculo de la duración de un discurso, un generador de lotería de referencia y juegos ligeros en un solo lugar. Sin registro: usa lo que necesites y consulta las guías para conocer los detalles.",
+      "home.introP1": "WebToolBay reúne el clima, la conversión solar/lunar, la consulta de IP pública, la extracción de texto y de color de imágenes, la conversión de formatos y el recorte, el cálculo de la duración de un discurso y cuestionarios educativos de ajedrez y geografía en un solo lugar. Sin registro: usa lo que necesites y consulta las guías para conocer los detalles.",
       "home.introP2": "Acompañamos cada herramienta con explicaciones y publicamos las páginas de privacidad, condiciones y contacto para mantener un sitio claro y confiable.",
       "home.introLi1": "Clima por ubicación (ahora, 24 h y 7 días) con búsqueda de ciudades",
       "home.introLi2": "Conversión solar ↔ lunar con ciclo gapja y zodiaco",
       "home.introLi3": "Consulta y copia de IPv4/IPv6, proveedor, país y ciudad",
-      "home.introLi4": "Buscaminas, Tetris, Gomoku, juego de memoria, ajedrez, quiz de banderas y quiz de capitales",
+      "home.introLi4": "Ajedrez, quiz de banderas y quiz de capitales para aprender",
       "home.introLi5": "Extracción de texto de imágenes, procesada sin subir archivos",
       "home.introLi6": "Conversión de imágenes entre PNG, JPG, WebP y BMP",
       "home.introLi7": "Recortar, girar, voltear y redimensionar imágenes",
@@ -3869,7 +3869,7 @@
     },
     "pt-BR": {
       "meta.title": "WebToolBay — Clima, calendário lunar, IP e utilitários gratuitos",
-      "meta.description": "Ferramentas gratuitas: clima, conversão solar/lunar, IP, texto e cor de imagens, conversão e recorte, duração de discursos, loteria e joguinhos.",
+      "meta.description": "Ferramentas gratuitas: clima, conversão solar/lunar, IP, texto e cor de imagens, conversão e recorte, duração de discursos, xadrez e quizzes de geografia.",
       "lang.aria": "Idioma",
       "nav.aria": "Menu principal",
       "nav.home": "Início",
@@ -3886,12 +3886,12 @@
       "theme.toDarkAria": "Mudar para o modo escuro",
       "home.title": "WebToolBay",
       "home.introTitle": "Utilitários web do dia a dia no seu navegador",
-      "home.introP1": "O WebToolBay reúne clima, conversão solar/lunar, consulta de IP pública, extração de texto e de cor de imagens, conversão de formatos e recorte, cálculo da duração de um discurso, um gerador de loteria para referência e joguinhos leves em um só lugar. Sem cadastro: use o que precisar e consulte os guias para entender os detalhes.",
+      "home.introP1": "O WebToolBay reúne clima, conversão solar/lunar, consulta de IP pública, extração de texto e de cor de imagens, conversão de formatos e recorte, cálculo da duração de um discurso e quizzes educativos de xadrez e geografia em um só lugar. Sem cadastro: use o que precisar e consulte os guias para entender os detalhes.",
       "home.introP2": "Cada ferramenta vem acompanhada de explicações, e publicamos as páginas de privacidade, termos e contato para manter um site claro e confiável.",
       "home.introLi1": "Clima por localização (agora, 24 h e 7 dias) com busca de cidades",
       "home.introLi2": "Conversão solar ↔ lunar com ciclo gapja e zodíaco",
       "home.introLi3": "Consulta e cópia de IPv4/IPv6, provedor, país e cidade",
-      "home.introLi4": "Campo Minado, Tetris, Gomoku, jogo da memória, xadrez, quiz de bandeiras e quiz de capitais",
+      "home.introLi4": "Xadrez, quiz de bandeiras e quiz de capitais para aprender",
       "home.introLi5": "Extração de texto de imagens, processada sem enviar arquivos",
       "home.introLi6": "Conversão de imagens entre PNG, JPG, WebP e BMP",
       "home.introLi7": "Cortar, girar, espelhar e redimensionar imagens",
@@ -4578,9 +4578,11 @@
 
   function applyI18n() {
     document.documentElement.lang = currentLang;
-    document.title = t("meta.title");
-    var metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute("content", t("meta.description"));
+    if (!global.__WTB_TOOL_PAGE__) {
+      document.title = t("meta.title");
+      var metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute("content", t("meta.description"));
+    }
 
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       el.textContent = t(el.getAttribute("data-i18n"));

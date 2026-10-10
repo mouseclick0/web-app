@@ -300,6 +300,120 @@ html.adsense-review .lang-hint {
   color: var(--text);
 }
 
+.chess-diagram {
+  margin: 1rem 0 1.4rem;
+}
+
+.chess-diagrams {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+
+.chess-diagrams .chess-diagram {
+  flex: 1 1 15rem;
+  max-width: 20rem;
+}
+
+.cd-board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  width: min(100%, 20rem);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  container-type: inline-size;
+}
+
+.cd-sq {
+  position: relative;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  font-size: 9cqw;
+}
+
+.cd-light { background: #eceff5; }
+.cd-dark { background: #7f9bc4; }
+
+/* Same glyph for both sides; white gets a light fill with an outline. */
+.cd-piece.cd-w {
+  color: #ffffff;
+  -webkit-text-stroke: 0.045em #21252b;
+  paint-order: stroke fill;
+}
+
+.cd-piece.cd-b { color: #16181d; }
+
+.cd-from { box-shadow: inset 0 0 0 3px rgba(255, 193, 71, 0.85); }
+.cd-selected { box-shadow: inset 0 0 0 3px #2563c7; }
+.cd-check { background: radial-gradient(circle, #ef5350 12%, rgba(239, 83, 80, 0.35) 70%); }
+
+.cd-dot::after {
+  content: "";
+  position: absolute;
+  width: 26%;
+  height: 26%;
+  border-radius: 50%;
+  background: rgba(23, 60, 140, 0.8);
+}
+
+.cd-ring::after {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border: 3px solid rgba(23, 60, 140, 0.85);
+  border-radius: 50%;
+}
+
+.cd-rank,
+.cd-file {
+  position: absolute;
+  font-size: max(0.5rem, 2.6cqw);
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.cd-file { right: 6%; bottom: 2%; }
+.cd-rank { left: 6%; top: 2%; }
+.cd-light .cd-rank, .cd-light .cd-file { color: #5f7fae; }
+.cd-dark .cd-rank, .cd-dark .cd-file { color: #eceff5; }
+
+.chess-diagram figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.piece-table {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.piece-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.6rem 0.5rem;
+  text-align: center;
+}
+
+.piece-card .cd-piece {
+  display: block;
+  font-size: 2.4rem;
+  line-height: 1.1;
+}
+
+.piece-card strong { display: block; }
+
+.piece-card span.piece-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .source-note {
   font-size: 0.85rem;
   color: var(--muted);

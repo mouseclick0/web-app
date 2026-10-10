@@ -1,12 +1,17 @@
 /**
- * Renders static chess diagrams into guides/chess.html between
- * <!-- chess-diagram:ID --> and <!-- /chess-diagram --> markers.
- * Move targets are computed from the position so the dots always match the rules.
+ * Renders static chess diagrams between <!-- chess-diagram:ID --> and
+ * <!-- /chess-diagram --> markers. Move targets are computed from the position
+ * so the dots always match the rules.
+ *
+ * chess-openings-beginner.html is produced by generate-info-articles.js, which
+ * calls renderDiagrams() itself; running this file re-renders both guides.
  */
 const fs = require("fs");
 const path = require("path");
 
-const FILE = path.resolve(__dirname, "..", "guides", "chess.html");
+const GUIDES = ["chess.html", "chess-openings-beginner.html"].map(function (f) {
+  return path.resolve(__dirname, "..", "guides", f);
+});
 
 // Text presentation selector keeps iOS from drawing the pawn as an emoji.
 const VS15 = "&#xFE0E;";
@@ -84,6 +89,50 @@ const DIAGRAMS = {
     caption: "스테일메이트(무승부). 흑 차례인데 h8의 킹은 공격받지 않지만 g8·g7·h7이 모두 막혀 둘 수 있는 수가 없습니다.",
     alt: "h8의 흑 킹, g6의 백 퀸, f7의 백 킹으로 이루어진 스테일메이트",
     fen: "7k/5K2/6Q1/8/8/8/8/8"
+  },
+
+  "open-e4e5": {
+    caption: "① 1.e4 e5 — 양쪽이 킹 앞 폰을 두 칸 밀어 가운데를 차지합니다. 비숍과 퀸이 나올 길도 함께 열립니다.",
+    alt: "1.e4 e5 이후 국면: 백 폰 e4, 흑 폰 e5",
+    fen: "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR",
+    from: ["e7", "e5"]
+  },
+  "open-nf3": {
+    caption: "② 2.Nf3 Nc6 — 백 나이트가 e5 폰을 노리고(테두리 원), 흑은 나이트로 그 폰을 지킵니다. 공격과 수비가 동시에 전개가 되는 좋은 수입니다.",
+    alt: "2.Nf3 Nc6 이후 국면과 f3 나이트가 갈 수 있는 칸",
+    fen: "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R",
+    moves: "f3"
+  },
+  "open-bc4": {
+    caption: "③ 3.Bc4 Bc5 (이탈리안 게임) — 백 비숍이 f7을 겨눕니다. f7은 킹 혼자 지키는 약한 칸이라 초반 공격의 단골 목표입니다.",
+    alt: "3.Bc4 Bc5 이후 국면과 c4 비숍이 f7을 겨누는 표시",
+    fen: "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R",
+    moves: "c4"
+  },
+  "open-castle": {
+    caption: "④ 4.O-O Nf6 — 백은 네 수 만에 캐슬링을 마쳐 킹이 g1으로 피하고 룩이 f1로 나왔습니다. 초보 오프닝의 목표 지점이 바로 이 모습입니다.",
+    alt: "4.O-O Nf6 이후 국면: 백 킹 g1, 백 룩 f1",
+    fen: "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1",
+    from: ["e1", "h1"]
+  },
+  "open-sicilian": {
+    caption: "1.e4 c5 (시실리안 디펜스) — 흑이 대칭 대신 옆에서 d4 칸을 견제합니다.",
+    alt: "1.e4 c5 이후 국면: 흑 폰 c5",
+    fen: "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR",
+    from: ["c7", "c5"]
+  },
+  "open-french": {
+    caption: "1.e4 e6 (프렌치 디펜스) — 흑이 한 칸만 올려 다음 수 d5를 준비합니다. 단단하지만 c8 비숍이 갇히기 쉽습니다.",
+    alt: "1.e4 e6 이후 국면: 흑 폰 e6",
+    fen: "rnbqkbnr/pppp1ppp/4p3/8/4P3/8/PPPP1PPP/RNBQKBNR",
+    from: ["e7", "e6"]
+  },
+  "open-scholar": {
+    caption: "4수 체크메이트(스콜라스 메이트). 1.e4 e5 2.Qh5 Nc6 3.Bc4 Nf6?? 4.Qxf7#. 비숍이 받치는 퀸이 f7을 잡아 킹이 피할 곳이 없습니다.",
+    alt: "백 퀸이 f7에서 e8의 흑 킹을 체크메이트한 국면",
+    fen: "r1bqkb1r/pppp1Qpp/2n2n2/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR",
+    from: ["h5", "f7"],
+    check: ["e8"]
   }
 };
 
@@ -215,20 +264,27 @@ function render(d) {
   );
 }
 
-function main() {
-  let html = fs.readFileSync(FILE, "utf8");
-  const seen = [];
-  html = html.replace(
+function renderDiagrams(html) {
+  return html.replace(
     /<!-- chess-diagram:([\w-]+) -->[\s\S]*?<!-- \/chess-diagram -->/g,
     function (_, id) {
       const d = DIAGRAMS[id];
       if (!d) throw new Error("Unknown chess diagram: " + id);
-      seen.push(id);
       return "<!-- chess-diagram:" + id + " -->" + render(d) + "<!-- /chess-diagram -->";
     }
   );
-  fs.writeFileSync(FILE, html, "utf8");
-  console.log("rendered", seen.length, "diagrams:", seen.join(", "));
 }
 
-main();
+function main() {
+  for (const file of GUIDES) {
+    const before = fs.readFileSync(file, "utf8");
+    const after = renderDiagrams(before);
+    fs.writeFileSync(file, after, "utf8");
+    const count = (after.match(/<!-- chess-diagram:/g) || []).length;
+    console.log("rendered", count, "diagrams in", path.basename(file));
+  }
+}
+
+module.exports = { renderDiagrams };
+
+if (require.main === module) main();

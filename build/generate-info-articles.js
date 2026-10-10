@@ -4,6 +4,7 @@
  */
 const fs = require("fs");
 const path = require("path");
+const { renderDiagrams } = require("./generate-chess-diagrams");
 
 const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "guides");
@@ -97,12 +98,23 @@ const ARTICLES = [
         "첫째, 중앙(특히 e4·d4·e5·d5 부근)에 영향력을 두세요. 둘째, 나이트와 비숍을 빨리 전개하고 같은 기물을 두 번 움직이지 않는 편이 좋습니다. 셋째, 가능하면 일찍 캐슬링해 왕을 구석으로 옮기고 룩을 연결하세요. 이 세 가지만 지켜도 ‘왕만 중앙에 두고 기물이 집에 남아 있는’ 초반 파멸이 줄어듭니다."
       ],
       [
+        "그림으로 보는 첫 네 수: 이탈리안 게임",
+        "세 가지 원칙이 실제 판에서 어떻게 보이는지, 초보 연습에 가장 많이 쓰이는 이탈리안 게임으로 따라가 보겠습니다. 노란 테두리는 방금 움직인 기물의 출발·도착 칸, 파란 테두리는 선택한 기물, 점과 테두리 원은 그 기물이 갈 수 있는 칸과 잡을 수 있는 칸입니다. 그림은 WebToolBay 체스 화면과 같은 방식으로 그렸습니다.",
+        "<div class=\"chess-diagrams\"><!-- chess-diagram:open-e4e5 --><!-- /chess-diagram --><!-- chess-diagram:open-nf3 --><!-- /chess-diagram --></div>",
+        "<div class=\"chess-diagrams\"><!-- chess-diagram:open-bc4 --><!-- /chess-diagram --><!-- chess-diagram:open-castle --><!-- /chess-diagram --></div>",
+        "네 수 동안 백이 한 일을 세어 보면 가운데 폰 하나, 나이트 하나, 비숍 하나를 꺼내고 캐슬링을 했습니다. 같은 기물을 두 번 움직인 적이 없고, 퀸은 아직 집에 있습니다. 흑도 똑같이 전개했기 때문에 형세는 대등합니다. 여기서부터 d3 또는 c3·d4로 가운데를 보강하고, 남은 나이트와 비숍을 꺼내면 중반으로 자연스럽게 넘어갑니다. 수순을 외우기보다 ‘매 수 새 기물 하나를 꺼냈는가’를 확인하며 두면 다른 오프닝에서도 같은 흐름을 만들 수 있습니다."
+      ],
+      [
         "인기 있는 입문 형태",
-        "백이 1.e4를 두면 열린 게임이 되기 쉬워 초보 연습에 자주 쓰입니다. 흑은 e5로 대칭을 이루거나, c5(시실리안)·e6(프렌치)처럼 다른 구조로 갈 수 있습니다. 이름을 모두 외울 필요는 없습니다. ‘중앙을 두고, 전개하고, 캐슬링한다’는 순서가 이름보다 중요합니다."
+        "백이 1.e4를 두면 열린 게임이 되기 쉬워 초보 연습에 자주 쓰입니다. 흑은 e5로 대칭을 이루거나, c5(시실리안)·e6(프렌치)처럼 다른 구조로 갈 수 있습니다. 이름을 모두 외울 필요는 없습니다. ‘중앙을 두고, 전개하고, 캐슬링한다’는 순서가 이름보다 중요합니다.",
+        "<div class=\"chess-diagrams\"><!-- chess-diagram:open-sicilian --><!-- /chess-diagram --><!-- chess-diagram:open-french --><!-- /chess-diagram --></div>",
+        "AI가 흑으로 c5나 e6를 두더라도 당황할 필요는 없습니다. 백은 그대로 Nf3, d4, 비숍 전개, 캐슬링 순서를 지키면 됩니다. 시실리안에서는 흑이 반대편(퀸 쪽)에서 반격하기 쉽고, 프렌치에서는 가운데가 일찍 막히는 경향이 있다는 정도만 알아 두세요."
       ],
       [
         "피해야 할 초반 실수",
-        "퀸을 너무 일찍 밖으로 빼면 상대 기물에 쫓기며 템포를 잃기 쉽습니다. 폰을 이유 없이 여러 장 움직이면 전개가 늦어집니다. 캐슬링 전에 왕 앞 폰을 과도하게 밀면 왕이 노출됩니다. 한 수마다 ‘이 기물이 공격받는가?’를 확인하는 습관이 오프닝 이론보다 먼저입니다."
+        "퀸을 너무 일찍 밖으로 빼면 상대 기물에 쫓기며 템포를 잃기 쉽습니다. 폰을 이유 없이 여러 장 움직이면 전개가 늦어집니다. 캐슬링 전에 왕 앞 폰을 과도하게 밀면 왕이 노출됩니다. 한 수마다 ‘이 기물이 공격받는가?’를 확인하는 습관이 오프닝 이론보다 먼저입니다.",
+        "<!-- chess-diagram:open-scholar --><!-- /chess-diagram -->",
+        "초보자가 가장 많이 당하는 패턴이 위의 4수 체크메이트입니다. 백 퀸(h5)과 비숍(c4)이 함께 f7을 노리는데, 흑이 나이트로 퀸을 쫓으려고 3...Nf6를 두는 순간 4.Qxf7로 끝납니다. 2.Qh5를 보면 3...g6로 퀸을 쫓거나 3...Qe7로 f7을 한 번 더 지키면 막을 수 있습니다. 막고 나면 일찍 나온 백 퀸은 오히려 흑 기물에 쫓기며 시간을 잃게 됩니다. 반대로 백을 잡았을 때 이 수를 노리는 것은 상대가 막으면 손해이므로 권하지 않습니다."
       ],
       [
         "AI와 연습하는 요령",
@@ -656,6 +668,7 @@ function wrap(article) {
         "</h2>\n" +
         paras
           .map(function (p) {
+            if (/^<(div|!--)/.test(p)) return "      " + p;
             return "      <p>" + p + "</p>";
           })
           .join("\n")
@@ -734,7 +747,7 @@ function stripText(html) {
 }
 
 for (const article of ARTICLES) {
-  const html = wrap(article);
+  const html = renderDiagrams(wrap(article));
   const outPath = path.join(OUT, article.id + ".html");
   fs.writeFileSync(outPath, html, "utf8");
   const chars = stripText(

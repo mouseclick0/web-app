@@ -374,8 +374,8 @@ const TOOLS = [
     ],
     guides: [
       { href: "guides/speech.html", label: "발표 시간 계산 가이드" },
-      { href: "guides/dday.html", label: "디데이 계산 가이드" },
-      { href: "guides/overview.html", label: "사이트 한눈에 보기" }
+      { href: "guides/presentation-time-prep.html", label: "학교·과제 발표 시간 맞추기" },
+      { href: "guides/speaking-rate.html", label: "발표 속도와 원고 분량" }
     ]
   },
   {

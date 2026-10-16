@@ -62,7 +62,8 @@ const GUIDE_PAGES = [
   "guides/local-browser-privacy.html",
   "guides/kids-geography-quiz.html",
   "guides/tricolor-flags.html",
-  "guides/d-plus-minus.html"
+  "guides/d-plus-minus.html",
+  "guides/presentation-time-prep.html"
 ];
 
 const TOOL_PAGES = [

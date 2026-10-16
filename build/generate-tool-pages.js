@@ -418,8 +418,8 @@ const TOOLS = [
     ],
     guides: [
       { href: "guides/dday.html", label: "디데이 계산 가이드" },
-      { href: "guides/calendar.html", label: "양력·음력 변환 가이드" },
-      { href: "faq.html", label: "FAQ" }
+      { href: "guides/d-plus-minus.html", label: "D−와 D+의 차이" },
+      { href: "guides/calendar.html", label: "양력·음력 변환 가이드" }
     ]
   },
   {

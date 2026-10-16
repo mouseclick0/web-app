@@ -61,7 +61,8 @@ const GUIDE_PAGES = [
   "guides/noise-types.html",
   "guides/local-browser-privacy.html",
   "guides/kids-geography-quiz.html",
-  "guides/tricolor-flags.html"
+  "guides/tricolor-flags.html",
+  "guides/d-plus-minus.html"
 ];
 
 const TOOL_PAGES = [

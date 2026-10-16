@@ -63,7 +63,8 @@ const GUIDE_PAGES = [
   "guides/kids-geography-quiz.html",
   "guides/tricolor-flags.html",
   "guides/d-plus-minus.html",
-  "guides/presentation-time-prep.html"
+  "guides/presentation-time-prep.html",
+  "guides/capital-quiz-practice.html"
 ];
 
 const TOOL_PAGES = [

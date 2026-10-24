@@ -338,9 +338,9 @@ const TOOLS = [
     id: "speech",
     viewId: "speechView",
     backBtnId: "backHomeFromSpeechBtn",
-    title: "발표 대본 예상 시간 계산기 | WebToolBay",
+    title: "5분 발표 분량 계산 | 대본 예상 시간 | WebToolBay",
     description:
-      "대본을 붙여 넣고 말하기 속도로 예상 발표 시간과 분량 과부족을 계산하는 WebToolBay 전용 도구입니다.",
+      "5분 발표 분량을 글자 수로 가늠합니다. 대본을 붙여 넣고 말하기 속도를 고르면 예상 발표 시간과 분량 과부족이 나옵니다.",
     guideTitle: "발표 시간 계산기 이용 안내",
     intro:
       "홈의 한 줄 소개와 달리, 이 화면에서는 대본·속도 프리셋·목표 시간을 넣어 예상 소요를 숫자로 확인합니다. 수업 발표, 면접, 회의 브리핑처럼 “이 원고를 읽으면 몇 분이나 걸릴지”를 가늠할 때 쓰세요.",
@@ -382,9 +382,9 @@ const TOOLS = [
     id: "dday",
     viewId: "ddayView",
     backBtnId: "backHomeFromDdayBtn",
-    title: "D−/D+ 디데이 날짜 계산기 | WebToolBay",
+    title: "D+ 계산기 | D−·D-Day 디데이 | WebToolBay",
     description:
-      "기준일과 목표일로 남은 날(D−)·당일(D-Day)·지난 날(D+)을 계산하는 WebToolBay 디데이 전용 페이지입니다.",
+      "D+ 계산기로 지난 날과 남은 날을 확인합니다. 기준일과 목표일을 넣으면 D−, D-Day, D+가 바로 나옵니다.",
     guideTitle: "디데이 날짜 계산기 이용 안내",
     intro:
       "홈 카드 설명이 아니라, 기준일·목표일·제목을 입력해 D− / D-Day / D+를 구분하는 계산 화면입니다. 수능·자격증·결혼식·마감처럼 “그날까지 며칠인지”를 숫자로 볼 때 쓰며, 브라우저에서만 계산합니다.",
@@ -773,9 +773,9 @@ const TOOLS = [
     id: "capital",
     viewId: "capitalView",
     backBtnId: "backHomeFromCapitalBtn",
-    title: "나라 수도 맞추기 | WebToolBay",
+    title: "나라 수도 맞추기 | 4지선다 퀴즈 | WebToolBay",
     description:
-      "나라 이름과 국기를 보고 수도를 맞히는 브라우저 퀴즈입니다. 가볍게 지리 상식을 점검해 보세요.",
+      "나라 수도 맞추기 퀴즈입니다. 나라 이름과 국기를 보고 그 나라의 도시 4개 중 수도를 고르세요.",
     guideTitle: "나라 수도 맞추기 이용 안내",
     intro:
       "나라 이름과 국기를 힌트로 수도를 고르는 퀴즈입니다. 국기 맞추기와 함께 쓰면 나라·수도·국기 세 정보를 한 세트로 익히기 쉽습니다.",

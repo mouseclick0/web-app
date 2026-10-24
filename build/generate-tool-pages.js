@@ -190,7 +190,7 @@ const TOOLS = [
     ],
     guides: [
       { href: "guides/ocr.html", label: "OCR 가이드" },
-      { href: "guides/convert.html", label: "이미지 형식 변환 가이드" },
+      { href: "guides/ocr-accuracy.html", label: "OCR 인식률 높이는 법" },
       { href: "guides/editor.html", label: "이미지 자르기·회전 가이드" }
     ]
   },

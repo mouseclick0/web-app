@@ -196,7 +196,7 @@ const ARTICLES = [
       ],
       [
         "실무 팁",
-        "중요한 음력 일정은 한 해 초에 양력으로 변환해 달력에 미리 표시하세요. WebToolBay <a href=\"../tools/calendar.html\">양력/음력 변환기</a>에서 결과를 확인한 뒤, 필요하면 <a href=\"../tools/dday.html\">디데이 계산기</a>로 남은 날을 보면 준비 계획을 세우기 쉽습니다. 개념이 더 필요하면 <a href=\"calendar.html\">양력·음력 변환 가이드</a>도 함께 읽으세요."
+        "중요한 음력 일정은 한 해 초에 양력으로 변환해 달력에 미리 표시하세요. WebToolBay <a href=\"../tools/calendar.html\">양력/음력 변환기</a>에서 결과를 확인한 뒤, 필요하면 <a href=\"../tools/dday.html\">디데이 계산기</a>로 남은 날을 보면 준비 계획을 세우기 쉽습니다. D−·D+ 표기가 헷갈리면 <a href=\"d-plus-minus.html\">D−와 D+의 차이</a>를, 변환기 자체는 <a href=\"calendar.html\">양력·음력 변환 가이드</a>를 함께 읽으세요."
       ],
       [
         "정리",
@@ -270,7 +270,7 @@ const ARTICLES = [
       ],
       [
         "디데이와 함께 준비하기",
-        "발표일이 정해졌다면 <a href=\"../tools/dday.html\">디데이 계산기</a>로 남은 날을 보고, D−7에 초안, D−2에 리허설처럼 마일스톤을 정하세요. 도구 사용법은 <a href=\"speech.html\">발표 시간 계산 가이드</a>에 더 자세히 있습니다."
+        "발표일이 정해졌다면 <a href=\"../tools/dday.html\">디데이 계산기</a>로 남은 날을 보고, D−7에 초안, D−2에 리허설처럼 마일스톤을 정하세요. 학교·과제 제한 시간용 글자 수 표는 <a href=\"presentation-time-prep.html\">학교·과제 발표 시간 맞추기</a>에, 도구 사용법은 <a href=\"speech.html\">발표 시간 계산 가이드</a>에 있습니다."
       ],
       [
         "정리",
@@ -278,7 +278,7 @@ const ARTICLES = [
       ]
     ],
     ctaPrimary: { href: "../tools/speech.html", label: "발표 시간 계산 열기" },
-    ctaSecondary: { href: "speech.html", label: "발표 가이드" }
+    ctaSecondary: { href: "presentation-time-prep.html", label: "학교·과제 발표 시간 맞추기" }
   },
   {
     id: "color-codes",

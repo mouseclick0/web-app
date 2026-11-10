@@ -102,7 +102,7 @@ const TOOLS = [
     guides: [
       { href: "guides/calendar.html", label: "양력·음력 변환 가이드" },
       { href: "guides/dday.html", label: "디데이 계산 가이드" },
-      { href: "guides/overview.html", label: "사이트 한눈에 보기" }
+      { href: "guides/d-plus-minus.html", label: "D−와 D+의 차이" }
     ]
   },
   {
@@ -765,8 +765,8 @@ const TOOLS = [
     guides: [
       { href: "guides/flag.html", label: "나라 국기 맞추기 가이드" },
       { href: "guides/capital.html", label: "나라 수도 맞추기 가이드" },
-      { href: "guides/tricolor-flags.html", label: "헷갈리는 삼색기 구분법" },
-      { href: "guides/kids-geography-quiz.html", label: "초등학생과 함께하는 국기·수도 퀴즈" }
+      { href: "guides/capital-quiz-practice.html", label: "세계 수도 복습법" },
+      { href: "guides/tricolor-flags.html", label: "헷갈리는 삼색기 구분법" }
     ]
   },
   {

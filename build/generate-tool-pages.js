@@ -338,9 +338,9 @@ const TOOLS = [
     id: "speech",
     viewId: "speechView",
     backBtnId: "backHomeFromSpeechBtn",
-    title: "5분 발표 분량 계산 | 대본 예상 시간 | WebToolBay",
+    title: "5분 발표 분량 계산기 | 발표 시간·글자 수 | WebToolBay",
     description:
-      "5분 발표 분량을 글자 수로 가늠합니다. 대본을 붙여 넣고 말하기 속도를 고르면 예상 발표 시간과 분량 과부족이 나옵니다.",
+      "5분 발표 분량이 몇 글자인지 바로 계산합니다. 대본을 붙여 넣고 말하기 속도를 고르면 예상 발표 시간과 목표 대비 과부족이 나오는 무료 발표 시간 계산기입니다.",
     guideTitle: "발표 시간 계산기 이용 안내",
     intro:
       "홈의 한 줄 소개와 달리, 이 화면에서는 대본·속도 프리셋·목표 시간을 넣어 예상 소요를 숫자로 확인합니다. 수업 발표, 면접, 회의 브리핑처럼 “이 원고를 읽으면 몇 분이나 걸릴지”를 가늠할 때 쓰세요.",
@@ -766,7 +766,7 @@ const TOOLS = [
       { href: "guides/flag.html", label: "나라 국기 맞추기 가이드" },
       { href: "guides/capital.html", label: "나라 수도 맞추기 가이드" },
       { href: "guides/capital-quiz-practice.html", label: "세계 수도 복습법" },
-      { href: "guides/tricolor-flags.html", label: "헷갈리는 삼색기 구분법" }
+      { href: "guides/tricolor-flags.html", label: "독일·프랑스·러시아 국기 차이" }
     ]
   },
   {

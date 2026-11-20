@@ -381,7 +381,7 @@
       "home.speech.subtitle": "5분 발표 분량·글자 수를 바로 계산합니다.",
       "home.speech.cta": "5분 발표 분량 계산",
       "speech.title": "5분 발표 분량 계산기",
-      "speech.subtitle": "발표 대본을 넣으면 예상 발표 시간과 글자 수를 계산합니다. 입력한 내용은 서버로 전송되지 않고 브라우저 안에서만 처리됩니다.",
+      "speech.subtitle": "대본을 붙여 넣으면 5분 발표 분량·예상 시간과 글자 수가 바로 나옵니다. 입력한 내용은 서버로 전송되지 않고 브라우저 안에서만 처리됩니다.",
       "speech.scriptLabel": "발표 대본",
       "speech.scriptPlaceholder": "발표할 내용을 붙여넣거나 직접 입력하세요.",
       "speech.resultLabel": "예상 발표 시간",
